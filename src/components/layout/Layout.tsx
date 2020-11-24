@@ -31,7 +31,7 @@ const Block = styled.div<{ darkMode: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 120vh;
+  min-height: 100vh;
   ${(props) =>
     props.darkMode &&
     css`
@@ -68,6 +68,9 @@ const ContentBlock = styled.div`
     width: 100vw;
   }
   ${media.medium} {
+    width: 53rem;
+  }
+  ${media.large} {
     width: 64rem;
   }
 `;

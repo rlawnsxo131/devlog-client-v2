@@ -34,10 +34,11 @@ const Block = styled.div`
     top: 5rem;
   }
   ${media.medium} {
-    width: 64rem;
+    width: 53rem;
+    top: 3.8rem;
   }
   ${media.large} {
-    top: 3.8rem;
+    width: 64rem;
   }
 `;
 
@@ -49,7 +50,6 @@ const ToggleBlock = styled.div`
   align-items: center;
   width: 3rem;
   padding: 0.1rem 0.3rem 0.1rem 0.3rem;
-  margin-right: 1.25rem;
   background: black;
   border-radius: 1.5rem;
   z-index: 10;
@@ -59,6 +59,13 @@ const ToggleBlock = styled.div`
   }
   &:hover {
     cursor: pointer;
+  }
+
+  ${media.xsmall} {
+    margin-right: 10vw;
+  }
+  ${media.medium} {
+    margin-right: 0;
   }
 `;
 

@@ -67,7 +67,7 @@ const Block = styled.nav<{ scrollDirection?: ScrollDirectionType }>`
     height: 5rem;
     top: ${(props) => (props.scrollDirection === 'DOWN' ? '-5.25rem' : '0')};
   }
-  ${media.large} {
+  ${media.medium} {
     display: none;
   }
 `;

@@ -32,7 +32,7 @@ const Block = styled.nav`
   ${media.xsmall} {
     display: none;
   }
-  ${media.large} {
+  ${media.medium} {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,9 +43,14 @@ const ContentBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 64rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  ${media.medium} {
+    width: 53rem;
+  }
+  ${media.large} {
+    width: 64rem;
+  }
 `;
 
 const Link = styled(NavLink)`
