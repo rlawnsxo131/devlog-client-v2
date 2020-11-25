@@ -36,7 +36,7 @@ export default function useDarkMode(): useDarkMode {
     dispatch(
       onDarkMode({
         visible: false,
-        darkMode: mode === 'dark' ? true : false,
+        darkMode: mode === 'dark',
       }),
     );
   }, []);
@@ -47,7 +47,7 @@ export default function useDarkMode(): useDarkMode {
     dispatch(
       onDarkMode({
         visible: false,
-        darkMode: DARK_MODE.current === 'true' ? true : false,
+        darkMode: DARK_MODE.current === 'true',
       }),
     );
   }, []);
