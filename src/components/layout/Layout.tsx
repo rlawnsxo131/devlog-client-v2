@@ -3,7 +3,7 @@ import styled, { createGlobalStyle, css } from 'styled-components';
 import useDarkMode from '../../lib/hooks/useDarkMode';
 import media from '../../lib/styles/media';
 import palette, { darkModeBackground } from '../../lib/styles/palette';
-import Toggle from '../common/Toggle';
+import DarkModeToggle from '../common/DarkModeToggle';
 import Navigation from './Navigation';
 
 type LayoutProps = {
@@ -17,7 +17,7 @@ function Layout({ children }: LayoutProps) {
       <GlobalStyle darkMode={darkMode} />
       <Block darkMode={darkMode}>
         <Navigation />
-        <Toggle />
+        <DarkModeToggle />
         <Main>
           <ContentBlock>{children}</ContentBlock>
         </Main>
@@ -63,12 +63,13 @@ const Main = styled.main`
 const ContentBlock = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   ${media.xsmall} {
     width: 100vw;
+    padding: 1rem;
   }
   ${media.medium} {
     width: 53rem;
+    padding: 1rem 0 1rem 0;
   }
   ${media.large} {
     width: 64rem;

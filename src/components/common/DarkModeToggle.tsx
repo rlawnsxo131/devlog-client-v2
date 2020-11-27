@@ -5,10 +5,10 @@ import palette from '../../lib/styles/palette';
 import { slideLeft, slideRight } from '../../lib/styles/transitions';
 import useToggle from './hooks/useToggle';
 
-type ToggleProps = {};
+type DarkModeToggleProps = {};
 
 const { memo } = React;
-function Toggle(props: ToggleProps) {
+function DarkModeToggle(props: DarkModeToggleProps) {
   const { visible, darkMode, onToggle } = useToggle();
   return (
     <Block>
@@ -31,7 +31,7 @@ const Block = styled.div`
   z-index: 10;
   ${media.xsmall} {
     width: 100vw;
-    top: 5rem;
+    top: 0;
   }
   ${media.medium} {
     width: 53rem;
@@ -62,7 +62,7 @@ const ToggleBlock = styled.div`
   }
 
   ${media.xsmall} {
-    margin-right: 10vw;
+    margin-right: 7vw;
   }
   ${media.medium} {
     margin-right: 0;
@@ -98,4 +98,4 @@ const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
   }}
 `;
 
-export default memo(Toggle);
+export default memo(DarkModeToggle);

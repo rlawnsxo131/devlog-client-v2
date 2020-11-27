@@ -40,6 +40,7 @@ function MobileNavigation(props: MobileNavigationProps) {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   return (
     <Block scrollDirection={scrollDirection}>
       <Link to="/">

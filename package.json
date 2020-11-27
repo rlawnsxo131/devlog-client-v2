@@ -8,12 +8,12 @@
     "build": "NODE_ENV=production webpack --config config/webpack.config.prod.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.7",
+    "@babel/core": "^7.12.9",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-redux": "^7.1.11",
     "@types/react-router-dom": "^5.1.6",
-    "babel-loader": "^8.2.1",
+    "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
@@ -32,7 +32,7 @@
     "webpack-manifest-plugin": "^2.2.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.2.7",
+    "@apollo/client": "^3.2.9",
     "@reduxjs/toolkit": "^1.4.0",
     "@types/styled-components": "^5.1.4",
     "date-fns": "^2.16.1",

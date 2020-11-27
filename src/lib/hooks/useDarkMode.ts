@@ -14,15 +14,14 @@ export default function useDarkMode(): useDarkMode {
     localStorage.getItem(DEVLOG_DARK_MODE),
   );
   const dispatch = useDispatch();
-  const { core } = useSelector(
-    (state: RootState) => ({
-      core: state.core,
-    }),
+  const visible = useSelector(
+    (state: RootState) => state.core.darkMode.visible,
     shallowEqual,
   );
-  const {
-    darkMode: { visible, darkMode },
-  } = core;
+  const darkMode = useSelector(
+    (state: RootState) => state.core.darkMode.darkMode,
+    shallowEqual,
+  );
 
   // none declare DARK_MODE
   useEffect(() => {

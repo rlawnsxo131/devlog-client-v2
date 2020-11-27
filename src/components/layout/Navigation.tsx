@@ -4,6 +4,7 @@ import MobileNavigation from './MobileNavigation';
 
 type NavigationProps = {};
 
+const { memo } = React;
 function Navigation(props: NavigationProps) {
   return (
     <>
@@ -13,4 +14,4 @@ function Navigation(props: NavigationProps) {
   );
 }
 
-export default Navigation;
+export default memo(Navigation);
