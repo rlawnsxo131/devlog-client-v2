@@ -28,7 +28,7 @@ function PostCards(props: PostCardsProps) {
 const Block = styled.div`
   display: grid;
   ${media.xsmall} {
-    grid-auto-rows: 22rem;
+    grid-auto-rows: 24rem;
     gap: 1rem 0;
   }
   @media (min-width: 420px) {
@@ -40,11 +40,11 @@ const Block = styled.div`
     gap: 1rem 1rem;
   }
   ${media.medium} {
-    grid-auto-rows: 19rem;
+    grid-auto-rows: 22rem;
     grid-template-columns: repeat(3, 1fr);
   }
   ${media.large} {
-    grid-auto-rows: 22rem;
+    grid-auto-rows: 24rem;
     grid-template-columns: repeat(3, 1fr);
   }
 `;

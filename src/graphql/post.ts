@@ -5,12 +5,14 @@ export type PostType = {
   post_header: string;
   post_body: string;
   short_description: string;
+  preview_description: string;
   thumnail?: string;
   open_yn?: boolean;
   series_id: number;
+  url_slug: string;
   released_at: Date;
   tags: Array<string>;
-  comments_count: number;
+  comments_count?: number;
 };
 
 export type SeriesPostType = {
@@ -21,8 +23,8 @@ export type SeriesPostType = {
 };
 
 export const GET_POST = gql`
-  query GetPost($id: ID!, $post_header: String!) {
-    post(id: $id, post_header: $post_header) {
+  query GetPost($url_slug: String!) {
+    post(url_slug: $url_slug) {
       id
       post_header
       post_body
@@ -30,6 +32,7 @@ export const GET_POST = gql`
       thumnail
       open_yn
       series_id
+      url_slug
       released_at
       tags
       comments_count
@@ -49,6 +52,7 @@ export const GET_POSTS = gql`
       id
       post_header
       short_description
+      preview_description
       thumnail
       series_id
       released_at

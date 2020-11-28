@@ -57,7 +57,12 @@ const Main = styled.main`
   flex: 1;
   display: flex;
   justify-content: center;
-  margin-top: 8.5rem;
+  ${media.xsmall} {
+    margin-top: 5.5rem;
+  }
+  ${media.medium} {
+    margin-top: 8.5rem;
+  }
 `;
 
 const ContentBlock = styled.div`
@@ -81,7 +86,7 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+    font-family: 'Montserrat', sans-serif, -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
     'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 나눔고딕,
     'Nanum Gothic', 'Noto Sans KR', 'Noto Sans CJK KR', arial, 돋움, Dotum,
     Tahoma, Geneva, sans-serif;
@@ -93,9 +98,8 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
     all: unset;
   }
 
-  // font style
+  // font transition
   h1, h2, h3, h4, h5, h6, span, p, a, div {
-    font-family: 'Montserrat', sans-serif;
     transition: color 0.2s ease-in-out;
   }
   // nav, font color
