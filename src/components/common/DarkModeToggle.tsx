@@ -48,7 +48,7 @@ const ToggleBlock = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 3rem;
+  width: 2.725rem;
   padding: 0.1rem 0.3rem 0.1rem 0.3rem;
   background: black;
   border-radius: 1.5rem;
@@ -71,9 +71,9 @@ const ToggleBlock = styled.div`
 
 const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
   position: absolute;
-  top: 0;
-  width: 1.5rem;
-  height: 1.5rem;
+  top: -1.25px;
+  width: 1.35rem;
+  height: 1.35rem;
   border-radius: 100%;
   background: white;
   border: 2.5px solid ${palette.orange3};
@@ -81,10 +81,10 @@ const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
   ${(props) =>
     props.darkMode
       ? css`
-          left: 55%;
+          left: 50%;
         `
       : css`
-          left: -5%;
+          left: -1.8%;
         `}
   ${(props) => {
     if (!props.visible) return null;

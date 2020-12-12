@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { onDarkMode } from '../../modules/core';
 import { DEVLOG_DARK_MODE } from '../constants';
@@ -16,11 +16,9 @@ export default function useDarkMode(): useDarkMode {
   const dispatch = useDispatch();
   const visible = useSelector(
     (state: RootState) => state.core.darkMode.visible,
-    shallowEqual,
   );
   const darkMode = useSelector(
     (state: RootState) => state.core.darkMode.darkMode,
-    shallowEqual,
   );
 
   // none declare DARK_MODE

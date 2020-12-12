@@ -14,17 +14,20 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 function getClientEnv() {
   return {
     'process.env': JSON.stringify(
       Object.keys(process.env)
         .filter((key) => /^REACT_APP/i.test(key))
-        .reduce((env, key) => {
-          env[key] = process.env[key];
-          return env;
-        }, {}),
+        .reduce(
+          (env, key) => {
+            env[key] = process.env[key];
+            return env;
+          },
+          { REACT_APP_SSR: 'disabled' },
+        ),
     ),
   };
 }
@@ -98,12 +101,12 @@ module.exports = () => {
         filename: 'index.html',
       }),
       new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[id].css',
+        filename: 'static/css/[name].[hash:8].css',
+        chunkFilename: 'static/css/[name].[hash:8].chunk.css',
       }),
-      new ManifestPlugin({
+      new WebpackManifestPlugin({
         fileName: 'asset-manifest.json',
-        publicPath: `${REACT_APP_PUBLIC_URL}/`,
+        publicPath: REACT_APP_PUBLIC_URL,
         generate: (seed, files, entrypoints) => {
           const manifestFiles = files.reduce((manifest, file) => {
             manifest[file.name] = file.path;

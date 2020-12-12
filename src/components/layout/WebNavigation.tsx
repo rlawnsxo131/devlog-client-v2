@@ -45,6 +45,10 @@ const ContentBlock = styled.div`
   align-items: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
   ${media.medium} {
     width: 53rem;
   }

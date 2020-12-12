@@ -22,7 +22,7 @@ function PostCard({ post }: PostCardProps) {
           </Link>
         </Thumnail>
       )}
-      <Link to={`/post/${post.post_header}?id=${post.id}`}>
+      <Link to={`/post/${post.url_slug}`}>
         <Content>
           <Title>{post.post_header}</Title>
           <ShortDescription>{post.short_description}</ShortDescription>
@@ -40,6 +40,10 @@ const Block = styled.div<{ darkMode: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
+  p,
+  h5 {
+    margin: 0;
+  }
   &:hover {
     cursor: pointer;
   }

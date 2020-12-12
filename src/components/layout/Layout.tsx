@@ -68,8 +68,9 @@ const Main = styled.main`
 const ContentBlock = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   ${media.xsmall} {
-    width: 100vw;
+    width: 100%;
     padding: 1rem;
   }
   ${media.medium} {
@@ -82,7 +83,7 @@ const ContentBlock = styled.div`
 `;
 
 const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
-  * {
+  body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -93,15 +94,15 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
     -webkit-font-smoothing: antialiased;
   }
 
-  // unset elements
-  h1, h2, h3, h4, h5, h6, span, p, a {
-    all: unset;
-  }
-
   // font transition
   h1, h2, h3, h4, h5, h6, span, p, a, div {
     transition: color 0.2s ease-in-out;
   }
+
+  a {
+    text-decoration: none;
+  }
+
   // nav, font color
   ${(props) =>
     props.darkMode

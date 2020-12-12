@@ -58,14 +58,14 @@ function MobileNavigation(props: MobileNavigationProps) {
 
 const Block = styled.nav<{ scrollDirection?: ScrollDirectionType }>`
   position: fixed;
-  width: 100vw;
+  width: 100%;
   padding: 0.5rem;
   z-index: 10;
   transition: top 0.25s;
   ${media.xsmall} {
     display: flex;
     flex-direction: column;
-    height: 5rem;
+    height: 4rem;
     top: ${(props) => (props.scrollDirection === 'DOWN' ? '-5.25rem' : '0')};
   }
   ${media.medium} {

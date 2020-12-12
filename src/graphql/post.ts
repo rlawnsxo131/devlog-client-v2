@@ -55,6 +55,7 @@ export const GET_POSTS = gql`
       preview_description
       thumnail
       series_id
+      url_slug
       released_at
       tags
     }
