@@ -38,7 +38,7 @@ function PostDetail(props: PostDetailProps) {
         <ReleasedAt>{formatDate(data.post.released_at)}</ReleasedAt>
         <DefaultTags tags={data.post.tags} />
       </TagAndDate>
-      {data?.post.thumnail && (
+      {data.post.thumnail && (
         <Thumnail>
           <img
             src={optimizeImage(data.post.thumnail, 768)}
