@@ -53,7 +53,6 @@ function PostDetail(props: PostDetailProps) {
 }
 
 const Block = styled.div`
-  flex: 1 1 0%;
   flex-direction: column;
   ${media.xsmall} {
     width: calc(100vw - 2rem);
