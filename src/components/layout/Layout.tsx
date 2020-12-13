@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import styled, { createGlobalStyle, css } from 'styled-components';
-import useDarkMode from '../../lib/hooks/useDarkMode';
 import media from '../../lib/styles/media';
 import palette, { darkModeBackground } from '../../lib/styles/palette';
+import { RootState } from '../../modules';
 import DarkModeToggle from '../common/DarkModeToggle';
 import Navigation from './Navigation';
 
@@ -11,11 +12,13 @@ type LayoutProps = {
 };
 
 function Layout({ children }: LayoutProps) {
-  const { darkMode } = useDarkMode();
+  const darkMode = useSelector(
+    (state: RootState) => state.core.darkMode.darkMode,
+  );
   return (
     <>
       <GlobalStyle darkMode={darkMode} />
-      <Block darkMode={darkMode}>
+      <Block>
         <Navigation />
         <DarkModeToggle />
         <Main>
@@ -27,16 +30,11 @@ function Layout({ children }: LayoutProps) {
   );
 }
 
-const Block = styled.div<{ darkMode: boolean }>`
+const Block = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  ${(props) =>
-    props.darkMode &&
-    css`
-      background: ${darkModeBackground.main};
-    `};
   ${media.xsmall} {
     .copyright {
       display: none;
@@ -92,6 +90,11 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
     'Nanum Gothic', 'Noto Sans KR', 'Noto Sans CJK KR', arial, 돋움, Dotum,
     Tahoma, Geneva, sans-serif;
     -webkit-font-smoothing: antialiased;
+    ${(props) =>
+      props.darkMode &&
+      css`
+        background: ${darkModeBackground.main};
+      `}
   }
 
   // font transition
@@ -101,7 +104,12 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
 
   a {
     text-decoration: none;
+    &:hover {
+      cursor: pointer;
+    } 
   }
+  
+  color: ${palette.gray9};
 
   // nav, font color
   ${(props) =>
@@ -151,43 +159,6 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
             background: white;
           }
         `}
-
-  a:hover {
-    cursor: pointer;
-  }
-  
-  // font size
-  ${media.xsmall} {
-    h1 {
-      font-weight: bold;
-      font-size: 1.25rem;
-    }
-    h2 {
-      font-weight: bold;
-      font-size: 1.125rem;
-    }
-    h3 {
-      font-weight: 500;
-      font-size: 1rem;
-    }
-    span, p {
-      font-size: 0.85rem;
-    }
-  }
-  ${media.medium} {
-    h1 {
-      font-size: 1.725rem
-    }
-    h2 {
-      font-size: 1.5rem;
-    }
-    h3 {
-      font-size: 1.25rem;
-    }
-    span, p {
-      font-size: 1rem;
-    }
-  }
 `;
 
 export default Layout;

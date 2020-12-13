@@ -10,7 +10,7 @@ function WebNavigation(props: WebNavigationProps) {
     <Block>
       <ContentBlock>
         <Link to="/">
-          <h2>DevLog</h2>
+          <h1>DevLog</h1>
         </Link>
         <div>
           <Link to="/">새 글</Link>
@@ -45,9 +45,10 @@ const ContentBlock = styled.div`
   align-items: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  h2 {
+  h1 {
     margin: 0;
     padding: 0;
+    font-size: 1.5rem;
   }
   ${media.medium} {
     width: 53rem;
@@ -62,6 +63,7 @@ const Link = styled(NavLink)`
   flex-flow: row wrap;
   justify-content: flex-end;
   font-size: 1.25rem;
+  padding: 0.25rem;
   & + & {
     margin-left: 2rem;
   }

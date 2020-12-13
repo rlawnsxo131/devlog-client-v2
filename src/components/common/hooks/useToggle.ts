@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import useDarkMode from '../../../lib/hooks/useDarkMode';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../modules';
 import { onDarkMode } from '../../../modules/core';
 
 type useToggle = {
@@ -11,7 +11,12 @@ type useToggle = {
 
 export default function useToggle(): useToggle {
   const dispatch = useDispatch();
-  const { visible, darkMode } = useDarkMode();
+  const visible = useSelector(
+    (state: RootState) => state.core.darkMode.visible,
+  );
+  const darkMode = useSelector(
+    (state: RootState) => state.core.darkMode.darkMode,
+  );
 
   const onToggle = useCallback(() => {
     dispatch(

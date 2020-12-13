@@ -13,8 +13,8 @@ function DarkModeToggle(props: DarkModeToggleProps) {
   return (
     <Block>
       <ToggleBlock onClick={onToggle}>
-        <span>&#127769;</span>
-        <span>&#128262;</span>
+        <span className="toggle-span">&#127769;</span>
+        <span className="toggle-span">&#128262;</span>
         <Circle visible={visible} darkMode={darkMode} />
       </ToggleBlock>
     </Block>
@@ -30,12 +30,13 @@ const Block = styled.div`
   padding-bottom: 1rem;
   z-index: 10;
   ${media.xsmall} {
-    width: 100vw;
     top: 0;
+    right: 7%;
   }
   ${media.medium} {
     width: 53rem;
     top: 3.8rem;
+    right: unset;
   }
   ${media.large} {
     width: 64rem;
@@ -51,21 +52,14 @@ const ToggleBlock = styled.div`
   width: 2.725rem;
   padding: 0.1rem 0.3rem 0.1rem 0.3rem;
   background: black;
-  border-radius: 1.5rem;
+  border-radius: 1.25rem;
   z-index: 10;
-  span {
+  .toggle-span {
     background: black;
     font-size: 0.8rem;
   }
   &:hover {
     cursor: pointer;
-  }
-
-  ${media.xsmall} {
-    margin-right: 7vw;
-  }
-  ${media.medium} {
-    margin-right: 0;
   }
 `;
 
@@ -84,7 +78,7 @@ const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
           left: 50%;
         `
       : css`
-          left: -1.8%;
+          left: -2%;
         `}
   ${(props) => {
     if (!props.visible) return null;

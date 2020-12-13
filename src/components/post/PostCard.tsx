@@ -2,17 +2,37 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { PostType } from '../../graphql/post';
-import useDarkMode from '../../lib/hooks/useDarkMode';
 import optimizeImage from '../../lib/optimizeImage';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
+import unified from 'unified';
+import remarkParse from 'remark-parse';
+import remark2rehype from 'remark-rehype';
+import raw from 'rehype-raw';
+import stringify from 'rehype-stringify';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../modules';
 
 type PostCardProps = {
   post: PostType;
 };
 
+const { useMemo, memo } = React;
 function PostCard({ post }: PostCardProps) {
-  const { darkMode } = useDarkMode();
+  const darkMode = useSelector(
+    (state: RootState) => state.core.darkMode.darkMode,
+  );
+  const previewDescription = useMemo(() => {
+    return unified()
+      .use(remarkParse)
+      .use(remark2rehype, { allowDangerousHtml: false })
+      .use(raw)
+      .use(stringify)
+      .processSync(post.preview_description)
+      .toString()
+      .replace(/(<([^>]+)>)/gi, '');
+  }, [post.preview_description]);
+
   return (
     <Block darkMode={darkMode}>
       {post.thumnail && (
@@ -26,9 +46,14 @@ function PostCard({ post }: PostCardProps) {
         <Content>
           <Title>{post.post_header}</Title>
           <ShortDescription>{post.short_description}</ShortDescription>
-          <PreviewDescription>{post.preview_description}</PreviewDescription>
+          <PreviewDescription>{previewDescription}</PreviewDescription>
         </Content>
         <Footer darkMode={darkMode}>
+          <div className="post-card-tags">
+            {post.tags.map((v, i) => (
+              <p key={`post_card_tag_${v}_${i}`}>{`#${v}`}</p>
+            ))}
+          </div>
           <p>{formatDate(post.released_at)}</p>
         </Footer>
       </Link>
@@ -52,13 +77,13 @@ const Block = styled.div<{ darkMode: boolean }>`
       ? css`
           box-shadow: 1px 1px 5px 2px ${palette.gray9};
           &:hover {
-            box-shadow: 1px 1px 10px 3px ${palette.gray8};
+            box-shadow: 1px 1px 10px 2px ${palette.gray8};
           }
         `
       : css`
           box-shadow: 1px 1px 5px 2px ${palette.gray1};
           &:hover {
-            box-shadow: 1px 1px 10px 3px ${palette.gray5};
+            box-shadow: 1px 1px 10px 2px ${palette.gray5};
           }
         `};
 `;
@@ -102,7 +127,7 @@ const ShortDescription = styled.h4`
 `;
 
 const PreviewDescription = styled.p`
-  color: ${palette.gray7};
+  color: ${palette.gray6};
   font-size: 0.875rem;
   line-height: 1.5;
   height: 4rem;
@@ -117,6 +142,7 @@ const PreviewDescription = styled.p`
 
 const Footer = styled.div<{ darkMode: boolean }>`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem;
   border-top: 1px solid
@@ -127,4 +153,4 @@ const Footer = styled.div<{ darkMode: boolean }>`
   }
 `;
 
-export default PostCard;
+export default memo(PostCard);

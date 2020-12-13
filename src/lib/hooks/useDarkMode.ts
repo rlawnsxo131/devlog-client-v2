@@ -1,25 +1,13 @@
 import { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../modules';
+import { useDispatch } from 'react-redux';
 import { onDarkMode } from '../../modules/core';
 import { DEVLOG_DARK_MODE } from '../constants';
 
-type useDarkMode = {
-  visible: boolean;
-  darkMode: boolean;
-};
-
-export default function useDarkMode(): useDarkMode {
+export default function useDarkMode() {
   const DARK_MODE = useRef<string | null>(
     localStorage.getItem(DEVLOG_DARK_MODE),
   );
   const dispatch = useDispatch();
-  const visible = useSelector(
-    (state: RootState) => state.core.darkMode.visible,
-  );
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
-  );
 
   // none declare DARK_MODE
   useEffect(() => {
@@ -48,9 +36,4 @@ export default function useDarkMode(): useDarkMode {
       }),
     );
   }, []);
-
-  return {
-    visible,
-    darkMode,
-  };
 }

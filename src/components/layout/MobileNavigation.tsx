@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import useThrottle from '../../lib/hooks/useThrottle';
+import { throttle } from 'throttle-debounce';
 import media from '../../lib/styles/media';
 
 type MobileNavigationProps = {};
@@ -15,7 +15,7 @@ function MobileNavigation(props: MobileNavigationProps) {
   >(undefined);
 
   const handleScroll = useCallback(
-    useThrottle(() => {
+    throttle(300, () => {
       const currentScroll = window.scrollY;
       if (matchMedia(media.xsmall)) {
         if (
@@ -29,7 +29,7 @@ function MobileNavigation(props: MobileNavigationProps) {
         }
       }
       prevScroll.current = currentScroll;
-    }, 300),
+    }),
     [],
   );
 
@@ -44,7 +44,7 @@ function MobileNavigation(props: MobileNavigationProps) {
   return (
     <Block scrollDirection={scrollDirection}>
       <Link to="/">
-        <h2>DevLog</h2>
+        <h1>DevLog</h1>
       </Link>
       <LinksWrapper>
         <Link to="/">새글</Link>
@@ -81,7 +81,7 @@ const LinksWrapper = styled.div`
 
 const Link = styled(NavLink)`
   font-size: 1rem;
-  h2 {
+  h1 {
     display: inline-block;
     margin-top: 0.5rem;
     margin-bottom: 0.725rem;
