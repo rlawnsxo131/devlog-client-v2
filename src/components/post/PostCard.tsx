@@ -148,7 +148,7 @@ const Footer = styled.div<{ darkMode: boolean }>`
   border-top: 1px solid
     ${(props) => (props.darkMode ? palette.gray9 : palette.gray1)};
   p {
-    font-size: 0.725rem;
+    font-size: 0.8rem;
     color: ${palette.gray6};
   }
 `;

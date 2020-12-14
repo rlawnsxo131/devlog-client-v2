@@ -53,7 +53,7 @@ const ToggleBlock = styled.div`
   height: 1.25rem;
   padding: 0.1rem 0.3rem 0.1rem 0.3rem;
   background: black;
-  border-radius: 1.25rem;
+  border-radius: 1.3rem;
   z-index: 10;
   .toggle-span {
     background: black;
@@ -67,19 +67,19 @@ const ToggleBlock = styled.div`
 const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
   position: absolute;
   top: -1.25px;
-  width: 1.325rem;
-  height: 1.325rem;
+  width: 1.3rem;
+  height: 1.3rem;
   border-radius: 100%;
   background: white;
-  border: 2.5px solid ${palette.orange3};
-  box-shadow: 1px 1px 10px ${palette.orange3};
+  border: 2.5px solid ${palette.pink3};
+  box-shadow: 1px 1px 10px ${palette.pink3};
   ${(props) =>
     props.darkMode
       ? css`
           left: 50%;
         `
       : css`
-          left: -5%;
+          left: -1.6%;
         `}
   ${(props) => {
     if (!props.visible) return null;

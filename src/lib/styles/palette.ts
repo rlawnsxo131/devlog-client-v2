@@ -11,17 +11,17 @@ const palette = {
   gray7: '#495057',
   gray8: '#343A40',
   gray9: '#212529',
-  /* orange */
-  orange0: '#fff4e6',
-  orange1: '#ffe8cc',
-  orange2: '#ffd8a8',
-  orange3: '#ffc078',
-  orange4: '#ffa94d',
-  orange5: '#ff922b',
-  orange6: '#fd7e14',
-  orange7: '#f76707',
-  orange8: '#e8590c',
-  orange9: '#d9480f',
+  /* pink */
+  pink0: '#fff0f6',
+  pink1: '#ffdeeb',
+  pink2: '#fcc2d7',
+  pink3: '#faa2c1',
+  pink4: '#f783ac',
+  pink5: '#f06595',
+  pink6: '#e64980',
+  pink7: '#d6336c',
+  pink8: '#c2255c',
+  pink9: '#a61e4d',
 };
 
 export const darkModeBackground = {
@@ -31,7 +31,7 @@ export const darkModeBackground = {
 
 export const buttonColorMap = {
   gray: {},
-  orange: {},
+  pink: {},
 };
 
 export default palette;

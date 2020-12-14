@@ -170,7 +170,6 @@ const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
     white-space: pre;
     font-family: 'Fira Mono', source-code-pro, Menlo, Monaco, Consolas,
       'Courier New', monospace;
-    font-size: 0.875rem;
     padding: 1rem;
     border-radius: 4px;
     line-height: 1.5;
@@ -186,18 +185,26 @@ const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
 
   a {
     font-weight: 600;
-    color: ${palette.orange5};
+    color: ${palette.pink5};
     text-decoration: none;
     &:hover {
-      color: ${palette.orange4};
+      color: ${palette.pink4};
       text-decoration: underline;
+    }
+  }
+
+  p {
+    code {
+      padding: 0.125rem;
+      color: ${palette.pink8} !important;
+      background: ${palette.pink0};
     }
   }
 
   blockquote {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    border-left: 4px solid ${palette.orange5};
+    border-left: 4px solid ${palette.pink5};
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     background: ${(props) => (props.darkMode ? '#313440' : palette.gray0)};
@@ -228,6 +235,10 @@ const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
     margin-bottom: 1.5rem;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  li::marker {
+    font-weight: bold;
   }
 
   iframe {
@@ -303,6 +314,17 @@ const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
     p {
       font-size: 1rem;
     }
+    li {
+      font-size: 1rem;
+    }
+    pre {
+      font-size: 0.875rem;
+      code {
+        &.language-null {
+          font-size: 0.875rem;
+        }
+      }
+    }
   }
 
   ${media.small} {
@@ -329,6 +351,17 @@ const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
     }
     p {
       font-size: 1.125rem;
+    }
+    li {
+      font-size: 1.125rem;
+    }
+    pre {
+      font-size: 1rem;
+      code {
+        &.language-null {
+          font-size: 1rem;
+        }
+      }
     }
   }
 `;
