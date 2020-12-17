@@ -65,6 +65,7 @@ const Block = styled.div<{ darkMode: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   p,
   h5 {
     margin: 0;
@@ -111,13 +112,20 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  overflow: hidden;
 `;
 
 const Title = styled.h5`
+  display: flex;
   font-size: 1rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 `;
 
 const ShortDescription = styled.h4`
@@ -129,11 +137,11 @@ const ShortDescription = styled.h4`
 const PreviewDescription = styled.p`
   color: ${palette.gray6};
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1.6;
   height: 4rem;
+  overflow: hidden;
   word-break: break-word;
   overflow-wrap: break-word;
-  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
