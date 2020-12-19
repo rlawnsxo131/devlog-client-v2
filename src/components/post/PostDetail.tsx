@@ -7,6 +7,7 @@ import optimizeImage from '../../lib/optimizeImage';
 import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
+import Comments from '../comment/Comments';
 import MarkdownRender from '../markdown/MarkdownRender';
 import DefaultTags from '../tag/DefaultTags';
 
@@ -29,15 +30,19 @@ function PostDetail(props: PostDetailProps) {
 
   if (loading) return <div>loading</div>;
   if (error) return <div>error</div>;
-  if (!data) return null;
+  if (!data) return <div>not found</div>;
 
   return (
     <Block>
       <PostHeader>{data.post.post_header}</PostHeader>
-      <TagAndDate>
+      <PostInfo>
+        <ShortDescription>{data.post.short_description}</ShortDescription>
+        <span className="separator">·</span>
         <ReleasedAt>{formatDate(data.post.released_at)}</ReleasedAt>
+      </PostInfo>
+      <TagsWrapper>
         <DefaultTags tags={data.post.tags} />
-      </TagAndDate>
+      </TagsWrapper>
       {data.post.thumnail && (
         <Thumnail>
           <img
@@ -46,8 +51,8 @@ function PostDetail(props: PostDetailProps) {
           />
         </Thumnail>
       )}
-      <ShortDescription>{data.post.short_description}</ShortDescription>
       <MarkdownRender markdownText={data.post.post_body} />
+      <Comments post_id={data.post.id} />
     </Block>
   );
 }
@@ -74,19 +79,33 @@ const PostHeader = styled.h1`
   }
 `;
 
-const ShortDescription = styled.h3``;
-
-const TagAndDate = styled.div`
+const PostInfo = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-bottom: 1.125rem;
+  ${media.xsmall} {
+    font-size: 1rem;
+  }
+  ${media.small} {
+    font-size: 1.125rem;
+  }
+`;
+
+const ShortDescription = styled.div`
+  font-weight: bold;
 `;
 
 const ReleasedAt = styled.div`
   display: flex;
   color: ${palette.gray6};
+`;
+
+const TagsWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 1.125rem;
 `;
 
 const Thumnail = styled.div`

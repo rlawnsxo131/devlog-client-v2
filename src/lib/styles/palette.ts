@@ -29,9 +29,23 @@ export const darkModeBackground = {
   nav: '#292f35',
 };
 
-export const buttonColorMap = {
-  gray: {},
-  pink: {},
+export const buttonColorMap: {
+  [key: string]: {
+    background: string;
+    color: string;
+    hoverBackground: string;
+  };
+} = {
+  darkGray: {
+    background: palette.gray7,
+    color: 'white',
+    hoverBackground: palette.gray6,
+  },
+  pink: {
+    background: palette.pink5,
+    color: 'white',
+    hoverBackground: palette.pink4,
+  },
 };
 
 export default palette;

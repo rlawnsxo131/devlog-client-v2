@@ -35,7 +35,7 @@ export const GET_POST = gql`
       url_slug
       released_at
       tags
-      comments_count
+      # comments_count
       series_posts {
         series_id
         series_name
@@ -58,6 +58,7 @@ export const GET_POSTS = gql`
       url_slug
       released_at
       tags
+      comments_count
     }
   }
 `;

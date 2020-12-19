@@ -33,6 +33,10 @@ function PostCard({ post }: PostCardProps) {
       .replace(/(<([^>]+)>)/gi, '');
   }, [post.preview_description]);
 
+  const tags = useMemo(() => {
+    return post.tags.slice(0, 3);
+  }, [post.tags]);
+
   return (
     <Block darkMode={darkMode}>
       {post.thumnail && (
@@ -49,12 +53,16 @@ function PostCard({ post }: PostCardProps) {
           <PreviewDescription>{previewDescription}</PreviewDescription>
         </Content>
         <Footer darkMode={darkMode}>
+          <p>
+            {formatDate(post.released_at)}
+            <span className="separator">·</span>
+            {post.comments_count}개의 댓글
+          </p>
           <div className="post-card-tags">
-            {post.tags.map((v, i) => (
+            {tags.map((v, i) => (
               <p key={`post_card_tag_${v}_${i}`}>{`#${v}`}</p>
             ))}
           </div>
-          <p>{formatDate(post.released_at)}</p>
         </Footer>
       </Link>
     </Block>
@@ -158,6 +166,19 @@ const Footer = styled.div<{ darkMode: boolean }>`
   p {
     font-size: 0.8rem;
     color: ${palette.gray6};
+    .separator {
+      font-size: 0.8rem;
+      color: ${palette.gray6};
+      font-weight: bold;
+      margin-left: 0.2rem;
+      margin-right: 0.2rem;
+    }
+  }
+  .post-card-tags {
+    display: flex;
+    p + p {
+      margin-right: 0.2rem;
+    }
   }
 `;
 

@@ -59,6 +59,12 @@ export const GET_COMMENTS = gql`
   }
 `;
 
+export const GET_COMMENTS_COUNT = gql`
+  query GetCommentsCount($post_id: ID!) {
+    commentsCount(post_id: $post_id)
+  }
+`;
+
 export type CreateCommentType = {
   post_id: number;
   reply_comment_id?: number;
