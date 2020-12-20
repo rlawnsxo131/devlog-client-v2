@@ -1,9 +1,11 @@
 import { useMutation } from '@apollo/client';
 import * as React from 'react';
-import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import styled, { css } from 'styled-components';
 import { CreateCommentType, CREATE_COMMENT } from '../../graphql/comment';
 import useInputs from '../../lib/hooks/useInputs';
-import palette from '../../lib/styles/palette';
+import palette, { darkModeBackground } from '../../lib/styles/palette';
+import { RootState } from '../../modules';
 import Button from '../common/Button';
 
 type CommentWriteProps = {
@@ -13,6 +15,9 @@ type CommentWriteProps = {
 
 const { useRef, useCallback, memo } = React;
 function CommentWrite({ post_id, reply_comment_id }: CommentWriteProps) {
+  const darkMode = useSelector(
+    (state: RootState) => state.core.darkMode.darkMode,
+  );
   const passwordRef = useRef<null | HTMLInputElement>(null);
   const [state, onChange, onReset] = useInputs({
     password: '',
@@ -47,7 +52,7 @@ function CommentWrite({ post_id, reply_comment_id }: CommentWriteProps) {
   }, [state, post_id, reply_comment_id]);
 
   return (
-    <Block>
+    <Block reply_comment_id={reply_comment_id}>
       <InformationInputWrapper>
         <InformationInput
           type="text"
@@ -55,6 +60,7 @@ function CommentWrite({ post_id, reply_comment_id }: CommentWriteProps) {
           placeholder="작성자"
           onChange={onChange}
           value={state.writer}
+          darkMode={darkMode}
         />
         <InformationInput
           type="password"
@@ -62,6 +68,7 @@ function CommentWrite({ post_id, reply_comment_id }: CommentWriteProps) {
           placeholder="비밀번호"
           ref={passwordRef}
           onChange={onChange}
+          darkMode={darkMode}
         />
       </InformationInputWrapper>
       <CommentTextArea
@@ -69,6 +76,7 @@ function CommentWrite({ post_id, reply_comment_id }: CommentWriteProps) {
         placeholder="댓글을 작성하세요"
         onChange={onChange}
         value={state.comment}
+        darkMode={darkMode}
       />
       <SaveButtonArea>
         <Button color="pink" onClick={createComment}>
@@ -79,9 +87,15 @@ function CommentWrite({ post_id, reply_comment_id }: CommentWriteProps) {
   );
 }
 
-const Block = styled.div`
+const Block = styled.div<{ reply_comment_id?: number }>`
   display: flex;
   flex-direction: column;
+  padding-top: 1rem;
+  ${(props) =>
+    props.reply_comment_id &&
+    css`
+      padding: 1.5rem 2rem 1.5rem 2rem;
+    `}
 `;
 
 const InformationInputWrapper = styled.div`
@@ -89,9 +103,8 @@ const InformationInputWrapper = styled.div`
   flex-flow: row wrap;
 `;
 
-const InformationInput = styled.input`
+const InformationInput = styled.input<{ darkMode: boolean }>`
   all: unset;
-  border: 1px solid ${palette.gray2};
   border-radius: 4px;
   padding: 0.5rem;
   :focus {
@@ -100,14 +113,23 @@ const InformationInput = styled.input`
   ::placeholder {
     color: ${palette.gray5};
   }
+  ${(props) =>
+    props.darkMode
+      ? css`
+          border: 1px solid ${palette.gray6};
+          background: ${darkModeBackground.main};
+        `
+      : css`
+          border: 1px solid ${palette.gray2};
+          background: white;
+        `}
 `;
 
-const CommentTextArea = styled.textarea`
+const CommentTextArea = styled.textarea<{ darkMode: boolean }>`
   all: unset;
   resize: none;
   padding: 1rem 1rem 1.5rem 1rem;
   outline: none;
-  border: 1px solid ${palette.gray2};
   margin-bottom: 1.5rem;
   border-radius: 4px;
   min-height: 6.125rem;
@@ -115,6 +137,16 @@ const CommentTextArea = styled.textarea`
   ::placeholder {
     color: ${palette.gray5};
   }
+  ${(props) =>
+    props.darkMode
+      ? css`
+          border: 1px solid ${palette.gray6};
+          background: ${darkModeBackground.main};
+        `
+      : css`
+          border: 1px solid ${palette.gray2};
+          background: white;
+        `}
 `;
 
 const SaveButtonArea = styled.div`

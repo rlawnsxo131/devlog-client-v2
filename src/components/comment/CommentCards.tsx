@@ -10,7 +10,7 @@ type CommentCardsProps = {
 const { memo } = React;
 function CommentCards({ replies }: CommentCardsProps) {
   let fullCounts: Array<number> = [];
-  if (replies && replies[0].level === 0) {
+  if (replies?.length && replies[0].level === 0) {
     replies.forEach((v, i) => {
       let count = 0;
       if (v.replies) {

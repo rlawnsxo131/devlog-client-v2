@@ -66,6 +66,8 @@ const Block = styled.div`
 `;
 
 const CommentsCount = styled.p`
+  margin: 0;
+  padding: 0;
   font-weight: 600;
 `;
 

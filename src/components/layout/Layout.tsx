@@ -97,11 +97,6 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
       `}
   }
 
-  // font transition
-  h1, h2, h3, h4, h5, h6, span, p, a, div {
-    transition: color 0.2s ease-in-out;
-  }
-
   a {
     text-decoration: none;
     &:hover {
@@ -132,7 +127,7 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
             color: ${palette.gray5};
           }
           nav {
-            background: ${darkModeBackground.nav};
+            background: ${darkModeBackground.other};
           }
           main {
             background: ${darkModeBackground.main};
