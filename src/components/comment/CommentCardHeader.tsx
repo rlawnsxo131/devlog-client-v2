@@ -19,7 +19,9 @@ function CommentCardHeader({
       <HeaderInfo>
         <div className="writer">{writer}</div>
         <div className="date">
-          {edited_at ? formatDate(edited_at) : formatDate(created_at)}
+          {edited_at
+            ? `${formatDate(edited_at)}(수정됨)`
+            : formatDate(created_at)}
         </div>
       </HeaderInfo>
       <HeaderEdit>수정/삭제</HeaderEdit>
