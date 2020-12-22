@@ -48,8 +48,10 @@ const Block = styled.div<{ level: number; darkMode: boolean }>`
   ${(props) => {
     if (props.level === 0) {
       return css`
-        border-bottom: 1px solid
-          ${props.darkMode ? palette.gray6 : palette.gray1};
+        & + & {
+          border-top: 1px solid
+            ${props.darkMode ? palette.gray6 : palette.gray1};
+        }
       `;
     }
     if (props.level > 0) {
@@ -57,7 +59,6 @@ const Block = styled.div<{ level: number; darkMode: boolean }>`
         padding-left: 2rem;
         padding-right: 2rem;
         background: ${commentColor[props.level].background};
-        border: ${commentColor[props.level].border};
       `;
     }
   }}

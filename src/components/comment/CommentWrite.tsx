@@ -11,10 +11,15 @@ import Button from '../common/Button';
 type CommentWriteProps = {
   post_id: number;
   reply_comment_id?: number;
+  handleShowCommentWrite?: () => void;
 };
 
 const { useRef, useCallback, memo } = React;
-function CommentWrite({ post_id, reply_comment_id }: CommentWriteProps) {
+function CommentWrite({
+  post_id,
+  reply_comment_id,
+  handleShowCommentWrite,
+}: CommentWriteProps) {
   const darkMode = useSelector(
     (state: RootState) => state.core.darkMode.darkMode,
   );
@@ -28,7 +33,7 @@ function CommentWrite({ post_id, reply_comment_id }: CommentWriteProps) {
     createComment: { id: number };
     variables: CreateCommentType;
   }>(CREATE_COMMENT, {
-    refetchQueries: ['GetComments'],
+    refetchQueries: ['Comments'],
   });
 
   const createComment = useCallback(async () => {
@@ -44,8 +49,12 @@ function CommentWrite({ post_id, reply_comment_id }: CommentWriteProps) {
         },
       });
       onReset();
-      if (!passwordRef.current) return;
-      passwordRef.current.value = '';
+      if (passwordRef.current) {
+        passwordRef.current.value = '';
+      }
+      if (handleShowCommentWrite) {
+        handleShowCommentWrite();
+      }
     } catch (e) {
       alert('작성 실패');
     }

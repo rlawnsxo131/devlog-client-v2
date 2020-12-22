@@ -16,7 +16,7 @@ export type CommentType = {
 };
 
 export const GET_COMMENTS = gql`
-  query GetComments($post_id: ID!) {
+  query Comments($post_id: ID!) {
     comments(post_id: $post_id) {
       id
       post_id
@@ -56,11 +56,6 @@ export const GET_COMMENTS = gql`
         }
       }
     }
-  }
-`;
-
-export const GET_COMMENTS_COUNT = gql`
-  query GetCommentsCount($post_id: ID!) {
     commentsCount(post_id: $post_id)
   }
 `;

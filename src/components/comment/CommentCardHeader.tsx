@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
+import CommentEditModal from './CommentEditModal';
 
 type CommentCardHeaderProps = {
   writer: string;
@@ -25,6 +26,7 @@ function CommentCardHeader({
         </div>
       </HeaderInfo>
       <HeaderEdit>수정/삭제</HeaderEdit>
+      <CommentEditModal />
     </Block>
   );
 }

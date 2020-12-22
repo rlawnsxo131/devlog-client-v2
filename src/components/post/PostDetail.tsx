@@ -37,7 +37,7 @@ function PostDetail(props: PostDetailProps) {
       <PostHeader>{data.post.post_header}</PostHeader>
       <PostInfo>
         <ShortDescription>{data.post.short_description}</ShortDescription>
-        <span className="separator">·</span>
+        <span className="separator">&middot;</span>
         <ReleasedAt>{formatDate(data.post.released_at)}</ReleasedAt>
       </PostInfo>
       <TagsWrapper>

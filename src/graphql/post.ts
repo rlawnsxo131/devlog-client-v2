@@ -23,7 +23,7 @@ export type SeriesPostType = {
 };
 
 export const GET_POST = gql`
-  query GetPost($url_slug: String!) {
+  query Post($url_slug: String!) {
     post(url_slug: $url_slug) {
       id
       post_header
@@ -47,7 +47,7 @@ export const GET_POST = gql`
 `;
 
 export const GET_POSTS = gql`
-  query GetPosts($tag: String) {
+  query Posts($tag: String) {
     posts(tag: $tag) {
       id
       post_header

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { slideLeft, slideRight } from '../../lib/styles/transitions';
+import zIndexes from '../../lib/styles/zIndexes';
 import useToggle from './hooks/useToggle';
 
 type DarkModeToggleProps = {};
@@ -28,7 +29,7 @@ const Block = styled.div`
   align-items: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  z-index: 10;
+  z-index: ${zIndexes.darkModeToggle};
   ${media.xsmall} {
     top: 0;
     right: 7%;
@@ -54,7 +55,7 @@ const ToggleBlock = styled.div`
   padding: 0.1rem 0.3rem 0.1rem 0.3rem;
   background: black;
   border-radius: 1.3rem;
-  z-index: 10;
+  z-index: ${zIndexes.darkModeToggle};
   .toggle-span {
     background: black;
     font-size: 0.8rem;

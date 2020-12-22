@@ -6,7 +6,7 @@ export default function useCommentWrite() {
     createComment: { id: number };
     variables: CreateCommentType;
   }>(CREATE_COMMENT, {
-    refetchQueries: ['GetComments'],
+    refetchQueries: ['Comments'],
   });
 
   return {

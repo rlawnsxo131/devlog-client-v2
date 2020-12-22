@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { throttle } from 'throttle-debounce';
 import media from '../../lib/styles/media';
+import zIndexes from '../../lib/styles/zIndexes';
 
 type MobileNavigationProps = {};
 type ScrollDirectionType = 'UP' | 'DOWN';
@@ -60,7 +61,7 @@ const Block = styled.nav<{ scrollDirection?: ScrollDirectionType }>`
   position: fixed;
   width: 100%;
   padding: 0.5rem;
-  z-index: 10;
+  z-index: ${zIndexes.navigation};
   transition: top 0.25s;
   ${media.xsmall} {
     display: flex;

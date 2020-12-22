@@ -32,10 +32,10 @@ function CommentCardFooter({
   const [replyTriggerIcon, setReplyTriggerIcon] = useState<boolean>(false);
   const [replyTriggerText, setReplyTriggerText] = useState<string>('');
 
-  const onShowReply = useCallback(() => {
+  const handleShowReply = useCallback(() => {
     setShowReply((state) => !state);
   }, []);
-  const onShowCommentWrite = useCallback(() => {
+  const handleShowCommentWrite = useCallback(() => {
     setShowCommentWrite((state) => !state);
   }, []);
 
@@ -72,7 +72,7 @@ function CommentCardFooter({
   return (
     <Block level={level}>
       {level < 2 && (
-        <ReplyTrigger onClick={onShowReply}>
+        <ReplyTrigger onClick={handleShowReply}>
           {replyTriggerIcon ? (
             <IoAdd className="reply-icon" />
           ) : (
@@ -89,14 +89,18 @@ function CommentCardFooter({
       {level < 2 && showReply && (
         <CommentWriteWrapper>
           {showCommentWrite && (
-            <CommentWrite post_id={post_id} reply_comment_id={reply_id} />
+            <CommentWrite
+              post_id={post_id}
+              reply_comment_id={reply_id}
+              handleShowCommentWrite={handleShowCommentWrite}
+            />
           )}
           {has_replies && (
             <div className="comment-write-button-wrapper">
               <Button
                 color="pink"
                 size="responsive"
-                onClick={onShowCommentWrite}
+                onClick={handleShowCommentWrite}
               >
                 {showCommentWrite ? '숨기기' : '답글 달기'}
               </Button>

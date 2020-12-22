@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import * as React from 'react';
 import styled from 'styled-components';
 import { GET_POSTS, PostType } from '../../graphql/post';
-import media from '../../lib/styles/media';
+import media, { mediaQuery } from '../../lib/styles/media';
 import PostCard from './PostCard';
 
 type PostCardsProps = {};
@@ -31,7 +31,7 @@ const Block = styled.div`
     grid-auto-rows: 24rem;
     gap: 1rem 0;
   }
-  @media (min-width: 420px) {
+  ${mediaQuery(420)} {
     grid-auto-rows: 35rem;
   }
   ${media.small} {

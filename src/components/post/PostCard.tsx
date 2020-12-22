@@ -55,7 +55,7 @@ function PostCard({ post }: PostCardProps) {
         <Footer darkMode={darkMode}>
           <p>
             {formatDate(post.released_at)}
-            <span className="separator">·</span>
+            <span className="separator">&middot;</span>
             {post.comments_count}개의 댓글
           </p>
           <div className="post-card-tags">

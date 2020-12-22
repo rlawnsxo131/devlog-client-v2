@@ -34,16 +34,13 @@ export const darkModeBackground: {
 export const commentColor: {
   [key: number]: {
     background: string;
-    border: string;
   };
 } = {
   1: {
     background: 'rgba(0, 0, 0, 0.016)',
-    border: '1px solid rgba(0, 0, 0, 0.02)',
   },
   2: {
-    background: palette.gray0,
-    border: `1px solid ${palette.gray1}`,
+    background: 'rgba(0, 0, 0, 0.020)',
   },
 };
 

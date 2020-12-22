@@ -2,6 +2,7 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import media from '../../lib/styles/media';
+import zIndexes from '../../lib/styles/zIndexes';
 
 type WebNavigationProps = {};
 
@@ -28,7 +29,7 @@ const Block = styled.nav`
   top: 0;
   left: 0;
   width: 100vw;
-  z-index: 10;
+  z-index: ${zIndexes.navigation};
   ${media.xsmall} {
     display: none;
   }
