@@ -60,7 +60,7 @@ function CommentCardFooter({
         setReplyTriggerIcon(false);
         setShowCommentWrite(true);
       }
-      if (!showReply) {
+      if (!showReply && !deleted) {
         setReplyTriggerText('답글 달기');
         setReplyTriggerIcon(true);
         setShowCommentWrite(false);

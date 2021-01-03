@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
 import { onDarkMode } from '../../../modules/core';
 
-type useToggle = {
+type UseToggle = {
   visible: boolean;
   darkMode: boolean;
   onToggle: () => void;
 };
 
-export default function useToggle(): useToggle {
+export default function useToggle(): UseToggle {
   const dispatch = useDispatch();
   const visible = useSelector(
     (state: RootState) => state.core.darkMode.visible,

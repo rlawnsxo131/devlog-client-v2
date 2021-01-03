@@ -81,33 +81,41 @@ export const CREATE_COMMENT = gql`
       writer: $writer
       password: $password
       comment: $comment
-    ) {
-      id
-    }
-  }
-`;
-
-export const CONFIRM_PASSWORD = gql`
-  query ConfirmPassword($comment_id: ID!, $password: String!) {
-    confirmPassword(comment_id: $comment_id, password: $password) {
-      email
-    }
+    )
   }
 `;
 
 export type UpdateCommentType = {
   comment_id: number;
+  writer?: string;
+  password: string;
   email?: string;
   comment: string;
 };
 export const UPDATE_COMMENT = gql`
-  mutation UpdateComment($comment_id: ID!, $email: String, $comment: String!) {
-    updateComment(comment_id: $comment_id, email: $email, comment: $comment)
+  mutation UpdateComment(
+    $comment_id: ID!
+    $password: String!
+    $writer: String
+    $email: String
+    $comment: String!
+  ) {
+    updateComment(
+      comment_id: $comment_id
+      password: $password
+      writer: $writer
+      email: $email
+      comment: $comment
+    )
   }
 `;
 
+export type RemoveCommentType = {
+  comment_id: number;
+  possword: string;
+};
 export const REMOVE_COMMENT = gql`
-  mutation RemoveComment($comment_id: ID!) {
-    removeComment(comment_id: $comment_id)
+  mutation RemoveComment($comment_id: ID!, $password: String!) {
+    removeComment(comment_id: $comment_id, password: $password)
   }
 `;

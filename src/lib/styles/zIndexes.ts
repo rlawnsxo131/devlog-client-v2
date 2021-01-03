@@ -1,7 +1,7 @@
 const zIndexes = {
-  darkModeToggle: 10,
-  navigation: 10,
-  commentEditModal: 8,
+  darkModeToggle: 8,
+  navigation: 8,
+  PopupBase: 10,
 };
 
 export default zIndexes as typeof zIndexes;

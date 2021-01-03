@@ -2,18 +2,19 @@ import * as React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
-import CommentEditModal from './CommentEditModal';
 
 type CommentCardHeaderProps = {
   writer: string;
   created_at: Date;
   edited_at?: Date;
+  handleSetVisible: () => void;
 };
 
 function CommentCardHeader({
   writer,
   created_at,
   edited_at,
+  handleSetVisible,
 }: CommentCardHeaderProps) {
   return (
     <Block>
@@ -25,8 +26,7 @@ function CommentCardHeader({
             : formatDate(created_at)}
         </div>
       </HeaderInfo>
-      <HeaderEdit>수정/삭제</HeaderEdit>
-      <CommentEditModal />
+      <HeaderEdit onClick={handleSetVisible}>수정/삭제</HeaderEdit>
     </Block>
   );
 }

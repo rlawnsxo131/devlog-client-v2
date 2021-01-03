@@ -1,29 +1,97 @@
+import { useMutation } from '@apollo/client';
 import * as React from 'react';
 import styled from 'styled-components';
+import { UpdateCommentType, UPDATE_COMMENT } from '../../graphql/comment';
+import useInputs from '../../lib/hooks/useInputs';
 import media from '../../lib/styles/media';
-import zIndexes from '../../lib/styles/zIndexes';
+import Button from '../common/Button';
+import Input from '../common/Input';
+import PopupBase from '../common/PopupBase';
+import TextArea from '../common/TextArea';
 
-type CommentEditModalProps = {};
+type CommentEditModalProps = {
+  visible: boolean;
+  writer: string;
+  comment_id: number;
+  handleSetVisible: () => void;
+};
 
-function CommentEditModal(props: CommentEditModalProps) {
+const { useRef, useCallback } = React;
+function CommentEditModal({
+  visible,
+  writer,
+  comment_id,
+  handleSetVisible,
+}: CommentEditModalProps) {
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+  const [state, onChange] = useInputs({
+    writer: '',
+    password: '',
+    comment: '',
+  });
+  const [UpdateComment] = useMutation<{
+    updateCommnet: boolean;
+    variables: UpdateCommentType;
+  }>(UPDATE_COMMENT);
+
+  const updateComment = useCallback(async () => {
+    try {
+      await UpdateComment({
+        variables: {
+          comment_id,
+          password: state.password,
+          writer: state.writer,
+          comment: state.comment,
+        },
+      });
+    } catch (e) {
+      if (e.graphQLErrors) {
+      }
+      console.log(e.graphQLErrors);
+      alert('수정 실패');
+    }
+  }, [state]);
+
   return (
-    <Block>
-      <Header>댓글 수정/삭제</Header>
-    </Block>
+    <PopupBase visible={visible}>
+      <Block>
+        <Title>댓글 수정/삭제</Title>
+        <Header>
+          <Input
+            type="text"
+            name="writer"
+            placeholder={writer}
+            value={state.writer}
+            onChange={onChange}
+          />
+          <Input
+            type="password"
+            name="password"
+            placeholder="비밀번호를 입력하세요"
+            onChange={onChange}
+            inputRef={passwordRef}
+          />
+        </Header>
+        <Body>
+          <TextArea name="comment" value={state.comment} onChange={onChange} />
+        </Body>
+        <Footer>
+          <Button onClick={updateComment}>수정</Button>
+          <Button onClick={handleSetVisible}>삭제</Button>
+          <Button onClick={handleSetVisible}>취소</Button>
+        </Footer>
+      </Block>
+    </PopupBase>
   );
 }
 
 const Block = styled.div`
-  position: fixed;
-  top: 15%;
-  left: calc(100vw / 2);
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   background: white;
-  z-index: ${zIndexes.commentEditModal};
   padding: 1rem;
-  border: 1px solid black;
+  overflow-y: auto;
 
   ${media.xsmall} {
     width: 320px;
@@ -34,10 +102,25 @@ const Block = styled.div`
   }
 `;
 
-const Header = styled.h4`
+const Title = styled.h4`
   margin: 0;
   padding: 0;
   font-weight: 600;
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+`;
+
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 export default CommentEditModal;

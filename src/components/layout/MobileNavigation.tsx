@@ -17,7 +17,7 @@ function MobileNavigation(props: MobileNavigationProps) {
 
   const handleScroll = useCallback(
     throttle(300, () => {
-      const currentScroll = window.scrollY;
+      const currentScroll = globalThis.scrollY;
       if (matchMedia(media.xsmall)) {
         if (
           prevScroll.current < currentScroll &&
@@ -35,10 +35,10 @@ function MobileNavigation(props: MobileNavigationProps) {
   );
 
   useEffect(() => {
-    prevScroll.current = window.scrollY;
-    window.addEventListener('scroll', handleScroll);
+    prevScroll.current = globalThis.scrollY;
+    globalThis.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      globalThis.removeEventListener('scroll', handleScroll);
     };
   }, []);
 

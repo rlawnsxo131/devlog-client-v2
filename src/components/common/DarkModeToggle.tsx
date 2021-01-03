@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
-import { slideLeft, slideRight } from '../../lib/styles/transitions';
+import transitions from '../../lib/styles/transitions';
 import zIndexes from '../../lib/styles/zIndexes';
 import useToggle from './hooks/useToggle';
 
@@ -86,10 +86,10 @@ const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
     if (!props.visible) return null;
     return props.darkMode
       ? css`
-          animation: ${slideRight} 0.15s ease-in both;
+          animation: ${transitions.slideRight} 0.15s ease-in both;
         `
       : css`
-          animation: ${slideLeft} 0.15s ease-in both;
+          animation: ${transitions.slideLeft} 0.15s ease-in both;
         `;
   }}
 `;

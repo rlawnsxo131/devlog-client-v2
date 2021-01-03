@@ -7,6 +7,7 @@ import useInputs from '../../lib/hooks/useInputs';
 import palette, { darkModeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import Button from '../common/Button';
+import Input from '../common/Input';
 
 type CommentWriteProps = {
   post_id: number;
@@ -29,8 +30,9 @@ function CommentWrite({
     writer: '',
     comment: '',
   });
+  // need loading, error work
   const [CreateComment] = useMutation<{
-    createComment: { id: number };
+    createComment: boolean;
     variables: CreateCommentType;
   }>(CREATE_COMMENT, {
     refetchQueries: ['Comments'],
@@ -38,6 +40,13 @@ function CommentWrite({
 
   const createComment = useCallback(async () => {
     const { writer, password, comment } = state;
+    const validate = Object.entries(state).filter(
+      ([key, value]) => value.length,
+    );
+    if (validate.length !== 3) {
+      alert('작성자, 비밀번호, 댓글은 필수 입력 사항 입니다.');
+      return;
+    }
     try {
       await CreateComment({
         variables: {
@@ -48,7 +57,9 @@ function CommentWrite({
           comment,
         },
       });
+      alert('성공');
       onReset();
+      globalThis.scrollTo(0, globalThis.document.body.scrollHeight);
       if (passwordRef.current) {
         passwordRef.current.value = '';
       }
@@ -63,21 +74,19 @@ function CommentWrite({
   return (
     <Block reply_comment_id={reply_comment_id}>
       <InformationInputWrapper>
-        <InformationInput
+        <Input
           type="text"
           name="writer"
           placeholder="작성자"
-          onChange={onChange}
           value={state.writer}
-          darkMode={darkMode}
+          onChange={onChange}
         />
-        <InformationInput
+        <Input
           type="password"
           name="password"
           placeholder="비밀번호"
-          ref={passwordRef}
+          inputRef={passwordRef}
           onChange={onChange}
-          darkMode={darkMode}
         />
       </InformationInputWrapper>
       <CommentTextArea
@@ -110,28 +119,6 @@ const Block = styled.div<{ reply_comment_id?: number }>`
 const InformationInputWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
-`;
-
-const InformationInput = styled.input<{ darkMode: boolean }>`
-  all: unset;
-  border-radius: 4px;
-  padding: 0.5rem;
-  :focus {
-    outline: none;
-  }
-  ::placeholder {
-    color: ${palette.gray5};
-  }
-  ${(props) =>
-    props.darkMode
-      ? css`
-          border: 1px solid ${palette.gray6};
-          background: ${darkModeBackground.main};
-        `
-      : css`
-          border: 1px solid ${palette.gray2};
-          background: white;
-        `}
 `;
 
 const CommentTextArea = styled.textarea<{ darkMode: boolean }>`

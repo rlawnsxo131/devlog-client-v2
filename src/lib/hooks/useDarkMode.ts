@@ -15,7 +15,7 @@ export default function useDarkMode() {
     const mode = ['light', 'dark'].reduce((acc, mode) => {
       return globalThis.matchMedia(`(prefers-color-scheme: ${mode})`).matches
         ? (acc += mode)
-        : (acc += '');
+        : acc;
     }, '');
     if (!mode) return;
     dispatch(

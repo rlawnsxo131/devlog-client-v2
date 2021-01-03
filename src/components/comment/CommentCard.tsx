@@ -7,17 +7,22 @@ import { RootState } from '../../modules';
 import CommentCardBody from './CommentCardBody';
 import CommentCardFooter from './CommentCardFooter';
 import CommentCardHeader from './CommentCardHeader';
+import CommentEditModal from './CommentEditModal';
 
 type CommentCardProps = {
   reply: CommentType;
   fullCount?: number;
 };
 
-const { memo } = React;
+const { useState, useCallback, memo } = React;
 function CommentCard({ reply, fullCount }: CommentCardProps) {
   const darkMode = useSelector(
     (state: RootState) => state.core.darkMode.darkMode,
   );
+  const [visible, setVisible] = useState<boolean>(false);
+  const handleSetVisible = useCallback(() => {
+    setVisible((state) => !state);
+  }, []);
 
   return (
     <Block level={reply.level} darkMode={darkMode}>
@@ -25,6 +30,7 @@ function CommentCard({ reply, fullCount }: CommentCardProps) {
         writer={reply.writer}
         created_at={reply.created_at}
         edited_at={reply.edited_at}
+        handleSetVisible={handleSetVisible}
       />
       <CommentCardBody comment={reply.comment} />
       <CommentCardFooter
@@ -35,6 +41,12 @@ function CommentCard({ reply, fullCount }: CommentCardProps) {
         replies={reply.replies}
         has_replies={reply.has_replies}
         fullCount={fullCount}
+      />
+      <CommentEditModal
+        visible={visible}
+        writer={reply.writer}
+        comment_id={reply.id}
+        handleSetVisible={handleSetVisible}
       />
     </Block>
   );
@@ -48,10 +60,8 @@ const Block = styled.div<{ level: number; darkMode: boolean }>`
   ${(props) => {
     if (props.level === 0) {
       return css`
-        & + & {
-          border-top: 1px solid
-            ${props.darkMode ? palette.gray6 : palette.gray1};
-        }
+        border-bottom: 1px solid
+          ${props.darkMode ? palette.gray6 : palette.gray1};
       `;
     }
     if (props.level > 0) {
