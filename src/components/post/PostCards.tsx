@@ -32,7 +32,7 @@ const Block = styled.div`
     gap: 1rem 0;
   }
   ${mediaQuery(420)} {
-    grid-auto-rows: 35rem;
+    grid-auto-rows: 30rem;
   }
   ${media.small} {
     grid-auto-rows: 28rem;
