@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type Error = 'NOT_FOUND' | 'CHUNK';
+export enum ErrorTypes {
+  NOT_FOUND = 'NOT_FOUND',
+  CHUNK = 'CHUNK',
+  UNKNOWN = 'UNKNOWN',
+}
 type ErrorType = {
-  error: boolean;
-  errorType?: Error;
+  errorType: ErrorTypes | null;
 };
 
 const initialState: ErrorType = {
-  error: false,
-  errorType: undefined,
+  errorType: null,
 };
 
 const errorSlice = createSlice({
@@ -16,13 +18,15 @@ const errorSlice = createSlice({
   initialState,
   reducers: {
     setError(state, action) {
-      const { error, errorType } = action.payload;
-      state.error = error;
+      const { errorType } = action.payload;
       state.errorType = errorType;
+    },
+    resetError(state, action) {
+      state.errorType = null;
     },
   },
 });
 
-export const { setError } = errorSlice.actions;
+export const { setError, resetError } = errorSlice.actions;
 
 export default errorSlice.reducer;

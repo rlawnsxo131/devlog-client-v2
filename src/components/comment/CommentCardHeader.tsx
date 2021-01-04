@@ -5,6 +5,7 @@ import { formatDate } from '../../lib/utils';
 
 type CommentCardHeaderProps = {
   writer: string;
+  deleted: boolean;
   created_at: Date;
   edited_at?: Date;
   handleSetVisible: () => void;
@@ -12,6 +13,7 @@ type CommentCardHeaderProps = {
 
 function CommentCardHeader({
   writer,
+  deleted,
   created_at,
   edited_at,
   handleSetVisible,
@@ -26,7 +28,9 @@ function CommentCardHeader({
             : formatDate(created_at)}
         </div>
       </HeaderInfo>
-      <HeaderEdit onClick={handleSetVisible}>수정/삭제</HeaderEdit>
+      {!deleted && (
+        <HeaderEdit onClick={handleSetVisible}>수정/삭제</HeaderEdit>
+      )}
     </Block>
   );
 }

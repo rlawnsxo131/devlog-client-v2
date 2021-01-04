@@ -7,10 +7,11 @@ import { RootState } from '../../modules';
 type TextAreaProps = {
   name?: string;
   value: string;
+  placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-function TextArea({ name, value, onChange }: TextAreaProps) {
+function TextArea({ name, value, placeholder, onChange }: TextAreaProps) {
   const darkMode = useSelector(
     (state: RootState) => state.core.darkMode.darkMode,
   );
@@ -19,6 +20,7 @@ function TextArea({ name, value, onChange }: TextAreaProps) {
       darkMode={darkMode}
       name={name}
       value={value}
+      placeholder={placeholder}
       onChange={onChange}
     />
   );

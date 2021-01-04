@@ -1,56 +1,35 @@
-import { useMutation } from '@apollo/client';
 import * as React from 'react';
 import styled from 'styled-components';
-import { UpdateCommentType, UPDATE_COMMENT } from '../../graphql/comment';
-import useInputs from '../../lib/hooks/useInputs';
 import media from '../../lib/styles/media';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import PopupBase from '../common/PopupBase';
 import TextArea from '../common/TextArea';
+import useCommentEditModal from './hooks/useCommentEditModal';
 
 type CommentEditModalProps = {
   visible: boolean;
   writer: string;
+  comment: string;
   comment_id: number;
   handleSetVisible: () => void;
 };
 
-const { useRef, useCallback } = React;
 function CommentEditModal({
   visible,
   writer,
+  comment,
   comment_id,
   handleSetVisible,
 }: CommentEditModalProps) {
-  const passwordRef = useRef<HTMLInputElement | null>(null);
-  const [state, onChange] = useInputs({
-    writer: '',
-    password: '',
-    comment: '',
-  });
-  const [UpdateComment] = useMutation<{
-    updateCommnet: boolean;
-    variables: UpdateCommentType;
-  }>(UPDATE_COMMENT);
-
-  const updateComment = useCallback(async () => {
-    try {
-      await UpdateComment({
-        variables: {
-          comment_id,
-          password: state.password,
-          writer: state.writer,
-          comment: state.comment,
-        },
-      });
-    } catch (e) {
-      if (e.graphQLErrors) {
-      }
-      console.log(e.graphQLErrors);
-      alert('수정 실패');
-    }
-  }, [state]);
+  const { state, onChange, updateComment, removeComment } = useCommentEditModal(
+    {
+      writer,
+      comment,
+      comment_id,
+      handleSetVisible,
+    },
+  );
 
   return (
     <PopupBase visible={visible}>
@@ -60,7 +39,7 @@ function CommentEditModal({
           <Input
             type="text"
             name="writer"
-            placeholder={writer}
+            placeholder="작성자"
             value={state.writer}
             onChange={onChange}
           />
@@ -69,15 +48,19 @@ function CommentEditModal({
             name="password"
             placeholder="비밀번호를 입력하세요"
             onChange={onChange}
-            inputRef={passwordRef}
           />
         </Header>
         <Body>
-          <TextArea name="comment" value={state.comment} onChange={onChange} />
+          <TextArea
+            name="comment"
+            placeholder="내용을 입력해주세요"
+            value={state.comment}
+            onChange={onChange}
+          />
         </Body>
         <Footer>
           <Button onClick={updateComment}>수정</Button>
-          <Button onClick={handleSetVisible}>삭제</Button>
+          <Button onClick={removeComment}>삭제</Button>
           <Button onClick={handleSetVisible}>취소</Button>
         </Footer>
       </Block>
@@ -95,7 +78,7 @@ const Block = styled.div`
 
   ${media.xsmall} {
     width: 320px;
-    height: 300px;
+    height: 315px;
   }
   ${media.small} {
     width: 600px;

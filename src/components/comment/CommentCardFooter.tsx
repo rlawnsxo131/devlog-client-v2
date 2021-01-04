@@ -96,15 +96,13 @@ function CommentCardFooter({
             />
           )}
           {has_replies && (
-            <div className="comment-write-button-wrapper">
-              <Button
-                color="pink"
-                size="responsive"
-                onClick={handleShowCommentWrite}
-              >
-                {showCommentWrite ? '숨기기' : '답글 달기'}
-              </Button>
-            </div>
+            <Button
+              color="pink"
+              size="responsive"
+              onClick={handleShowCommentWrite}
+            >
+              {showCommentWrite ? '숨기기' : '답글 달기'}
+            </Button>
           )}
         </CommentWriteWrapper>
       )}
@@ -145,7 +143,7 @@ const CommentWriteWrapper = styled.div`
   display: flex;
   flex-direction: column;
   .comment-write-button-wrapper {
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
   }
 `;
 

@@ -1,13 +1,9 @@
-import { useMutation } from '@apollo/client';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
-import { CreateCommentType, CREATE_COMMENT } from '../../graphql/comment';
-import useInputs from '../../lib/hooks/useInputs';
 import palette, { darkModeBackground } from '../../lib/styles/palette';
-import { RootState } from '../../modules';
 import Button from '../common/Button';
 import Input from '../common/Input';
+import useCommentWrite from './hooks/useCommentWrite';
 
 type CommentWriteProps = {
   post_id: number;
@@ -15,62 +11,23 @@ type CommentWriteProps = {
   handleShowCommentWrite?: () => void;
 };
 
-const { useRef, useCallback, memo } = React;
+const { memo } = React;
 function CommentWrite({
   post_id,
   reply_comment_id,
   handleShowCommentWrite,
 }: CommentWriteProps) {
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
-  );
-  const passwordRef = useRef<null | HTMLInputElement>(null);
-  const [state, onChange, onReset] = useInputs({
-    password: '',
-    writer: '',
-    comment: '',
+  const {
+    darkMode,
+    passwordRef,
+    state,
+    onChange,
+    createComment,
+  } = useCommentWrite({
+    post_id,
+    reply_comment_id,
+    handleShowCommentWrite,
   });
-  // need loading, error work
-  const [CreateComment] = useMutation<{
-    createComment: boolean;
-    variables: CreateCommentType;
-  }>(CREATE_COMMENT, {
-    refetchQueries: ['Comments'],
-  });
-
-  const createComment = useCallback(async () => {
-    const { writer, password, comment } = state;
-    const validate = Object.entries(state).filter(
-      ([key, value]) => value.length,
-    );
-    if (validate.length !== 3) {
-      alert('작성자, 비밀번호, 댓글은 필수 입력 사항 입니다.');
-      return;
-    }
-    try {
-      await CreateComment({
-        variables: {
-          post_id,
-          reply_comment_id,
-          writer,
-          password,
-          comment,
-        },
-      });
-      alert('성공');
-      onReset();
-      globalThis.scrollTo(0, globalThis.document.body.scrollHeight);
-      if (passwordRef.current) {
-        passwordRef.current.value = '';
-      }
-      if (handleShowCommentWrite) {
-        handleShowCommentWrite();
-      }
-    } catch (e) {
-      alert('작성 실패');
-    }
-  }, [state, post_id, reply_comment_id]);
-
   return (
     <Block reply_comment_id={reply_comment_id}>
       <InformationInputWrapper>

@@ -28,6 +28,7 @@ function CommentCard({ reply, fullCount }: CommentCardProps) {
     <Block level={reply.level} darkMode={darkMode}>
       <CommentCardHeader
         writer={reply.writer}
+        deleted={reply.deleted}
         created_at={reply.created_at}
         edited_at={reply.edited_at}
         handleSetVisible={handleSetVisible}
@@ -45,6 +46,7 @@ function CommentCard({ reply, fullCount }: CommentCardProps) {
       <CommentEditModal
         visible={visible}
         writer={reply.writer}
+        comment={reply.comment}
         comment_id={reply.id}
         handleSetVisible={handleSetVisible}
       />
