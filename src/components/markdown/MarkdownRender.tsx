@@ -185,10 +185,10 @@ const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
 
   a {
     font-weight: 600;
-    color: ${palette.pink5};
+    color: ${palette.indigo5};
     text-decoration: none;
     &:hover {
-      color: ${palette.pink4};
+      color: ${palette.indigo4};
       text-decoration: underline;
     }
   }
@@ -196,15 +196,15 @@ const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
   p {
     code {
       padding: 0.125rem;
-      color: ${palette.pink8} !important;
-      background: ${palette.pink0};
+      color: ${palette.indigo9} !important;
+      background: ${palette.indigo0};
     }
   }
 
   blockquote {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    border-left: 4px solid ${palette.pink5};
+    border-left: 4px solid ${palette.indigo5};
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     background: ${(props) => (props.darkMode ? '#313440' : palette.gray0)};

@@ -72,8 +72,8 @@ const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
   height: 1.3rem;
   border-radius: 100%;
   background: white;
-  border: 2.5px solid ${palette.pink3};
-  box-shadow: 1px 1px 10px ${palette.pink3};
+  border: 2.5px solid ${palette.indigo4};
+  box-shadow: 1px 1px 10px ${palette.indigo4};
   ${(props) =>
     props.darkMode
       ? css`

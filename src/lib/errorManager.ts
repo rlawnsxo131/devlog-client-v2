@@ -1,17 +1,21 @@
-import { useDispatch } from 'react-redux';
+import { ErrorEnum } from '../modules/error';
 
-export default function errorManager(error: any) {
-  console.log(JSON.stringify(error));
-  const dispatch = useDispatch();
-
+function errorCodeReturner(error: any): string {
+  let errorCode = '';
   // declare code error
   if (error.graphQLErrors) {
-    const errorCode = error.graphQLErrors.reduce((acc: string, cur: any) => {
+    errorCode = error.graphQLErrors.reduce((acc: string, cur: any) => {
       return cur.extensions?.code ? (acc += cur.extensions.code) : acc;
     }, '');
   }
-
   // network error
   if (error.networkError) {
+    errorCode = ErrorEnum.CHUNK;
   }
+  return errorCode ? errorCode : ErrorEnum.UNKNOWN;
+}
+
+export default function errorManager(error: any) {
+  const code = errorCodeReturner(error);
+  return code;
 }

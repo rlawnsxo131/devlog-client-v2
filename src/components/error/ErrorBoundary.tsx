@@ -8,7 +8,6 @@ class ErrorBoundary extends React.Component {
 
   static getDerivedStateFromError(error: Error) {
     // 다음 렌더링에서 폴백 UI가 보이도록 상태를 업데이트 합니다.
-    console.log(error.name);
     if (error.name === 'ChunkLoadError') {
       return {
         chunkError: true,

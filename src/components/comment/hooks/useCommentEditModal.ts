@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   RemoveCommentType,
   REMOVE_COMMENT,
@@ -9,6 +10,8 @@ import {
 import errorManager from '../../../lib/errorManager';
 import useInputs from '../../../lib/hooks/useInputs';
 import { normalizedString } from '../../../lib/utils';
+import { RootState } from '../../../modules';
+import { resetCommentError, setCommentError } from '../../../modules/comment';
 
 type UseCommentEditModalProps = {
   writer: string;
@@ -23,11 +26,14 @@ export default function useCommentEditModal({
   comment_id,
   handleSetVisible,
 }: UseCommentEditModalProps) {
+  const dispatch = useDispatch();
+  const errorType = useSelector((state: RootState) => state.comment.errorType);
   const [state, onChange] = useInputs({
     writer: writer,
     password: '',
     comment: comment,
   });
+
   const [UpdateComment] = useMutation<{
     updateCommnet: boolean;
     variables: UpdateCommentType;
@@ -60,8 +66,13 @@ export default function useCommentEditModal({
         },
       });
       handleSetVisible();
+      dispatch(resetCommentError({}));
     } catch (e) {
-      errorManager(e);
+      dispatch(
+        setCommentError({
+          errorType: errorManager(e),
+        }),
+      );
     }
   }, [state]);
 
@@ -79,15 +90,32 @@ export default function useCommentEditModal({
         },
       });
       handleSetVisible();
+      dispatch(resetCommentError({}));
     } catch (e) {
-      errorManager(e);
+      dispatch(
+        setCommentError({
+          errorType: errorManager(e),
+        }),
+      );
     }
   }, [comment_id, state.password]);
+
+  useEffect(() => {
+    if (!errorType) return;
+    dispatch(resetCommentError({}));
+  }, [state]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetCommentError({}));
+    };
+  }, []);
 
   return {
     state,
     onChange,
     updateComment,
     removeComment,
+    errorType,
   };
 }

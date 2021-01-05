@@ -39,6 +39,7 @@ export default function useCommentWrite({
     writer: '',
     comment: '',
   });
+
   // need loading, error work
   const [CreateComment] = useMutation<{
     createComment: boolean;

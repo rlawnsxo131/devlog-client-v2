@@ -1,6 +1,9 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import palette, { darkModeBackground } from '../../lib/styles/palette';
+import palette, {
+  commentColor,
+  darkModeBackground,
+} from '../../lib/styles/palette';
 import Button from '../common/Button';
 import Input from '../common/Input';
 import useCommentWrite from './hooks/useCommentWrite';
@@ -54,7 +57,7 @@ function CommentWrite({
         darkMode={darkMode}
       />
       <SaveButtonArea>
-        <Button color="pink" onClick={createComment}>
+        <Button color="indigo" onClick={createComment}>
           댓글 작성
         </Button>
       </SaveButtonArea>
@@ -70,6 +73,7 @@ const Block = styled.div<{ reply_comment_id?: number }>`
     props.reply_comment_id &&
     css`
       padding: 1.5rem 2rem 1.5rem 2rem;
+      background: ${commentColor[1].background};
     `}
 `;
 

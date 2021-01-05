@@ -32,6 +32,8 @@ function PostDetail(props: PostDetailProps) {
   if (error) return <div>error</div>;
   if (!data) return <div>not found</div>;
 
+  console.log(data.post);
+
   return (
     <Block>
       <PostHeader>{data.post.post_header}</PostHeader>

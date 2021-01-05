@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export enum ErrorTypes {
+export enum ErrorEnum {
   NOT_FOUND = 'NOT_FOUND',
   CHUNK = 'CHUNK',
   UNKNOWN = 'UNKNOWN',
 }
 type ErrorType = {
-  errorType: ErrorTypes | null;
+  errorType: ErrorEnum | null;
 };
 
 const initialState: ErrorType = {

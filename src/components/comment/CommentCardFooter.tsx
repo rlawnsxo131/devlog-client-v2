@@ -97,7 +97,7 @@ function CommentCardFooter({
           )}
           {has_replies && (
             <Button
-              color="pink"
+              color="indigo"
               size="responsive"
               onClick={handleShowCommentWrite}
             >
@@ -119,17 +119,17 @@ const ReplyTrigger = styled.div`
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  color: ${palette.pink5};
+  color: ${palette.indigo5};
   font-weight: 600;
   .reply-icon {
     font-size: 0.8rem;
-    border: 1px solid ${palette.pink5};
+    border: 1px solid ${palette.indigo5};
   }
   &:hover {
     cursor: pointer;
-    color: ${palette.pink4};
+    color: ${palette.indigo4};
     .reply-icon {
-      border: 1px solid ${palette.pink4};
+      border: 1px solid ${palette.indigo4};
     }
   }
 `;
@@ -142,9 +142,6 @@ const RepliesWrapper = styled.div`
 const CommentWriteWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  .comment-write-button-wrapper {
-    /* margin-top: 1rem; */
-  }
 `;
 
 export default memo(CommentCardFooter);

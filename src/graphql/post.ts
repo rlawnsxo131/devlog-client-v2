@@ -35,7 +35,6 @@ export const GET_POST = gql`
       url_slug
       released_at
       tags
-      # comments_count
       series_posts {
         series_id
         series_name

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import media from '../../lib/styles/media';
 import zIndexes from '../../lib/styles/zIndexes';
@@ -10,14 +10,16 @@ function WebNavigation(props: WebNavigationProps) {
   return (
     <Block>
       <ContentBlock>
-        <Link to="/">
+        <Link1 to="/">
           <h1>DevLog</h1>
-        </Link>
+        </Link1>
         <div>
-          <Link to="/">새 글</Link>
-          <Link to="/series">시리즈</Link>
-          <Link to="/tags">태그</Link>
-          <Link to="/info">소개</Link>
+          <Link2 exact to="/">
+            새 글
+          </Link2>
+          <Link2 to="/series">시리즈</Link2>
+          <Link2 to="/tags">태그</Link2>
+          <Link2 to="/info">소개</Link2>
         </div>
       </ContentBlock>
     </Block>
@@ -59,12 +61,23 @@ const ContentBlock = styled.div`
   }
 `;
 
-const Link = styled(NavLink)`
+const Link1 = styled(Link)`
   display: inline-flex;
   flex-flow: row wrap;
   justify-content: flex-end;
   font-size: 1.25rem;
   padding: 0.25rem;
+`;
+
+const Link2 = styled(NavLink)`
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  &.active {
+    font-weight: bold;
+  }
   & + & {
     margin-left: 2rem;
   }

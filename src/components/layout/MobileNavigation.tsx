@@ -18,16 +18,14 @@ function MobileNavigation(props: MobileNavigationProps) {
   const handleScroll = useCallback(
     throttle(300, () => {
       const currentScroll = globalThis.scrollY;
-      if (matchMedia(media.xsmall)) {
-        if (
-          prevScroll.current < currentScroll &&
-          currentScroll > 88 &&
-          currentScroll > 0
-        ) {
-          setScrollDirection('DOWN');
-        } else {
-          setScrollDirection('UP');
-        }
+      if (
+        prevScroll.current < currentScroll &&
+        currentScroll > 88 &&
+        currentScroll > 0
+      ) {
+        setScrollDirection('DOWN');
+      } else {
+        setScrollDirection('UP');
       }
       prevScroll.current = currentScroll;
     }),

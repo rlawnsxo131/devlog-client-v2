@@ -11,6 +11,7 @@ type CommentCardHeaderProps = {
   handleSetVisible: () => void;
 };
 
+const { memo } = React;
 function CommentCardHeader({
   writer,
   deleted,
@@ -64,4 +65,4 @@ const HeaderEdit = styled.div`
   }
 `;
 
-export default CommentCardHeader;
+export default memo(CommentCardHeader);

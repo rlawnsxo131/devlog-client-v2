@@ -11,6 +11,7 @@ type TextAreaProps = {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
+const { memo } = React;
 function TextArea({ name, value, placeholder, onChange }: TextAreaProps) {
   const darkMode = useSelector(
     (state: RootState) => state.core.darkMode.darkMode,
@@ -49,4 +50,4 @@ const TextareaBlock = styled.textarea<{ darkMode: boolean }>`
         `}
 `;
 
-export default TextArea;
+export default memo(TextArea);

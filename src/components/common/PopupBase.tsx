@@ -9,7 +9,7 @@ type PopupBaseProps = {
   visible: boolean;
 };
 
-const { useState, useEffect } = React;
+const { useState, useEffect, memo } = React;
 function PopupBase({ children, visible }: PopupBaseProps) {
   const [closed, setClosed] = useState(true);
   useEffect(() => {
@@ -75,4 +75,4 @@ const ChildrenWrapper = styled.div<{ visible: boolean }>`
         `};
 `;
 
-export default PopupBase;
+export default memo(PopupBase);

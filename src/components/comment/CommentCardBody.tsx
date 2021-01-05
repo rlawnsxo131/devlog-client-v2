@@ -5,6 +5,7 @@ type CommentCardBodyProps = {
   comment: string;
 };
 
+const { memo } = React;
 function CommentCardBody({ comment }: CommentCardBodyProps) {
   return <Block>{comment}</Block>;
 }
@@ -17,4 +18,4 @@ const Block = styled.div`
   margin-bottom: 2rem;
 `;
 
-export default CommentCardBody;
+export default memo(CommentCardBody);
