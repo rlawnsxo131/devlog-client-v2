@@ -13,14 +13,14 @@ function WebNavigation(props: WebNavigationProps) {
         <Link1 to="/">
           <h1>DevLog</h1>
         </Link1>
-        <div>
+        <LinkWrapper>
           <Link2 exact to="/">
             새 글
           </Link2>
           <Link2 to="/series">시리즈</Link2>
           <Link2 to="/tags">태그</Link2>
           <Link2 to="/info">소개</Link2>
-        </div>
+        </LinkWrapper>
       </ContentBlock>
     </Block>
   );
@@ -59,6 +59,11 @@ const ContentBlock = styled.div`
   ${media.large} {
     width: 64rem;
   }
+`;
+
+const LinkWrapper = styled.div`
+  display: flex;
+  flex-flow: row;
 `;
 
 const Link1 = styled(Link)`

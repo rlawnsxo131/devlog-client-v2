@@ -197,7 +197,8 @@ const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
     code {
       padding: 0.125rem;
       color: ${palette.indigo9} !important;
-      background: ${palette.indigo0};
+      background: ${(props) =>
+        props.darkMode ? palette.indigo1 : palette.indigo0};
     }
   }
 

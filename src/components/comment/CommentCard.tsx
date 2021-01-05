@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { shallowEqual, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { CommentType } from '../../graphql/comment';
 import palette, { commentColor } from '../../lib/styles/palette';
@@ -18,7 +18,6 @@ const { useState, useCallback, memo } = React;
 function CommentCard({ reply, fullCount }: CommentCardProps) {
   const darkMode = useSelector(
     (state: RootState) => state.core.darkMode.darkMode,
-    shallowEqual,
   );
   const [visible, setVisible] = useState<boolean>(false);
   const handleSetVisible = useCallback(() => {

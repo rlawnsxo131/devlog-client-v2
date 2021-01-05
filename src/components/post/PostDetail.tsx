@@ -10,6 +10,7 @@ import { formatDate } from '../../lib/utils';
 import Comments from '../comment/Comments';
 import MarkdownRender from '../markdown/MarkdownRender';
 import DefaultTags from '../tag/DefaultTags';
+import PostDetailSeries from './PostDetailSeries';
 
 type PostDetailProps = {};
 
@@ -26,13 +27,11 @@ function PostDetail(props: PostDetailProps) {
 
   useEffect(() => {
     globalThis.scrollTo(0, 0);
-  }, []);
+  }, [url_slug]);
 
   if (loading) return <div>loading</div>;
   if (error) return <div>error</div>;
   if (!data) return <div>not found</div>;
-
-  console.log(data.post);
 
   return (
     <Block>
@@ -54,6 +53,7 @@ function PostDetail(props: PostDetailProps) {
         </Thumnail>
       )}
       <MarkdownRender markdownText={data.post.post_body} />
+      <PostDetailSeries series={data.post.series_posts} />
       <Comments post_id={data.post.id} />
     </Block>
   );

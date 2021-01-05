@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 import transitions from '../../lib/styles/transitions';
 import zIndexes from '../../lib/styles/zIndexes';
+import { RootState } from '../../modules';
 
 type PopupBaseProps = {
   children: React.ReactNode;
@@ -11,6 +13,9 @@ type PopupBaseProps = {
 
 const { useState, useEffect, memo } = React;
 function PopupBase({ children, visible }: PopupBaseProps) {
+  const darkMode = useSelector(
+    (state: RootState) => state.core.darkMode.darkMode,
+  );
   const [closed, setClosed] = useState(true);
   useEffect(() => {
     let timeoutId: NodeJS.Timeout | null = null;
@@ -31,13 +36,15 @@ function PopupBase({ children, visible }: PopupBaseProps) {
   if (!visible && closed) return null;
 
   return (
-    <Block visible={visible}>
-      <ChildrenWrapper visible={visible}>{children}</ChildrenWrapper>
+    <Block visible={visible} darkMode={darkMode}>
+      <ChildrenWrapper visible={visible} darkMode={darkMode}>
+        {children}
+      </ChildrenWrapper>
     </Block>
   );
 }
 
-const Block = styled.div<{ visible: boolean }>`
+const Block = styled.div<{ visible: boolean; darkMode: boolean }>`
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -46,8 +53,15 @@ const Block = styled.div<{ visible: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.5);
   z-index: ${zIndexes.PopupBase};
+  ${(props) =>
+    props.darkMode
+      ? css`
+          background: rgba(100, 100, 100, 0.5);
+        `
+      : css`
+          background: rgba(255, 255, 255, 0.5);
+        `}
   ${(props) =>
     props.visible
       ? css`
@@ -55,16 +69,17 @@ const Block = styled.div<{ visible: boolean }>`
         `
       : css`
           animation: ${transitions.fadeOut} 0.25s forwards;
-        `}
+        `};
 `;
 
-const ChildrenWrapper = styled.div<{ visible: boolean }>`
+const ChildrenWrapper = styled.div<{ visible: boolean; darkMode: boolean }>`
   position: relative;
   top: -15%;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 1px 1px 10px 2px ${palette.gray3};
+  box-shadow: 1px 1px 10px 2px
+    ${(props) => (props.darkMode ? palette.gray9 : palette.gray3)};
   ${(props) =>
     props.visible
       ? css`

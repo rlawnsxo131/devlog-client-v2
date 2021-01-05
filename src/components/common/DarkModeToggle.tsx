@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import transitions from '../../lib/styles/transitions';
 import zIndexes from '../../lib/styles/zIndexes';
@@ -14,8 +13,8 @@ function DarkModeToggle(props: DarkModeToggleProps) {
   return (
     <Block>
       <ToggleBlock onClick={onToggle}>
-        <span className="toggle-span">&#127769;</span>
-        <span className="toggle-span">&#128262;</span>
+        <span className="toggle-moon">&#127769;</span>
+        <span className="toggle-sun">&#128262;</span>
         <Circle visible={visible} darkMode={darkMode} />
       </ToggleBlock>
     </Block>
@@ -24,41 +23,33 @@ function DarkModeToggle(props: DarkModeToggleProps) {
 
 const Block = styled.div`
   position: fixed;
+  top: 2%;
+  right: 5%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   z-index: ${zIndexes.darkModeToggle};
-  ${media.xsmall} {
-    top: 0;
-    right: 7%;
-  }
-  ${media.medium} {
-    width: 53rem;
-    top: 3.8rem;
-    right: unset;
-  }
-  ${media.large} {
-    width: 64rem;
-  }
+  background: black;
+  border-radius: 1rem;
 `;
 
 const ToggleBlock = styled.div`
   position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  width: 2.5rem;
-  height: 1.25rem;
-  padding: 0.1rem 0.3rem 0.1rem 0.3rem;
-  background: black;
-  border-radius: 1.3rem;
+  width: 3.423rem;
+  height: 1.5rem;
   z-index: ${zIndexes.darkModeToggle};
-  .toggle-span {
-    background: black;
-    font-size: 0.8rem;
+  span {
+    position: absolute;
+    display: inline-block;
+    font-size: 0.9rem;
+  }
+  .toggle-moon {
+    left: 5%;
+  }
+  .toggle-sun {
+    right: 12%;
   }
   &:hover {
     cursor: pointer;
@@ -67,20 +58,19 @@ const ToggleBlock = styled.div`
 
 const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
   position: absolute;
-  top: -1.25px;
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.4rem;
+  height: 1.4rem;
   border-radius: 100%;
   background: white;
   border: 2.5px solid ${palette.indigo4};
-  box-shadow: 1px 1px 10px ${palette.indigo4};
+  box-shadow: 1px 1px 10px 1px ${palette.indigo4};
   ${(props) =>
     props.darkMode
       ? css`
-          left: 50%;
+          right: 0;
         `
       : css`
-          left: -1.6%;
+          left: 0;
         `}
   ${(props) => {
     if (!props.visible) return null;

@@ -24,6 +24,7 @@ function Layout({ children }: LayoutProps) {
         <Main>
           <ContentBlock>{children}</ContentBlock>
         </Main>
+        <DarkModeToggle />
         <div className="copyright">© 2020 · DevLog</div>
       </Block>
     </>
@@ -52,15 +53,10 @@ const Block = styled.div`
 `;
 
 const Main = styled.main`
-  flex: 1;
+  flex: 1 1 0%;
   display: flex;
   justify-content: center;
-  ${media.xsmall} {
-    margin-top: 5.5rem;
-  }
-  ${media.medium} {
-    margin-top: 8.5rem;
-  }
+  margin-top: 5.5rem;
 `;
 
 const ContentBlock = styled.div`

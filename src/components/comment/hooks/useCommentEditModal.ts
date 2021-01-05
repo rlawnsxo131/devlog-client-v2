@@ -11,7 +11,11 @@ import errorManager from '../../../lib/errorManager';
 import useInputs from '../../../lib/hooks/useInputs';
 import { normalizedString } from '../../../lib/utils';
 import { RootState } from '../../../modules';
-import { resetCommentError, setCommentError } from '../../../modules/comment';
+import {
+  CommentErrorEnum,
+  resetCommentError,
+  setCommentError,
+} from '../../../modules/comment';
 
 type UseCommentEditModalProps = {
   writer: string;
@@ -19,15 +23,32 @@ type UseCommentEditModalProps = {
   comment_id: number;
   handleSetVisible: () => void;
 };
+type UseCommentEditModal = {
+  state: {
+    writer: string;
+    password: string;
+    comment: string;
+  };
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  updateComment: () => Promise<void>;
+  removeComment: () => Promise<void>;
+  errorType: CommentErrorEnum | null;
+  darkMode: boolean;
+};
 
 export default function useCommentEditModal({
   writer,
   comment,
   comment_id,
   handleSetVisible,
-}: UseCommentEditModalProps) {
+}: UseCommentEditModalProps): UseCommentEditModal {
   const dispatch = useDispatch();
   const errorType = useSelector((state: RootState) => state.comment.errorType);
+  const darkMode = useSelector(
+    (state: RootState) => state.core.darkMode.darkMode,
+  );
   const [state, onChange] = useInputs({
     writer: writer,
     password: '',
@@ -117,5 +138,6 @@ export default function useCommentEditModal({
     updateComment,
     removeComment,
     errorType,
+    darkMode,
   };
 }

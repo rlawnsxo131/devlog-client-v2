@@ -36,7 +36,7 @@ function Comments({ post_id }: CommentsProps) {
 const Block = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 8rem;
+  margin-top: 3rem;
   margin-bottom: 10rem;
   ${media.xsmall} {
     font-size: 1rem;

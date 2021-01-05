@@ -1,5 +1,13 @@
 import gql from 'graphql-tag';
 
+export type SeriesPostType = {
+  series_id: number;
+  series_name: string;
+  post_id: number;
+  url_slug: string;
+  post_header: string;
+};
+
 export type PostType = {
   id: number;
   post_header: string;
@@ -12,14 +20,8 @@ export type PostType = {
   url_slug: string;
   released_at: Date;
   tags: Array<string>;
-  comments_count?: number;
-};
-
-export type SeriesPostType = {
-  series_id: number;
-  series_name: string;
-  post_id: number;
-  post_header: string;
+  comments_count: number;
+  series_posts: Array<SeriesPostType>;
 };
 
 export const GET_POST = gql`
@@ -39,6 +41,7 @@ export const GET_POST = gql`
         series_id
         series_name
         post_id
+        url_slug
         post_header
       }
     }

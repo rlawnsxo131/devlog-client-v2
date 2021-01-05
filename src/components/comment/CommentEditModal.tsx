@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import media from '../../lib/styles/media';
-import palette from '../../lib/styles/palette';
+import palette, { darkModeBackground } from '../../lib/styles/palette';
 import transitions from '../../lib/styles/transitions';
 import { commentErrorMessagMap } from '../../modules/comment';
 import Button from '../common/Button';
@@ -32,6 +32,7 @@ function CommentEditModal({
     updateComment,
     removeComment,
     errorType,
+    darkMode,
   } = useCommentEditModal({
     writer,
     comment,
@@ -41,7 +42,7 @@ function CommentEditModal({
 
   return (
     <PopupBase visible={visible}>
-      <Block>
+      <Block darkMode={darkMode}>
         <Title>댓글 수정/삭제</Title>
         <Header>
           <Input
@@ -85,11 +86,12 @@ function CommentEditModal({
   );
 }
 
-const Block = styled.div`
+const Block = styled.div<{ darkMode: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: white;
+  background: ${(props) =>
+    props.darkMode ? darkModeBackground.other : 'white'};
   padding: 1rem;
   overflow-y: auto;
   height: 330px;
