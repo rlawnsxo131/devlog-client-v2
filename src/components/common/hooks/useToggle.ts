@@ -1,35 +1,35 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
-import { onDarkMode } from '../../../modules/core';
+import { onDarkmode } from '../../../modules/core';
 
 type UseToggle = {
   visible: boolean;
-  darkMode: boolean;
+  darkmode: boolean;
   onToggle: () => void;
 };
 
 export default function useToggle(): UseToggle {
   const dispatch = useDispatch();
   const visible = useSelector(
-    (state: RootState) => state.core.darkMode.visible,
+    (state: RootState) => state.core.darkmode.visible,
   );
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
 
   const onToggle = useCallback(() => {
     dispatch(
-      onDarkMode({
+      onDarkmode({
         visible: true,
-        darkMode: !darkMode,
+        darkmode: !darkmode,
       }),
     );
-  }, [darkMode]);
+  }, [darkmode]);
 
   return {
     visible,
-    darkMode,
+    darkmode,
     onToggle,
   };
 }

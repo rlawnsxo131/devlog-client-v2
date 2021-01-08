@@ -41,10 +41,10 @@ module.exports = (mode) => {
     mode: REACT_APP_NODE_ENV,
     entry: paths.entryPath,
     output: {
-      path: paths.buildPath,
+      path: paths.prodBuildPath,
       publicPath: REACT_APP_PUBLIC_URL,
-      filename: 'static/js/[name].[contenthash:8].js',
-      chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
+      filename: 'static/js/[name].[contenthash].js',
+      chunkFilename: 'static/js/[name].[contenthash].chunk.js',
     },
     target: REACT_APP_BUILD_TARGET,
     devtool: 'hidden-source-map',
@@ -68,7 +68,7 @@ module.exports = (mode) => {
           exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
           options: {
             outputPath: 'static/media',
-            name: '[name].[hash:8].[ext]',
+            name: '[name].[contenthash].[ext]',
             esModule: false,
           },
         },
@@ -78,7 +78,7 @@ module.exports = (mode) => {
           options: {
             limit: 10000,
             outputPath: 'static/media',
-            name: '[name].[hash:8].[ext]',
+            name: '[name].[contenthash].[ext]',
           },
         },
       ],
@@ -86,6 +86,9 @@ module.exports = (mode) => {
     resolve: {
       modules: ['node_modules'],
       extensions: ['.tsx', '.ts', '.js'],
+      fallback: {
+        path: false,
+      },
     },
     optimization: {
       minimize: true,
@@ -116,8 +119,8 @@ module.exports = (mode) => {
         },
       }),
       new MiniCssExtractPlugin({
-        filename: 'static/css/[name].[hash:8].css',
-        chunkFilename: 'static/css/[name].[hash:8].chunk.css',
+        filename: 'static/css/[name].[contenthash].css',
+        chunkFilename: 'static/css/[name].[contenthash].chunk.css',
       }),
       new webpack.DefinePlugin(clientEnv),
       new WebpackManifestPlugin({
@@ -142,6 +145,9 @@ module.exports = (mode) => {
     ].filter(Boolean),
     cache: {
       type: 'filesystem',
+      buildDependencies: {
+        config: [__filename],
+      },
     },
     stats: {
       builtAt: true,

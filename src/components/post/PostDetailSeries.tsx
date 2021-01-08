@@ -10,13 +10,18 @@ type PostDetailSeriesProps = {
   series: Array<SeriesPostType>;
 };
 
+const { useMemo } = React;
 function PostDetailSeries({ series }: PostDetailSeriesProps) {
-  if (!series.length) return null;
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
+  const shadowcolor = useMemo(
+    () => (darkmode ? palette.gray9 : palette.gray3),
+    [darkmode],
+  );
+  if (!series.length) return null;
   return (
-    <Block darkMode={darkMode}>
+    <Block darkmode={darkmode}>
       <h3>시리즈 더보기</h3>
       <ContentWrapper>
         <h4>{series[0].series_name}</h4>
@@ -24,7 +29,7 @@ function PostDetailSeries({ series }: PostDetailSeriesProps) {
           <Link
             key={`post_detail_series_${v.post_id}`}
             to={`/post/${v.url_slug}`}
-            darkMode={darkMode}
+            shadowcolor={shadowcolor}
           >
             {v.post_header}
           </Link>
@@ -34,13 +39,13 @@ function PostDetailSeries({ series }: PostDetailSeriesProps) {
   );
 }
 
-const Block = styled.div<{ darkMode: boolean }>`
+const Block = styled.div<{ darkmode: boolean }>`
   margin-top: 5rem;
   display: flex;
   flex-direction: column;
   padding: 1rem;
   box-shadow: 1px 1px 10px 2px
-    ${(props) => (props.darkMode ? palette.gray9 : palette.gray3)};
+    ${(props) => (props.darkmode ? palette.gray9 : palette.gray3)};
   h3 {
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -59,7 +64,7 @@ const ContentWrapper = styled.div`
   margin-right: 1rem;
 `;
 
-const Link = styled(NavLink)<{ darkMode: boolean }>`
+const Link = styled(NavLink)<{ shadowcolor: string }>`
   display: flex;
   flex-flow: row wrap;
   padding: 0.5rem;
@@ -68,8 +73,7 @@ const Link = styled(NavLink)<{ darkMode: boolean }>`
   color: ${palette.indigo5};
   border-radius: 3px;
   &.active {
-    box-shadow: 1px 1px 10px 2px
-      ${(props) => (props.darkMode ? palette.gray9 : palette.gray3)};
+    box-shadow: 1px 1px 10px 2px ${(props) => props.shadowcolor};
   }
 `;
 

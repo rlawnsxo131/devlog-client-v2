@@ -16,8 +16,8 @@ type CommentCardProps = {
 
 const { useState, useCallback, memo } = React;
 function CommentCard({ reply, fullCount }: CommentCardProps) {
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
   const [visible, setVisible] = useState<boolean>(false);
   const handleSetVisible = useCallback(() => {
@@ -25,7 +25,7 @@ function CommentCard({ reply, fullCount }: CommentCardProps) {
   }, []);
 
   return (
-    <Block level={reply.level} darkMode={darkMode}>
+    <Block level={reply.level} darkmode={darkmode}>
       <CommentCardHeader
         writer={reply.writer}
         deleted={reply.deleted}
@@ -54,7 +54,7 @@ function CommentCard({ reply, fullCount }: CommentCardProps) {
   );
 }
 
-const Block = styled.div<{ level: number; darkMode: boolean }>`
+const Block = styled.div<{ level: number; darkmode: boolean }>`
   display: flex;
   flex-direction: column;
   padding-top: 2rem;
@@ -63,7 +63,7 @@ const Block = styled.div<{ level: number; darkMode: boolean }>`
     if (props.level === 0) {
       return css`
         border-bottom: 1px solid
-          ${props.darkMode ? palette.gray6 : palette.gray1};
+          ${props.darkmode ? palette.gray6 : palette.gray1};
       `;
     }
     if (props.level > 0) {

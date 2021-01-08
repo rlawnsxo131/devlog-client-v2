@@ -1,7 +1,6 @@
 import distanceInWordsToNow from 'date-fns/formatDistanceToNow';
 import format from 'date-fns/format';
 import koLocale from 'date-fns/locale/ko';
-import { useDispatch } from 'react-redux';
 
 export function formatDate(date?: Date): string | undefined {
   if (!date) return;

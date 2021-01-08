@@ -42,14 +42,22 @@ function MobileNavigation(props: MobileNavigationProps) {
 
   return (
     <Block scrollDirection={scrollDirection}>
-      <Link to="/">
+      <Link exact to="/">
         <h1>DevLog</h1>
       </Link>
       <LinksWrapper>
-        <Link to="/">새글</Link>
-        <Link to="/series">시리즈</Link>
-        <Link to="/tags">태그</Link>
-        <Link to="/info">소개</Link>
+        <Link className="menu" exact to="/">
+          새글
+        </Link>
+        <Link className="menu" to="/series">
+          시리즈
+        </Link>
+        <Link className="menu" to="/tags">
+          태그
+        </Link>
+        <Link className="menu" to="/info">
+          소개
+        </Link>
       </LinksWrapper>
     </Block>
   );
@@ -86,6 +94,11 @@ const Link = styled(NavLink)`
     margin-bottom: 0.725rem;
     margin-left: 3vw;
     font-size: 1.25rem;
+  }
+  &.active {
+    &.menu {
+      font-weight: bold;
+    }
   }
 `;
 

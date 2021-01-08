@@ -2,16 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import { DEVLOG_DARK_MODE } from '../lib/constants';
 
 type CoreType = {
-  darkMode: {
+  darkmode: {
     visible: false;
-    darkMode: boolean;
+    darkmode: boolean;
   };
 };
 
 const initialState: CoreType = {
-  darkMode: {
+  darkmode: {
     visible: false,
-    darkMode: false,
+    darkmode: false,
   },
 };
 
@@ -19,15 +19,15 @@ const coreSlice = createSlice({
   name: 'core',
   initialState,
   reducers: {
-    onDarkMode(state, action) {
-      const { visible, darkMode } = action.payload;
-      state.darkMode.visible = visible;
-      state.darkMode.darkMode = darkMode;
-      localStorage.setItem(DEVLOG_DARK_MODE, darkMode);
+    onDarkmode(state, action) {
+      const { visible, darkmode } = action.payload;
+      state.darkmode.visible = visible;
+      state.darkmode.darkmode = darkmode;
+      localStorage.setItem(DEVLOG_DARK_MODE, darkmode);
     },
   },
 });
 
-export const { onDarkMode } = coreSlice.actions;
+export const { onDarkmode } = coreSlice.actions;
 
 export default coreSlice.reducer;

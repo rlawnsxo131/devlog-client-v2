@@ -2,29 +2,28 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import media from '../../lib/styles/media';
-import palette, { darkModeBackground } from '../../lib/styles/palette';
+import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
-import DarkModeToggle from '../common/DarkModeToggle';
 import Navigation from './Navigation';
+import DarkmodeToggle from '../common/DarkmodeToggle';
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 function Layout({ children }: LayoutProps) {
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
   return (
     <>
-      <GlobalStyle darkMode={darkMode} />
+      <GlobalStyle darkmode={darkmode} />
       <Block>
         <Navigation />
-        <DarkModeToggle />
+        <DarkmodeToggle />
         <Main>
           <ContentBlock>{children}</ContentBlock>
         </Main>
-        <DarkModeToggle />
         <div className="copyright">© 2020 · DevLog</div>
       </Block>
     </>
@@ -76,7 +75,7 @@ const ContentBlock = styled.div`
   }
 `;
 
-const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
+const GlobalStyle = createGlobalStyle<{ darkmode: boolean }>`
   body {
     margin: 0;
     padding: 0;
@@ -87,9 +86,9 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
     Tahoma, Geneva, sans-serif;
     -webkit-font-smoothing: antialiased;
     ${(props) =>
-      props.darkMode &&
+      props.darkmode &&
       css`
-        background: ${darkModeBackground.main};
+        background: ${darkmodeBackground.main};
       `}
   }
 
@@ -104,7 +103,7 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
 
   // nav, font color
   ${(props) =>
-    props.darkMode
+    props.darkmode
       ? css`
           h1,
           h2 {
@@ -123,10 +122,10 @@ const GlobalStyle = createGlobalStyle<{ darkMode: boolean }>`
             color: ${palette.gray5};
           }
           nav {
-            background: ${darkModeBackground.other};
+            background: ${darkmodeBackground.other};
           }
           main {
-            background: ${darkModeBackground.main};
+            background: ${darkmodeBackground.main};
           }
         `
       : css`

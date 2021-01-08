@@ -12,7 +12,7 @@ type UseCommentWriteProps = {
   handleShowCommentWrite?: () => void;
 };
 type UseCommentWrite = {
-  darkMode: boolean;
+  darkmode: boolean;
   passwordRef: React.MutableRefObject<HTMLInputElement | null>;
   state: {
     password: string;
@@ -30,8 +30,8 @@ export default function useCommentWrite({
   reply_comment_id,
   handleShowCommentWrite,
 }: UseCommentWriteProps): UseCommentWrite {
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
   const passwordRef = useRef<null | HTMLInputElement>(null);
   const [state, onChange, onReset] = useInputs({
@@ -81,7 +81,7 @@ export default function useCommentWrite({
   }, [state, post_id, reply_comment_id]);
 
   return {
-    darkMode,
+    darkmode,
     passwordRef,
     state,
     onChange,

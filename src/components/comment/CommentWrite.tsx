@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import palette, {
   commentColor,
-  darkModeBackground,
+  darkmodeBackground,
 } from '../../lib/styles/palette';
 import Button from '../common/Button';
 import Input from '../common/Input';
@@ -21,7 +21,7 @@ function CommentWrite({
   handleShowCommentWrite,
 }: CommentWriteProps) {
   const {
-    darkMode,
+    darkmode,
     passwordRef,
     state,
     onChange,
@@ -54,7 +54,7 @@ function CommentWrite({
         placeholder="댓글을 작성하세요"
         onChange={onChange}
         value={state.comment}
-        darkMode={darkMode}
+        darkmode={darkmode}
       />
       <SaveButtonArea>
         <Button color="indigo" onClick={createComment}>
@@ -82,7 +82,7 @@ const InformationInputWrapper = styled.div`
   flex-flow: row wrap;
 `;
 
-const CommentTextArea = styled.textarea<{ darkMode: boolean }>`
+const CommentTextArea = styled.textarea<{ darkmode: boolean }>`
   all: unset;
   resize: none;
   padding: 1rem 1rem 1.5rem 1rem;
@@ -95,10 +95,10 @@ const CommentTextArea = styled.textarea<{ darkMode: boolean }>`
     color: ${palette.gray5};
   }
   ${(props) =>
-    props.darkMode
+    props.darkmode
       ? css`
           border: 1px solid ${palette.gray6};
-          background: ${darkModeBackground.main};
+          background: ${darkmodeBackground.main};
         `
       : css`
           border: 1px solid ${palette.gray2};

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import useDarkMode from '../../lib/hooks/useDarkMode';
+import useDarkmode from '../../lib/hooks/useDarkmode';
 
 type BaseEffectProps = {
   children: React.ReactNode;
 };
 
 function BaseEffect({ children }: BaseEffectProps) {
-  useDarkMode();
+  useDarkmode();
   return <>{children}</>;
 }
 

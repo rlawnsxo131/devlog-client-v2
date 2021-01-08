@@ -38,10 +38,10 @@ module.exports = () => {
     mode: REACT_APP_NODE_ENV,
     entry: paths.entryPath,
     output: {
-      path: paths.buildPath,
+      path: paths.devBuildPath,
       publicPath: REACT_APP_PUBLIC_URL,
-      filename: 'static/js/[name].[hash:8].js',
-      chunkFilename: 'static/js/[name].[hash:8].js',
+      filename: 'static/js/[name].[contenthash].js',
+      chunkFilename: 'static/js/[name].[contenthash].js',
     },
     target: REACT_APP_BUILD_TARGET,
     devtool: 'cheap-module-source-map',
@@ -75,14 +75,17 @@ module.exports = () => {
           options: {
             limit: 10000,
             outputPath: 'static/media',
-            name: '[name].[hash:8].[ext]',
+            name: '[name].[contenthash].[ext]',
           },
         },
       ],
     },
     resolve: {
       modules: ['node_modules'],
-      extensions: ['.tsx', '.ts', '.js'],
+      extensions: ['.tsx', '.ts', '.js', '.jsx'],
+      fallback: {
+        path: false,
+      },
     },
     optimization: {
       minimize: false,
@@ -101,8 +104,8 @@ module.exports = () => {
         filename: 'index.html',
       }),
       new MiniCssExtractPlugin({
-        filename: 'static/css/[name].[hash:8].css',
-        chunkFilename: 'static/css/[name].[hash:8].chunk.css',
+        filename: 'static/css/[name].[contenthash].css',
+        chunkFilename: 'static/css/[name].[contenthash].chunk.css',
       }),
       new WebpackManifestPlugin({
         fileName: 'asset-manifest.json',
@@ -129,7 +132,7 @@ module.exports = () => {
     },
     devServer: {
       port: 8080,
-      contentBase: paths.publicPath,
+      contentBase: paths.devBuildPath,
       open: true,
       historyApiFallback: true,
       overlay: true,

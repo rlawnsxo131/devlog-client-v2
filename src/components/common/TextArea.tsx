@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
-import palette, { darkModeBackground } from '../../lib/styles/palette';
+import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
 type TextAreaProps = {
@@ -13,12 +13,12 @@ type TextAreaProps = {
 
 const { memo } = React;
 function TextArea({ name, value, placeholder, onChange }: TextAreaProps) {
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
   return (
     <TextareaBlock
-      darkMode={darkMode}
+      darkmode={darkmode}
       name={name}
       value={value}
       placeholder={placeholder}
@@ -27,7 +27,7 @@ function TextArea({ name, value, placeholder, onChange }: TextAreaProps) {
   );
 }
 
-const TextareaBlock = styled.textarea<{ darkMode: boolean }>`
+const TextareaBlock = styled.textarea<{ darkmode: boolean }>`
   all: unset;
   resize: none;
   padding: 1rem 1rem 1.5rem 1rem;
@@ -39,10 +39,10 @@ const TextareaBlock = styled.textarea<{ darkMode: boolean }>`
     color: ${palette.gray5};
   }
   ${(props) =>
-    props.darkMode
+    props.darkmode
       ? css`
           border: 1px solid ${palette.gray6};
-          background: ${darkModeBackground.main};
+          background: ${darkmodeBackground.main};
         `
       : css`
           border: 1px solid ${palette.gray2};

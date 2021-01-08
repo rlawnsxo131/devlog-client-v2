@@ -96,8 +96,8 @@ type MarkdownRenderProps = {
 
 const { useState, useEffect, memo } = React;
 function MarkdownRender({ markdownText }: MarkdownRenderProps) {
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
   const [html, setHtml] = useState(
     ssrEnabled && markdownText
@@ -139,13 +139,13 @@ function MarkdownRender({ markdownText }: MarkdownRenderProps) {
   return (
     <MarkdownRenderBlock
       dangerouslySetInnerHTML={{ __html: html }}
-      className={darkMode ? 'atom-one-dark' : 'atom-one-light'}
-      darkMode={darkMode}
+      className={darkmode ? 'atom-one-dark' : 'atom-one-light'}
+      darkmode={darkmode}
     />
   );
 }
 
-const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
+const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
   position: relative;
   height: auto;
   line-height: 1.5;
@@ -198,7 +198,7 @@ const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
       padding: 0.125rem;
       color: ${palette.indigo9} !important;
       background: ${(props) =>
-        props.darkMode ? palette.indigo1 : palette.indigo0};
+        props.darkmode ? palette.indigo1 : palette.indigo0};
     }
   }
 
@@ -208,13 +208,13 @@ const MarkdownRenderBlock = styled.div<{ darkMode: boolean }>`
     border-left: 4px solid ${palette.indigo5};
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-    background: ${(props) => (props.darkMode ? '#313440' : palette.gray0)};
+    background: ${(props) => (props.darkmode ? '#313440' : palette.gray0)};
     margin-left: 0;
     margin-right: 0;
     padding: 1rem;
     padding-left: 2rem;
     p {
-      color: ${(props) => (props.darkMode ? '#e0e6f1' : palette.gray9)};
+      color: ${(props) => (props.darkmode ? '#e0e6f1' : palette.gray9)};
     }
     ul,
     ol {

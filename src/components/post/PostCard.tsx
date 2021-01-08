@@ -19,8 +19,8 @@ type PostCardProps = {
 
 const { useMemo, memo } = React;
 function PostCard({ post }: PostCardProps) {
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
   const previewDescription = useMemo(() => {
     return unified()
@@ -38,7 +38,7 @@ function PostCard({ post }: PostCardProps) {
   }, [post.tags]);
 
   return (
-    <Block darkMode={darkMode}>
+    <Block darkmode={darkmode}>
       {post.thumnail && (
         <Thumnail>
           <Link to={`/post/${post.url_slug}`}>
@@ -52,7 +52,7 @@ function PostCard({ post }: PostCardProps) {
           <ShortDescription>{post.short_description}</ShortDescription>
           <PreviewDescription>{previewDescription}</PreviewDescription>
         </Content>
-        <Footer darkMode={darkMode}>
+        <Footer darkmode={darkmode}>
           <p>
             {formatDate(post.released_at)}
             <span className="separator">&middot;</span>
@@ -69,7 +69,7 @@ function PostCard({ post }: PostCardProps) {
   );
 }
 
-const Block = styled.div<{ darkMode: boolean }>`
+const Block = styled.div<{ darkmode: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -82,7 +82,7 @@ const Block = styled.div<{ darkMode: boolean }>`
     cursor: pointer;
   }
   ${(props) =>
-    props.darkMode
+    props.darkmode
       ? css`
           box-shadow: 1px 1px 5px 2px ${palette.gray9};
           &:hover {
@@ -156,13 +156,13 @@ const PreviewDescription = styled.p`
   text-overflow: ellipsis;
 `;
 
-const Footer = styled.div<{ darkMode: boolean }>`
+const Footer = styled.div<{ darkmode: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
   border-top: 1px solid
-    ${(props) => (props.darkMode ? palette.gray9 : palette.gray1)};
+    ${(props) => (props.darkmode ? palette.gray9 : palette.gray1)};
   p {
     font-size: 0.8rem;
     color: ${palette.gray6};

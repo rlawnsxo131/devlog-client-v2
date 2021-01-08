@@ -69,7 +69,6 @@ const LinkWrapper = styled.div`
 const Link1 = styled(Link)`
   display: inline-flex;
   flex-flow: row wrap;
-  justify-content: flex-end;
   font-size: 1.25rem;
   padding: 0.25rem;
 `;

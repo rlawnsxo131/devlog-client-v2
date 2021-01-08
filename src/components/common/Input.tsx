@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
-import palette, { darkModeBackground } from '../../lib/styles/palette';
+import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
 type InputProps = {
@@ -22,8 +22,8 @@ function Input({
   onChange,
   inputRef,
 }: InputProps) {
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
   return (
     <InputBlock
@@ -33,20 +33,20 @@ function Input({
       value={value}
       onChange={onChange}
       ref={inputRef}
-      darkMode={darkMode}
+      darkmode={darkmode}
     />
   );
 }
 
-const InputBlock = styled.input<{ darkMode: boolean }>`
+const InputBlock = styled.input<{ darkmode: boolean }>`
   all: unset;
   border-radius: 4px;
   padding: 0.5rem;
   ${(props) =>
-    props.darkMode
+    props.darkmode
       ? css`
           border: 1px solid ${palette.gray6};
-          background: ${darkModeBackground.main};
+          background: ${darkmodeBackground.main};
         `
       : css`
           border: 1px solid ${palette.gray2};

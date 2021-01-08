@@ -13,8 +13,8 @@ type PopupBaseProps = {
 
 const { useState, useEffect, memo } = React;
 function PopupBase({ children, visible }: PopupBaseProps) {
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
   const [closed, setClosed] = useState(true);
   useEffect(() => {
@@ -36,15 +36,15 @@ function PopupBase({ children, visible }: PopupBaseProps) {
   if (!visible && closed) return null;
 
   return (
-    <Block visible={visible} darkMode={darkMode}>
-      <ChildrenWrapper visible={visible} darkMode={darkMode}>
+    <Block visible={visible} darkmode={darkmode}>
+      <ChildrenWrapper visible={visible} darkmode={darkmode}>
         {children}
       </ChildrenWrapper>
     </Block>
   );
 }
 
-const Block = styled.div<{ visible: boolean; darkMode: boolean }>`
+const Block = styled.div<{ visible: boolean; darkmode: boolean }>`
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -55,7 +55,7 @@ const Block = styled.div<{ visible: boolean; darkMode: boolean }>`
   align-items: center;
   z-index: ${zIndexes.PopupBase};
   ${(props) =>
-    props.darkMode
+    props.darkmode
       ? css`
           background: rgba(100, 100, 100, 0.5);
         `
@@ -72,14 +72,14 @@ const Block = styled.div<{ visible: boolean; darkMode: boolean }>`
         `};
 `;
 
-const ChildrenWrapper = styled.div<{ visible: boolean; darkMode: boolean }>`
+const ChildrenWrapper = styled.div<{ visible: boolean; darkmode: boolean }>`
   position: relative;
   top: -15%;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 1px 1px 10px 2px
-    ${(props) => (props.darkMode ? palette.gray9 : palette.gray3)};
+    ${(props) => (props.darkmode ? palette.gray9 : palette.gray3)};
   ${(props) =>
     props.visible
       ? css`

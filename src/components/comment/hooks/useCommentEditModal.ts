@@ -35,7 +35,7 @@ type UseCommentEditModal = {
   updateComment: () => Promise<void>;
   removeComment: () => Promise<void>;
   errorType: CommentErrorEnum | null;
-  darkMode: boolean;
+  darkmode: boolean;
 };
 
 export default function useCommentEditModal({
@@ -46,8 +46,8 @@ export default function useCommentEditModal({
 }: UseCommentEditModalProps): UseCommentEditModal {
   const dispatch = useDispatch();
   const errorType = useSelector((state: RootState) => state.comment.errorType);
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
   const [state, onChange] = useInputs({
     writer: writer,
@@ -138,6 +138,6 @@ export default function useCommentEditModal({
     updateComment,
     removeComment,
     errorType,
-    darkMode,
+    darkmode,
   };
 }

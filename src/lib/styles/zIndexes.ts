@@ -1,5 +1,5 @@
 const zIndexes = {
-  darkModeToggle: 8,
+  darkmodeToggle: 8,
   navigation: 8,
   PopupBase: 10,
 };

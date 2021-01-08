@@ -5,17 +5,17 @@ import transitions from '../../lib/styles/transitions';
 import zIndexes from '../../lib/styles/zIndexes';
 import useToggle from './hooks/useToggle';
 
-type DarkModeToggleProps = {};
+type DarkmodeToggleProps = {};
 
 const { memo } = React;
-function DarkModeToggle(props: DarkModeToggleProps) {
-  const { visible, darkMode, onToggle } = useToggle();
+function DarkmodeToggle(props: DarkmodeToggleProps) {
+  const { visible, darkmode, onToggle } = useToggle();
   return (
     <Block>
       <ToggleBlock onClick={onToggle}>
         <span className="toggle-moon">&#127769;</span>
         <span className="toggle-sun">&#128262;</span>
-        <Circle visible={visible} darkMode={darkMode} />
+        <Circle visible={visible} darkmode={darkmode} />
       </ToggleBlock>
     </Block>
   );
@@ -23,12 +23,10 @@ function DarkModeToggle(props: DarkModeToggleProps) {
 
 const Block = styled.div`
   position: fixed;
-  top: 2%;
-  right: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: ${zIndexes.darkModeToggle};
+  z-index: ${zIndexes.darkmodeToggle};
   background: black;
   border-radius: 1rem;
 `;
@@ -39,7 +37,7 @@ const ToggleBlock = styled.div`
   align-items: center;
   width: 3.423rem;
   height: 1.5rem;
-  z-index: ${zIndexes.darkModeToggle};
+  z-index: ${zIndexes.darkmodeToggle};
   span {
     position: absolute;
     display: inline-block;
@@ -56,7 +54,7 @@ const ToggleBlock = styled.div`
   }
 `;
 
-const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
+const Circle = styled.div<{ visible: boolean; darkmode: boolean }>`
   position: absolute;
   width: 1.4rem;
   height: 1.4rem;
@@ -65,16 +63,16 @@ const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
   border: 2.5px solid ${palette.indigo4};
   box-shadow: 1px 1px 10px 1px ${palette.indigo4};
   ${(props) =>
-    props.darkMode
+    props.darkmode
       ? css`
           right: 0;
         `
       : css`
-          left: 0;
+          left: -1%;
         `}
   ${(props) => {
     if (!props.visible) return null;
-    return props.darkMode
+    return props.darkmode
       ? css`
           animation: ${transitions.slideRight} 0.15s ease-in both;
         `
@@ -84,4 +82,4 @@ const Circle = styled.div<{ visible: boolean; darkMode: boolean }>`
   }}
 `;
 
-export default memo(DarkModeToggle);
+export default memo(DarkmodeToggle);

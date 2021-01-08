@@ -10,13 +10,13 @@ type DefaultTagProps = {
 };
 
 function DefaultTag({ name }: DefaultTagProps) {
-  const darkMode = useSelector(
-    (state: RootState) => state.core.darkMode.darkMode,
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
   );
-  return <Block darkMode={darkMode}>{name}</Block>;
+  return <Block darkmode={darkmode}>{name}</Block>;
 }
 
-const Block = styled.div<{ darkMode: boolean }>`
+const Block = styled.div<{ darkmode: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +25,7 @@ const Block = styled.div<{ darkMode: boolean }>`
   margin-bottom: 0.1rem;
   color: ${palette.indigo9};
   font-weight: 600;
-  background: ${(props) => (props.darkMode ? palette.gray8 : palette.gray1)};
+  background: ${(props) => (props.darkmode ? palette.gray8 : palette.gray1)};
   border-radius: 1rem;
   ${media.xsmall} {
     font-size: 0.9rem;
