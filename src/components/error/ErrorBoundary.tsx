@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../modules';
+import ErrorScreen from './ErrorScreen';
 
 class ErrorBoundary extends React.Component {
   state = {
@@ -29,7 +32,10 @@ class ErrorBoundary extends React.Component {
 
   render() {
     return (
-      <ErrorBoundaryWrapper hasError={this.state.hasError}>
+      <ErrorBoundaryWrapper
+        hasError={this.state.hasError}
+        handleResolveError={this.handleResolveError}
+      >
         {this.props.children}
       </ErrorBoundaryWrapper>
     );
@@ -37,18 +43,30 @@ class ErrorBoundary extends React.Component {
 }
 
 type ErrorBoundaryWrapperProps = {
-  children: React.ReactNode;
   hasError: boolean;
+  handleResolveError: () => void;
+  children: React.ReactNode;
 };
 
 function ErrorBoundaryWrapper({
-  children,
   hasError,
+  handleResolveError,
+  children,
 }: ErrorBoundaryWrapperProps) {
+  const errorType = useSelector((state: RootState) => state.error.errorType);
+
+  if (errorType) {
+    return (
+      <ErrorScreen
+        errorType={errorType}
+        handleResolveError={handleResolveError}
+      />
+    );
+  }
+
   if (hasError) {
     return <h1>Something went wrong.</h1>;
   }
-
   return <>{children}</>;
 }
 

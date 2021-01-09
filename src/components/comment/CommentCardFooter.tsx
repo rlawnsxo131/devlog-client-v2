@@ -121,7 +121,7 @@ const ReplyTrigger = styled.div`
   gap: 0.25rem;
   color: ${palette.indigo5};
   font-weight: 600;
-  .reply-icon {
+  svg {
     font-size: 0.8rem;
     border: 1px solid ${palette.indigo5};
   }

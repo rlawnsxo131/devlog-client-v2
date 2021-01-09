@@ -10,7 +10,7 @@ type PostDetailSeriesProps = {
   series: Array<SeriesPostType>;
 };
 
-const { useMemo } = React;
+const { useMemo, memo } = React;
 function PostDetailSeries({ series }: PostDetailSeriesProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
@@ -22,7 +22,7 @@ function PostDetailSeries({ series }: PostDetailSeriesProps) {
   if (!series.length) return null;
   return (
     <Block darkmode={darkmode}>
-      <h3>시리즈 더보기</h3>
+      <h3>이 시리즈 더보기</h3>
       <ContentWrapper>
         <h4>{series[0].series_name}</h4>
         {series.map((v) => (
@@ -47,10 +47,12 @@ const Block = styled.div<{ darkmode: boolean }>`
   box-shadow: 1px 1px 10px 2px
     ${(props) => (props.darkmode ? palette.gray9 : palette.gray3)};
   h3 {
+    font-weight: 500;
     margin-top: 0;
     margin-bottom: 0.5rem;
   }
   h4 {
+    font-weight: 500;
     margin-top: 0;
     margin-bottom: 0.5rem;
     font-size: 1.125rem;
@@ -77,4 +79,4 @@ const Link = styled(NavLink)<{ shadowcolor: string }>`
   }
 `;
 
-export default PostDetailSeries;
+export default memo(PostDetailSeries);

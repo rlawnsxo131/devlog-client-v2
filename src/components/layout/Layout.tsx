@@ -4,8 +4,7 @@ import styled, { createGlobalStyle, css } from 'styled-components';
 import media from '../../lib/styles/media';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
-import Navigation from './Navigation';
-import DarkmodeToggle from '../common/DarkmodeToggle';
+import Header from './Header';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -19,8 +18,7 @@ function Layout({ children }: LayoutProps) {
     <>
       <GlobalStyle darkmode={darkmode} />
       <Block>
-        <Navigation />
-        <DarkmodeToggle />
+        <Header />
         <Main>
           <ContentBlock>{children}</ContentBlock>
         </Main>
@@ -55,7 +53,12 @@ const Main = styled.main`
   flex: 1 1 0%;
   display: flex;
   justify-content: center;
-  margin-top: 5.5rem;
+  ${media.xsmall} {
+    margin-top: 4rem;
+  }
+  ${media.medium} {
+    margin-top: 5.5rem;
+  }
 `;
 
 const ContentBlock = styled.div`
@@ -121,9 +124,6 @@ const GlobalStyle = createGlobalStyle<{ darkmode: boolean }>`
           p {
             color: ${palette.gray5};
           }
-          nav {
-            background: ${darkmodeBackground.other};
-          }
           main {
             background: ${darkmodeBackground.main};
           }
@@ -140,10 +140,6 @@ const GlobalStyle = createGlobalStyle<{ darkmode: boolean }>`
           p,
           a {
             color: ${palette.gray9};
-          }
-          nav {
-            background: white;
-            box-shadow: 1px 1px 10px 2px ${palette.gray3};
           }
           main {
             background: white;

@@ -2,8 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export enum ErrorEnum {
   NOT_FOUND = 'NOT_FOUND',
-  CHUNK = 'CHUNK',
+  BAD_REQUEST = 'BAD_REQUEST',
   UNKNOWN = 'UNKNOWN',
+  CHUNK = 'CHUNK',
 }
 type ErrorType = {
   errorType: ErrorEnum | null;

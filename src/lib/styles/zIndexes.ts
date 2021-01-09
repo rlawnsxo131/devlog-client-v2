@@ -1,6 +1,7 @@
 const zIndexes = {
+  header: 8,
   darkmodeToggle: 8,
-  navigation: 8,
+  dropdownMenu: 8,
   PopupBase: 10,
 };
 

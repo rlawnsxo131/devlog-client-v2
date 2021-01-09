@@ -11,8 +11,8 @@ const { memo } = React;
 function DarkmodeToggle(props: DarkmodeToggleProps) {
   const { visible, darkmode, onToggle } = useToggle();
   return (
-    <Block>
-      <ToggleBlock onClick={onToggle}>
+    <Block onClick={onToggle}>
+      <ToggleBlock>
         <span className="toggle-moon">&#127769;</span>
         <span className="toggle-sun">&#128262;</span>
         <Circle visible={visible} darkmode={darkmode} />
@@ -22,13 +22,15 @@ function DarkmodeToggle(props: DarkmodeToggleProps) {
 }
 
 const Block = styled.div`
-  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: ${zIndexes.darkmodeToggle};
   background: black;
   border-radius: 1rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const ToggleBlock = styled.div`
@@ -36,12 +38,11 @@ const ToggleBlock = styled.div`
   display: flex;
   align-items: center;
   width: 3.423rem;
-  height: 1.5rem;
   z-index: ${zIndexes.darkmodeToggle};
   span {
     position: absolute;
     display: inline-block;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   .toggle-moon {
     left: 5%;
@@ -49,15 +50,12 @@ const ToggleBlock = styled.div`
   .toggle-sun {
     right: 12%;
   }
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const Circle = styled.div<{ visible: boolean; darkmode: boolean }>`
   position: absolute;
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 100%;
   background: white;
   border: 2.5px solid ${palette.indigo4};
@@ -68,7 +66,7 @@ const Circle = styled.div<{ visible: boolean; darkmode: boolean }>`
           right: 0;
         `
       : css`
-          left: -1%;
+          left: 0;
         `}
   ${(props) => {
     if (!props.visible) return null;

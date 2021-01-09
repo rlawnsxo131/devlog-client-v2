@@ -7,7 +7,7 @@ import {
   UpdateCommentType,
   UPDATE_COMMENT,
 } from '../../../graphql/comment';
-import errorManager from '../../../lib/errorManager';
+import errorTypeManager from '../../../lib/errorTypeManager';
 import useInputs from '../../../lib/hooks/useInputs';
 import { normalizedString } from '../../../lib/utils';
 import { RootState } from '../../../modules';
@@ -91,7 +91,7 @@ export default function useCommentEditModal({
     } catch (e) {
       dispatch(
         setCommentError({
-          errorType: errorManager(e),
+          errorType: errorTypeManager(e),
         }),
       );
     }
@@ -115,7 +115,7 @@ export default function useCommentEditModal({
     } catch (e) {
       dispatch(
         setCommentError({
-          errorType: errorManager(e),
+          errorType: errorTypeManager(e),
         }),
       );
     }

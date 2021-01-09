@@ -15,7 +15,7 @@ function errorCodeReturner(error: any): string {
   return errorCode ? errorCode : ErrorEnum.UNKNOWN;
 }
 
-export default function errorManager(error: any) {
-  const code = errorCodeReturner(error);
-  return code;
+export default function errorTypeManager(error: any) {
+  const errorType = errorCodeReturner(error);
+  return errorType;
 }

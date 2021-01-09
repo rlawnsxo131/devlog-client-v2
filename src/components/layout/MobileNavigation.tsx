@@ -1,3 +1,4 @@
+// deprecated
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -67,7 +68,7 @@ const Block = styled.nav<{ scrollDirection?: ScrollDirectionType }>`
   position: fixed;
   width: 100%;
   padding: 0.5rem;
-  z-index: ${zIndexes.navigation};
+  z-index: ${zIndexes.dropdownMenu}; // 임시로 박아놓자..
   transition: top 0.25s;
   ${media.xsmall} {
     display: flex;
