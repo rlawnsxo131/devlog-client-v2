@@ -1,15 +1,6 @@
 const path = require('path');
 const paths = require('./paths');
-
-require('dotenv').config({
-  path: path.resolve(paths.rootPath, '.env.production'),
-});
-const {
-  REACT_APP_NODE_ENV,
-  REACT_APP_BUILD_TARGET,
-  REACT_APP_PUBLIC_URL,
-} = process.env;
-
+const initializeConfig = require('./env');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -20,6 +11,7 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 //   .BundleAnalyzerPlugin;
 
 function getClientEnv() {
+  initializeConfig();
   return {
     'process.env': JSON.stringify(
       Object.keys(process.env)
@@ -37,14 +29,20 @@ function getClientEnv() {
 
 module.exports = (mode) => {
   const clientEnv = getClientEnv();
+  const {
+    PHASE,
+    REACT_APP_NODE_ENV,
+    REACT_APP_BUILD_TARGET,
+    REACT_APP_PUBLIC_URL,
+  } = process.env;
   return {
     mode: REACT_APP_NODE_ENV,
     entry: paths.entryPath,
     output: {
-      path: paths.prodBuildPath,
+      path: paths.prodClientBuildPath,
       publicPath: REACT_APP_PUBLIC_URL,
-      filename: 'static/js/[name].[contenthash].js',
-      chunkFilename: 'static/js/[name].[contenthash].chunk.js',
+      filename: 'static/js/[name].[contenthash:8].js',
+      chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
     },
     target: REACT_APP_BUILD_TARGET,
     devtool: 'hidden-source-map',
@@ -64,28 +62,28 @@ module.exports = (mode) => {
           ],
         },
         {
+          test: /\.(bmp|gif|png|jpe?g|svg)$/i,
           loader: 'file-loader',
-          exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
           options: {
-            outputPath: 'static/media',
-            name: '[name].[contenthash].[ext]',
+            outputPath: 'media',
+            name: 'static/[name].[contenthash:8].[ext]',
             esModule: false,
           },
         },
         {
-          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+          test: /\.(bmp|gif|png|jpe?g|svg)$/i,
           loader: 'url-loader',
           options: {
+            outputPath: 'media',
+            name: 'static/[name].[contenthash:8].[ext]',
             limit: 10000,
-            outputPath: 'static/media',
-            name: '[name].[contenthash].[ext]',
           },
         },
       ],
     },
     resolve: {
       modules: ['node_modules'],
-      extensions: ['.tsx', '.ts', '.js'],
+      extensions: ['.tsx', '.ts', '.jsx', '.js'],
       fallback: {
         path: false,
       },
@@ -103,8 +101,11 @@ module.exports = (mode) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: path.resolve(paths.publicPath, 'index.html'),
         filename: 'index.html',
+        template: path.resolve(paths.publicPath, 'index.html'),
+        templateParameters: {
+          env: REACT_APP_NODE_ENV,
+        },
         minify: {
           removeComments: true,
           collapseWhitespace: true,
@@ -119,13 +120,15 @@ module.exports = (mode) => {
         },
       }),
       new MiniCssExtractPlugin({
-        filename: 'static/css/[name].[contenthash].css',
-        chunkFilename: 'static/css/[name].[contenthash].chunk.css',
+        filename: 'static/css/[name].[contenthash:8].css',
+        chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
       }),
       new webpack.DefinePlugin(clientEnv),
       new WebpackManifestPlugin({
         fileName: 'asset-manifest.json',
-        publicPath: `${REACT_APP_PUBLIC_URL}/`,
+        publicPath: `${REACT_APP_PUBLIC_URL}${
+          PHASE === 'production' ? '/' : ''
+        }`,
         generate: (seed, files, entrypoints) => {
           const manifestFiles = files.reduce((manifest, file) => {
             manifest[file.name] = file.path;

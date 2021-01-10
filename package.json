@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development webpack serve --config config/webpack.config.dev.js",
-    "build:dev": "NODE_ENV=development webpack --config config/webpack.config.dev.js",
-    "build:prod": "NODE_ENV=production webpack --config config/webpack.config.prod.js"
+    "dev": "PHASE=development webpack serve --config config/webpack.config.dev.js",
+    "build:local": "PHASE=local webpack --config config/webpack.config.prod.js",
+    "build:prod": "PHASE=production webpack --config config/webpack.config.prod.js"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

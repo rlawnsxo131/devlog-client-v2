@@ -47,7 +47,7 @@ function PostDetail(props: PostDetailProps) {
 
   if (ssrEnabled && (!data || !data.post)) {
     setNotFound();
-    return;
+    return null;
   }
 
   if (loading) return <div>loading</div>;

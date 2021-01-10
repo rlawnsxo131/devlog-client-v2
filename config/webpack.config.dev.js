@@ -1,15 +1,6 @@
 const path = require('path');
 const paths = require('./paths');
-
-require('dotenv').config({
-  path: path.resolve(paths.rootPath, '.env.development'),
-});
-const {
-  REACT_APP_NODE_ENV,
-  REACT_APP_BUILD_TARGET,
-  REACT_APP_PUBLIC_URL,
-} = process.env;
-
+const initializeConfig = require('./env');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -17,6 +8,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 function getClientEnv() {
+  initializeConfig();
   return {
     'process.env': JSON.stringify(
       Object.keys(process.env)
@@ -34,14 +26,19 @@ function getClientEnv() {
 
 module.exports = () => {
   const clientEnv = getClientEnv();
+  const {
+    REACT_APP_NODE_ENV,
+    REACT_APP_BUILD_TARGET,
+    REACT_APP_PUBLIC_URL,
+  } = process.env;
   return {
     mode: REACT_APP_NODE_ENV,
     entry: paths.entryPath,
     output: {
       path: paths.devBuildPath,
       publicPath: REACT_APP_PUBLIC_URL,
-      filename: 'static/js/[name].[contenthash].js',
-      chunkFilename: 'static/js/[name].[contenthash].js',
+      filename: 'static/js/[name].[contenthash:8].js',
+      chunkFilename: 'static/js/[name].[contenthash:8].js',
     },
     target: REACT_APP_BUILD_TARGET,
     devtool: 'cheap-module-source-map',
@@ -61,28 +58,28 @@ module.exports = () => {
           ],
         },
         {
+          test: /\.(bmp|gif|png|jpe?g|svg)$/i,
           loader: 'file-loader',
-          exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
           options: {
             outputPath: 'static/media',
-            name: '[name].[hash:8].[ext]',
+            name: '[name].[contenthash:8].[ext]',
             esModule: false,
           },
         },
         {
-          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+          test: /\.(bmp|gif|png|jpe?g|svg)$/i,
           loader: 'url-loader',
           options: {
-            limit: 10000,
             outputPath: 'static/media',
-            name: '[name].[contenthash].[ext]',
+            name: '[name].[contenthash:8].[ext]',
+            limit: 10000,
           },
         },
       ],
     },
     resolve: {
       modules: ['node_modules'],
-      extensions: ['.tsx', '.ts', '.js', '.jsx'],
+      extensions: ['.tsx', '.ts', '.jsx', '.js'],
       fallback: {
         path: false,
       },
@@ -100,12 +97,16 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
+        filename: 'index.html',
         template: path.resolve(paths.publicPath, 'index.html'),
+        templateParameters: {
+          env: REACT_APP_NODE_ENV,
+        },
         filename: 'index.html',
       }),
       new MiniCssExtractPlugin({
-        filename: 'static/css/[name].[contenthash].css',
-        chunkFilename: 'static/css/[name].[contenthash].chunk.css',
+        filename: 'static/css/[name].[contenthash:8].css',
+        chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
       }),
       new WebpackManifestPlugin({
         fileName: 'asset-manifest.json',
@@ -131,11 +132,12 @@ module.exports = () => {
       type: 'memory',
     },
     devServer: {
+      // host: '',
+      publicPath: '/',
       port: 8080,
-      contentBase: paths.devBuildPath,
       open: true,
-      historyApiFallback: true,
       overlay: true,
+      historyApiFallback: true,
       stats: 'errors-warnings',
     },
     stats: {
