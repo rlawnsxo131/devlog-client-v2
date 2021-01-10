@@ -150,7 +150,6 @@ const DropdownMenu = styled.nav<{ darkmode: boolean }>`
 `;
 
 const Link = styled(NavLink)<{ shadowcolor?: string }>`
-  flex: 1 1 0%;
   display: inline-flex;
   flex-flow: row wrap;
   font-size: 1.25rem;
