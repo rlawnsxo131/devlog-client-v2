@@ -35,9 +35,7 @@ const palette = {
   indigo9: '#364fc7',
 };
 
-export const darkmodeBackground: {
-  [key: string]: string;
-} = {
+export const darkmodeBackground = {
   main: '#282c35',
   other: '#292f35',
 };

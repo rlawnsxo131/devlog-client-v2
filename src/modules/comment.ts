@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export enum CommentErrorEnum {
-  CHUNK = 'CHUNK',
+  NETWORK = 'NETWORK',
   UNKNOWN = 'UNKNOWN',
   NOT_MATCHED_PASSWORD = 'NOT_MATCHED_PASSWORD',
 }
 
 export const commentErrorMessagMap = new Map<CommentErrorEnum, string>([
-  [CommentErrorEnum.CHUNK, '네트워크 에러발생'],
+  [CommentErrorEnum.NETWORK, '네트워크 에러발생'],
   [CommentErrorEnum.UNKNOWN, '알수없는 에러발생'],
   [CommentErrorEnum.NOT_MATCHED_PASSWORD, '잘못된 비밀번호 입니다.'],
 ]);

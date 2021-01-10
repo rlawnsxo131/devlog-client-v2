@@ -72,10 +72,10 @@ const Circle = styled.div<{ visible: boolean; darkmode: boolean }>`
     if (!props.visible) return null;
     return props.darkmode
       ? css`
-          animation: ${transitions.slideRight} 0.15s ease-in both;
+          animation: ${transitions.slideRight} 0.125s ease-in both;
         `
       : css`
-          animation: ${transitions.slideLeft} 0.15s ease-in both;
+          animation: ${transitions.slideLeft} 0.125s ease-in both;
         `;
   }}
 `;

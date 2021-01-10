@@ -68,6 +68,14 @@ export default function useCommentEditModal({
     refetchQueries: ['Comments'],
   });
 
+  const handleCommentError = useCallback((error: any) => {
+    dispatch(
+      setCommentError({
+        errorType: errorTypeManager(error),
+      }),
+    );
+  }, []);
+
   const updateComment = useCallback(async () => {
     const { writer, password, comment } = state;
     const validate = Object.entries(state).filter(([key, value]) =>
@@ -89,11 +97,7 @@ export default function useCommentEditModal({
       handleSetVisible();
       dispatch(resetCommentError({}));
     } catch (e) {
-      dispatch(
-        setCommentError({
-          errorType: errorTypeManager(e),
-        }),
-      );
+      handleCommentError(e);
     }
   }, [state]);
 
@@ -113,11 +117,7 @@ export default function useCommentEditModal({
       handleSetVisible();
       dispatch(resetCommentError({}));
     } catch (e) {
-      dispatch(
-        setCommentError({
-          errorType: errorTypeManager(e),
-        }),
-      );
+      handleCommentError(e);
     }
   }, [comment_id, state.password]);
 

@@ -10,7 +10,7 @@ function errorCodeReturner(error: any): string {
   }
   // network error
   if (error.networkError) {
-    errorCode = ErrorEnum.CHUNK;
+    errorCode = ErrorEnum.NETWORK;
   }
   return errorCode ? errorCode : ErrorEnum.UNKNOWN;
 }

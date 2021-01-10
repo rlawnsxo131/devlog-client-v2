@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { GET_POST, PostType } from '../../graphql/post';
-import { ssrEnabled } from '../../lib/constants';
 import errorTypeManager from '../../lib/errorTypeManager';
 import useNotFound from '../../lib/hooks/useNotFound';
 import optimizeImage from '../../lib/optimizeImage';
@@ -45,16 +44,14 @@ function PostDetail(props: PostDetailProps) {
     }
   }, [error]);
 
-  if (ssrEnabled && (!data || !data.post)) {
-    setNotFound();
-    return null;
-  }
-
   if (loading) return <div>loading</div>;
   if (error) {
     return null;
   }
-  if (!data || !data.post) return <div>not found</div>;
+  if (!data || !data.post) {
+    setNotFound();
+    return null;
+  }
 
   return (
     <Block>

@@ -53,7 +53,7 @@ const Block = styled.div<{ visible: boolean; darkmode: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: ${zIndexes.PopupBase};
+  z-index: ${zIndexes.popupBase};
   ${(props) =>
     props.darkmode
       ? css`
