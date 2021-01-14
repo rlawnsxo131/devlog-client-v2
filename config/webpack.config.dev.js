@@ -4,7 +4,6 @@ const initializeConfig = require('./env');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 function getClientEnv() {
@@ -86,7 +85,6 @@ module.exports = () => {
     },
     optimization: {
       minimize: false,
-      minimizer: [new TerserPlugin()],
       splitChunks: {
         chunks: 'all',
         name: false,

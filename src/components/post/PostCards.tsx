@@ -7,7 +7,6 @@ import PostCard from './PostCard';
 
 type PostCardsProps = {};
 
-const { memo } = React;
 function PostCards(props: PostCardsProps) {
   const { loading, error, data } = useQuery<{ posts: Array<PostType> }>(
     GET_POSTS,
@@ -49,4 +48,4 @@ const Block = styled.div`
   }
 `;
 
-export default memo(PostCards);
+export default PostCards;
