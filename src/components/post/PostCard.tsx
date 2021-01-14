@@ -116,7 +116,7 @@ const Thumnail = styled.div`
 `;
 
 const Content = styled.div`
-  flex: 1 1 80%;
+  flex: 1 1 0%;
   display: flex;
   flex-direction: column;
   padding: 1rem;

@@ -46,12 +46,13 @@ const Block = styled.div`
 const HeaderInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
   .writer {
     font-weight: 600;
+    margin-top: 0.25rem;
   }
   .date {
     color: ${palette.gray6};
+    margin-top: 0.25rem;
   }
 `;
 

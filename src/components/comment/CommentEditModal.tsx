@@ -89,7 +89,6 @@ function CommentEditModal({
 const Block = styled.div<{ darkmode: boolean }>`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   background: ${(props) =>
     props.darkmode ? darkmodeBackground.other : 'white'};
   padding: 1rem;
@@ -108,21 +107,25 @@ const Title = styled.h4`
   margin: 0;
   padding: 0;
   font-weight: 600;
+  margin-bottom: 1rem;
 `;
 
 const Header = styled.div`
   display: flex;
   flex-flow: row wrap;
+  margin-bottom: 1rem;
 `;
 
 const Body = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 `;
 
 const Footer = styled.div`
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 1rem;
 `;
 
 const ErrorMessage = styled.div`

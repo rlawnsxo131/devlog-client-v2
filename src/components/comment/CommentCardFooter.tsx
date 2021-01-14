@@ -118,10 +118,10 @@ const Block = styled.div<{ level: number }>`
 const ReplyTrigger = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.25rem;
   color: ${palette.indigo5};
   font-weight: 600;
   svg {
+    margin-right: 0.25rem;
     font-size: 0.8rem;
     border: 1px solid ${palette.indigo5};
   }

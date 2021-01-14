@@ -45,17 +45,18 @@ const Block = styled.div<{ darkmode: boolean }>`
   justify-content: center;
   width: 100%;
   height: 100%;
-  gap: 1rem;
   background: ${(props) =>
     props.darkmode ? darkmodeBackground.main : 'white'};
   z-index: ${zIndexes.notFoundPage};
   svg {
     height: auto;
     width: 320px;
+    margin-bottom: 1rem;
   }
   h3 {
     font-size: 2.5rem;
     font-weight: normal;
+    margin-bottom: 1rem;
   }
   ${(props) =>
     props.darkmode

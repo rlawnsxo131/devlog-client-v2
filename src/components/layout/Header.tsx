@@ -100,7 +100,6 @@ const Content = styled.div`
 
 const Menu = styled.div<{ darkmode: boolean }>`
   display: flex;
-  gap: 1rem;
   svg {
     font-size: 2rem;
     border-radius: 100%;

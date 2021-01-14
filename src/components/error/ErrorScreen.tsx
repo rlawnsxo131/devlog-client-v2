@@ -63,16 +63,17 @@ const Block = styled.div<{ darkmode: boolean }>`
   justify-content: center;
   width: 100%;
   height: 100%;
-  gap: 1rem;
   white-space: pre-wrap;
   svg {
     height: auto;
     width: 320px;
+    margin-bottom: 1rem;
   }
   h3 {
     font-size: 2.5rem;
     font-weight: normal;
     text-align: center;
+    margin-bottom: 1rem;
   }
   ${(props) =>
     props.darkmode

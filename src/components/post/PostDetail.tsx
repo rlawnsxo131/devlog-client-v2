@@ -105,7 +105,9 @@ const PostInfo = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  gap: 0.5rem;
+  .separator {
+    margin-right: 0.5rem;
+  }
   margin-bottom: 1.125rem;
   ${media.xsmall} {
     font-size: 1rem;
@@ -117,11 +119,13 @@ const PostInfo = styled.div`
 
 const ShortDescription = styled.div`
   font-weight: bold;
+  margin-right: 0.5rem;
 `;
 
 const ReleasedAt = styled.div`
   display: flex;
   color: ${palette.gray6};
+  margin-right: 0.5rem;
 `;
 
 const TagsWrapper = styled.div`
