@@ -17,8 +17,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noUnusedLocals": true,
-    // "noEmit": true, 이거 지금 ts-loader 버전이랑 ts 가 잘 안맞아서 꺠지는듯..
-    // "noEmit": false,
+    "noEmit": true,
     "typeRoots": [
       "./node_modules/@types",
       "./src/@types"
