@@ -1,16 +1,14 @@
 import { useQuery } from '@apollo/client';
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { GET_POST, PostType } from '../../graphql/post';
-import errorTypeManager from '../../lib/errorTypeManager';
+import useError from '../../lib/hooks/useError';
 import useNotFound from '../../lib/hooks/useNotFound';
 import optimizeImage from '../../lib/optimizeImage';
 import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
-import { setError } from '../../modules/error';
 import Comments from '../comment/Comments';
 import MarkdownRender from '../markdown/MarkdownRender';
 import DefaultTags from '../tag/DefaultTags';
@@ -20,8 +18,8 @@ type PostDetailProps = {};
 
 const { useEffect } = React;
 function PostDetail(props: PostDetailProps) {
-  const dispatch = useDispatch();
-  const { setNotFound } = useNotFound();
+  const [setNotFound] = useNotFound();
+  const [handleError] = useError();
   const { url_slug }: { url_slug: string } = useParams();
   const { loading, error, data } = useQuery<{ post: PostType }>(GET_POST, {
     variables: {
@@ -32,22 +30,15 @@ function PostDetail(props: PostDetailProps) {
 
   useEffect(() => {
     globalThis.scrollTo(0, 0);
-  }, []);
+  }, [url_slug]);
 
   useEffect(() => {
-    if (error) {
-      dispatch(
-        setError({
-          errorType: errorTypeManager(error),
-        }),
-      );
-    }
+    if (!error) return;
+    handleError(error);
   }, [error]);
 
   if (loading) return <div>loading</div>;
-  if (error) {
-    return null;
-  }
+  if (error) return null;
   if (!data || !data.post) {
     setNotFound();
     return null;

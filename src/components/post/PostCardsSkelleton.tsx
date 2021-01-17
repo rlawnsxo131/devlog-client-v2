@@ -1,38 +1,22 @@
-import { useQuery } from '@apollo/client';
 import * as React from 'react';
 import styled from 'styled-components';
-import { GET_POSTS, PostType } from '../../graphql/post';
-import useError from '../../lib/hooks/useError';
 import media, { mediaQuery } from '../../lib/styles/media';
-import PostCard from './PostCard';
-import PostCardsSkelleton from './PostCardsSkelleton';
+import PostCardSkelleton from './PostCardSkelleton';
 
-type PostCardsProps = {};
+type PostCardsSkelletonProps = {};
 
-const { useEffect } = React;
-function PostCards(props: PostCardsProps) {
-  const { loading, error, data } = useQuery<{ posts: Array<PostType> }>(
-    GET_POSTS,
-  );
-  const [handleError] = useError();
-  useEffect(() => {
-    if (!error) return;
-    handleError(error);
-  }, [error]);
-
-  if (loading) return <PostCardsSkelleton />;
-  if (error) return null;
-
+function PostCardsSkelleton(props: PostCardsSkelletonProps) {
   return (
     <Block>
-      {data?.posts.map((post) => (
-        <PostCard key={`post_${post.id}`} post={post} />
+      {Array.from({ length: 9 }).map((_, i) => (
+        <PostCardSkelleton key={`post_card_skelleton_${i}`} />
       ))}
     </Block>
   );
 }
 
 const Block = styled.div`
+  width: 100%;
   display: grid;
   ${media.xsmall} {
     grid-auto-rows: 24rem;
@@ -58,4 +42,4 @@ const Block = styled.div`
   }
 `;
 
-export default PostCards;
+export default PostCardsSkelleton;

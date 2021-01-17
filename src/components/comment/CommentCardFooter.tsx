@@ -27,6 +27,7 @@ function CommentCardFooter({
   has_replies,
   fullCount,
 }: CommentCardFooterProps) {
+  if (level > 1) return null;
   const [showReply, setShowReply] = useState<boolean>(false);
   const [showCommentWrite, setShowCommentWrite] = useState<boolean>(false);
   const [replyTriggerIcon, setReplyTriggerIcon] = useState<boolean>(false);
@@ -71,22 +72,20 @@ function CommentCardFooter({
 
   return (
     <Block level={level}>
-      {level < 2 && (
-        <ReplyTrigger onClick={handleShowReply}>
-          {replyTriggerIcon ? (
-            <IoAdd className="reply-icon" />
-          ) : (
-            <IoRemove className="reply-icon" />
-          )}
-          {replyTriggerText}
-        </ReplyTrigger>
-      )}
+      <ReplyTrigger onClick={handleShowReply}>
+        {replyTriggerIcon ? (
+          <IoAdd className="reply-icon" />
+        ) : (
+          <IoRemove className="reply-icon" />
+        )}
+        {replyTriggerText}
+      </ReplyTrigger>
       {showReply && (
         <RepliesWrapper>
           <CommentCards replies={replies} />
         </RepliesWrapper>
       )}
-      {level < 2 && showReply && (
+      {showReply && (
         <CommentWriteWrapper>
           {showCommentWrite && (
             <CommentWrite

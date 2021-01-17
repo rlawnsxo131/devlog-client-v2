@@ -59,8 +59,8 @@ function PostCard({ post }: PostCardProps) {
             {post.comments_count}개의 댓글
           </p>
           <div className="post-card-tags">
-            {tags.map((v, i) => (
-              <p key={`post_card_tag_${v}_${i}`}>{`#${v}`}</p>
+            {tags.map((v) => (
+              <p key={`${v}_${post.id}`}>{`#${v}`}</p>
             ))}
           </div>
         </Footer>

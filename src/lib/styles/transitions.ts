@@ -78,6 +78,18 @@ const shake = keyframes`
   }
 `;
 
+const shining = keyframes`
+   0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+`;
+
 const transitions = {
   slideLeft,
   slideRight,
@@ -86,6 +98,7 @@ const transitions = {
   popInFromBottom,
   popOutToBottom,
   shake,
+  shining,
 };
 
 export default transitions;

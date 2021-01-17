@@ -50,7 +50,7 @@ const Block = styled.div`
 `;
 
 const Main = styled.main`
-  flex: 1 1 0%;
+  width: 100%;
   display: flex;
   justify-content: center;
   ${media.xsmall} {
