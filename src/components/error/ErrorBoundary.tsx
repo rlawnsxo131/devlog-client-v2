@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
+import { ErrorEnum } from '../../modules/error';
 import ErrorScreen from './ErrorScreen';
 
 class ErrorBoundary extends React.Component {
@@ -34,6 +35,7 @@ class ErrorBoundary extends React.Component {
     return (
       <ErrorBoundaryWrapper
         hasError={this.state.hasError}
+        chunkError={this.state.chunkError}
         handleResolveError={this.handleResolveError}
       >
         {this.props.children}
@@ -44,12 +46,14 @@ class ErrorBoundary extends React.Component {
 
 type ErrorBoundaryWrapperProps = {
   hasError: boolean;
+  chunkError: boolean;
   handleResolveError: () => void;
   children: React.ReactNode;
 };
 
 function ErrorBoundaryWrapper({
   hasError,
+  chunkError,
   handleResolveError,
   children,
 }: ErrorBoundaryWrapperProps) {
@@ -64,8 +68,22 @@ function ErrorBoundaryWrapper({
     );
   }
 
+  if (chunkError) {
+    return (
+      <ErrorScreen
+        errorType={ErrorEnum.CHUNK}
+        handleResolveError={handleResolveError}
+      />
+    );
+  }
+
   if (hasError) {
-    return <h1>Something went wrong.</h1>;
+    return (
+      <ErrorScreen
+        errorType={ErrorEnum.UNKNOWN}
+        handleResolveError={handleResolveError}
+      />
+    );
   }
   return <>{children}</>;
 }

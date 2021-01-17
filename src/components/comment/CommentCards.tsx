@@ -7,8 +7,8 @@ type CommentCardsProps = {
   replies?: Array<CommentType>;
 };
 
-const { memo } = React;
-function CommentCards({ replies }: CommentCardsProps) {
+// comment > sub_comment > sub_comment countes
+function getFullCounts(replies?: Array<CommentType>) {
   let fullCounts: Array<number> = [];
   if (replies?.length && replies[0].level === 0) {
     replies.forEach((v, i) => {
@@ -24,7 +24,12 @@ function CommentCards({ replies }: CommentCardsProps) {
       fullCounts[i] = count;
     });
   }
+  return fullCounts;
+}
 
+const { memo } = React;
+function CommentCards({ replies }: CommentCardsProps) {
+  const fullCounts = getFullCounts(replies);
   return (
     <Block>
       {replies?.map((v, i) => (
