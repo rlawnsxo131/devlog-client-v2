@@ -6,7 +6,7 @@ import transitions from '../../lib/styles/transitions';
 import { RootState } from '../../modules';
 
 type PharagraphProps = {
-  css: FlattenSimpleInterpolation;
+  css?: FlattenSimpleInterpolation;
 };
 
 function Pharagraph({ css }: PharagraphProps) {

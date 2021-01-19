@@ -18,11 +18,9 @@ function PostCardSkelleton(props: PostCardSkelletonProps) {
           flex: 10;
         `}
       />
-      <Pharagraph css={textCss} />
-      <Pharagraph css={textCss} />
-      <Pharagraph css={textCss} />
-      <Pharagraph css={textCss} />
-      <Pharagraph css={textCss} />
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Pharagraph key={`post_card_skelleton_${i}`} css={textCss} />
+      ))}
       <Pharagraph
         css={css`
           flex: 3;
@@ -49,7 +47,6 @@ const Block = styled.div<{ darkmode: boolean }>`
       : css`
           box-shadow: 1px 1px 5px 2px ${palette.gray1};
         `};
-  /* border: 1px solid black; */
 `;
 
 export default PostCardSkelleton;

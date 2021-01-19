@@ -6,6 +6,7 @@ import Layout from './components/layout/Layout';
 import NotFoundPage from './pages/NotFoundPage';
 import PostDetailPage from './pages/PostDetailPage';
 import PostsPage from './pages/PostsPage';
+import SeriesPage from './pages/SeriesPage';
 
 type AppProps = {};
 
@@ -16,7 +17,7 @@ function App(props: AppProps) {
         <Layout>
           <Switch>
             <Route exact path="/" component={PostsPage} />
-            <Route path="/series" render={() => <div>series</div>} />
+            <Route path="/series" component={SeriesPage} />
             <Route path="/tags" render={() => <div>tags</div>} />
             <Route path="/info" render={() => <div>info</div>} />
             <Route path="/posts/:tag" render={() => <div>tag post</div>} />

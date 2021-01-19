@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import BadRequestImage from '../../img/components/BadRequestImage';
 import ChunkImage from '../../img/components/ChunkImage';
@@ -28,17 +28,31 @@ function ErrorImageReturner({ errorType }: { errorType: ErrorEnum }) {
   return <UnknownImage />;
 }
 
+const { useEffect } = React;
 function ErrorScreen({ errorType, handleResolveError }: ErrorScreenProps) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
-  const onClick = useCallback(() => {
+
+  const clearError = useCallback(() => {
     handleResolveError();
     dispatch(resetError({}));
+  }, [dispatch, handleResolveError]);
+
+  const onClick = useCallback(() => {
+    clearError();
     history.push('/');
-  }, [history, dispatch, handleResolveError]);
+  }, [clearError]);
+
+  useEffect(() => {
+    if (!errorType) return;
+    return () => {
+      clearError();
+    };
+  }, [clearError, pathname, errorType]);
 
   return (
     <Block darkmode={darkmode}>

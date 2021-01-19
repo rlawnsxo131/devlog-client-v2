@@ -13,6 +13,7 @@ import Comments from '../comment/Comments';
 import MarkdownRender from '../markdown/MarkdownRender';
 import DefaultTags from '../tag/DefaultTags';
 import PostDetailSeries from './PostDetailSeries';
+import PostDetailSkelleton from './PostDetailSkelleton';
 
 type PostDetailProps = {};
 
@@ -37,7 +38,7 @@ function PostDetail(props: PostDetailProps) {
     handleError(error);
   }, [error]);
 
-  if (loading) return <div>loading</div>;
+  if (loading) return <PostDetailSkelleton />;
   if (error) return null;
   if (!data || !data.post) {
     setNotFound();

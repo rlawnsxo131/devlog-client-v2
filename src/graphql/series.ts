@@ -16,6 +16,7 @@ export const GET_SERIES = gql`
       posts {
         id
         post_header
+        url_slug
       }
     }
   }

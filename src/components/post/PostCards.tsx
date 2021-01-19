@@ -11,10 +11,11 @@ type PostCardsProps = {};
 
 const { useEffect } = React;
 function PostCards(props: PostCardsProps) {
+  const [handleError] = useError();
   const { loading, error, data } = useQuery<{ posts: Array<PostType> }>(
     GET_POSTS,
   );
-  const [handleError] = useError();
+
   useEffect(() => {
     if (!error) return;
     handleError(error);
