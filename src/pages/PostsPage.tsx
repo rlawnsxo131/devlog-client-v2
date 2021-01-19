@@ -1,10 +1,10 @@
 import * as React from 'react';
-import PostCards from '../components/post/PostCards';
+import Posts from '../components/post/Posts';
 
 type PostsPageProps = {};
 
 function PostsPage(props: PostsPageProps) {
-  return <PostCards />;
+  return <Posts />;
 }
 
 export default PostsPage;

@@ -5,12 +5,12 @@ import { GET_POSTS, PostType } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import media, { mediaQuery } from '../../lib/styles/media';
 import PostCard from './PostCard';
-import PostCardsSkelleton from './PostCardsSkelleton';
+import PostsSkelleton from './PostsSkelleton';
 
-type PostCardsProps = {};
+type PostsProps = {};
 
 const { useEffect } = React;
-function PostCards(props: PostCardsProps) {
+function Posts(props: PostsProps) {
   const [handleError] = useError();
   const { loading, error, data } = useQuery<{ posts: Array<PostType> }>(
     GET_POSTS,
@@ -21,7 +21,7 @@ function PostCards(props: PostCardsProps) {
     handleError(error);
   }, [error]);
 
-  if (loading) return <PostCardsSkelleton />;
+  if (loading) return <PostsSkelleton />;
   if (error) return null;
 
   return (
@@ -59,4 +59,4 @@ const Block = styled.div`
   }
 `;
 
-export default PostCards;
+export default Posts;

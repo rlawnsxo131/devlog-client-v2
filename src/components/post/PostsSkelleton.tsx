@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import media, { mediaQuery } from '../../lib/styles/media';
 import PostCardSkelleton from './PostCardSkelleton';
 
-type PostCardsSkelletonProps = {};
+type PostsSkelletonProps = {};
 
-function PostCardsSkelleton(props: PostCardsSkelletonProps) {
+function PostsSkelleton(props: PostsSkelletonProps) {
   return (
     <Block>
       {Array.from({ length: 9 }).map((_, i) => (
@@ -42,4 +42,4 @@ const Block = styled.div`
   }
 `;
 
-export default PostCardsSkelleton;
+export default PostsSkelleton;
