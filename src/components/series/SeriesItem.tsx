@@ -50,8 +50,9 @@ const Title = styled.h3`
 
 const Link = styled(NavLink)<{ shadowcolor: string }>`
   margin-left: 1rem;
-  font-weight: 600;
   padding: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
   color: ${palette.indigo5};
   border-radius: 3px;
   &:hover {

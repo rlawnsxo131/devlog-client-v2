@@ -74,6 +74,9 @@ const Link = styled(NavLink)<{ shadowcolor: string }>`
   font-weight: 600;
   color: ${palette.indigo5};
   border-radius: 3px;
+  &:hover {
+    box-shadow: 1px 1px 10px 2px ${(props) => props.shadowcolor};
+  }
   &.active {
     box-shadow: 1px 1px 10px 2px ${(props) => props.shadowcolor};
   }
