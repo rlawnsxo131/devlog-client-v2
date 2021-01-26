@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { GET_TAGS, TagType } from '../../graphql/tag';
 import useError from '../../lib/hooks/useError';
-import CountTag from '../post/CountTag';
+import CountTag from './CountTag';
 
 type CountTagsProps = {};
 
