@@ -21,9 +21,6 @@ function DefaultTags({ tags }: DefaultTagsProps) {
 const Block = styled.div`
   display: flex;
   flex-flow: row wrap;
-  & + & {
-    margin-left: 0.25rem;
-  }
 `;
 
 export default memo(DefaultTags);

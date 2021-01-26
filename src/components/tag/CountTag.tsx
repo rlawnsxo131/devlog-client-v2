@@ -11,7 +11,7 @@ type CountTagProps = {
   tag: TagType;
 };
 
-const { useMemo } = React;
+const { useMemo, memo } = React;
 function CountTag({ tag }: CountTagProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
@@ -22,16 +22,19 @@ function CountTag({ tag }: CountTagProps) {
   const hoverbackground = useMemo(() => {
     return darkmode ? palette.gray7 : palette.gray0;
   }, [darkmode]);
-
   return (
-    <CountLink
-      background={background}
-      hoverbackground={hoverbackground}
-      to={`/posts/${tag.name}`}
-    >
-      {tag.name}
-      <Count>{tag.count}</Count>
-    </CountLink>
+    <>
+      <CountLink
+        background={background}
+        hoverbackground={hoverbackground}
+        to={`/posts/${tag.name}`}
+      >
+        <span>#{tag.name}</span>
+        <Count>
+          <span>{tag.count}</span>
+        </Count>
+      </CountLink>
+    </>
   );
 }
 
@@ -43,7 +46,7 @@ const CountLink = styled(NavLink)<{
   align-items: center;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   margin-bottom: 0.1rem;
-  color: ${palette.indigo6};
+  color: ${palette.gray9};
   font-weight: 600;
   background: ${(props) => props.background};
   border-radius: 1rem;
@@ -62,12 +65,19 @@ const CountLink = styled(NavLink)<{
 `;
 
 const Count = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 100%;
-  padding: 0.125rem 0.3rem 0 0.3rem;
-  margin-left: 0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: 0.3rem;
   font-weight: bold;
-  color: ${palette.gray0};
-  background: ${palette.indigo7};
+  font-size: 0.95rem;
+  span {
+    color: ${palette.gray0};
+  }
+  background: ${palette.indigo4};
 `;
 
-export default CountTag;
+export default memo(CountTag);

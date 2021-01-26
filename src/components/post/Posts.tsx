@@ -33,14 +33,28 @@ function Posts(props: PostsProps) {
 
   return (
     <Block>
-      {data?.posts.map((post) => (
-        <PostCard key={`post_${post.id}`} post={post} />
-      ))}
+      {tag && <h3>#{tag}</h3>}
+      <GridBlock>
+        {data?.posts.map((post) => (
+          <PostCard key={`post_${post.id}`} post={post} />
+        ))}
+      </GridBlock>
     </Block>
   );
 }
 
 const Block = styled.div`
+  display: flex;
+  flex-direction: column;
+  h3 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+`;
+
+const GridBlock = styled.div`
   display: grid;
   ${media.xsmall} {
     grid-auto-rows: 24rem;

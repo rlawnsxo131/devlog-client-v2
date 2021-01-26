@@ -3,6 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { GET_TAGS, TagType } from '../../graphql/tag';
 import useError from '../../lib/hooks/useError';
+import media, { mediaQuery } from '../../lib/styles/media';
 import CountTag from './CountTag';
 
 type CountTagsProps = {};
@@ -19,6 +20,7 @@ function CountTags(props: CountTagsProps) {
 
   if (loading) return <div>loading</div>;
   if (error) return null;
+
   return (
     <Block>
       {data?.tags.map((v) => (
@@ -29,10 +31,17 @@ function CountTags(props: CountTagsProps) {
 }
 
 const Block = styled.div`
-  flex: 1;
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  ${media.xsmall} {
+    width: calc(100vw - 2rem);
+  }
+  ${media.small} {
+    width: 736px;
+  }
+  ${mediaQuery(800)} {
+    width: 768px;
+  }
 `;
 
 export default CountTags;

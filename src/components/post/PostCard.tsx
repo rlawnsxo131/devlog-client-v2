@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { PostType } from '../../graphql/post';
 import optimizeImage from '../../lib/optimizeImage';
@@ -20,6 +20,7 @@ type PostCardProps = {
 
 const { useMemo, memo } = React;
 function PostCard({ post }: PostCardProps) {
+  const { tag } = useParams<{ tag?: string }>();
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
@@ -33,10 +34,9 @@ function PostCard({ post }: PostCardProps) {
       .toString()
       .replace(/(<([^>]+)>)/gi, '');
   }, [post.preview_description]);
-
-  const tags = useMemo(() => {
-    return post.tags.slice(0, 3);
-  }, [post.tags]);
+  const previewTags = useMemo(() => {
+    return tag ? post.tags.filter((v) => v === tag) : post.tags.slice(0, 1);
+  }, [tag, post.tags]);
 
   return (
     <Block darkmode={darkmode}>
@@ -63,7 +63,7 @@ function PostCard({ post }: PostCardProps) {
             {post.comments_count}개의 댓글
           </p>
           <div className="post-card-tags">
-            {tags.map((v) => (
+            {previewTags.map((v) => (
               <p key={`${v}_${post.id}`}>{`#${v}`}</p>
             ))}
           </div>
@@ -182,7 +182,7 @@ const Footer = styled.div<{ darkmode: boolean }>`
   .post-card-tags {
     display: flex;
     p + p {
-      margin-right: 0.2rem;
+      margin-left: 0.2rem;
     }
   }
 `;
