@@ -6,12 +6,12 @@ import { SeriesPostType } from '../../graphql/post';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
-type PostDetailSeriesProps = {
+type PostSeriesProps = {
   series: Array<SeriesPostType>;
 };
 
 const { useMemo, memo } = React;
-function PostDetailSeries({ series }: PostDetailSeriesProps) {
+function PostSeries({ series }: PostSeriesProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
@@ -79,4 +79,4 @@ const Link = styled(NavLink)<{ shadowcolor: string }>`
   }
 `;
 
-export default memo(PostDetailSeries);
+export default memo(PostSeries);

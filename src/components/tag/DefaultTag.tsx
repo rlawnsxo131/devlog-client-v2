@@ -23,7 +23,7 @@ const Block = styled.div<{ darkmode: boolean }>`
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   margin-top: 0.1rem;
   margin-bottom: 0.1rem;
-  color: ${palette.indigo9};
+  color: ${palette.indigo6};
   font-weight: 600;
   background: ${(props) => (props.darkmode ? palette.gray8 : palette.gray1)};
   border-radius: 1rem;

@@ -3,9 +3,9 @@ import styled, { css } from 'styled-components';
 import media, { mediaQuery } from '../../lib/styles/media';
 import Pharagraph from '../common/Pharagraph';
 
-type PostDetailSkelletonProps = {};
+type PostSkelletonProps = {};
 
-function PostDetailSkelleton(props: PostDetailSkelletonProps) {
+function PostSkelleton(props: PostSkelletonProps) {
   return (
     <Block>
       <Pharagraph
@@ -65,4 +65,4 @@ const TagsWrapper = styled.div`
   align-items: center;
 `;
 
-export default PostDetailSkelleton;
+export default PostSkelleton;

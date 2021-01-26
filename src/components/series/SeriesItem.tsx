@@ -10,15 +10,24 @@ type SeriesItemProps = {
   series: SeriesType;
 };
 
+const { useMemo } = React;
 function SeriesItem({ series }: SeriesItemProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
+  const shadowcolor = useMemo(
+    () => (darkmode ? palette.gray9 : palette.gray3),
+    [darkmode],
+  );
   return (
     <Block darkmode={darkmode}>
       <Title>{series.series_name}</Title>
-      {series.posts.map((v, i) => (
-        <Link key={`seires_posts_${i}`} to={`/post/${v.url_slug}`}>
+      {series.posts.map((v) => (
+        <Link
+          key={`seires_posts_${v.url_slug}`}
+          to={`/post/${v.url_slug}`}
+          shadowcolor={shadowcolor}
+        >
           {v.post_header}
         </Link>
       ))}
@@ -39,14 +48,14 @@ const Title = styled.h3`
   margin: 0 0 0.5rem 0;
 `;
 
-const Link = styled(NavLink)`
+const Link = styled(NavLink)<{ shadowcolor: string }>`
   margin-left: 1rem;
   font-weight: 600;
+  padding: 0.5rem;
   color: ${palette.indigo5};
-  text-decoration: none;
+  border-radius: 3px;
   &:hover {
-    color: ${palette.indigo4};
-    text-decoration: underline;
+    box-shadow: 1px 1px 10px 2px ${(props) => props.shadowcolor};
   }
   & + & {
     margin-top: 0.5rem;

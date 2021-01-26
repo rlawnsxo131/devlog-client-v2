@@ -12,6 +12,7 @@ import raw from 'rehype-raw';
 import stringify from 'rehype-stringify';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
+import { BiSearchAlt } from 'react-icons/bi';
 
 type PostCardProps = {
   post: PostType;
@@ -39,13 +40,16 @@ function PostCard({ post }: PostCardProps) {
 
   return (
     <Block darkmode={darkmode}>
-      {post.thumnail && (
-        <Thumnail>
-          <Link to={`/post/${post.url_slug}`}>
+      <Thumnail>
+        <Link to={`/post/${post.url_slug}`}>
+          {post.thumnail ? (
             <img src={optimizeImage(post.thumnail, 640)} alt="post-thumnail" />
-          </Link>
-        </Thumnail>
-      )}
+          ) : (
+            <BiSearchAlt />
+          )}
+        </Link>
+        )
+      </Thumnail>
       <Link to={`/post/${post.url_slug}`}>
         <Content>
           <Title>{post.post_header}</Title>
@@ -104,7 +108,8 @@ const Thumnail = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  img {
+  img,
+  svg {
     position: absolute;
     top: 0;
     left: 0;

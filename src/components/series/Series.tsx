@@ -25,8 +25,8 @@ function Series(props: SeriesProps) {
 
   return (
     <Block>
-      {data?.series.map((v, i: number) => (
-        <SeriesItem key={`series_${i}`} series={v} />
+      {data?.series.map((v) => (
+        <SeriesItem key={`series_${v.id}`} series={v} />
       ))}
     </Block>
   );

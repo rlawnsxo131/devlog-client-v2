@@ -4,9 +4,10 @@ import BaseEffect from './components/base/BaseEffect';
 import ErrorBoundary from './components/error/ErrorBoundary';
 import Layout from './components/layout/Layout';
 import NotFoundPage from './pages/NotFoundPage';
-import PostDetailPage from './pages/PostDetailPage';
+import PostPage from './pages/PostPage';
 import PostsPage from './pages/PostsPage';
 import SeriesPage from './pages/SeriesPage';
+import TagsPage from './pages/TagsPage';
 
 type AppProps = {};
 
@@ -18,10 +19,10 @@ function App(props: AppProps) {
           <Switch>
             <Route exact path="/" component={PostsPage} />
             <Route path="/series" component={SeriesPage} />
-            <Route path="/tags" render={() => <div>tags</div>} />
+            <Route path="/tags" render={TagsPage} />
             <Route path="/info" render={() => <div>info</div>} />
-            <Route path="/posts/:tag" render={() => <div>tag post</div>} />
-            <Route path="/post/:url_slug" component={PostDetailPage} />
+            <Route path="/posts/:tag" render={PostsPage} />
+            <Route path="/post/:url_slug" component={PostPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </Layout>

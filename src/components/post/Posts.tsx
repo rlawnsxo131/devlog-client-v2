@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { GET_POSTS, PostType } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
@@ -12,9 +13,15 @@ type PostsProps = {};
 const { useEffect } = React;
 function Posts(props: PostsProps) {
   const [handleError] = useError();
-  const { loading, error, data } = useQuery<{ posts: Array<PostType> }>(
-    GET_POSTS,
-  );
+  const { tag } = useParams<{ tag?: string }>();
+  const { loading, error, data } = useQuery<
+    { posts: Array<PostType> },
+    { tag?: string }
+  >(GET_POSTS, {
+    variables: {
+      tag,
+    },
+  });
 
   useEffect(() => {
     if (!error) return;

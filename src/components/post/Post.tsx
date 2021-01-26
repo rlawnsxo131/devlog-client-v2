@@ -12,17 +12,20 @@ import { formatDate } from '../../lib/utils';
 import Comments from '../comment/Comments';
 import MarkdownRender from '../markdown/MarkdownRender';
 import DefaultTags from '../tag/DefaultTags';
-import PostDetailSeries from './PostDetailSeries';
-import PostDetailSkelleton from './PostDetailSkelleton';
+import PostSeries from './PostSeries';
+import PostSkelleton from './PostSkelleton';
 
-type PostDetailProps = {};
+type PostProps = {};
 
 const { useEffect } = React;
-function PostDetail(props: PostDetailProps) {
+function Post(props: PostProps) {
   const [setNotFound] = useNotFound();
   const [handleError] = useError();
   const { url_slug }: { url_slug: string } = useParams();
-  const { loading, error, data } = useQuery<{ post: PostType }>(GET_POST, {
+  const { loading, error, data } = useQuery<
+    { post: PostType },
+    { url_slug: string }
+  >(GET_POST, {
     variables: {
       url_slug,
     },
@@ -38,7 +41,7 @@ function PostDetail(props: PostDetailProps) {
     handleError(error);
   }, [error]);
 
-  if (loading) return <PostDetailSkelleton />;
+  if (loading) return <PostSkelleton />;
   if (error) return null;
   if (!data || !data.post) {
     setNotFound();
@@ -65,7 +68,7 @@ function PostDetail(props: PostDetailProps) {
         </Thumnail>
       )}
       <MarkdownRender markdownText={data.post.post_body} />
-      <PostDetailSeries series={data.post.series_posts} />
+      <PostSeries series={data.post.series_posts} />
       <Comments post_id={data.post.id} />
     </Block>
   );
@@ -141,4 +144,4 @@ const Thumnail = styled.div`
   }
 `;
 
-export default PostDetail;
+export default Post;
