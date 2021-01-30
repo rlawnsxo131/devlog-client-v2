@@ -11,7 +11,8 @@ function PostSkelleton(props: PostSkelletonProps) {
       <Pharagraph
         css={css`
           flex: 2.5;
-          margin-bottom: 1.5rem;
+          margin-top: 2.1775rem;
+          margin-bottom: 2.1775rem;
         `}
       />
       <TagsWrapper>
@@ -63,6 +64,7 @@ const TagsWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+  margin-bottom: 1rem;
 `;
 
 export default PostSkelleton;

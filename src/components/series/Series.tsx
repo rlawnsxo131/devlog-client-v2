@@ -1,9 +1,8 @@
 import { useQuery } from '@apollo/client';
 import * as React from 'react';
-import styled from 'styled-components';
 import { GET_SERIES, SeriesType } from '../../graphql/series';
 import useError from '../../lib/hooks/useError';
-import media, { mediaQuery } from '../../lib/styles/media';
+import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 import SeriesItem from './SeriesItem';
 
 type SeriesProps = {};
@@ -24,26 +23,12 @@ function Series(props: SeriesProps) {
   if (error) return null;
 
   return (
-    <Block>
+    <MediaRatioWrapper type="column">
       {data?.series.map((v) => (
         <SeriesItem key={`series_${v.id}`} series={v} />
       ))}
-    </Block>
+    </MediaRatioWrapper>
   );
 }
-
-const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  ${media.xsmall} {
-    width: calc(100vw - 2rem);
-  }
-  ${media.small} {
-    width: 736px;
-  }
-  ${mediaQuery(800)} {
-    width: 768px;
-  }
-`;
 
 export default Series;

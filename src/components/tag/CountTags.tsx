@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client';
 import * as React from 'react';
-import styled from 'styled-components';
 import { GET_TAGS, TagType } from '../../graphql/tag';
 import useError from '../../lib/hooks/useError';
-import media, { mediaQuery } from '../../lib/styles/media';
+import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 import CountTag from './CountTag';
+import CountTagsSkelleton from './CountTagsSkelleton';
 
 type CountTagsProps = {};
 
@@ -18,30 +18,22 @@ function CountTags(props: CountTagsProps) {
     handleError(error);
   }, [error]);
 
-  if (loading) return <div>loading</div>;
+  if (loading) {
+    return (
+      <MediaRatioWrapper type="row">
+        <CountTagsSkelleton />
+      </MediaRatioWrapper>
+    );
+  }
   if (error) return null;
 
   return (
-    <Block>
+    <MediaRatioWrapper type="row">
       {data?.tags.map((v) => (
         <CountTag key={`count_tag_${v.name}`} tag={v} />
       ))}
-    </Block>
+    </MediaRatioWrapper>
   );
 }
-
-const Block = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  ${media.xsmall} {
-    width: calc(100vw - 2rem);
-  }
-  ${media.small} {
-    width: 736px;
-  }
-  ${mediaQuery(800)} {
-    width: 768px;
-  }
-`;
 
 export default CountTags;

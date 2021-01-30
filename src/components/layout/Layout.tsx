@@ -109,9 +109,7 @@ const GlobalStyle = createGlobalStyle<{ darkmode: boolean }>`
     props.darkmode
       ? css`
           h1,
-          h2 {
-            color: ${palette.gray3};
-          }
+          h2,
           h3,
           h4,
           h5,

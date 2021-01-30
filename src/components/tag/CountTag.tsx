@@ -23,18 +23,16 @@ function CountTag({ tag }: CountTagProps) {
     return darkmode ? palette.gray7 : palette.gray0;
   }, [darkmode]);
   return (
-    <>
-      <CountLink
-        background={background}
-        hoverbackground={hoverbackground}
-        to={`/posts/${tag.name}`}
-      >
-        <span>#{tag.name}</span>
-        <Count>
-          <span>{tag.count}</span>
-        </Count>
-      </CountLink>
-    </>
+    <CountLink
+      background={background}
+      hoverbackground={hoverbackground}
+      to={`/posts/${tag.name}`}
+    >
+      <span>#{tag.name}</span>
+      <Count>
+        <span>{tag.count}</span>
+      </Count>
+    </CountLink>
   );
 }
 
@@ -45,16 +43,14 @@ const CountLink = styled(NavLink)<{
   display: flex;
   align-items: center;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-  margin-bottom: 0.1rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
   color: ${palette.gray9};
   font-weight: 600;
   background: ${(props) => props.background};
   border-radius: 1rem;
   &:hover {
     background: ${(props) => props.hoverbackground};
-  }
-  & + & {
-    margin-left: 0.5rem;
   }
   ${media.xsmall} {
     font-size: 0.9rem;

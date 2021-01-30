@@ -10,6 +10,7 @@ import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
 import Comments from '../comment/Comments';
+import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 import MarkdownRender from '../markdown/MarkdownRender';
 import DefaultTags from '../tag/DefaultTags';
 import PostSeries from './PostSeries';
@@ -49,7 +50,7 @@ function Post(props: PostProps) {
   }
 
   return (
-    <Block>
+    <MediaRatioWrapper type="column">
       <PostHeader>{data.post.post_header}</PostHeader>
       <PostInfo>
         <ShortDescription>{data.post.short_description}</ShortDescription>
@@ -70,11 +71,12 @@ function Post(props: PostProps) {
       <MarkdownRender markdownText={data.post.post_body} />
       <PostSeries series={data.post.series_posts} />
       <Comments post_id={data.post.id} />
-    </Block>
+    </MediaRatioWrapper>
   );
 }
 
 const Block = styled.div`
+  display: flex;
   flex-direction: column;
   ${media.xsmall} {
     width: calc(100vw - 2rem);
