@@ -8,11 +8,7 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
 module.exports = () => {
   const clientEnv = initializeConfig();
-  const {
-    REACT_APP_NODE_ENV,
-    REACT_APP_BUILD_TARGET,
-    REACT_APP_PUBLIC_URL,
-  } = process.env;
+  const { REACT_APP_NODE_ENV, REACT_APP_PUBLIC_URL } = process.env;
   return {
     mode: REACT_APP_NODE_ENV,
     entry: paths.entryPath,
@@ -22,7 +18,7 @@ module.exports = () => {
       filename: 'static/js/[name].[contenthash:8].js',
       chunkFilename: 'static/js/[name].[contenthash:8].js',
     },
-    target: REACT_APP_BUILD_TARGET,
+    target: 'web',
     devtool: 'cheap-module-source-map',
     module: {
       rules: [

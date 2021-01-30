@@ -1,0 +1,51 @@
+service: devlog-v2-ssr
+
+plugins:
+  - serverless-webpack
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+# package:
+#   include:
+#     - build/loadable-stats.json
+    
+custom:
+  webpack:
+    includeModules: true
+    webpackConfig: './config/webpack.config.serverless.js'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-northeast-2
+  stage: dev
+  lambdaHashingVersion: 20201221
+  apiGateway:
+    shouldStartNameWithService: true
+  
+
+  # environment:
+  #   SECRET_KEY: ${env:SECRET_KEY}
+  
+  vpc:
+    securityGroupIds:
+      - ${env:AWS_SECURITY_GROUP_ID}
+    subnetIds:
+      - ${env:AWS_SUBNET_ID_FIRST}
+      - ${env:AWS_SUBNET_ID_SECOND}
+      - ${env:AWS_SUBNET_ID_THIRD}
+
+unresolvedVariablesNotificationMode: error
+
+functions:
+  app:
+    handler: src/serverless.handler
+    environment:
+      SLS_DEBUG: ${env:SERVERLESS_DEBUG}
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{any+}
+          method: ANY
