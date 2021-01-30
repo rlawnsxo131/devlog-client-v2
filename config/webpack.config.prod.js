@@ -10,25 +10,8 @@ const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 //   .BundleAnalyzerPlugin;
 
-function getClientEnv() {
-  initializeConfig();
-  return {
-    'process.env': JSON.stringify(
-      Object.keys(process.env)
-        .filter((key) => /^REACT_APP/i.test(key))
-        .reduce(
-          (env, key) => {
-            env[key] = process.env[key];
-            return env;
-          },
-          { REACT_APP_SSR: 'disabled' },
-        ),
-    ),
-  };
-}
-
-module.exports = (mode) => {
-  const clientEnv = getClientEnv();
+module.exports = () => {
+  const clientEnv = initializeConfig();
   const {
     PHASE,
     REACT_APP_NODE_ENV,

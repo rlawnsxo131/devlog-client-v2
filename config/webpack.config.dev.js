@@ -6,25 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 
-function getClientEnv() {
-  initializeConfig();
-  return {
-    'process.env': JSON.stringify(
-      Object.keys(process.env)
-        .filter((key) => /^REACT_APP/i.test(key))
-        .reduce(
-          (env, key) => {
-            env[key] = process.env[key];
-            return env;
-          },
-          { REACT_APP_SSR: 'disabled' },
-        ),
-    ),
-  };
-}
-
 module.exports = () => {
-  const clientEnv = getClientEnv();
+  const clientEnv = initializeConfig();
   const {
     REACT_APP_NODE_ENV,
     REACT_APP_BUILD_TARGET,
