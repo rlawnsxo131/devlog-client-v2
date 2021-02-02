@@ -12,7 +12,6 @@ export type PostType = {
   id: number;
   post_header: string;
   post_body: string;
-  short_description: string;
   preview_description: string;
   thumnail?: string;
   open_yn?: boolean;
@@ -30,7 +29,6 @@ export const GET_POST = gql`
       id
       post_header
       post_body
-      short_description
       thumnail
       open_yn
       series_id
@@ -53,7 +51,6 @@ export const GET_POSTS = gql`
     posts(tag: $tag) {
       id
       post_header
-      short_description
       preview_description
       thumnail
       series_id

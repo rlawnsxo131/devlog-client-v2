@@ -32,7 +32,7 @@ function Posts(props: PostsProps) {
   if (error) return null;
 
   return (
-    <Block>
+    <Block className="posts block">
       {tag && <h3>#{tag}</h3>}
       <GridBlock>
         {data?.posts.map((post) => (
@@ -44,6 +44,7 @@ function Posts(props: PostsProps) {
 }
 
 const Block = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   h3 {
@@ -63,6 +64,10 @@ const GridBlock = styled.div`
   }
   ${mediaQuery(420)} {
     grid-auto-rows: 30rem;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  ${mediaQuery(600)} {
+    grid-auto-rows: 36rem;
     grid-template-columns: repeat(1, 1fr);
   }
   ${media.small} {

@@ -292,10 +292,10 @@ const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
 
   ${media.xsmall} {
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.25rem;
     }
     h2 {
-      font-size: 2rem;
+      font-size: 1.75rem;
     }
     h3 {
       font-size: 1.5rem;

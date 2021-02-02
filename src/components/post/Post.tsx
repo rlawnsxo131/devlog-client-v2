@@ -6,7 +6,7 @@ import { GET_POST, PostType } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import useNotFound from '../../lib/hooks/useNotFound';
 import optimizeImage from '../../lib/optimizeImage';
-import media, { mediaQuery } from '../../lib/styles/media';
+import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
 import Comments from '../comment/Comments';
@@ -53,13 +53,10 @@ function Post(props: PostProps) {
     <MediaRatioWrapper type="column">
       <PostHeader>{data.post.post_header}</PostHeader>
       <PostInfo>
-        <ShortDescription>{data.post.short_description}</ShortDescription>
-        <span className="separator">&middot;</span>
         <ReleasedAt>{formatDate(data.post.released_at)}</ReleasedAt>
-      </PostInfo>
-      <TagsWrapper>
+        <span className="separator">&middot;</span>
         <DefaultTags tags={data.post.tags} />
-      </TagsWrapper>
+      </PostInfo>
       {data.post.thumnail && (
         <Thumnail>
           <img
@@ -75,26 +72,12 @@ function Post(props: PostProps) {
   );
 }
 
-const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  ${media.xsmall} {
-    width: calc(100vw - 2rem);
-  }
-  ${media.small} {
-    width: 736px;
-  }
-  ${mediaQuery(800)} {
-    width: 768px;
-  }
-`;
-
 const PostHeader = styled.h1`
   ${media.xsmall} {
-    font-size: 2.725rem;
+    font-size: 2.25rem;
   }
   ${media.small} {
-    font-size: 3.25rem;
+    font-size: 3rem;
   }
 `;
 
@@ -114,21 +97,10 @@ const PostInfo = styled.div`
   }
 `;
 
-const ShortDescription = styled.div`
-  font-weight: bold;
-  margin-right: 0.5rem;
-`;
-
 const ReleasedAt = styled.div`
   display: flex;
   color: ${palette.gray6};
   margin-right: 0.5rem;
-`;
-
-const TagsWrapper = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  margin-bottom: 1.125rem;
 `;
 
 const Thumnail = styled.div`

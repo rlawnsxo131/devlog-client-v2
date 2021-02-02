@@ -12,7 +12,7 @@ import raw from 'rehype-raw';
 import stringify from 'rehype-stringify';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
-import { BiSearchAlt } from 'react-icons/bi';
+import { AiOutlinePicture } from 'react-icons/ai';
 
 type PostCardProps = {
   post: PostType;
@@ -45,17 +45,17 @@ function PostCard({ post }: PostCardProps) {
           {post.thumnail ? (
             <img src={optimizeImage(post.thumnail, 640)} alt="post-thumnail" />
           ) : (
-            <BiSearchAlt />
+            <AiOutlinePicture className="default-thumnail" />
           )}
         </Link>
-        )
       </Thumnail>
-      <Link to={`/post/${post.url_slug}`}>
-        <Content>
+      <Content>
+        <Link to={`/post/${post.url_slug}`}>
           <Title>{post.post_header}</Title>
-          <ShortDescription>{post.short_description}</ShortDescription>
           <PreviewDescription>{previewDescription}</PreviewDescription>
-        </Content>
+        </Link>
+      </Content>
+      <Link to={`/post/${post.url_slug}`}>
         <Footer darkmode={darkmode}>
           <p>
             {formatDate(post.released_at)}
@@ -78,8 +78,7 @@ const Block = styled.div<{ darkmode: boolean }>`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  p,
-  h5 {
+  p {
     margin: 0;
   }
   &:hover {
@@ -103,20 +102,20 @@ const Block = styled.div<{ darkmode: boolean }>`
 
 const Thumnail = styled.div`
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  height: 100%;
+  padding-top: 52.19206680584551%;
   img,
   svg {
     position: absolute;
+    display: block;
     top: 0;
     left: 0;
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    &.default-thumnail {
+      color: ${palette.gray3};
+    }
   }
 `;
 
@@ -127,11 +126,11 @@ const Content = styled.div`
   padding: 1rem;
 `;
 
-const Title = styled.h5`
+const Title = styled.h4`
+  margin: 0.5rem 0 1rem 0;
   display: flex;
   font-size: 1rem;
   font-weight: bold;
-  margin-bottom: 0.5rem;
   overflow: hidden;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -141,17 +140,12 @@ const Title = styled.h5`
   text-overflow: ellipsis;
 `;
 
-const ShortDescription = styled.h4`
-  font-size: 0.9rem;
-  font-weight: normal;
-  margin-bottom: 0.5rem;
-`;
-
 const PreviewDescription = styled.p`
+  display: block;
   color: ${palette.gray6};
-  font-size: 0.875rem;
-  line-height: 1.6;
   height: 4rem;
+  line-height: 1.5;
+  font-size: 0.875rem;
   overflow: hidden;
   word-break: break-word;
   overflow-wrap: break-word;
