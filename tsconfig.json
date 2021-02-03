@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES5",
-    "module": "ESNext",
+    // "module": "commonjs",
+    // "module": "ESNext",
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,
@@ -17,16 +18,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noUnusedLocals": true,
-    "noEmit": true,
+    "noEmit": false,
     "typeRoots": [
       "./node_modules/@types",
       "./src/@types"
     ]
   },
   "include": [
-    "src"
+    "src",
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ],
 }

@@ -1,32 +1,9 @@
-declare module '*.bmp' {
-  const src: string;
-  export default src;
-}
-
-declare module '*.gif' {
-  const src: string;
-  export default src;
-}
-
-declare module '*.jpg' {
-  const src: string;
-  export default src;
-}
-
-declare module '*.jpeg' {
-  const src: string;
-  export default src;
-}
-
-declare module '*.png' {
-  const src: string;
-  export default src;
-}
-
-declare module '*.webp' {
-  const src: string;
-  export default src;
-}
+declare module '*.bmp';
+declare module '*.gif';
+declare module '*.jpg';
+declare module '*.jpeg';
+declare module '*.png';
+declare module '*.webp';
 
 declare module 'remark-slug';
 declare module 'rehype-stringify';
