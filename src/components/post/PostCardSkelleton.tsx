@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
-import Pharagraph from '../common/Pharagraph';
+import Paragraph from '../common/Paragraph';
 
 type PostCardSkelletonProps = {};
 
@@ -13,15 +13,15 @@ function PostCardSkelleton(props: PostCardSkelletonProps) {
   );
   return (
     <Block darkmode={darkmode}>
-      <Pharagraph
+      <Paragraph
         css={css`
           flex: 10;
         `}
       />
       {Array.from({ length: 5 }).map((_, i) => (
-        <Pharagraph key={`post_card_skelleton_${i}`} css={textCss} />
+        <Paragraph key={`post_card_skelleton_${i}`} css={textCss} />
       ))}
-      <Pharagraph
+      <Paragraph
         css={css`
           flex: 3;
           margin-top: 1rem;

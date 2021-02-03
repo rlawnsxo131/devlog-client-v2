@@ -5,11 +5,11 @@ import palette from '../../lib/styles/palette';
 import transitions from '../../lib/styles/transitions';
 import { RootState } from '../../modules';
 
-type PharagraphProps = {
+type ParagraphProps = {
   css?: FlattenSimpleInterpolation;
 };
 
-function Pharagraph({ css }: PharagraphProps) {
+function Paragraph({ css }: ParagraphProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
@@ -26,4 +26,4 @@ const Block = styled.div<{
   ${(props) => props.css && props.css}
 `;
 
-export default Pharagraph;
+export default Paragraph;

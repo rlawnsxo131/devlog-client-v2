@@ -1,14 +1,14 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 import media, { mediaQuery } from '../../lib/styles/media';
-import Pharagraph from '../common/Pharagraph';
+import Paragraph from '../common/Paragraph';
 
 type PostSkelletonProps = {};
 
 function PostSkelleton(props: PostSkelletonProps) {
   return (
     <Block>
-      <Pharagraph
+      <Paragraph
         css={css`
           flex: 2.5;
           margin-top: 2.1775rem;
@@ -17,13 +17,13 @@ function PostSkelleton(props: PostSkelletonProps) {
       />
       <TagsWrapper>
         {Array.from({ length: 4 }).map((_, i) => (
-          <Pharagraph key={`post_detail_skelleton_tag_${i}`} css={tagCss} />
+          <Paragraph key={`post_detail_skelleton_tag_${i}`} css={tagCss} />
         ))}
       </TagsWrapper>
       {Array.from({ length: 20 }).map((_, i) => (
-        <Pharagraph key={`post_detil_skelleton_${i}`} css={textCss} />
+        <Paragraph key={`post_detil_skelleton_${i}`} css={textCss} />
       ))}
-      <Pharagraph
+      <Paragraph
         css={css`
           flex: 3;
         `}
