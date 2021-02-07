@@ -53,7 +53,7 @@ function Post(props: PostProps) {
     <MediaRatioWrapper type="column">
       <PostHeader>{data.post.post_header}</PostHeader>
       <PostInfo>
-        <div className="writer">by John</div>
+        <div className="writer">John</div>
         <span className="separator">&middot;</span>
         <ReleasedAt>{formatDate(data.post.released_at)}</ReleasedAt>
       </PostInfo>

@@ -1,8 +1,6 @@
 import visit from 'unist-util-visit';
 
-// const regex = /!(youtube|twitter|codesandbox)\[(.*?)\]/;
-
-const embedTypeRegex = /^!(youtube|twitter|codesandbox|codepen)$/;
+const embedTypeRegex = /^!(youtube|twitter|codesandbox|codepen)/;
 const converters = {
   youtube: (code: string) =>
     `<iframe class="embed" src="https://www.youtube.com/embed/${code}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
@@ -21,20 +19,19 @@ export default function embedPlugin() {
     function visitor(node: any) {
       try {
         const { children }: { children: any[] } = node;
-        if (children.length < 2) return;
+        if (!children.length) return;
         const index = children.findIndex((childNode) => {
           if (!childNode.value) return false;
           return childNode.value.match(embedTypeRegex);
         });
         if (index === -1) return;
         const childNode = children[index];
-        const siblingNode = children[index + 1];
-        if (!siblingNode || siblingNode.type !== 'linkReference') return;
-        const { label } = siblingNode;
+        const label = childNode.value
+          .match(/\[.*]$/)[0]
+          .replace(/(\[|\])/g, '');
         const match = embedTypeRegex.exec(children[index].value);
         if (!match) return;
         const type = match[1] as ConverterKey;
-
         childNode.type = 'html';
         childNode.value = converters[type](label);
         children.splice(index + 1, 1);
@@ -42,7 +39,6 @@ export default function embedPlugin() {
         console.log(e);
       }
     }
-
     visit(tree, 'paragraph', visitor);
   }
 
