@@ -85,6 +85,8 @@ export default function useCommentEditModal({
       alert('작성자, 비밀번호, 댓글은 필수 입력 사항 입니다.');
       return;
     }
+    const validate2 = globalThis.confirm('댓글을 수정하시겠어요?');
+    if (!validate2) return;
     try {
       await UpdateComment({
         variables: {
@@ -107,6 +109,8 @@ export default function useCommentEditModal({
       alert('비밀번호를 입력하세요');
       return;
     }
+    const validate2 = globalThis.confirm('댓글을 삭제하시겠어요?');
+    if (!validate2) return;
     try {
       await RemoveComment({
         variables: {

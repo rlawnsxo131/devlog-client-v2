@@ -148,7 +148,7 @@ function MarkdownRender({ markdownText }: MarkdownRenderProps) {
 const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
   position: relative;
   height: auto;
-  line-height: 1.5;
+  line-height: 1.725;
   word-break: break-all;
   word-wrap: break-word;
   &.atom-one-dark {
@@ -177,9 +177,6 @@ const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
     code {
       font-family: 'Fira Mono', source-code-pro, Menlo, Monaco, Consolas,
         'Courier New', monospace;
-      &.language-null {
-        font-size: 1rem;
-      }
     }
   }
 
@@ -292,24 +289,62 @@ const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
 
   ${media.xsmall} {
     h1 {
-      font-size: 2.25rem;
-    }
-    h2 {
-      font-size: 1.75rem;
-    }
-    h3 {
       font-size: 1.5rem;
     }
-    h4 {
-      margin: 1.25rem 0;
+    h2 {
       font-size: 1.25rem;
+    }
+    h3 {
+      font-size: 1.125rem;
+    }
+    h4 {
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+    h5 {
+      margin: 0.875rem 0;
+      font-size: 0.875rem;
+    }
+    h6 {
+      margin: 0.85rem 0;
+      font-size: 0.85rem;
+    }
+    p {
+      font-size: 0.9rem;
+    }
+    li {
+      font-size: 0.9rem;
+    }
+    pre {
+      font-size: 0.85rem;
+      code {
+        &.language-null {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+
+  ${media.small} {
+    h1 {
+      font-size: 1.85rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+    }
+    h4 {
+      margin: 1.125rem 0;
+      font-size: 1.125rem;
     }
     h5 {
       margin: 1rem 0;
       font-size: 1rem;
     }
     h6 {
-      margin: 0.825rem 0;
+      margin: 0.875rem 0;
       font-size: 0.875rem;
     }
     p {
@@ -328,23 +363,23 @@ const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
     }
   }
 
-  ${media.small} {
+  ${media.medium} {
     h1 {
-      font-size: 3rem;
-    }
-    h2 {
-      font-size: 2.5rem;
-    }
-    h3 {
       font-size: 2rem;
     }
-    h4 {
-      margin: 1.5rem 0;
+    h2 {
+      font-size: 1.825rem;
+    }
+    h3 {
       font-size: 1.5rem;
     }
-    h5 {
+    h4 {
       margin: 1.25rem 0;
       font-size: 1.25rem;
+    }
+    h5 {
+      margin: 1.125rem 0;
+      font-size: 1.125rem;
     }
     h6 {
       margin: 1rem 0;

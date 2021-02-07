@@ -53,10 +53,13 @@ function Post(props: PostProps) {
     <MediaRatioWrapper type="column">
       <PostHeader>{data.post.post_header}</PostHeader>
       <PostInfo>
-        <ReleasedAt>{formatDate(data.post.released_at)}</ReleasedAt>
+        <div className="writer">by John</div>
         <span className="separator">&middot;</span>
-        <DefaultTags tags={data.post.tags} />
+        <ReleasedAt>{formatDate(data.post.released_at)}</ReleasedAt>
       </PostInfo>
+      <Tags>
+        <DefaultTags tags={data.post.tags} />
+      </Tags>
       {data.post.thumnail && (
         <Thumnail>
           <img
@@ -74,10 +77,13 @@ function Post(props: PostProps) {
 
 const PostHeader = styled.h1`
   ${media.xsmall} {
-    font-size: 2.25rem;
+    font-size: 1.825rem;
   }
   ${media.small} {
-    font-size: 3rem;
+    font-size: 2rem;
+  }
+  ${media.medium} {
+    font-size: 2.25rem;
   }
 `;
 
@@ -85,10 +91,15 @@ const PostInfo = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  .separator {
-    margin-right: 0.5rem;
-  }
   margin-bottom: 1.125rem;
+  .writer {
+    font-weight: bold;
+  }
+  .separator {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
   ${media.xsmall} {
     font-size: 1rem;
   }
@@ -99,8 +110,11 @@ const PostInfo = styled.div`
 
 const ReleasedAt = styled.div`
   display: flex;
-  color: ${palette.gray6};
-  margin-right: 0.5rem;
+  color: ${palette.gray7};
+`;
+
+const Tags = styled.div`
+  margin-bottom: 1.125rem;
 `;
 
 const Thumnail = styled.div`
