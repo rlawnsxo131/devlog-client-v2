@@ -93,13 +93,13 @@ const Block = styled.div<{ darkmode: boolean }>`
     props.darkmode ? darkmodeBackground.other : 'white'};
   padding: 1rem;
   overflow-y: auto;
-  height: 330px;
+  height: 20.625rem;
 
   ${media.xsmall} {
-    width: 320px;
+    width: 20rem;
   }
   ${media.small} {
-    width: 600px;
+    width: 37.5rem;
   }
 `;
 

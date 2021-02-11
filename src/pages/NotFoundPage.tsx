@@ -50,7 +50,7 @@ const Block = styled.div<{ darkmode: boolean }>`
   z-index: ${zIndexes.notFoundPage};
   svg {
     height: auto;
-    width: 320px;
+    width: 20rem;
     margin-bottom: 1rem;
   }
   h3 {

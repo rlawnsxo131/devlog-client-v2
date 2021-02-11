@@ -2,16 +2,19 @@ import { useQuery } from '@apollo/client';
 import * as React from 'react';
 import styled from 'styled-components';
 import { CommentType, GET_COMMENTS } from '../../graphql/comment';
+import useError from '../../lib/hooks/useError';
 import media from '../../lib/styles/media';
 import CommentCards from './CommentCards';
+import CommentsSkelleton from './CommentsSkelleton';
 import CommentWrite from './CommentWrite';
 
 type CommentsProps = {
   post_id: number;
 };
 
-const { memo } = React;
+const { useEffect, memo } = React;
 function Comments({ post_id }: CommentsProps) {
+  const [handleError] = useError();
   const { loading, error, data } = useQuery<{
     comments: Array<CommentType>;
     commentsCount: number;
@@ -21,8 +24,13 @@ function Comments({ post_id }: CommentsProps) {
     },
   });
 
-  if (loading) return <div>loading</div>;
-  if (error) return <div>error</div>;
+  useEffect(() => {
+    if (!error) return;
+    handleError(error);
+  }, [error]);
+
+  if (loading) return <CommentsSkelleton />;
+  if (error) return null;
 
   return (
     <Block>

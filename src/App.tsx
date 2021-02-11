@@ -18,13 +18,27 @@ function App(props: AppProps) {
       <BaseEffect>
         <Layout>
           <Switch>
-            <Route exact path="/" component={PostsPage} />
-            <Route path="/series" component={SeriesPage} />
-            <Route path="/tags" component={TagsPage} />
-            <Route path="/info" component={InfoPage} />
-            <Route path="/posts/:tag" component={PostsPage} />
-            <Route path="/post/:url_slug" component={PostPage} />
-            <Route component={NotFoundPage} />
+            <Route exact path="/">
+              <PostsPage />
+            </Route>
+            <Route path="/series">
+              <SeriesPage />
+            </Route>
+            <Route path="/tags">
+              <TagsPage />
+            </Route>
+            <Route path="/info">
+              <InfoPage />
+            </Route>
+            <Route path="/posts/:tag">
+              <PostsPage />
+            </Route>
+            <Route path="/post/:url_slug">
+              <PostPage />
+            </Route>
+            <Route>
+              <NotFoundPage />
+            </Route>
           </Switch>
         </Layout>
       </BaseEffect>
