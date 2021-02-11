@@ -2,22 +2,26 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import MenuIcon from '../../img/components/icons/MenuIcon';
 import media from '../../lib/styles/media';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import zIndexes from '../../lib/styles/zIndexes';
 import { RootState } from '../../modules';
-import { AiOutlineEllipsis } from 'react-icons/ai';
+// import { AiOutlineEllipsis } from 'react-icons/ai';
 import DarkmodeToggle from '../common/DarkmodeToggle';
 
 type HeaderProps = {};
 
-const { useState, useCallback, useEffect, memo } = React;
+const { useState, useMemo, useCallback, useEffect, memo } = React;
 function Header(props: HeaderProps) {
   const { pathname } = useLocation();
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const menuColor = useMemo(() => {
+    return darkmode ? palette.gray6 : palette.gray9;
+  }, [darkmode]);
   const handleShowMenu = useCallback(() => {
     setShowMenu((state) => !state);
   }, []);
@@ -35,7 +39,12 @@ function Header(props: HeaderProps) {
         </Link>
         <Menu darkmode={darkmode}>
           <DarkmodeToggle />
-          <AiOutlineEllipsis onClick={handleShowMenu} />
+          <MenuIcon
+            fill={menuColor}
+            height={30}
+            width={30}
+            onClick={handleShowMenu}
+          />
         </Menu>
         {showMenu && (
           <DropdownMenu darkmode={darkmode}>

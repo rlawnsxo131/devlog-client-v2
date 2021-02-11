@@ -2,11 +2,11 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import BadRequestImage from '../../img/components/BadRequestImage';
-import ChunkImage from '../../img/components/ChunkImage';
-import NetworkImage from '../../img/components/NetworkImage';
-import NotFoundImage from '../../img/components/NotFoundImage';
-import UnknownImage from '../../img/components/UnknownImage';
+import BadRequestImage from '../../img/components/error/BadRequestImage';
+import ChunkErrorImage from '../../img/components/error/ChunkErrorImage';
+import NetworkErrorImage from '../../img/components/error/NetworkErrorImage';
+import NotFoundErrorImage from '../../img/components/error/NotFoundErrorImage';
+import UnknownErrorImage from '../../img/components/error/UnknownErrorImage';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import { ErrorEnum, errorMessageMap, resetError } from '../../modules/error';
@@ -20,12 +20,12 @@ type ErrorScreenProps = {
 const { useCallback } = React;
 
 function ErrorImageReturner({ errorType }: { errorType: ErrorEnum }) {
-  if (errorType === ErrorEnum.NOT_FOUND) return <NotFoundImage />;
-  if (errorType === ErrorEnum.UNKNOWN) return <UnknownImage />;
+  if (errorType === ErrorEnum.NOT_FOUND) return <NotFoundErrorImage />;
+  if (errorType === ErrorEnum.UNKNOWN) return <UnknownErrorImage />;
   if (errorType === ErrorEnum.BAD_REQUEST) return <BadRequestImage />;
-  if (errorType === ErrorEnum.NETWORK) return <NetworkImage />;
-  if (errorType === ErrorEnum.CHUNK) return <ChunkImage />;
-  return <UnknownImage />;
+  if (errorType === ErrorEnum.NETWORK) return <NetworkErrorImage />;
+  if (errorType === ErrorEnum.CHUNK) return <ChunkErrorImage />;
+  return <UnknownErrorImage />;
 }
 
 const { useEffect } = React;

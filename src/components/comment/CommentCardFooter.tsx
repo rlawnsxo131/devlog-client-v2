@@ -1,11 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
-import { IoAdd, IoRemove } from 'react-icons/io5';
 import { CommentType } from '../../graphql/comment';
 import CommentCards from './CommentCards';
 import Button from '../common/Button';
 import CommentWrite from './CommentWrite';
+import PlusIcon from '../../img/components/icons/PlusIcon';
+import MinusIcon from '../../img/components/icons/MinusIcon';
 
 type CommentCardFooterProps = {
   post_id: number;
@@ -74,9 +75,9 @@ function CommentCardFooter({
     <Block level={level}>
       <ReplyTrigger onClick={handleShowReply}>
         {replyTriggerIcon ? (
-          <IoAdd className="reply-icon" />
+          <PlusIcon fill={palette.indigo5} width={14} height={14} />
         ) : (
-          <IoRemove className="reply-icon" />
+          <MinusIcon fill={palette.indigo5} width={14} height={14} />
         )}
         {replyTriggerText}
       </ReplyTrigger>
@@ -121,15 +122,11 @@ const ReplyTrigger = styled.div`
   font-weight: 600;
   svg {
     margin-right: 0.25rem;
-    font-size: 0.8rem;
     border: 1px solid ${palette.indigo5};
   }
   &:hover {
     cursor: pointer;
     color: ${palette.indigo4};
-    .reply-icon {
-      border: 1px solid ${palette.indigo4};
-    }
   }
 `;
 

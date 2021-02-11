@@ -25,7 +25,7 @@ const Block = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 1rem;
+  margin-right: 0.8rem;
   z-index: ${zIndexes.darkmodeToggle};
   background: black;
   border-radius: 1rem;

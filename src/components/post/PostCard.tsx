@@ -12,7 +12,7 @@ import raw from 'rehype-raw';
 import stringify from 'rehype-stringify';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
-import { AiOutlinePicture } from 'react-icons/ai';
+import PhotoIcon from '../../img/components/icons/PhotoIcon';
 
 type PostCardProps = {
   post: PostType;
@@ -45,7 +45,7 @@ function PostCard({ post }: PostCardProps) {
           {post.thumnail ? (
             <img src={optimizeImage(post.thumnail, 640)} alt="post-thumnail" />
           ) : (
-            <AiOutlinePicture className="default-thumnail" />
+            <PhotoIcon fill={palette.gray3} />
           )}
         </Link>
       </Thumnail>
@@ -113,9 +113,6 @@ const Thumnail = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    &.default-thumnail {
-      color: ${palette.gray3};
-    }
   }
 `;
 

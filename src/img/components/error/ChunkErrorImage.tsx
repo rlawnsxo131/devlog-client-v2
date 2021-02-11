@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-type ChunkImageProps = {};
+type ChunkErrorImageProps = {};
 
-function ChunkImage(props: ChunkImageProps) {
+function ChunkErrorImage(props: ChunkErrorImageProps) {
   return (
     <svg
       id="a2942aa7-bf0d-42c0-bc52-bf4c952347c5"
@@ -248,4 +248,4 @@ function ChunkImage(props: ChunkImageProps) {
   );
 }
 
-export default ChunkImage;
+export default ChunkErrorImage;

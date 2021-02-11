@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-type UnknownImageProps = {};
+type UnknownErrorImageProps = {};
 
-function UnknownImage(props: UnknownImageProps) {
+function UnknownErrorImage(props: UnknownErrorImageProps) {
   return (
     <svg
       id="ef672dd0-2e16-4c9d-8107-606b55e40777"
@@ -179,4 +179,4 @@ function UnknownImage(props: UnknownImageProps) {
   );
 }
 
-export default UnknownImage;
+export default UnknownErrorImage;

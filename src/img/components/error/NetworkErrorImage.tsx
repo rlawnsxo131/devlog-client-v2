@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-type NetworkImageProps = {};
+type NetworkErrorImageProps = {};
 
-function NetworkImage(props: NetworkImageProps) {
+function NetworkErrorImage(props: NetworkErrorImageProps) {
   return (
     <svg
       id="e37c00f5-ff96-45aa-87ea-1a24b78ba7bd"
@@ -165,4 +165,4 @@ function NetworkImage(props: NetworkImageProps) {
   );
 }
 
-export default NetworkImage;
+export default NetworkErrorImage;
