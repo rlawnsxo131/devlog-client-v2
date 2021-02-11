@@ -7,7 +7,6 @@ import media from '../../lib/styles/media';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import zIndexes from '../../lib/styles/zIndexes';
 import { RootState } from '../../modules';
-// import { AiOutlineEllipsis } from 'react-icons/ai';
 import DarkmodeToggle from '../common/DarkmodeToggle';
 
 type HeaderProps = {};
