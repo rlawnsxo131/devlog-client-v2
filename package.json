@@ -30,7 +30,6 @@
     "prettier": "^2.2.1",
     "terser-webpack-plugin": "^5.1.1",
     "ts-loader": "^8.0.17",
-    "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.1",
     "typescript": "^4.1.5",
     "url-loader": "^4.1.1",
