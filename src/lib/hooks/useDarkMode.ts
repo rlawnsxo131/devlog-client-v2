@@ -3,8 +3,16 @@ import { useDispatch } from 'react-redux';
 import { onDarkmode } from '../../modules/core';
 import { DEVLOG_DARKMODE } from '../constants';
 
+function getDarkmode() {
+  let result = null;
+  if (typeof window !== 'undefined') {
+    result = localStorage.getItem(DEVLOG_DARKMODE);
+  }
+  return result;
+}
+
 export default function useDarkmode() {
-  const DARKMODE = useRef<string | null>(localStorage.getItem(DEVLOG_DARKMODE));
+  const DARKMODE = useRef<string | null>(getDarkmode());
   const dispatch = useDispatch();
 
   // none declare DARK_MODE

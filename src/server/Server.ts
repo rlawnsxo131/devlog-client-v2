@@ -1,7 +1,12 @@
 import fastify from 'fastify';
 import compress from 'fastify-compress';
+import serverRender from './decorates/serverRender';
+import routes from './routes';
+import fastifyStatic from 'fastify-static';
+import path from 'path';
 
 const PORT = parseInt(process.env.PORT! || '3003', 10);
+const staticPath = path.resolve(__dirname, '../client');
 
 export default class Server {
   private app = fastify({ logger: true });
@@ -11,13 +16,13 @@ export default class Server {
   }
 
   setup() {
+    this.app.register(fastifyStatic, {
+      root: staticPath,
+      decorateReply: false,
+    });
     this.app.register(compress);
-    this.app.get('/', async (request, reply) => {
-      reply.send({ hello: 'world' });
-    });
-    this.app.get<{ Params: { id: number } }>('/:id', async (request, reply) => {
-      reply.send({ id: request.params.id });
-    });
+    this.app.register(routes);
+    this.app.register(serverRender);
   }
 
   start() {

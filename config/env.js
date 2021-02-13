@@ -3,7 +3,8 @@ const paths = require('./paths');
 const { config } = require('dotenv');
 const { PHASE } = process.env;
 
-function initializeConfig() {
+function initializeConfig({ target }) {
+  const baseEnv = { REACT_APP_SSR: target === 'web' ? 'disabled' : 'enabled' };
   config({
     path: path.resolve(paths.rootPath, `.env.${PHASE}`),
   });
@@ -11,13 +12,10 @@ function initializeConfig() {
     'process.env': JSON.stringify(
       Object.keys(process.env)
         .filter((key) => /^REACT_APP/i.test(key))
-        .reduce(
-          (env, key) => {
-            env[key] = process.env[key];
-            return env;
-          },
-          { REACT_APP_SSR: 'disabled' },
-        ),
+        .reduce((env, key) => {
+          env[key] = process.env[key];
+          return env;
+        }, baseEnv),
     ),
   };
 }

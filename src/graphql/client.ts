@@ -20,7 +20,9 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const client = new ApolloClient({
   link: from([errorLink, link]),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache().restore((window as any).__APOLLO_STATE__),
 });
+
+(window as any).client = client;
 
 export default client;

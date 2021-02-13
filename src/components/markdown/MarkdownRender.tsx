@@ -118,7 +118,7 @@ function MarkdownRender({ markdownText }: MarkdownRenderProps) {
   );
 
   useEffect(() => {
-    if (!markdownText) return;
+    if (!markdownText || ssrEnabled) return;
     setHtml(
       filter(
         unified()

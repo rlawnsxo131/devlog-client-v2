@@ -43,7 +43,7 @@ export default function attacher({ include, exclude } = {} as any) {
     }
 
     if (!ssrEnabled) {
-      (globalThis as any).prism = Prism;
+      (window as any).prism = Prism;
     }
 
     const highlighted = Prism.highlight(

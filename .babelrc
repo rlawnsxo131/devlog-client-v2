@@ -1,0 +1,11 @@
+{
+    "presets": [
+        "@babel/preset-react",
+        [
+            "@babel/preset-env",
+            { "targets": { "browsers": ["last 2 versions", ">= 5% in KR"] } }
+        ],
+        "@babel/preset-typescript"
+    ],      
+    "plugins": ["@loadable/babel-plugin", "@babel/plugin-syntax-dynamic-import"]
+}

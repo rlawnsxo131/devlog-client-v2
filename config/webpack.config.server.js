@@ -1,7 +1,10 @@
 const paths = require('./paths');
+const initializeConfig = require('./env');
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = () => {
+  const env = initializeConfig({ target: 'server' });
   const { REACT_APP_NODE_ENV, REACT_APP_PUBLIC_URL } = process.env;
   return {
     entry: paths.ssrEntryPath,
@@ -64,22 +67,20 @@ module.exports = () => {
     optimization: {
       minimize: false,
     },
-    // plugins: [
-    //   new webpack.DefinePlugin(env.stringified),
-    //   new webpack.NormalModuleReplacementPlugin(
-    //     /codemirror/,
-    //     path.resolve(paths.appSrc, 'lib/replacedModule.ts'),
-    //   ),
-    //   new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-    // ],
-    // optimization: {
-    //   minimize: false,
-    // },
-    // externals: [
-    //   nodeExternals({
-    //     whitelist: [/codemirror/, /\.css$/],
-    //   }),
-    // ],
+    plugins: [
+      new webpack.DefinePlugin(env),
+      new webpack.NormalModuleReplacementPlugin(/codemirror/, {}),
+      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+    ],
+    optimization: {
+      minimize: false,
+    },
+    externals: [
+      nodeExternals(),
+      // nodeExternals({
+      //   whitelist: [/codemirror/, /\.css$/],
+      // }),
+    ],
     // node: {
     //   __dirname,
     // },

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES5",
     // "module": "commonjs",
-    // "module": "ESNext",
+    "module": "ESNext",
     "jsx": "react",
     "strict": true,
     "esModuleInterop": true,

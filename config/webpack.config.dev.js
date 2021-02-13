@@ -5,9 +5,10 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 
 module.exports = () => {
-  const clientEnv = initializeConfig();
+  const clientEnv = initializeConfig({ target: 'web' });
   const { REACT_APP_NODE_ENV, REACT_APP_PUBLIC_URL } = process.env;
   return {
     mode: REACT_APP_NODE_ENV,
@@ -77,7 +78,10 @@ module.exports = () => {
         filename: 'index.html',
         template: path.resolve(paths.publicPath, 'index.html'),
         templateParameters: {
-          env: REACT_APP_NODE_ENV,
+          env: {
+            REACT_APP_NODE_ENV,
+            REACT_APP_PUBLIC_URL,
+          },
         },
         filename: 'index.html',
       }),
@@ -104,6 +108,11 @@ module.exports = () => {
       }),
       new webpack.DefinePlugin(clientEnv),
       new webpack.HotModuleReplacementPlugin(),
+      REACT_APP_NODE_ENV === 'production' &&
+        new LoadablePlugin({
+          filename: 'loadable-stats.json',
+          writeToDisk: true,
+        }),
     ].filter(Boolean),
     cache: {
       type: 'memory',
@@ -125,8 +134,8 @@ module.exports = () => {
       modules: true,
       version: true,
       publicPath: true,
+      warningsFilter: [/exceed/, /performance/],
       // excludeAssets: [/\.(map|txt|html|jpg|png)$/, /\.json$/],
-      // warningsFilter: [/exceed/, /performance/],
     },
   };
 };

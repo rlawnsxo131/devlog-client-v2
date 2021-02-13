@@ -7,11 +7,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 //   .BundleAnalyzerPlugin;
 
 module.exports = () => {
-  const clientEnv = initializeConfig();
+  const clientEnv = initializeConfig({ target: 'web' });
   const { PHASE, REACT_APP_NODE_ENV, REACT_APP_PUBLIC_URL } = process.env;
   return {
     mode: REACT_APP_NODE_ENV,
@@ -122,6 +123,10 @@ module.exports = () => {
         },
       }),
       new CleanWebpackPlugin(),
+      new LoadablePlugin({
+        filename: 'loadable-stats.json',
+        writeToDisk: true,
+      }),
       // new BundleAnalyzerPlugin(),
     ].filter(Boolean),
     cache: {
@@ -138,8 +143,8 @@ module.exports = () => {
       modules: true,
       version: true,
       publicPath: true,
+      warningsFilter: [/exceed/, /performance/],
       // excludeAssets: [/\.(map|txt|html|jpg|png)$/, /\.json$/],
-      // warningsFilter: [/exceed/, /performance/],
     },
   };
 };
