@@ -26,7 +26,7 @@ function Html({
         {styledElement}
         {extractor.getLinkElements()}
         {extractor.getStyleElements()}
-        {extractor.getScriptElements()}
+        {extractor.getLinkElements()}
         {/* {favicons.map((favicon) => (
           <link
             key={favicon.path}
@@ -69,6 +69,7 @@ function Html({
             ).replace(/</g, '\\u003c')};`,
           }}
         />
+        {extractor.getScriptElements()}
       </body>
     </html>
   );

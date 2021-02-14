@@ -1,10 +1,13 @@
 import { useQuery } from '@apollo/client';
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { GET_POSTS, PostType } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import media, { mediaQuery } from '../../lib/styles/media';
+import { darkmodeBackground } from '../../lib/styles/palette';
+import { RootState } from '../../modules';
 import PostCard from './PostCard';
 import PostsSkelleton from './PostsSkelleton';
 
@@ -12,6 +15,9 @@ type PostsProps = {};
 
 const { useEffect } = React;
 function Posts(props: PostsProps) {
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
+  );
   const [handleError] = useError();
   const { tag } = useParams<{ tag?: string }>();
   const { loading, error, data } = useQuery<
@@ -32,7 +38,7 @@ function Posts(props: PostsProps) {
   if (error) return null;
 
   return (
-    <Block className="posts block">
+    <Block darkmode={darkmode}>
       {tag && <h3>#{tag}</h3>}
       <GridBlock>
         {data?.posts.map((post) => (
@@ -43,7 +49,7 @@ function Posts(props: PostsProps) {
   );
 }
 
-const Block = styled.div`
+const Block = styled.div<{ darkmode: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -53,6 +59,14 @@ const Block = styled.div`
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
+  /* ${(props) =>
+    props.darkmode
+      ? css`
+          background: ${darkmodeBackground.main};
+        `
+      : css`
+          background: white;
+        `}; */
 `;
 
 const GridBlock = styled.div`

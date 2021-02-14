@@ -24,8 +24,6 @@ const store = configureStore({
 
 if (process.env.REACT_APP_NODE_ENV === 'production') {
   // loadable
-  console.log('loadable');
-  console.log(process.env.REACT_APP_NODE_ENV);
   loadableReady(() => {
     ReactDOM.hydrate(
       <Provider store={store}>

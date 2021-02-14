@@ -22,12 +22,11 @@ import Html from './Html';
 
 const statsFile = path.resolve(__dirname, '../client/loadable-stats.json');
 
-type ServerRenderHelperParams = {
+type ServerRenderParams = {
   url: string;
 };
 
-async function serverRenderHelper({ url }: ServerRenderHelperParams) {
-  console.log(url);
+async function serverRender({ url }: ServerRenderParams) {
   if (/^\/(api|graphql)/.test(url)) {
     return null;
   }
@@ -71,7 +70,6 @@ async function serverRenderHelper({ url }: ServerRenderHelperParams) {
       </StyleSheetManager>
     </ChunkExtractorManager>
   );
-
   try {
     await getDataFromTree(Root);
   } catch (e) {
@@ -113,4 +111,4 @@ async function serverRenderHelper({ url }: ServerRenderHelperParams) {
   return { html: pageHtml, statusCode: context.statusCode };
 }
 
-export default serverRenderHelper;
+export default serverRender;

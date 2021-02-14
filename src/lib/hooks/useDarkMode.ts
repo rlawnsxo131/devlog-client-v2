@@ -30,7 +30,7 @@ export default function useDarkmode() {
         darkmode: mode === 'dark',
       }),
     );
-  }, []);
+  }, [DARKMODE.current]);
 
   // already declare DARK_MODE
   useEffect(() => {
@@ -41,5 +41,5 @@ export default function useDarkmode() {
         darkmode: DARKMODE.current === 'true',
       }),
     );
-  }, []);
+  }, [DARKMODE.current]);
 }
