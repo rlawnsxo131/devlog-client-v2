@@ -19,6 +19,7 @@ import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
 import { ErrorEnum, setError } from '../../modules/error';
 import App from '../../App';
 import Html from './Html';
+import { FilledContext, HelmetProvider } from 'react-helmet-async';
 
 const statsFile = path.resolve(__dirname, '../client/loadable-stats.json');
 
@@ -57,17 +58,20 @@ async function serverRender({ url }: ServerRenderParams) {
     statsFile,
     publicPath: process.env.REACT_APP_PUBLIC_URL,
   });
+  const helmetContext = {} as FilledContext;
   const Root = (
     <ChunkExtractorManager extractor={extractor}>
-      <StyleSheetManager sheet={sheet.instance}>
-        <Provider store={store}>
-          <ApolloProvider client={client}>
-            <StaticRouter location={url} context={context}>
-              <App />
-            </StaticRouter>
-          </ApolloProvider>
-        </Provider>
-      </StyleSheetManager>
+      <HelmetProvider context={helmetContext}>
+        <StyleSheetManager sheet={sheet.instance}>
+          <Provider store={store}>
+            <ApolloProvider client={client}>
+              <StaticRouter location={url} context={context}>
+                <App />
+              </StaticRouter>
+            </ApolloProvider>
+          </Provider>
+        </StyleSheetManager>
+      </HelmetProvider>
     </ChunkExtractorManager>
   );
   try {
@@ -100,7 +104,7 @@ async function serverRender({ url }: ServerRenderParams) {
       reduxState={store.getState()}
       styledElement={styledElement}
       extractor={extractor}
-      // helmet={helmetContext.helmet}
+      helmet={helmetContext.helmet}
     />
   );
 
