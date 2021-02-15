@@ -1,12 +1,12 @@
 import { useQuery } from '@apollo/client';
 import * as React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { GET_POSTS, PostType } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import media, { mediaQuery } from '../../lib/styles/media';
-import { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import PostCard from './PostCard';
 import PostsSkelleton from './PostsSkelleton';
@@ -39,6 +39,32 @@ function Posts(props: PostsProps) {
 
   return (
     <Block darkmode={darkmode}>
+      <Helmet>
+        <title>{`${tag ? `${tag} - ` : ''}DevLog`}</title>
+        <meta
+          name="description"
+          content={`${data?.posts
+            .map((post) => post.post_header)
+            .slice(0, 20)
+            .join()}...`}
+        />
+        <meta
+          property="og:description"
+          content={tag ? `${tag}에 관한 글목록` : ''}
+        />
+        <meta
+          property="og:url"
+          content={`${process.env.REACT_APP_SERVICE_URL}${
+            tag ? `/posts/${tag}` : ''
+          }`}
+        />
+        <link
+          rel="canonical"
+          href={`${process.env.REACT_APP_SERVICE_URL}${
+            tag ? `/posts/${tag}` : ''
+          }`}
+        />
+      </Helmet>
       {tag && <h3>#{tag}</h3>}
       <GridBlock>
         {data?.posts.map((post) => (
@@ -59,14 +85,6 @@ const Block = styled.div<{ darkmode: boolean }>`
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
-  /* ${(props) =>
-    props.darkmode
-      ? css`
-          background: ${darkmodeBackground.main};
-        `
-      : css`
-          background: white;
-        `}; */
 `;
 
 const GridBlock = styled.div`

@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import * as React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { GET_POST, PostType } from '../../graphql/post';
@@ -15,6 +16,11 @@ import MarkdownRender from '../markdown/MarkdownRender';
 import DefaultTags from '../tag/DefaultTags';
 import PostSeries from './PostSeries';
 import PostSkelleton from './PostSkelleton';
+import unified from 'unified';
+import remarkParse from 'remark-parse';
+import remark2rehype from 'remark-rehype';
+import raw from 'rehype-raw';
+import stringify from 'rehype-stringify';
 
 type PostProps = {};
 
@@ -49,8 +55,45 @@ function Post(props: PostProps) {
     return null;
   }
 
+  const description = () =>
+    `${unified()
+      .use(remarkParse)
+      .use(remark2rehype, { allowDangerousHtml: false })
+      .use(raw)
+      .use(stringify)
+      .processSync(data.post.preview_description)
+      .toString()
+      .replace(/(<([^>]+)>)/gi, '')
+      .replace(/\n/gi, '')}...`;
+
+  const thumnail = data.post.thumnail
+    ? optimizeImage(data.post.thumnail, 800)
+    : `${process.env.REACT_APP_IMAGE_URL}/logo/devlog.png`;
+
   return (
     <MediaRatioWrapper type="column">
+      <Helmet>
+        <title>{data.post.post_header}</title>
+        <meta name="description" content={description()} />
+        <meta property="og:title" content={data.post.post_header} />
+        <meta property="og:description" content={description()} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={thumnail} />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="400" />
+        <meta
+          property="og:url"
+          content={`${process.env.REACT_APP_SERVICE_URL}/post/${data.post.url_slug}`}
+        />
+        <meta
+          name="google-site-verification"
+          content="cxSUqcooAfyS9ypQheVFaeT_mqAzuR_D8hjCLI5hP40"
+        />
+        <link
+          rel="canonical"
+          href={`${process.env.REACT_APP_SERVICE_URL}/post/${data.post.url_slug}`}
+        />
+      </Helmet>
       <PostHeader>{data.post.post_header}</PostHeader>
       <PostInfo>
         <div className="writer">John</div>

@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import { loadableReady } from '@loadable/component';
 import client from './graphql/client';
 import rootReducer from './modules';
+import { HelmetProvider } from 'react-helmet-async';
 
 const store = configureStore({
   reducer: rootReducer,
@@ -25,25 +26,29 @@ const store = configureStore({
 if (process.env.REACT_APP_NODE_ENV === 'production') {
   loadableReady(() => {
     ReactDOM.hydrate(
+      <HelmetProvider>
+        <Provider store={store}>
+          <ApolloProvider client={client}>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </ApolloProvider>
+        </Provider>
+      </HelmetProvider>,
+      document.getElementById('root'),
+    );
+  });
+} else {
+  ReactDOM.render(
+    <HelmetProvider>
       <Provider store={store}>
         <ApolloProvider client={client}>
           <BrowserRouter>
             <App />
           </BrowserRouter>
         </ApolloProvider>
-      </Provider>,
-      document.getElementById('root'),
-    );
-  });
-} else {
-  ReactDOM.render(
-    <Provider store={store}>
-      <ApolloProvider client={client}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ApolloProvider>
-    </Provider>,
+      </Provider>
+    </HelmetProvider>,
     document.getElementById('root'),
   );
 }

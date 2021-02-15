@@ -35,6 +35,7 @@ export const GET_POST = gql`
       url_slug
       released_at
       tags
+      preview_description
       series_posts {
         series_id
         series_name

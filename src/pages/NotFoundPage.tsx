@@ -8,6 +8,7 @@ import Button from '../components/common/Button';
 import zIndexes from '../lib/styles/zIndexes';
 import { RootState } from '../modules';
 import NotFoundImage from '../img/components/error/NotFoundErrorImage';
+import { Helmet } from 'react-helmet-async';
 
 type NotFoundPageProps = {};
 
@@ -24,6 +25,10 @@ function NotFoundPage(props: NotFoundPageProps) {
   }, [history, dispatch]);
   return (
     <Block darkmode={darkmode}>
+      <Helmet>
+        <title>NOT_FOUND - DevLog</title>
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <NotFoundImage />
       <h3>{errorMessageMap.get(ErrorEnum.NOT_FOUND)}</h3>
       <Button color="indigo" onClick={onClick}>

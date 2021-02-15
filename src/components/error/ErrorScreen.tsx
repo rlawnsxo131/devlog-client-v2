@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
@@ -56,6 +57,10 @@ function ErrorScreen({ errorType, handleResolveError }: ErrorScreenProps) {
 
   return (
     <Block darkmode={darkmode}>
+      <Helmet>
+        <title>{`${errorType} - DevLog`}</title>
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <ErrorImageReturner errorType={errorType} />
       <h3>{errorMessageMap.get(errorType)}</h3>
       <Button color="indigo" onClick={onClick}>

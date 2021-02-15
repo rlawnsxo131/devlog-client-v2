@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MediaRatioWrapper from '../components/layout/MediaRatioWrapper';
@@ -13,6 +14,29 @@ function InfoPage(props: InfoPageProps) {
   );
   return (
     <MediaRatioWrapper type="column">
+      <Helmet>
+        <title>소개 - DevLog</title>
+        <meta
+          name="description"
+          content="판교에 있는 한 스타트업에서 웹/앱의 서버와 웹 프론트엔드 개발을하고있습니다..."
+        />
+        <meta property="og:title" content="DevLog" />
+        <meta property="og:description" content="소개 - DevLog" />
+        <meta
+          property="og:image"
+          content={`${process.env.REACT_APP_IMAGE_URL}/logo/devlog.png`}
+        />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="400" />
+        <meta
+          property="og:url"
+          content={`${process.env.REACT_APP_SERVICE_URL}/info`}
+        />
+        <link
+          rel="canonical"
+          href={`${process.env.REACT_APP_SERVICE_URL}/info`}
+        />
+      </Helmet>
       <Boundary darkmode={darkmode}>
         <Title>Personal Development blog by John</Title>
         <Description>
