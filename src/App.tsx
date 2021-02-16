@@ -42,10 +42,6 @@ function App(props: AppProps) {
           property="og:url"
           content={`${process.env.REACT_APP_SERVICE_URL}`}
         />
-        <meta
-          name="google-site-verification"
-          content="cxSUqcooAfyS9ypQheVFaeT_mqAzuR_D8hjCLI5hP40"
-        />
         <link rel="canonical" href={`${process.env.REACT_APP_SERVICE_URL}`} />
       </Helmet>
       <BaseEffect>
