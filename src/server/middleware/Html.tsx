@@ -4,19 +4,19 @@ import { HelmetData } from 'react-helmet-async';
 
 type HtmlProps = {
   content: string;
-  styledElement: React.ReactNode; // styled-components
-  extractor: ChunkExtractor;
   apolloState: any;
   reduxState: any;
+  extractor: ChunkExtractor;
+  styledElement: React.ReactNode; // styled-components
   helmet: HelmetData;
 };
 
 function Html({
   content,
-  styledElement,
-  extractor,
   apolloState,
   reduxState,
+  extractor,
+  styledElement,
   helmet,
 }: HtmlProps) {
   return (
@@ -38,6 +38,7 @@ function Html({
           />
         ))} */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* Global Site Tag (gtag.js) - Google Analytics */}
         <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-H9C41MYXQ5"

@@ -102,8 +102,8 @@ async function serverRender({ url }: ServerRenderParams) {
       content={content}
       apolloState={initialState}
       reduxState={store.getState()}
-      styledElement={styledElement}
       extractor={extractor}
+      styledElement={styledElement}
       helmet={helmetContext.helmet}
     />
   );

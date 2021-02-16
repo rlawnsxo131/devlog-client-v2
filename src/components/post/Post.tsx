@@ -79,8 +79,6 @@ function Post(props: PostProps) {
         <meta property="og:description" content={description()} />
         <meta property="og:type" content="article" />
         <meta property="og:image" content={thumnail} />
-        <meta property="og:image:width" content="800" />
-        <meta property="og:image:height" content="400" />
         <meta
           property="og:url"
           content={`${process.env.REACT_APP_SERVICE_URL}/post/${data.post.url_slug}`}

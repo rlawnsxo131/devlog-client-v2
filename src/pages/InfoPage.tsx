@@ -26,8 +26,6 @@ function InfoPage(props: InfoPageProps) {
           property="og:image"
           content={`${process.env.REACT_APP_IMAGE_URL}/logo/devlog.png`}
         />
-        <meta property="og:image:width" content="800" />
-        <meta property="og:image:height" content="400" />
         <meta
           property="og:url"
           content={`${process.env.REACT_APP_SERVICE_URL}/info`}

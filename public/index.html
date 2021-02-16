@@ -5,6 +5,16 @@
     <link rel="manifest" href="<%= env.REACT_APP_PUBLIC_URL %>asset-manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="shortcut icon" href="<%= env.REACT_APP_PUBLIC_URL %>src/static/favicons/favicon-16x16.png"> -->
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H9C41MYXQ5"/>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());        
+        gtag('config', 'G-H9C41MYXQ5', {
+        page_path: window.location.pathname,
+        });
+    </script>
     <title><%= env.REACT_APP_NODE_ENV %></title>
 </head>
 <body>
