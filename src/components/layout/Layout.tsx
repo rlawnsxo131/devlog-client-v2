@@ -118,7 +118,7 @@ const GlobalStyle = createGlobalStyle<{ darkmode: boolean }>`
             color: ${palette.gray3};
           }
           div,
-          span,
+          span:not(.token),
           p {
             color: ${palette.gray5};
           }
@@ -134,7 +134,7 @@ const GlobalStyle = createGlobalStyle<{ darkmode: boolean }>`
           h5,
           h6,
           div,
-          span,
+          span:not(.token),
           p,
           a {
             color: ${palette.gray9};

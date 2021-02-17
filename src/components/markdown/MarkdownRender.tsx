@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import unified from 'unified';
 import remarkParse from 'remark-parse';
 import sanitize from 'sanitize-html';
@@ -91,7 +91,7 @@ function filter(html: string) {
 }
 
 type MarkdownRenderProps = {
-  markdownText?: string;
+  markdownText: string;
 };
 
 const { useState, useEffect, memo } = React;
@@ -99,8 +99,9 @@ function MarkdownRender({ markdownText }: MarkdownRenderProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
+
   const [html, setHtml] = useState(
-    ssrEnabled && markdownText
+    ssrEnabled
       ? filter(
           unified()
             .use(breaks)
@@ -118,7 +119,7 @@ function MarkdownRender({ markdownText }: MarkdownRenderProps) {
   );
 
   useEffect(() => {
-    if (!markdownText || ssrEnabled) return;
+    if (ssrEnabled) return;
     setHtml(
       filter(
         unified()
@@ -237,6 +238,11 @@ const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
 
   li::marker {
     font-weight: bold;
+    ${(props) =>
+      props.darkmode &&
+      css`
+        color: ${palette.gray0};
+      `};
   }
 
   iframe {

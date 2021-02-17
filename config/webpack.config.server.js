@@ -2,6 +2,7 @@ const paths = require('./paths');
 const initializeConfig = require('./env');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = () => {
   const env = initializeConfig({ target: 'server' });
@@ -54,6 +55,18 @@ module.exports = () => {
             name: 'static/[name].[contenthash:8].[ext]',
             limit: 10000,
           },
+        },
+        {
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
         },
       ],
     },
