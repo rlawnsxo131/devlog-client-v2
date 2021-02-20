@@ -1,11 +1,10 @@
-import * as React from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 
 type CommentCardBodyProps = {
   comment: string;
 };
 
-const { memo } = React;
 function CommentCardBody({ comment }: CommentCardBodyProps) {
   return <Block>{comment}</Block>;
 }

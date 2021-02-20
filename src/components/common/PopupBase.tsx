@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
@@ -11,7 +11,6 @@ type PopupBaseProps = {
   visible: boolean;
 };
 
-const { useState, useEffect, memo } = React;
 function PopupBase({ children, visible }: PopupBaseProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,

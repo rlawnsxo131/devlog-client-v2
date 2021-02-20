@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 import media from '../../lib/styles/media';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
@@ -18,7 +18,6 @@ type CommentEditModalProps = {
   handleSetVisible: () => void;
 };
 
-const { memo } = React;
 function CommentEditModal({
   visible,
   writer,

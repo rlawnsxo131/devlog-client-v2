@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 type PhotoIconProps = {
   fill?: string;
 };

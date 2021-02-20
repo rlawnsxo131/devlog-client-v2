@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import styled, { css } from 'styled-components';
 import media from '../../lib/styles/media';
 import { buttonColorMap } from '../../lib/styles/palette';
@@ -15,7 +15,6 @@ type ButtonProps = {
   children: React.ReactNode;
 };
 
-const { memo } = React;
 function Button({
   name,
   value,

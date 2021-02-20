@@ -1,4 +1,3 @@
-import * as React from 'react';
 import CountTags from '../components/tag/CountTags';
 
 type TagsPageProps = {};

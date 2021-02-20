@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 type NotFoundImageProps = {};
 
 function NotFoundImage(props: NotFoundImageProps) {

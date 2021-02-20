@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import media from '../../lib/styles/media';

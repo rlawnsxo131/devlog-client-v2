@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 type MenuIconProps = {
   fill: string;
   height: number;

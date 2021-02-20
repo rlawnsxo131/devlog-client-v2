@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { PostType } from '../../graphql/post';
@@ -18,7 +18,6 @@ type PostCardProps = {
   post: PostType;
 };
 
-const { useMemo, memo } = React;
 function PostCard({ post }: PostCardProps) {
   const { tag } = useParams<{ tag?: string }>();
   const darkmode = useSelector(
@@ -50,7 +49,7 @@ function PostCard({ post }: PostCardProps) {
         </Link>
       </Thumnail>
       <Content>
-        <Link to={`/post/${post.url_slug}`}>
+        <Link to={`/post/${post.url_slug}`} style={{ padding: '1rem' }}>
           <Title>{post.post_header}</Title>
           <PreviewDescription>{previewDescription}</PreviewDescription>
         </Link>
@@ -120,7 +119,6 @@ const Content = styled.div`
   flex: 1 1 0%;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
 `;
 
 const Title = styled.h4`

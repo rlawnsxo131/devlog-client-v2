@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 type BadRequestImageProps = {};
 
 function BadRequestImage(props: BadRequestImageProps) {

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Post from '../components/post/Post';
 
 type PostPageProps = {};

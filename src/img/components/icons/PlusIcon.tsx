@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 type PlusIconProps = {
   fill?: string;
   width?: number;

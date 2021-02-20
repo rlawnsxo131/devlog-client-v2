@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
@@ -13,7 +13,6 @@ type InputProps = {
   inputRef?: React.MutableRefObject<HTMLInputElement | null>;
 };
 
-const { memo } = React;
 function Input({
   type,
   name,

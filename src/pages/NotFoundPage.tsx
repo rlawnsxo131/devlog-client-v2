@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled, { css } from 'styled-components';
@@ -9,10 +8,10 @@ import zIndexes from '../lib/styles/zIndexes';
 import { RootState } from '../modules';
 import NotFoundImage from '../img/components/error/NotFoundErrorImage';
 import { Helmet } from 'react-helmet-async';
+import { useCallback } from 'react';
 
 type NotFoundPageProps = {};
 
-const { useCallback } = React;
 function NotFoundPage(props: NotFoundPageProps) {
   const history = useHistory();
   const dispatch = useDispatch();

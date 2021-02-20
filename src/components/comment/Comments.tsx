@@ -1,5 +1,5 @@
+import { memo, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import * as React from 'react';
 import styled from 'styled-components';
 import { CommentType, GET_COMMENTS } from '../../graphql/comment';
 import useError from '../../lib/hooks/useError';
@@ -12,7 +12,6 @@ type CommentsProps = {
   post_id: number;
 };
 
-const { useEffect, memo } = React;
 function Comments({ post_id }: CommentsProps) {
   const [handleError] = useError();
   const { loading, error, data } = useQuery<{

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
@@ -10,7 +10,6 @@ type PostSeriesProps = {
   series: Array<SeriesPostType>;
 };
 
-const { useMemo, memo } = React;
 function PostSeries({ series }: PostSeriesProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,

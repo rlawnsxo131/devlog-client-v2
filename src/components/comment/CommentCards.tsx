@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 import { CommentType } from '../../graphql/comment';
 import CommentCard from './CommentCard';
@@ -27,7 +27,6 @@ function getFullCounts(replies?: Array<CommentType>) {
   return fullCounts;
 }
 
-const { memo } = React;
 function CommentCards({ replies }: CommentCardsProps) {
   const fullCounts = getFullCounts(replies);
   return (

@@ -1,5 +1,5 @@
 // deprecated
-import * as React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { throttle } from 'throttle-debounce';
@@ -9,7 +9,6 @@ import zIndexes from '../../lib/styles/zIndexes';
 type MobileNavigationProps = {};
 type ScrollDirectionType = 'UP' | 'DOWN';
 
-const { useRef, useState, useCallback, useEffect } = React;
 function MobileNavigation(props: MobileNavigationProps) {
   const prevScroll = useRef<number>(0);
   const [scrollDirection, setScrollDirection] = useState<

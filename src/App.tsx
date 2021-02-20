@@ -1,4 +1,3 @@
-import * as React from 'react';
 import loadable from '@loadable/component';
 import { Switch, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';

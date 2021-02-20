@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 type MinusIconProps = {
   fill?: string;
   width?: number;

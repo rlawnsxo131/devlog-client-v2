@@ -1,5 +1,5 @@
+import { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { GET_SERIES, SeriesType } from '../../graphql/series';
 import useError from '../../lib/hooks/useError';
@@ -8,7 +8,6 @@ import SeriesItem from './SeriesItem';
 
 type SeriesProps = {};
 
-const { useEffect } = React;
 function Series(props: SeriesProps) {
   const [handleError] = useError();
   const { loading, error, data } = useQuery<{ series: Array<SeriesType> }>(

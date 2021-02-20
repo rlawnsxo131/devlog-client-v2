@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Series from '../components/series/Series';
 
 type SeriesPageProps = {};

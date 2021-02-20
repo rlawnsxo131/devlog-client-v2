@@ -1,4 +1,3 @@
-import * as React from 'react';
 import path from 'path';
 import fetch from 'node-fetch';
 import ReactDOMServer from 'react-dom/server';

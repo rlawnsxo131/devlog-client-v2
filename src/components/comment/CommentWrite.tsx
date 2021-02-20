@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import styled, { css } from 'styled-components';
 import palette, {
   commentColor,
@@ -14,7 +14,6 @@ type CommentWriteProps = {
   handleShowCommentWrite?: () => void;
 };
 
-const { memo } = React;
 function CommentWrite({
   post_id,
   reply_comment_id,

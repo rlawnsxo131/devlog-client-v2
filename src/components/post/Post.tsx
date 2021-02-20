@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client';
-import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -8,7 +7,6 @@ import useError from '../../lib/hooks/useError';
 import useNotFound from '../../lib/hooks/useNotFound';
 import optimizeImage from '../../lib/optimizeImage';
 import media from '../../lib/styles/media';
-import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
 import Comments from '../comment/Comments';
 import MediaRatioWrapper from '../layout/MediaRatioWrapper';
@@ -21,10 +19,11 @@ import remarkParse from 'remark-parse';
 import remark2rehype from 'remark-rehype';
 import raw from 'rehype-raw';
 import stringify from 'rehype-stringify';
+import PostToc from './PostToc';
+import { useEffect } from 'react';
 
 type PostProps = {};
 
-const { useEffect } = React;
 function Post(props: PostProps) {
   const [setNotFound] = useNotFound();
   const [handleError] = useError();
@@ -92,7 +91,7 @@ function Post(props: PostProps) {
       <PostInfo>
         <div className="writer">John</div>
         <span className="separator">&middot;</span>
-        <ReleasedAt>{formatDate(data.post.released_at)}</ReleasedAt>
+        <p>{formatDate(data.post.released_at)}</p>
       </PostInfo>
       <Tags>
         <DefaultTags tags={data.post.tags} />
@@ -108,6 +107,7 @@ function Post(props: PostProps) {
       <MarkdownRender markdownText={data.post.post_body} />
       <PostSeries series={data.post.series_posts} />
       <Comments post_id={data.post.id} />
+      <PostToc />
     </MediaRatioWrapper>
   );
 }
@@ -143,11 +143,6 @@ const PostInfo = styled.div`
   ${media.small} {
     font-size: 1.125rem;
   }
-`;
-
-const ReleasedAt = styled.div`
-  display: flex;
-  color: ${palette.gray7};
 `;
 
 const Tags = styled.div`

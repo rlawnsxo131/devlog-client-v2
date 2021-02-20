@@ -1,4 +1,3 @@
-import * as React from 'react';
 import useDarkmode from '../../lib/hooks/useDarkmode';
 
 type BaseEffectProps = {

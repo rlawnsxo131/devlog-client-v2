@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -18,8 +18,6 @@ type ErrorScreenProps = {
   handleResolveError: () => void;
 };
 
-const { useCallback } = React;
-
 function ErrorImageReturner({ errorType }: { errorType: ErrorEnum }) {
   if (errorType === ErrorEnum.NOT_FOUND) return <NotFoundErrorImage />;
   if (errorType === ErrorEnum.UNKNOWN) return <UnknownErrorImage />;
@@ -29,7 +27,6 @@ function ErrorImageReturner({ errorType }: { errorType: ErrorEnum }) {
   return <UnknownErrorImage />;
 }
 
-const { useEffect } = React;
 function ErrorScreen({ errorType, handleResolveError }: ErrorScreenProps) {
   const history = useHistory();
   const dispatch = useDispatch();

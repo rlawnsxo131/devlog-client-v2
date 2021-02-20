@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 import transitions from '../../lib/styles/transitions';
@@ -7,7 +7,6 @@ import useToggle from './hooks/useToggle';
 
 type DarkmodeToggleProps = {};
 
-const { memo } = React;
 function DarkmodeToggle(props: DarkmodeToggleProps) {
   const { visible, darkmode, onToggle } = useToggle();
   return (

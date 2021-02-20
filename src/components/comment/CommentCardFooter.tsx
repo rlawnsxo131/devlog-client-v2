@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { CommentType } from '../../graphql/comment';
@@ -7,6 +6,7 @@ import Button from '../common/Button';
 import CommentWrite from './CommentWrite';
 import PlusIcon from '../../img/components/icons/PlusIcon';
 import MinusIcon from '../../img/components/icons/MinusIcon';
+import { memo, useCallback, useEffect, useState } from 'react';
 
 type CommentCardFooterProps = {
   post_id: number;
@@ -18,7 +18,6 @@ type CommentCardFooterProps = {
   fullCount?: number;
 };
 
-const { useState, useCallback, useEffect, memo } = React;
 function CommentCardFooter({
   post_id,
   reply_id,

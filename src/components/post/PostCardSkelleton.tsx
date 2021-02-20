@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';

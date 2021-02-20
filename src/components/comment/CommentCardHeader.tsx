@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
@@ -11,7 +11,6 @@ type CommentCardHeaderProps = {
   handleSetVisible: () => void;
 };
 
-const { memo } = React;
 function CommentCardHeader({
   writer,
   deleted,

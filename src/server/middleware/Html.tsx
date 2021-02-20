@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ChunkExtractor } from '@loadable/server';
 import { HelmetData } from 'react-helmet-async';
 

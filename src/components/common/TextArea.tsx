@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
@@ -11,7 +11,6 @@ type TextAreaProps = {
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-const { memo } = React;
 function TextArea({ name, value, placeholder, onChange }: TextAreaProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,

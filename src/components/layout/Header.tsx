@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
@@ -11,7 +11,6 @@ import DarkmodeToggle from '../common/DarkmodeToggle';
 
 type HeaderProps = {};
 
-const { useState, useMemo, useCallback, useEffect, memo } = React;
 function Header(props: HeaderProps) {
   const { pathname } = useLocation();
   const darkmode = useSelector(

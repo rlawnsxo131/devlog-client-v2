@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 import styled from 'styled-components';
 import DefaultTag from './DefaultTag';
 
@@ -6,7 +6,6 @@ type DefaultTagsProps = {
   tags: Array<string>;
 };
 
-const { memo } = React;
 function DefaultTags({ tags }: DefaultTagsProps) {
   if (!tags.length) return null;
   return (

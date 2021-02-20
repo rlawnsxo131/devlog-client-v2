@@ -18,7 +18,6 @@
 	"TypescriptReactFunctionComponent": {
 		"prefix": "fc",
 		"body": [
-			"import * as React from 'react';",
 			"import styled from 'styled-components';",
 			"",
 			"type ${TM_FILENAME_BASE}Props = {};",

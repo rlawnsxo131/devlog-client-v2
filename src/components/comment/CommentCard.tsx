@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { CommentType } from '../../graphql/comment';
@@ -14,7 +14,6 @@ type CommentCardProps = {
   fullCount?: number;
 };
 
-const { useState, useCallback, memo } = React;
 function CommentCard({ reply, fullCount }: CommentCardProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 type UnknownErrorImageProps = {};
 
 function UnknownErrorImage(props: UnknownErrorImageProps) {

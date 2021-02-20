@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled, { css } from 'styled-components';
 import unified from 'unified';
 import remarkParse from 'remark-parse';
@@ -16,6 +15,7 @@ import prismThemes from '../../lib/styles/prismThem';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import media from '../../lib/styles/media';
+import { memo, useEffect, useMemo, useState } from 'react';
 
 function filter(html: string) {
   return sanitize(html, {
@@ -94,11 +94,13 @@ type MarkdownRenderProps = {
   markdownText: string;
 };
 
-const { useState, useEffect, memo } = React;
 function MarkdownRender({ markdownText }: MarkdownRenderProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
+  const them = useMemo(() => {
+    return darkmode ? 'atom-one-dark' : 'atom-one-light';
+  }, [darkmode]);
 
   const [html, setHtml] = useState(
     ssrEnabled
@@ -119,28 +121,29 @@ function MarkdownRender({ markdownText }: MarkdownRenderProps) {
   );
 
   useEffect(() => {
-    if (ssrEnabled) return;
-    setHtml(
-      filter(
-        unified()
-          .use(breaks)
-          .use(remarkParse)
-          .use(slug)
-          .use(prismPlugin)
-          .use(embedPlugin)
-          .use(remark2rehype, { allowDangerousHtml: true })
-          .use(raw)
-          .use(stringify)
-          .processSync(markdownText)
-          .toString(),
-      ),
-    );
+    if (ssrEnabled || !markdownText) return;
+    unified()
+      .use(breaks)
+      .use(stringify)
+      .use(remarkParse)
+      .use(slug)
+      .use(prismPlugin)
+      .use(embedPlugin)
+      .use(remark2rehype, { allowDangerousHtml: true })
+      .use(raw)
+      .process(markdownText, (err: any, file: any) => {
+        if (err) {
+          return alert(`마크다운 파싱 에러: ${err}`);
+        }
+        const html = String(file);
+        setHtml(filter(html));
+      });
   }, [markdownText]);
 
   return (
     <MarkdownRenderBlock
       dangerouslySetInnerHTML={{ __html: html }}
-      className={darkmode ? 'atom-one-dark' : 'atom-one-light'}
+      className={them}
       darkmode={darkmode}
     />
   );

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import * as React from 'react';
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -13,7 +13,6 @@ import PostsSkelleton from './PostsSkelleton';
 
 type PostsProps = {};
 
-const { useEffect } = React;
 function Posts(props: PostsProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
