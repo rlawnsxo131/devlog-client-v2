@@ -41,7 +41,7 @@ function InfoPage(props: InfoPageProps) {
           {'\n'}
           판교에 있는 한 스타트업에서 웹/앱의 서버와 웹 프론트엔드 개발을하고
           있습니다.{'\n'}
-          새로운걸 이것저것 해보고 싶은 개발자 입니다.
+          Serverless 및 Micro FrontEnd 방식의 architecture 를 선호합니다.
         </Description>
         <InfoLink href="mailto:public.juntae.kim@gmail.com" target="_blank">
           public.juntae.kim@gmail.com
@@ -68,6 +68,7 @@ function InfoPage(props: InfoPageProps) {
               <li>Loadable-Component</li>
               <li>Remark</li>
               <li>Styled-Components</li>
+              <li>Koa</li>
             </ul>
           </li>
           <li>
@@ -132,7 +133,7 @@ const Description = styled.pre`
   flex-flow: row wrap;
   line-height: 1.5;
   white-space: pre-wrap;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 `;
 
 const InfoLink = styled.a`

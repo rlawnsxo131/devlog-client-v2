@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 
 module.exports = () => {
@@ -37,20 +38,18 @@ module.exports = () => {
           ],
         },
         {
-          test: /\.(bmp|gif|png|jpe?g|svg)$/i,
+          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
           loader: 'file-loader',
           options: {
-            outputPath: 'static/media',
-            name: '[name].[contenthash:8].[ext]',
+            name: 'static/media/[name].[contenthash:8].[ext]',
             esModule: false,
           },
         },
         {
-          test: /\.(bmp|gif|png|jpe?g|svg)$/i,
+          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
           loader: 'url-loader',
           options: {
-            outputPath: 'static/media',
-            name: '[name].[contenthash:8].[ext]',
+            name: 'static/media/[name].[contenthash:8].[ext]',
             limit: 10000,
           },
         },
@@ -91,11 +90,14 @@ module.exports = () => {
         template: path.resolve(paths.publicPath, 'index.html'),
         templateParameters: {
           env: {
-            REACT_APP_NODE_ENV,
-            REACT_APP_PUBLIC_URL,
+            REACT_APP_PUBLIC_URL: '',
           },
         },
         filename: 'index.html',
+      }),
+      new FaviconsWebpackPlugin({
+        logo: path.resolve(paths.rootPath, 'static/favicons/favicon-96x96.png'),
+        inject: true,
       }),
       new MiniCssExtractPlugin({
         filename: 'static/css/[name].[contenthash:8].css',

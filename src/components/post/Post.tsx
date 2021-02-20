@@ -89,7 +89,7 @@ function Post(props: PostProps) {
       </Helmet>
       <PostHeader>{data.post.post_header}</PostHeader>
       <PostInfo>
-        <div className="writer">John</div>
+        <div className="writer">By John</div>
         <span className="separator">&middot;</span>
         <p>{formatDate(data.post.released_at)}</p>
       </PostInfo>

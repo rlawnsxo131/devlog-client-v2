@@ -48,7 +48,7 @@ const ToggleBlock = styled.div`
     left: 5%;
   }
   .toggle-sun {
-    right: 12%;
+    left: 56%;
   }
 `;
 

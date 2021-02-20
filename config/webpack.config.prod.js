@@ -7,6 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 //   .BundleAnalyzerPlugin;
@@ -41,20 +42,18 @@ module.exports = () => {
           ],
         },
         {
-          test: /\.(bmp|gif|png|jpe?g|svg)$/i,
+          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
           loader: 'file-loader',
           options: {
-            outputPath: 'media',
-            name: 'static/[name].[contenthash:8].[ext]',
+            name: 'static/media/[name].[contenthash:8].[ext]',
             esModule: false,
           },
         },
         {
-          test: /\.(bmp|gif|png|jpe?g|svg)$/i,
+          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
           loader: 'url-loader',
           options: {
-            outputPath: 'media',
-            name: 'static/[name].[contenthash:8].[ext]',
+            name: 'static/media/[name].[contenthash:8].[ext]',
             limit: 10000,
           },
         },
@@ -95,7 +94,9 @@ module.exports = () => {
         filename: 'index.html',
         template: path.resolve(paths.publicPath, 'index.html'),
         templateParameters: {
-          env: REACT_APP_NODE_ENV,
+          env: {
+            REACT_APP_PUBLIC_URL: REACT_APP_PUBLIC_URL,
+          },
         },
         minify: {
           removeComments: true,
@@ -109,6 +110,10 @@ module.exports = () => {
           minifyCSS: true,
           minifyURLs: true,
         },
+      }),
+      new FaviconsWebpackPlugin({
+        logo: path.resolve(paths.rootPath, 'static/favicons/favicon-96x96.png'),
+        inject: true,
       }),
       new MiniCssExtractPlugin({
         filename: 'static/css/[name].[contenthash:8].css',

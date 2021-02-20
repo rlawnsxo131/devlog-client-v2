@@ -39,20 +39,18 @@ module.exports = () => {
           ],
         },
         {
-          test: /\.(bmp|gif|png|jpe?g|svg)$/i,
+          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
           loader: 'file-loader',
           options: {
-            outputPath: 'media',
-            name: 'static/[name].[contenthash:8].[ext]',
+            name: 'static/media/[name].[contenthash:8].[ext]',
             esModule: false,
           },
         },
         {
-          test: /\.(bmp|gif|png|jpe?g|svg)$/i,
+          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
           loader: 'url-loader',
           options: {
-            outputPath: 'media',
-            name: 'static/[name].[contenthash:8].[ext]',
+            name: 'static/media/[name].[contenthash:8].[ext]',
             limit: 10000,
           },
         },

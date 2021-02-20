@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
@@ -10,6 +11,7 @@ type Headings = Array<{
   height: number;
 }>;
 function PostToc(props: PostTocProps) {
+  const { pathname } = useLocation();
   const [toc, setToc] = useState<Headings | null>(null);
   const [currentTocId, setCurrentTocId] = useState(0);
   const parseHeadings = useCallback(() => {
@@ -25,7 +27,7 @@ function PostToc(props: PostTocProps) {
       }
     });
     return headings;
-  }, []);
+  }, [pathname]);
   const onTocClick = useCallback((e) => {
     const { value } = e.target;
     setCurrentTocId(parseFloat(value));
@@ -36,13 +38,13 @@ function PostToc(props: PostTocProps) {
     const timeoutId: NodeJS.Timeout = setTimeout(() => {
       const headings = parseHeadings();
       setToc(headings);
-    }, 0);
+    }, 50);
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <Block>
@@ -66,7 +68,7 @@ const Block = styled.div`
   ${mediaQuery(1300)} {
     position: fixed;
     top: 10rem;
-    right: 2.25vw;
+    right: 0;
     width: 13rem;
     max-height: calc(100vh - 8rem);
     overflow-y: auto;
@@ -75,8 +77,11 @@ const Block = styled.div`
     padding: 1rem;
     border-left: 0.125rem solid ${palette.gray3};
   }
+  ${mediaQuery(1340)} {
+    right: 1vw;
+  }
   ${media.xlarge} {
-    right: 6vw;
+    right: 4vw;
   }
   ${mediaQuery(1500)} {
     right: 7vw;

@@ -36,7 +36,7 @@ function Header(props: HeaderProps) {
 
   useEffect(() => {
     if (!showMenu) return;
-    handleShowMenu();
+    setShowMenu(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -131,15 +131,13 @@ const Menu = styled.div<{ darkmode: boolean }>`
     ${(props) =>
       props.darkmode
         ? css`
-            color: ${palette.gray3};
-            box-shadow: 1px 1px 5px 2px ${palette.gray9};
+            box-shadow: 1px 1px 5px 2px black;
             &:hover {
               cursor: pointer;
               box-shadow: 1px 1px 10px 2px black;
             }
           `
         : css`
-            color: ${palette.gray9};
             box-shadow: 1px 1px 5px 2px ${palette.gray3};
             &:hover {
               cursor: pointer;
