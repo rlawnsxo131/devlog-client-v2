@@ -11,7 +11,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 const store = configureStore({
   reducer: rootReducer,
-  preloadedState: (window as any).__REDUX_STATE__,
+  preloadedState: (globalThis as any).__REDUX_STATE__,
   middleware: [
     ...getDefaultMiddleware({
       serializableCheck: {

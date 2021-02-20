@@ -23,11 +23,28 @@ function Header(props: HeaderProps) {
   const handleShowMenu = useCallback(() => {
     setShowMenu((state) => !state);
   }, []);
+  const onMenuOutSideClick = useCallback((e) => {
+    const menuClass = [/drop-menu-icon/g, /drop-menu-wrapper/g, /drop-menu/g];
+    const className = e.target.className;
+    const svgBaseVal = className.baseVal;
+    const valid = menuClass.some(
+      (regex) => regex.test(className) || regex.test(svgBaseVal),
+    );
+    if (valid) return;
+    setShowMenu(false);
+  }, []);
 
   useEffect(() => {
     if (!showMenu) return;
     handleShowMenu();
   }, [pathname]);
+
+  useEffect(() => {
+    globalThis.addEventListener('click', onMenuOutSideClick);
+    return () => {
+      globalThis.removeEventListener('click', onMenuOutSideClick);
+    };
+  }, []);
 
   return (
     <Block darkmode={darkmode}>
@@ -42,20 +59,21 @@ function Header(props: HeaderProps) {
             height={30}
             width={30}
             onClick={handleShowMenu}
+            className="drop-menu-icon"
           />
         </Menu>
         {showMenu && (
-          <DropdownMenu darkmode={darkmode}>
-            <Link className="menu" exact to="/">
+          <DropdownMenu className="drop-menu-wrapper" darkmode={darkmode}>
+            <Link className="drop-menu" exact to="/">
               새글
             </Link>
-            <Link className="menu" to="/series">
+            <Link className="drop-menu" to="/series">
               시리즈
             </Link>
-            <Link className="menu" to="/tags">
+            <Link className="drop-menu" to="/tags">
               태그
             </Link>
-            <Link className="menu" to="/info">
+            <Link className="drop-menu" to="/info">
               소개
             </Link>
           </DropdownMenu>
@@ -166,11 +184,11 @@ const Link = styled(NavLink)<{ shadowcolor?: string }>`
     font-weight: 600;
     font-size: 1.5rem;
   }
-  &.menu {
+  &.drop-menu {
     justify-content: space-around;
   }
   &.active {
-    &.menu {
+    &.drop-menu {
       font-weight: bold;
     }
   }
