@@ -63,12 +63,25 @@ function InfoPage(props: InfoPageProps) {
           <li>
             React
             <ul>
-              <li>Webpack</li>
-              <li>React-Router</li>
-              <li>Loadable-Component</li>
-              <li>Remark</li>
-              <li>Styled-Components</li>
-              <li>Koa</li>
+              <li>
+                v1
+                <ul>
+                  <li>Next.js</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                v2
+                <ul>
+                  <li>Webpack</li>
+                  <li>React-Router</li>
+                  <li>Loadable-Component</li>
+                  <li>Remark</li>
+                  <li>Styled-Components</li>
+                  <li>Koa</li>
+                </ul>
+              </li>
             </ul>
           </li>
           <li>
@@ -98,6 +111,12 @@ function InfoPage(props: InfoPageProps) {
           target="_blank"
         >
           devlog-server
+        </InfoLink>
+        <InfoLink
+          href="https://github.com/rlawnsxo131/devlog-client"
+          target="_blank"
+        >
+          devlog-client
         </InfoLink>
         <InfoLink
           href="https://github.com/rlawnsxo131/devlog-client-v2"

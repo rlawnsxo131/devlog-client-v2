@@ -11,5 +11,5 @@ export default function useError() {
     dispatch(setError({ errorType }));
   }, []);
 
-  return [handleError] as [typeof handleError];
+  return [handleError] as const;
 }

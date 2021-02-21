@@ -13,5 +13,5 @@ export default function useNotFound() {
     );
   }, []);
 
-  return [setNotFound] as [typeof setNotFound];
+  return [setNotFound] as const;
 }

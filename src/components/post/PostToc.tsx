@@ -14,6 +14,7 @@ function PostToc(props: PostTocProps) {
   const { pathname } = useLocation();
   const [toc, setToc] = useState<Headings | null>(null);
   const [currentTocId, setCurrentTocId] = useState(0);
+
   const parseHeadings = useCallback(() => {
     let headings: Headings = [];
     const nodes = document.querySelectorAll('div[class*=atom-] *');
@@ -28,6 +29,7 @@ function PostToc(props: PostTocProps) {
     });
     return headings;
   }, [pathname]);
+
   const onTocClick = useCallback((e) => {
     const { value } = e.target;
     setCurrentTocId(parseFloat(value));
@@ -38,7 +40,7 @@ function PostToc(props: PostTocProps) {
     const timeoutId: NodeJS.Timeout = setTimeout(() => {
       const headings = parseHeadings();
       setToc(headings);
-    }, 50);
+    }, 100);
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);

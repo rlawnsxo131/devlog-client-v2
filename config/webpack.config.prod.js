@@ -15,6 +15,7 @@ const LoadablePlugin = require('@loadable/webpack-plugin');
 module.exports = () => {
   const clientEnv = initializeConfig({ target: 'web' });
   const { PHASE, REACT_APP_NODE_ENV, REACT_APP_PUBLIC_URL } = process.env;
+  const prefix = PHASE === 'production' ? '/' : '';
   return {
     mode: REACT_APP_NODE_ENV,
     entry: paths.entryPath,
@@ -95,7 +96,8 @@ module.exports = () => {
         template: path.resolve(paths.publicPath, 'index.html'),
         templateParameters: {
           env: {
-            REACT_APP_PUBLIC_URL: REACT_APP_PUBLIC_URL,
+            REACT_APP_PUBLIC_URL:
+              PHASE === 'production' ? REACT_APP_PUBLIC_URL : prefix,
           },
         },
         minify: {
@@ -122,9 +124,7 @@ module.exports = () => {
       new webpack.DefinePlugin(clientEnv),
       new WebpackManifestPlugin({
         fileName: 'asset-manifest.json',
-        publicPath: `${REACT_APP_PUBLIC_URL}${
-          PHASE === 'production' ? '/' : ''
-        }`,
+        publicPath: `${REACT_APP_PUBLIC_URL}${prefix}`,
         generate: (seed, files, entrypoints) => {
           const manifestFiles = files.reduce((manifest, file) => {
             manifest[file.name] = file.path;
@@ -160,7 +160,6 @@ module.exports = () => {
       modules: true,
       version: true,
       publicPath: true,
-      warningsFilter: [/exceed/, /performance/],
       // excludeAssets: [/\.(map|txt|html|jpg|png)$/, /\.json$/],
     },
   };

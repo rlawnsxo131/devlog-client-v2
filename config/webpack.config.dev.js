@@ -148,7 +148,6 @@ module.exports = () => {
       modules: true,
       version: true,
       publicPath: true,
-      warningsFilter: [/exceed/, /performance/],
       // excludeAssets: [/\.(map|txt|html|jpg|png)$/, /\.json$/],
     },
   };

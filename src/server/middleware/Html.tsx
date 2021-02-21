@@ -1,5 +1,7 @@
 import { ChunkExtractor } from '@loadable/server';
 import { HelmetData } from 'react-helmet-async';
+import { Parser } from 'html-to-react';
+import replaceAssets from './replaceAssets';
 
 type HtmlProps = {
   content: string;
@@ -18,6 +20,8 @@ function Html({
   styledElement,
   helmet,
 }: HtmlProps) {
+  const assets = replaceAssets();
+  const assetsElements = new Parser().parse(assets);
   return (
     <html>
       <head>
@@ -28,14 +32,7 @@ function Html({
         {extractor.getLinkElements()}
         {extractor.getStyleElements()}
         {extractor.getLinkElements()}
-        {/* {favicons.map((favicon) => (
-          <link
-            key={favicon.path}
-            rel={favicon.rel}
-            sizes={favicon.sizes}
-            href={process.env.PUBLIC_URL.concat(favicon.path)}
-          />
-        ))} */}
+        {assetsElements}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="google-site-verification"
