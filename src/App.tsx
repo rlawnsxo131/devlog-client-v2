@@ -5,8 +5,6 @@ import BaseEffect from './components/base/BaseEffect';
 import ErrorBoundary from './components/error/ErrorBoundary';
 import Layout from './components/layout/Layout';
 import NotFoundPage from './pages/NotFoundPage';
-import palette from './lib/styles/palette';
-import styled from 'styled-components';
 
 const PostPage = loadable(
   () => import(/* webpackChunkName: "PostPage" */ './pages/PostPage'),
@@ -66,9 +64,6 @@ function App(props: AppProps) {
             <Route path="/post/:url_slug">
               <PostPage />
             </Route>
-            <Route path="/test">
-              <My />
-            </Route>
             <Route>
               <NotFoundPage />
             </Route>
@@ -78,29 +73,5 @@ function App(props: AppProps) {
     </ErrorBoundary>
   );
 }
-
-function My() {
-  return (
-    <Block>
-      <div>D</div>
-    </Block>
-  );
-}
-
-const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: ${palette.indigo5};
-  width: 300px;
-  height: 300px;
-  div {
-    color: white;
-    font-size: 350px;
-    margin-top: 55px;
-    /* height: 1rem; */
-  }
-`;
 
 export default App;
