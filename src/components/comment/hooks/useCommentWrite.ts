@@ -3,6 +3,8 @@ import { useCallback, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { CreateCommentType, CREATE_COMMENT } from '../../../graphql/comment';
 import useInputs from '../../../lib/hooks/useInputs';
+import useLoading from '../../../lib/hooks/useLoading';
+import useShowPopup from '../../../lib/hooks/useShowPopup';
 import { normalizedString } from '../../../lib/utils';
 import { RootState } from '../../../modules';
 
@@ -34,6 +36,8 @@ export default function useCommentWrite({
     (state: RootState) => state.core.darkmode.darkmode,
   );
   const passwordRef = useRef<null | HTMLInputElement>(null);
+  const [onShowPopup] = useShowPopup();
+  const [startLoading, endLoading] = useLoading();
   const [state, onChange, onReset] = useInputs({
     password: '',
     writer: '',
@@ -54,10 +58,14 @@ export default function useCommentWrite({
       normalizedString(value),
     );
     if (validate.length !== 3) {
-      alert('작성자, 비밀번호, 댓글은 필수 입력 사항 입니다.');
+      onShowPopup({
+        title: '입력 항목을 확인해 주세요',
+        message: '작성자, 비밀번호, 댓글은 필수 입력 사항 입니다.',
+      });
       return;
     }
     try {
+      startLoading();
       await CreateComment({
         variables: {
           post_id,
@@ -67,7 +75,11 @@ export default function useCommentWrite({
           comment,
         },
       });
-      alert('성공');
+      endLoading();
+      onShowPopup({
+        title: '댓글 작성완료',
+        message: '댓글 작성이 완료 되었습니다.',
+      });
       onReset();
       if (passwordRef.current) {
         passwordRef.current.value = '';
@@ -76,7 +88,11 @@ export default function useCommentWrite({
         handleShowCommentWrite();
       }
     } catch (e) {
-      alert('작성 실패');
+      endLoading();
+      onShowPopup({
+        title: '댓글 작성실패',
+        message: 'github 또는 email 로 에러제보 부탁드려요.',
+      });
     }
   }, [state, post_id, reply_comment_id]);
 

@@ -90,6 +90,15 @@ const shining = keyframes`
   }
 `;
 
+const rotation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
 const transitions = {
   slideLeft,
   slideRight,
@@ -99,6 +108,7 @@ const transitions = {
   popOutToBottom,
   shake,
   shining,
+  rotation,
 };
 
 export default transitions;

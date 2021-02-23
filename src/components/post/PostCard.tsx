@@ -5,14 +5,10 @@ import { PostType } from '../../graphql/post';
 import optimizeImage from '../../lib/optimizeImage';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
-import unified from 'unified';
-import remarkParse from 'remark-parse';
-import remark2rehype from 'remark-rehype';
-import raw from 'rehype-raw';
-import stringify from 'rehype-stringify';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import PhotoIcon from '../../img/components/icons/PhotoIcon';
+import markdownParser from '../../lib/remark/markdownParser';
 
 type PostCardProps = {
   post: PostType;
@@ -24,17 +20,10 @@ function PostCard({ post }: PostCardProps) {
     (state: RootState) => state.core.darkmode.darkmode,
   );
   const previewDescription = useMemo(() => {
-    return unified()
-      .use(remarkParse)
-      .use(remark2rehype, { allowDangerousHtml: false })
-      .use(raw)
-      .use(stringify)
-      .processSync(post.preview_description)
-      .toString()
-      .replace(/(<([^>]+)>)/gi, '');
+    return markdownParser(post.preview_description);
   }, [post.preview_description]);
   const previewTags = useMemo(() => {
-    return tag ? post.tags.filter((v) => v === tag) : post.tags.slice(0, 1);
+    return tag ? post.tags.filter((v) => v === tag) : post.tags.slice(0, 2);
   }, [tag, post.tags]);
 
   return (

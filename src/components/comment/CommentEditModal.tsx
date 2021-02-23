@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import styled from 'styled-components';
 import media from '../../lib/styles/media';
-import palette, { darkmodeBackground } from '../../lib/styles/palette';
+import palette from '../../lib/styles/palette';
 import transitions from '../../lib/styles/transitions';
 import { commentErrorMessagMap } from '../../modules/comment';
 import Button from '../common/Button';
@@ -42,7 +42,12 @@ function CommentEditModal({
   return (
     <PopupBase visible={visible}>
       <Block darkmode={darkmode}>
-        <Title>댓글 수정/삭제</Title>
+        <Title>
+          <h4>댓글 수정/삭제</h4>
+          {errorType && (
+            <ErrorMessage>{commentErrorMessagMap.get(errorType)}</ErrorMessage>
+          )}
+        </Title>
         <Header>
           <Input
             type="text"
@@ -77,9 +82,6 @@ function CommentEditModal({
             취소
           </Button>
         </Footer>
-        {errorType && (
-          <ErrorMessage>{commentErrorMessagMap.get(errorType)}</ErrorMessage>
-        )}
       </Block>
     </PopupBase>
   );
@@ -88,25 +90,28 @@ function CommentEditModal({
 const Block = styled.div<{ darkmode: boolean }>`
   display: flex;
   flex-direction: column;
-  background: ${(props) =>
-    props.darkmode ? darkmodeBackground.other : 'white'};
-  padding: 1rem;
+  padding: 1.725rem 1.5rem;
   overflow-y: auto;
-  height: 20.625rem;
 
   ${media.xsmall} {
-    width: 20rem;
+    width: calc(100vw - 2rem);
   }
   ${media.small} {
     width: 37.5rem;
   }
 `;
 
-const Title = styled.h4`
-  margin: 0;
-  padding: 0;
-  font-weight: 600;
-  margin-bottom: 1rem;
+const Title = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  h4 {
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Header = styled.div`
@@ -132,6 +137,7 @@ const ErrorMessage = styled.div`
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+  margin-bottom: 1rem;
   color: ${palette.red7};
   animation: ${transitions.shake} 0.3s ease-in;
   animation-fill-mode: forwards;

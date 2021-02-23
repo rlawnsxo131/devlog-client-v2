@@ -1,9 +1,10 @@
 import { memo, useCallback, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { CommentType } from '../../graphql/comment';
 import palette, { commentColor } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
+import { resetCommentError } from '../../modules/comment';
 import CommentCardBody from './CommentCardBody';
 import CommentCardFooter from './CommentCardFooter';
 import CommentCardHeader from './CommentCardHeader';
@@ -15,12 +16,14 @@ type CommentCardProps = {
 };
 
 function CommentCard({ reply, fullCount }: CommentCardProps) {
+  const dispatch = useDispatch();
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
   const [visible, setVisible] = useState<boolean>(false);
   const handleSetVisible = useCallback(() => {
     setVisible((state) => !state);
+    dispatch(resetCommentError({}));
   }, []);
 
   return (

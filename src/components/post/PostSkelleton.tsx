@@ -9,42 +9,51 @@ function PostSkelleton(props: PostSkelletonProps) {
     <Block>
       <Paragraph
         css={css`
-          flex: 2.5;
+          height: 2.5rem;
           margin-top: 2.1775rem;
           margin-bottom: 2.1775rem;
         `}
       />
       <TagsWrapper>
         {Array.from({ length: 4 }).map((_, i) => (
-          <Paragraph key={`post_detail_skelleton_tag_${i}`} css={tagCss} />
+          <Paragraph
+            key={`post_detail_skelleton_tag_${i}`}
+            css={css`
+              width: 5rem;
+              height: 1.5rem;
+              margin-right: 1rem;
+              border-radius: 0.25rem;
+            `}
+          />
         ))}
       </TagsWrapper>
-      {Array.from({ length: 20 }).map((_, i) => (
-        <Paragraph key={`post_detil_skelleton_${i}`} css={textCss} />
+      <Paragraph
+        css={css`
+          height: 20rem;
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        `}
+      />
+      {Array.from({ length: 30 }).map((_, i) => (
+        <Paragraph
+          key={`post_detil_skelleton_${i}`}
+          css={css`
+            height: 1.5rem;
+            margin-top: 0.5rem;
+          `}
+        />
       ))}
       <Paragraph
         css={css`
-          flex: 3;
+          height: 10rem;
+          margin-top: 1rem;
         `}
       />
     </Block>
   );
 }
 
-const textCss = css`
-  flex: 1;
-  margin-top: 0.5rem;
-`;
-
-const tagCss = css`
-  width: 3rem;
-  height: 1.5rem;
-  margin-right: 1rem;
-  border-radius: 0.25rem;
-`;
-
 const Block = styled.div`
-  height: 85vh;
   display: flex;
   flex-direction: column;
   ${media.xsmall} {

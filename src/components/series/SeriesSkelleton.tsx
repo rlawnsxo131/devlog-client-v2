@@ -3,10 +3,11 @@ import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import Paragraph from '../common/Paragraph';
+import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 
-type PostCardSkelletonProps = {};
+type SeriesSkelletonProps = {};
 
-function PostCardSkelleton(props: PostCardSkelletonProps) {
+function SeriesItemSkelleton() {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
@@ -14,24 +15,20 @@ function PostCardSkelleton(props: PostCardSkelletonProps) {
     <Block darkmode={darkmode}>
       <Paragraph
         css={css`
-          flex: 10;
+          width: 60%;
+          height: 2rem;
         `}
       />
-      {Array.from({ length: 5 }).map((_, i) => (
+      {Array.from({ length: 3 }).map((_, i) => (
         <Paragraph
-          key={`post_card_skelleton_${i}`}
+          key={`series_item_title_${i}`}
           css={css`
-            flex: 1;
-            margin: 1rem 0.25rem 0 0.25rem;
+            height: 1.5rem;
+            margin-top: 1rem;
+            margin-left: 1.5rem;
           `}
         />
       ))}
-      <Paragraph
-        css={css`
-          flex: 3;
-          margin-top: 1rem;
-        `}
-      />
     </Block>
   );
 }
@@ -39,6 +36,10 @@ function PostCardSkelleton(props: PostCardSkelletonProps) {
 const Block = styled.div<{ darkmode: boolean }>`
   display: flex;
   flex-direction: column;
+  padding: 1rem;
+  & + & {
+    margin-top: 2rem;
+  }
   ${(props) =>
     props.darkmode
       ? css`
@@ -49,4 +50,14 @@ const Block = styled.div<{ darkmode: boolean }>`
         `};
 `;
 
-export default PostCardSkelleton;
+function SeriesSkelleton(props: SeriesSkelletonProps) {
+  return (
+    <MediaRatioWrapper type="column">
+      {Array.from({ length: 10 }).map((_, i) => (
+        <SeriesItemSkelleton key={`series_skelleton_${i}`} />
+      ))}
+    </MediaRatioWrapper>
+  );
+}
+
+export default SeriesSkelleton;

@@ -55,7 +55,7 @@ function ErrorScreen({ errorType, handleResolveError }: ErrorScreenProps) {
   return (
     <Block darkmode={darkmode}>
       <Helmet>
-        <title>{`${errorType} - DevLog`}</title>
+        <title>{`${errorType} Error - DevLog`}</title>
         <meta name="robots" content="noindex" />
       </Helmet>
       <ErrorImageReturner errorType={errorType} />

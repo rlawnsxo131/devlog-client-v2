@@ -6,3 +6,4 @@
 [add](https://material.io/resources/icons/?search=add&icon=add&style=sharp)
 [minus](https://material.io/resources/icons/?search=remove&icon=remove&style=sharp)
 [menu](https://material.io/resources/icons/?search=dot&icon=more_horiz&style=round)
+[loop](https://material.io/resources/icons/?icon=loop&style=sharp)

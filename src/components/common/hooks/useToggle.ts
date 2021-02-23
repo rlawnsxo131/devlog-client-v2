@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../modules';
-import { onDarkmode } from '../../../modules/core';
+import { setDarkmode } from '../../../modules/core';
 
 type UseToggle = {
   visible: boolean;
@@ -20,7 +20,7 @@ export default function useToggle(): UseToggle {
 
   const onToggle = useCallback(() => {
     dispatch(
-      onDarkmode({
+      setDarkmode({
         visible: true,
         darkmode: !darkmode,
       }),

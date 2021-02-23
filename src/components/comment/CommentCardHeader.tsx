@@ -50,8 +50,9 @@ const HeaderInfo = styled.div`
     margin-top: 0.25rem;
   }
   .date {
+    font-size: 1rem;
     color: ${palette.gray6};
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
   }
 `;
 

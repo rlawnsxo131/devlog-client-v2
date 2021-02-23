@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { onDarkmode } from '../../modules/core';
+import { setDarkmode } from '../../modules/core';
 import { DEVLOG_DARKMODE } from '../constants';
 
 function getDarkmode() {
@@ -25,7 +25,7 @@ export default function useDarkmode() {
     }, '');
     if (!mode) return;
     dispatch(
-      onDarkmode({
+      setDarkmode({
         visible: false,
         darkmode: mode === 'dark',
       }),
@@ -36,7 +36,7 @@ export default function useDarkmode() {
   useEffect(() => {
     if (!DARKMODE.current) return;
     dispatch(
-      onDarkmode({
+      setDarkmode({
         visible: false,
         darkmode: DARKMODE.current === 'true',
       }),

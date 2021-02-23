@@ -1,7 +1,7 @@
 import loadable from '@loadable/component';
 import { Switch, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import BaseEffect from './components/base/BaseEffect';
+import Core from './components/base/Core';
 import ErrorBoundary from './components/error/ErrorBoundary';
 import Layout from './components/layout/Layout';
 import NotFoundPage from './pages/NotFoundPage';
@@ -43,33 +43,32 @@ function App(props: AppProps) {
         />
         <link rel="canonical" href={`${process.env.REACT_APP_SERVICE_URL}`} />
       </Helmet>
-      <BaseEffect>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <PostsPage />
-            </Route>
-            <Route path="/series">
-              <SeriesPage />
-            </Route>
-            <Route path="/tags">
-              <TagsPage />
-            </Route>
-            <Route path="/info">
-              <InfoPage />
-            </Route>
-            <Route path="/posts/:tag">
-              <PostsPage />
-            </Route>
-            <Route path="/post/:url_slug">
-              <PostPage />
-            </Route>
-            <Route>
-              <NotFoundPage />
-            </Route>
-          </Switch>
-        </Layout>
-      </BaseEffect>
+      <Layout>
+        <Switch>
+          <Route exact path="/">
+            <PostsPage />
+          </Route>
+          <Route path="/series">
+            <SeriesPage />
+          </Route>
+          <Route path="/tags">
+            <TagsPage />
+          </Route>
+          <Route path="/info">
+            <InfoPage />
+          </Route>
+          <Route path="/posts/:tag">
+            <PostsPage />
+          </Route>
+          <Route path="/post/:url_slug">
+            <PostPage />
+          </Route>
+          <Route>
+            <NotFoundPage />
+          </Route>
+        </Switch>
+      </Layout>
+      <Core />
     </ErrorBoundary>
   );
 }

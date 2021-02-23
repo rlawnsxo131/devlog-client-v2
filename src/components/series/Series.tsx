@@ -5,6 +5,7 @@ import { GET_SERIES, SeriesType } from '../../graphql/series';
 import useError from '../../lib/hooks/useError';
 import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 import SeriesItem from './SeriesItem';
+import SeriesSkelleton from './SeriesSkelleton';
 
 type SeriesProps = {};
 
@@ -19,7 +20,7 @@ function Series(props: SeriesProps) {
     handleError(error);
   }, [error]);
 
-  if (loading) return <div>loading</div>;
+  if (loading) return <SeriesSkelleton />;
   if (error) return null;
 
   return (

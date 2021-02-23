@@ -14,13 +14,9 @@ import MarkdownRender from '../markdown/MarkdownRender';
 import DefaultTags from '../tag/DefaultTags';
 import PostSeries from './PostSeries';
 import PostSkelleton from './PostSkelleton';
-import unified from 'unified';
-import remarkParse from 'remark-parse';
-import remark2rehype from 'remark-rehype';
-import raw from 'rehype-raw';
-import stringify from 'rehype-stringify';
 import PostToc from './PostToc';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
+import markdownParser from '../../lib/remark/markdownParser';
 
 type PostProps = {};
 
@@ -38,6 +34,18 @@ function Post(props: PostProps) {
     // fetchPolicy: 'cache-and-network'
   });
 
+  const description = useMemo(() => {
+    if (!data) return '';
+    return `${markdownParser(data.post.preview_description)}...`;
+  }, [data?.post.preview_description]);
+
+  const thumnail = useMemo(() => {
+    if (!data) return '';
+    return data.post.thumnail
+      ? optimizeImage(data.post.thumnail, 800)
+      : `${process.env.REACT_APP_IMAGE_URL}/logo/devlog.png`;
+  }, [data?.post.thumnail]);
+
   useEffect(() => {
     globalThis.scrollTo(0, 0);
   }, [url_slug]);
@@ -54,28 +62,13 @@ function Post(props: PostProps) {
     return null;
   }
 
-  const description = () =>
-    `${unified()
-      .use(remarkParse)
-      .use(remark2rehype, { allowDangerousHtml: false })
-      .use(raw)
-      .use(stringify)
-      .processSync(data.post.preview_description)
-      .toString()
-      .replace(/(<([^>]+)>)/gi, '')
-      .replace(/\n/gi, '')}...`;
-
-  const thumnail = data.post.thumnail
-    ? optimizeImage(data.post.thumnail, 800)
-    : `${process.env.REACT_APP_IMAGE_URL}/logo/devlog.png`;
-
   return (
     <MediaRatioWrapper type="column">
       <Helmet>
         <title>{data.post.post_header}</title>
-        <meta name="description" content={description()} />
+        <meta name="description" content={description} />
         <meta property="og:title" content={data.post.post_header} />
-        <meta property="og:description" content={description()} />
+        <meta property="og:description" content={description} />
         <meta property="og:type" content="article" />
         <meta property="og:image" content={thumnail} />
         <meta
@@ -107,7 +100,7 @@ function Post(props: PostProps) {
       <MarkdownRender markdownText={data.post.post_body} />
       <PostSeries series={data.post.series_posts} />
       <Comments post_id={data.post.id} />
-      <PostToc />
+      {data.post.post_body && <PostToc />}
     </MediaRatioWrapper>
   );
 }

@@ -40,6 +40,9 @@ const Block = styled.div<{ darkmode: boolean }>`
   padding: 1rem;
   box-shadow: 1px 1px 10px 2px
     ${(props) => (props.darkmode ? palette.gray9 : palette.gray3)};
+  & + & {
+    margin-top: 2rem;
+  }
 `;
 
 const Title = styled.h3`

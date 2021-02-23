@@ -40,13 +40,21 @@ function PostToc(props: PostTocProps) {
     const timeoutId: NodeJS.Timeout = setTimeout(() => {
       const headings = parseHeadings();
       setToc(headings);
-    }, 100);
+    }, 250);
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
       }
     };
   }, [pathname]);
+
+  if (!toc) {
+    return (
+      <Block>
+        <p style={{ color: palette.gray6 }}>loading...</p>
+      </Block>
+    );
+  }
 
   return (
     <Block>

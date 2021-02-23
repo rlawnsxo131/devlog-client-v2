@@ -9,6 +9,7 @@ import {
 } from '../../../graphql/comment';
 import errorTypeManager from '../../../lib/errorTypeManager';
 import useInputs from '../../../lib/hooks/useInputs';
+import useLoading from '../../../lib/hooks/useLoading';
 import { normalizedString } from '../../../lib/utils';
 import { RootState } from '../../../modules';
 import {
@@ -49,6 +50,7 @@ export default function useCommentEditModal({
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
+  const [startLoading, endLoading] = useLoading();
   const [state, onChange] = useInputs({
     writer: writer,
     password: '',
@@ -88,6 +90,7 @@ export default function useCommentEditModal({
     const validate2 = globalThis.confirm('댓글을 수정하시겠어요?');
     if (!validate2) return;
     try {
+      startLoading();
       await UpdateComment({
         variables: {
           comment_id,
@@ -96,9 +99,12 @@ export default function useCommentEditModal({
           comment,
         },
       });
+      endLoading();
       handleSetVisible();
+      // 여기 alert
       dispatch(resetCommentError({}));
     } catch (e) {
+      endLoading();
       handleCommentError(e);
     }
   }, [state]);
@@ -112,15 +118,19 @@ export default function useCommentEditModal({
     const validate2 = globalThis.confirm('댓글을 삭제하시겠어요?');
     if (!validate2) return;
     try {
+      startLoading();
       await RemoveComment({
         variables: {
           comment_id,
           password,
         },
       });
+      endLoading();
       handleSetVisible();
+      // 여기 alert
       dispatch(resetCommentError({}));
     } catch (e) {
+      endLoading();
       handleCommentError(e);
     }
   }, [comment_id, state.password]);
@@ -129,12 +139,6 @@ export default function useCommentEditModal({
     if (!errorType) return;
     dispatch(resetCommentError({}));
   }, [state]);
-
-  useEffect(() => {
-    return () => {
-      dispatch(resetCommentError({}));
-    };
-  }, []);
 
   return {
     state,

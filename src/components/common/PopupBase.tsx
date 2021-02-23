@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
-import palette from '../../lib/styles/palette';
+import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import transitions from '../../lib/styles/transitions';
 import zIndexes from '../../lib/styles/zIndexes';
 import { RootState } from '../../modules';
@@ -23,7 +23,7 @@ function PopupBase({ children, visible }: PopupBaseProps) {
     } else {
       timeoutId = setTimeout(() => {
         setClosed(true);
-      }, 200);
+      }, 250);
     }
     return () => {
       if (timeoutId) {
@@ -36,9 +36,9 @@ function PopupBase({ children, visible }: PopupBaseProps) {
 
   return (
     <Block visible={visible} darkmode={darkmode}>
-      <ChildrenWrapper visible={visible} darkmode={darkmode}>
+      <PopupWrapper visible={visible} darkmode={darkmode}>
         {children}
-      </ChildrenWrapper>
+      </PopupWrapper>
     </Block>
   );
 }
@@ -71,12 +71,14 @@ const Block = styled.div<{ visible: boolean; darkmode: boolean }>`
         `};
 `;
 
-const ChildrenWrapper = styled.div<{ visible: boolean; darkmode: boolean }>`
+const PopupWrapper = styled.div<{ visible: boolean; darkmode: boolean }>`
   position: relative;
-  top: -15%;
+  top: -5%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: ${(props) =>
+    props.darkmode ? darkmodeBackground.other : 'white'};
   box-shadow: 1px 1px 10px 2px
     ${(props) => (props.darkmode ? palette.gray9 : palette.gray3)};
   ${(props) =>
@@ -85,7 +87,7 @@ const ChildrenWrapper = styled.div<{ visible: boolean; darkmode: boolean }>`
           animation: ${transitions.popInFromBottom} 0.4s forwards ease-in-out;
         `
       : css`
-          animation: ${transitions.popOutToBottom} 0.2s forwards ease-in-out;
+          animation: ${transitions.popOutToBottom} 0.25s forwards ease-in-out;
         `};
 `;
 
