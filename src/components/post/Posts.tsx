@@ -4,14 +4,14 @@ import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { GET_POSTS, PostType } from '../../graphql/post';
+import { GET_POSTS, Post } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import media, { mediaQuery } from '../../lib/styles/media';
 import { RootState } from '../../modules';
 import PostCard from './PostCard';
 import PostsSkelleton from './PostsSkelleton';
 
-type PostsProps = {};
+interface PostsProps {}
 
 function Posts(props: PostsProps) {
   const darkmode = useSelector(
@@ -20,7 +20,7 @@ function Posts(props: PostsProps) {
   const [handleError] = useError();
   const { tag } = useParams<{ tag?: string }>();
   const { loading, error, data } = useQuery<
-    { posts: Array<PostType> },
+    { posts: Array<Post> },
     { tag?: string }
   >(GET_POSTS, {
     variables: {

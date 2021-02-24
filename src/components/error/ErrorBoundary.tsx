@@ -44,12 +44,12 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-type ErrorBoundaryWrapperProps = {
+interface ErrorBoundaryWrapperProps {
   hasError: boolean;
   chunkError: boolean;
   handleResolveError: () => void;
   children: React.ReactNode;
-};
+}
 
 function ErrorBoundaryWrapper({
   hasError,

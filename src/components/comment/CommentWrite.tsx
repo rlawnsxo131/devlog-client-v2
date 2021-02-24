@@ -8,11 +8,11 @@ import Button from '../common/Button';
 import Input from '../common/Input';
 import useCommentWrite from './hooks/useCommentWrite';
 
-type CommentWriteProps = {
+interface CommentWriteProps {
   post_id: number;
   reply_comment_id?: number;
   handleShowCommentWrite?: () => void;
-};
+}
 
 function CommentWrite({
   post_id,

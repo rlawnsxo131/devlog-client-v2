@@ -15,5 +15,5 @@ export default function useShowPopup() {
     },
     [],
   );
-  return [onShowPopup];
+  return [onShowPopup] as const;
 }

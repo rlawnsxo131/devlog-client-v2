@@ -1,4 +1,4 @@
-type ChunkErrorImageProps = {};
+interface ChunkErrorImageProps {}
 
 function ChunkErrorImage(props: ChunkErrorImageProps) {
   return (

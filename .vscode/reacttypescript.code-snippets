@@ -20,7 +20,7 @@
 		"body": [
 			"import styled from 'styled-components';",
 			"",
-			"type ${TM_FILENAME_BASE}Props = {};",
+			"interface ${TM_FILENAME_BASE}Props {}",
 			"",
 			"function ${TM_FILENAME_BASE}(props: ${TM_FILENAME_BASE}Props) {",
 			"  return <Block></Block>;",

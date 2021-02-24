@@ -1,10 +1,10 @@
-import { PostType } from './post';
+import { Post } from './post';
 import gql from 'graphql-tag';
 
-export type SeriesType = {
+export type Series = {
   id: number;
   series_name: string;
-  posts: Array<PostType>;
+  posts: Array<Post>;
   __typename?: string;
 };
 

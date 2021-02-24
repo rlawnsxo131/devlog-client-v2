@@ -22,9 +22,9 @@ import { FilledContext, HelmetProvider } from 'react-helmet-async';
 
 const statsFile = path.resolve(__dirname, '../client/loadable-stats.json');
 
-type ServerRenderParams = {
+interface ServerRenderParams {
   url: string;
-};
+}
 
 async function serverRender({ url }: ServerRenderParams) {
   if (/^\/(api|graphql)/.test(url)) {

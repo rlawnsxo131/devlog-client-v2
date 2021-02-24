@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { GET_POST, PostType } from '../../graphql/post';
+import { GET_POST, Post } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import useNotFound from '../../lib/hooks/useNotFound';
 import optimizeImage from '../../lib/optimizeImage';
@@ -18,14 +18,14 @@ import PostToc from './PostToc';
 import { useEffect, useMemo } from 'react';
 import markdownParser from '../../lib/remark/markdownParser';
 
-type PostProps = {};
+interface PostProps {}
 
 function Post(props: PostProps) {
   const [setNotFound] = useNotFound();
   const [handleError] = useError();
   const { url_slug }: { url_slug: string } = useParams();
   const { loading, error, data } = useQuery<
-    { post: PostType },
+    { post: Post },
     { url_slug: string }
   >(GET_POST, {
     variables: {

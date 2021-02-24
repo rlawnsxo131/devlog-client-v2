@@ -4,14 +4,14 @@ import styled, { css } from 'styled-components';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
-type InputProps = {
+interface InputProps {
   type: string;
   name?: string;
   placeholder?: string;
-  value?: any;
+  value?: string | number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void | Promise<void>;
   inputRef?: React.MutableRefObject<HTMLInputElement | null>;
-};
+}
 
 function Input({
   type,

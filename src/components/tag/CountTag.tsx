@@ -2,14 +2,14 @@ import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { TagType } from '../../graphql/tag';
+import { Tag } from '../../graphql/tag';
 import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
-type CountTagProps = {
-  tag: TagType;
-};
+interface CountTagProps {
+  tag: Tag;
+}
 
 function CountTag({ tag }: CountTagProps) {
   const darkmode = useSelector(

@@ -1,6 +1,6 @@
-type PhotoIconProps = {
+interface PhotoIconProps {
   fill?: string;
-};
+}
 
 function PhotoIcon({ fill }: PhotoIconProps) {
   return (

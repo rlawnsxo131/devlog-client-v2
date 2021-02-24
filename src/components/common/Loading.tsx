@@ -6,7 +6,7 @@ import transitions from '../../lib/styles/transitions';
 import { RootState } from '../../modules';
 import PopupBase from './PopupBase';
 
-type LoadingProps = {};
+interface LoadingProps {}
 
 function Loading(props: LoadingProps) {
   const { darkmode, loading } = useSelector((state: RootState) => ({

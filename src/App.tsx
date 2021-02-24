@@ -22,7 +22,7 @@ const InfoPage = loadable(
   () => import(/* webpackChunkName: "InfoPage" */ './pages/InfoPage'),
 );
 
-type AppProps = {};
+interface AppProps {}
 
 function App(props: AppProps) {
   return (

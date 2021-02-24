@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
-import { CommentType } from '../../graphql/comment';
+import { Comment } from '../../graphql/comment';
 import CommentCards from './CommentCards';
 import Button from '../common/Button';
 import CommentWrite from './CommentWrite';
@@ -8,15 +8,15 @@ import PlusIcon from '../../img/components/icons/PlusIcon';
 import MinusIcon from '../../img/components/icons/MinusIcon';
 import { memo, useCallback, useEffect, useState } from 'react';
 
-type CommentCardFooterProps = {
+interface CommentCardFooterProps {
   post_id: number;
   reply_id: number;
   level: number;
   deleted: boolean;
-  replies: Array<CommentType>;
+  replies: Array<Comment>;
   has_replies: boolean;
   fullCount?: number;
-};
+}
 
 function CommentCardFooter({
   post_id,

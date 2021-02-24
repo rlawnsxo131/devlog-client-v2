@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 import media, { mediaQuery } from '../../lib/styles/media';
 
-type MediaRatioWrapperProps = {
+interface MediaRatioWrapperProps {
   children: React.ReactNode;
   type: 'row' | 'column';
-};
+}
 
 function MediaRatioWrapper({ children, type }: MediaRatioWrapperProps) {
   return <Block type={type}>{children}</Block>;

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import Paragraph from '../common/Paragraph';
 
-type CountTagsSkelletonProps = {};
+interface CountTagsSkelletonProps {}
 
 function CountTagsSkelleton(props: CountTagsSkelletonProps) {
   return (

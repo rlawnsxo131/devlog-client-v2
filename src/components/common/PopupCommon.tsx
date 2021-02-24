@@ -7,7 +7,7 @@ import PopupBase from './PopupBase';
 import Button from './Button';
 import media from '../../lib/styles/media';
 
-type PopupCommonProps = {};
+interface PopupCommonProps {}
 
 function PopupCommon(props: PopupCommonProps) {
   const dispatch = useDispatch();

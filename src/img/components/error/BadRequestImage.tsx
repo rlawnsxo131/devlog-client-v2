@@ -1,4 +1,4 @@
-type BadRequestImageProps = {};
+interface BadRequestImageProps {}
 
 function BadRequestImage(props: BadRequestImageProps) {
   return (

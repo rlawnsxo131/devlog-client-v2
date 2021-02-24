@@ -10,13 +10,13 @@ import PopupBase from '../common/PopupBase';
 import TextArea from '../common/TextArea';
 import useCommentEditModal from './hooks/useCommentEditModal';
 
-type CommentEditModalProps = {
+interface CommentEditModalProps {
   visible: boolean;
   writer: string;
   comment: string;
   comment_id: number;
   handleSetVisible: () => void;
-};
+}
 
 function CommentEditModal({
   visible,

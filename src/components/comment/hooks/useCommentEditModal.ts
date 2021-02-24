@@ -2,14 +2,15 @@ import { useMutation } from '@apollo/client';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  RemoveCommentType,
+  RemoveComment,
   REMOVE_COMMENT,
-  UpdateCommentType,
+  UpdateComment,
   UPDATE_COMMENT,
 } from '../../../graphql/comment';
 import errorTypeManager from '../../../lib/errorTypeManager';
 import useInputs from '../../../lib/hooks/useInputs';
 import useLoading from '../../../lib/hooks/useLoading';
+import useShowPopup from '../../../lib/hooks/useShowPopup';
 import { normalizedString } from '../../../lib/utils';
 import { RootState } from '../../../modules';
 import {
@@ -18,13 +19,14 @@ import {
   setCommentError,
 } from '../../../modules/comment';
 
-type UseCommentEditModalProps = {
+interface UseCommentEditModalProps {
   writer: string;
   comment: string;
   comment_id: number;
   handleSetVisible: () => void;
-};
-type UseCommentEditModal = {
+}
+
+interface UseCommentEditModal {
   state: {
     writer: string;
     password: string;
@@ -37,7 +39,7 @@ type UseCommentEditModal = {
   removeComment: () => Promise<void>;
   errorType: CommentErrorEnum | null;
   darkmode: boolean;
-};
+}
 
 export default function useCommentEditModal({
   writer,
@@ -50,6 +52,7 @@ export default function useCommentEditModal({
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
+  const [onShowPopup] = useShowPopup();
   const [startLoading, endLoading] = useLoading();
   const [state, onChange] = useInputs({
     writer: writer,
@@ -59,13 +62,13 @@ export default function useCommentEditModal({
 
   const [UpdateComment] = useMutation<{
     updateCommnet: boolean;
-    variables: UpdateCommentType;
+    variables: UpdateComment;
   }>(UPDATE_COMMENT, {
     refetchQueries: ['Comments'],
   });
   const [RemoveComment] = useMutation<{
     removeComment: boolean;
-    variables: RemoveCommentType;
+    variables: RemoveComment;
   }>(REMOVE_COMMENT, {
     refetchQueries: ['Comments'],
   });
@@ -84,11 +87,13 @@ export default function useCommentEditModal({
       normalizedString(value),
     );
     if (validate.length !== 3) {
-      alert('작성자, 비밀번호, 댓글은 필수 입력 사항 입니다.');
+      dispatch(
+        setCommentError({
+          errorType: CommentErrorEnum.CHECK_REQUIRE_ITEM,
+        }),
+      );
       return;
     }
-    const validate2 = globalThis.confirm('댓글을 수정하시겠어요?');
-    if (!validate2) return;
     try {
       startLoading();
       await UpdateComment({
@@ -101,7 +106,10 @@ export default function useCommentEditModal({
       });
       endLoading();
       handleSetVisible();
-      // 여기 alert
+      onShowPopup({
+        title: '댓글 작성완료',
+        message: '댓글 작성이 완료 되었습니다.',
+      });
       dispatch(resetCommentError({}));
     } catch (e) {
       endLoading();
@@ -112,11 +120,13 @@ export default function useCommentEditModal({
   const removeComment = useCallback(async () => {
     const { password } = state;
     if (!normalizedString(password)) {
-      alert('비밀번호를 입력하세요');
+      dispatch(
+        setCommentError({
+          errorType: CommentErrorEnum.ENTER_PASSWORD,
+        }),
+      );
       return;
     }
-    const validate2 = globalThis.confirm('댓글을 삭제하시겠어요?');
-    if (!validate2) return;
     try {
       startLoading();
       await RemoveComment({
@@ -127,7 +137,10 @@ export default function useCommentEditModal({
       });
       endLoading();
       handleSetVisible();
-      // 여기 alert
+      onShowPopup({
+        title: '삭제 완료',
+        message: '댓글이 삭제되었습니다.',
+      });
       dispatch(resetCommentError({}));
     } catch (e) {
       endLoading();

@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
-import { CommentType } from '../../graphql/comment';
+import { Comment } from '../../graphql/comment';
 import palette, { commentColor } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import { resetCommentError } from '../../modules/comment';
@@ -10,10 +10,10 @@ import CommentCardFooter from './CommentCardFooter';
 import CommentCardHeader from './CommentCardHeader';
 import CommentEditModal from './CommentEditModal';
 
-type CommentCardProps = {
-  reply: CommentType;
+interface CommentCardProps {
+  reply: Comment;
   fullCount?: number;
-};
+}
 
 function CommentCard({ reply, fullCount }: CommentCardProps) {
   const dispatch = useDispatch();

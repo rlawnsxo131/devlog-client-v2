@@ -1,6 +1,6 @@
 import Posts from '../components/post/Posts';
 
-type PostsPageProps = {};
+interface PostsPageProps {}
 
 function PostsPage(props: PostsPageProps) {
   return <Posts />;

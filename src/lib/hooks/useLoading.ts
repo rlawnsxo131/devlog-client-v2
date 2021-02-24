@@ -11,5 +11,5 @@ export default function useLoading() {
     dispatch(setLoading({ loading: false }));
   }, [dispatch]);
 
-  return [startLoading, endLoading];
+  return [startLoading, endLoading] as const;
 }

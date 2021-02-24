@@ -4,9 +4,9 @@ import palette from '../../lib/styles/palette';
 import transitions from '../../lib/styles/transitions';
 import { RootState } from '../../modules';
 
-type ParagraphProps = {
+interface ParagraphProps {
   css?: FlattenSimpleInterpolation;
-};
+}
 
 function Paragraph({ css }: ParagraphProps) {
   const darkmode = useSelector(

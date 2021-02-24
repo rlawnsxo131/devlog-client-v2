@@ -1,8 +1,8 @@
-type MinusIconProps = {
+interface MinusIconProps {
   fill?: string;
   width?: number;
   height?: number;
-};
+}
 
 function MinusIcon({ fill, width, height }: MinusIconProps) {
   return (

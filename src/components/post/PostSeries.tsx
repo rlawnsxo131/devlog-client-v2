@@ -2,13 +2,13 @@ import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { SeriesPostType } from '../../graphql/post';
+import { SeriesPost } from '../../graphql/post';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
-type PostSeriesProps = {
-  series: Array<SeriesPostType>;
-};
+interface PostSeriesProps {
+  series: Array<SeriesPost>;
+}
 
 function PostSeries({ series }: PostSeriesProps) {
   const darkmode = useSelector(

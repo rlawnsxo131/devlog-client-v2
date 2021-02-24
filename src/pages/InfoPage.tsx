@@ -5,7 +5,7 @@ import MediaRatioWrapper from '../components/layout/MediaRatioWrapper';
 import palette from '../lib/styles/palette';
 import { RootState } from '../modules';
 
-type InfoPageProps = {};
+interface InfoPageProps {}
 
 function InfoPage(props: InfoPageProps) {
   const darkmode = useSelector(

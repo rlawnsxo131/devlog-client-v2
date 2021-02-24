@@ -1,14 +1,14 @@
 import gql from 'graphql-tag';
 
-export type SeriesPostType = {
+export interface SeriesPost {
   series_id: number;
   series_name: string;
   post_id: number;
   url_slug: string;
   post_header: string;
-};
+}
 
-export type PostType = {
+export interface Post {
   id: number;
   post_header: string;
   post_body: string;
@@ -20,8 +20,8 @@ export type PostType = {
   released_at: Date;
   tags: Array<string>;
   comments_count: number;
-  series_posts: Array<SeriesPostType>;
-};
+  series_posts: Array<SeriesPost>;
+}
 
 export const GET_POST = gql`
   query Post($url_slug: String!) {

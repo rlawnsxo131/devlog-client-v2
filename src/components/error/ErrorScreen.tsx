@@ -13,10 +13,10 @@ import { RootState } from '../../modules';
 import { ErrorEnum, errorMessageMap, resetError } from '../../modules/error';
 import Button from '../common/Button';
 
-type ErrorScreenProps = {
+interface ErrorScreenProps {
   errorType: ErrorEnum;
   handleResolveError: () => void;
-};
+}
 
 function ErrorImageReturner({ errorType }: { errorType: ErrorEnum }) {
   if (errorType === ErrorEnum.NOT_FOUND) return <NotFoundErrorImage />;
@@ -46,8 +46,8 @@ function ErrorScreen({ errorType, handleResolveError }: ErrorScreenProps) {
   }, [clearError]);
 
   useEffect(() => {
-    if (!errorType) return;
     return () => {
+      if (!errorType) return;
       clearError();
     };
   }, [clearError, pathname, errorType]);
@@ -77,12 +77,10 @@ const Block = styled.div<{ darkmode: boolean }>`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
   white-space: pre-wrap;
   svg {
     height: auto;
-    width: 320px;
+    width: 20rem;
     margin-bottom: 1rem;
   }
   h3 {

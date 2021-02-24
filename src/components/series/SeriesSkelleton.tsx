@@ -5,7 +5,7 @@ import { RootState } from '../../modules';
 import Paragraph from '../common/Paragraph';
 import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 
-type SeriesSkelletonProps = {};
+interface SeriesSkelletonProps {}
 
 function SeriesItemSkelleton() {
   const darkmode = useSelector(

@@ -2,13 +2,13 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { SeriesType } from '../../graphql/series';
+import { Series } from '../../graphql/series';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
-type SeriesItemProps = {
-  series: SeriesType;
-};
+interface SeriesItemProps {
+  series: Series;
+}
 
 function SeriesItem({ series }: SeriesItemProps) {
   const darkmode = useSelector(

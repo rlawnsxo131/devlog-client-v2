@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
 
-type CommentCardHeaderProps = {
+interface CommentCardHeaderProps {
   writer: string;
   deleted: boolean;
   created_at: Date;
   edited_at?: Date;
   handleSetVisible: () => void;
-};
+}
 
 function CommentCardHeader({
   writer,

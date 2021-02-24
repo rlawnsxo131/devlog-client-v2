@@ -1,17 +1,17 @@
 import { useQuery } from '@apollo/client';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { GET_TAGS, TagType } from '../../graphql/tag';
+import { GET_TAGS, Tag } from '../../graphql/tag';
 import useError from '../../lib/hooks/useError';
 import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 import CountTag from './CountTag';
 import CountTagsSkelleton from './CountTagsSkelleton';
 
-type CountTagsProps = {};
+interface CountTagsProps {}
 
 function CountTags(props: CountTagsProps) {
   const [handleError] = useError();
-  const { loading, error, data } = useQuery<{ tags: Array<TagType> }>(GET_TAGS);
+  const { loading, error, data } = useQuery<{ tags: Array<Tag> }>(GET_TAGS);
 
   useEffect(() => {
     if (!error) return;

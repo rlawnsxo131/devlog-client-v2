@@ -2,9 +2,9 @@ import { memo } from 'react';
 import styled from 'styled-components';
 import DefaultTag from './DefaultTag';
 
-type DefaultTagsProps = {
+interface DefaultTagsProps {
   tags: Array<string>;
-};
+}
 
 function DefaultTags({ tags }: DefaultTagsProps) {
   if (!tags.length) return null;

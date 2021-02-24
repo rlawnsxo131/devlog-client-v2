@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 
-type PostTocProps = {};
+interface PostTocProps {}
 type Headings = Array<{
   text: string;
   level: number;

@@ -4,12 +4,12 @@ import styled, { css } from 'styled-components';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
-type TextAreaProps = {
+interface TextAreaProps {
   name?: string;
   value: string;
   placeholder?: string;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-};
+}
 
 function TextArea({ name, value, placeholder, onChange }: TextAreaProps) {
   const darkmode = useSelector(

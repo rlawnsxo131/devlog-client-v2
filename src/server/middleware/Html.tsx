@@ -3,14 +3,14 @@ import { HelmetData } from 'react-helmet-async';
 import { Parser } from 'html-to-react';
 import replaceAssets from './replaceAssets';
 
-type HtmlProps = {
+interface HtmlProps {
   content: string;
   apolloState: any;
   reduxState: any;
   extractor: ChunkExtractor;
   styledElement: React.ReactNode; // styled-components
   helmet: HelmetData;
-};
+}
 
 function Html({
   content,

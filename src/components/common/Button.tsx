@@ -6,14 +6,14 @@ import { buttonColorMap } from '../../lib/styles/palette';
 type ColorType = 'darkGray' | 'red' | 'indigo';
 type SizeType = 'default' | 'responsive';
 
-type ButtonProps = {
+interface ButtonProps {
   name?: string;
   value?: any;
   color?: ColorType;
   size?: SizeType;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void> | void;
   children: React.ReactNode;
-};
+}
 
 function Button({
   name,

@@ -16,11 +16,11 @@ export const errorMessageMap = new Map<ErrorEnum, string>([
   [ErrorEnum.CHUNK, 'devlog 가 업데이트 되었습니다.\n새로고침을 해주세요'],
 ]);
 
-type ErrorType = {
+interface ErrorState {
   errorType: ErrorEnum | null;
-};
+}
 
-const initialState: ErrorType = {
+const initialState: ErrorState = {
   errorType: null,
 };
 

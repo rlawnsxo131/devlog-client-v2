@@ -1,6 +1,6 @@
 import Series from '../components/series/Series';
 
-type SeriesPageProps = {};
+interface SeriesPageProps {}
 
 function SeriesPage(props: SeriesPageProps) {
   return <Series />;

@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import styled from 'styled-components';
 
-type CommentCardBodyProps = {
+interface CommentCardBodyProps {
   comment: string;
-};
+}
 
 function CommentCardBody({ comment }: CommentCardBodyProps) {
   return <Block>{comment}</Block>;

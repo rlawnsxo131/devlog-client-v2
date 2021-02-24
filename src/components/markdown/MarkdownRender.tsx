@@ -90,9 +90,9 @@ function filter(html: string) {
   });
 }
 
-type MarkdownRenderProps = {
+interface MarkdownRenderProps {
   markdownText: string;
-};
+}
 
 function MarkdownRender({ markdownText }: MarkdownRenderProps) {
   const darkmode = useSelector(

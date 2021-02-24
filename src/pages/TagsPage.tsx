@@ -1,6 +1,6 @@
 import CountTags from '../components/tag/CountTags';
 
-type TagsPageProps = {};
+interface TagsPageProps {}
 
 function TagsPage(props: TagsPageProps) {
   return <CountTags />;

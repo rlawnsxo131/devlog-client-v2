@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export type CommentType = {
+export interface Comment {
   id: number;
   post_id: number;
   level: number;
@@ -12,8 +12,8 @@ export type CommentType = {
   created_at: Date;
   updated_at: Date;
   edited_at?: Date;
-  replies: Array<CommentType>;
-};
+  replies: Array<Comment>;
+}
 
 export const GET_COMMENTS = gql`
   query Comments($post_id: ID!) {
@@ -60,13 +60,13 @@ export const GET_COMMENTS = gql`
   }
 `;
 
-export type CreateCommentType = {
+export interface CreateComment {
   post_id: number;
   reply_comment_id?: number;
   writer: string;
   password: string;
   comment: string;
-};
+}
 export const CREATE_COMMENT = gql`
   mutation CreateComment(
     $post_id: ID!
@@ -85,13 +85,13 @@ export const CREATE_COMMENT = gql`
   }
 `;
 
-export type UpdateCommentType = {
+export interface UpdateComment {
   comment_id: number;
   writer?: string;
   password: string;
   email?: string;
   comment: string;
-};
+}
 export const UPDATE_COMMENT = gql`
   mutation UpdateComment(
     $comment_id: ID!
@@ -110,10 +110,10 @@ export const UPDATE_COMMENT = gql`
   }
 `;
 
-export type RemoveCommentType = {
+export interface RemoveComment {
   comment_id: number;
   possword: string;
-};
+}
 export const REMOVE_COMMENT = gql`
   mutation RemoveComment($comment_id: ID!, $password: String!) {
     removeComment(comment_id: $comment_id, password: $password)

@@ -4,7 +4,7 @@ import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import Paragraph from '../common/Paragraph';
 
-type CommentsSkelletonProps = {};
+interface CommentsSkelletonProps {}
 
 function CommentsSkelleton(props: CommentsSkelletonProps) {
   const darkmode = useSelector(

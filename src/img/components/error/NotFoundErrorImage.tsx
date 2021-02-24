@@ -1,4 +1,4 @@
-type NotFoundImageProps = {};
+interface NotFoundImageProps {}
 
 function NotFoundImage(props: NotFoundImageProps) {
   return (

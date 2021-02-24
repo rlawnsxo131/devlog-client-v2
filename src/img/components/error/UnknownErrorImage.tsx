@@ -1,4 +1,4 @@
-type UnknownErrorImageProps = {};
+interface UnknownErrorImageProps {}
 
 function UnknownErrorImage(props: UnknownErrorImageProps) {
   return (

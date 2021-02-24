@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import media, { mediaQuery } from '../../lib/styles/media';
 import PostCardSkelleton from './PostCardSkelleton';
 
-type PostsSkelletonProps = {};
+interface PostsSkelletonProps {}
 
 function PostsSkelleton(props: PostsSkelletonProps) {
   return (

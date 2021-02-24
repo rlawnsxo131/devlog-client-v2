@@ -1,4 +1,4 @@
-type NetworkErrorImageProps = {};
+interface NetworkErrorImageProps {}
 
 function NetworkErrorImage(props: NetworkErrorImageProps) {
   return (

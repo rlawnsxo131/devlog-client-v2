@@ -5,7 +5,7 @@ import transitions from '../../lib/styles/transitions';
 import zIndexes from '../../lib/styles/zIndexes';
 import useToggle from './hooks/useToggle';
 
-type DarkmodeToggleProps = {};
+interface DarkmodeToggleProps {}
 
 function DarkmodeToggle(props: DarkmodeToggleProps) {
   const { visible, darkmode, onToggle } = useToggle();

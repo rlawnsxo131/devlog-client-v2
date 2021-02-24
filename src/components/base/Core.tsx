@@ -2,7 +2,7 @@ import useDarkmode from '../../lib/hooks/useDarkmode';
 import Loading from '../common/Loading';
 import PopupCommon from '../common/PopupCommon';
 
-type CoreProps = {};
+interface CoreProps {}
 
 function Core(props: CoreProps) {
   useDarkmode();

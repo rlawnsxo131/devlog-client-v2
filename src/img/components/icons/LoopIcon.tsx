@@ -1,10 +1,10 @@
 import palette from '../../../lib/styles/palette';
 
-type LoopIconProps = {
+interface LoopIconProps {
   width?: number;
   height?: number;
   fill?: string;
-};
+}
 
 function LoopIcon({
   width = 24,

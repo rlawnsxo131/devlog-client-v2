@@ -1,18 +1,39 @@
 import styled from 'styled-components';
 import media from '../../lib/styles/media';
 import PopupBase from './PopupBase';
+import Button from './Button';
 
-type PopupOkCancelProps = {
+interface PopupOkCancelProps {
   visible: boolean;
   title: string;
   message: string;
   onConfirm: () => Promise<void> | void;
-};
+  onCancel?: () => Promise<void> | void;
+}
 
-function PopupOkCancel({ visible, onConfirm }: PopupOkCancelProps) {
+function PopupOkCancel({
+  visible,
+  title,
+  message,
+  onConfirm,
+  onCancel,
+}: PopupOkCancelProps) {
   return (
     <PopupBase visible={visible}>
-      <Block></Block>
+      <Block>
+        <h3>{title}</h3>
+        <p>{message}</p>
+        <ButtonArea>
+          {onCancel && (
+            <Button color="darkGray" onClick={onCancel}>
+              취소
+            </Button>
+          )}
+          <Button color="indigo" onClick={onConfirm}>
+            확인
+          </Button>
+        </ButtonArea>
+      </Block>
     </PopupBase>
   );
 }
@@ -36,6 +57,12 @@ const Block = styled.div`
   ${media.small} {
     width: 25rem;
   }
+`;
+
+const ButtonArea = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
 `;
 
 export default PopupOkCancel;

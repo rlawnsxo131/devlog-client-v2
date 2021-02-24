@@ -10,7 +10,7 @@ import NotFoundImage from '../img/components/error/NotFoundErrorImage';
 import { Helmet } from 'react-helmet-async';
 import { useCallback } from 'react';
 
-type NotFoundPageProps = {};
+interface NotFoundPageProps {}
 
 function NotFoundPage(props: NotFoundPageProps) {
   const history = useHistory();

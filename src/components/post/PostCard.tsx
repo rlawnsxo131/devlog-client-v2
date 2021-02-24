@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { PostType } from '../../graphql/post';
+import { Post } from '../../graphql/post';
 import optimizeImage from '../../lib/optimizeImage';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
@@ -10,9 +10,9 @@ import { RootState } from '../../modules';
 import PhotoIcon from '../../img/components/icons/PhotoIcon';
 import markdownParser from '../../lib/remark/markdownParser';
 
-type PostCardProps = {
-  post: PostType;
-};
+interface PostCardProps {
+  post: Post;
+}
 
 function PostCard({ post }: PostCardProps) {
   const { tag } = useParams<{ tag?: string }>();

@@ -1,10 +1,10 @@
-type MenuIconProps = {
+interface MenuIconProps {
   fill: string;
   height: number;
   width: number;
   onClick: () => void;
   className: string;
-};
+}
 
 function MenuIcon({ fill, height, width, onClick, className }: MenuIconProps) {
   return (

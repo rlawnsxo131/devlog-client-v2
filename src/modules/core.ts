@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { DEVLOG_DARKMODE } from '../lib/constants';
 
-type CoreType = {
+interface CoreState {
   darkmode: {
     visible: boolean;
     darkmode: boolean;
@@ -12,9 +12,9 @@ type CoreType = {
     title: string;
     message: string;
   };
-};
+}
 
-const initialState: CoreType = {
+const initialState: CoreState = {
   darkmode: {
     visible: false,
     darkmode: false,

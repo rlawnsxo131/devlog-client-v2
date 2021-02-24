@@ -4,7 +4,7 @@ import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import Paragraph from '../common/Paragraph';
 
-type PostCardSkelletonProps = {};
+interface PostCardSkelletonProps {}
 
 function PostCardSkelleton(props: PostCardSkelletonProps) {
   const darkmode = useSelector(

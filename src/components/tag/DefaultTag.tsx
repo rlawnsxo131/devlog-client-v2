@@ -6,9 +6,9 @@ import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
-type DefaultTagProps = {
+interface DefaultTagProps {
   name: string;
-};
+}
 
 function DefaultTag({ name }: DefaultTagProps) {
   const darkmode = useSelector(

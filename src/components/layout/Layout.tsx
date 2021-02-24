@@ -6,9 +6,9 @@ import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import Header from './Header';
 
-type LayoutProps = {
+interface LayoutProps {
   children: React.ReactNode;
-};
+}
 
 function Layout({ children }: LayoutProps) {
   const darkmode = useSelector(

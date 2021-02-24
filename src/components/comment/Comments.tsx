@@ -1,21 +1,21 @@
 import { memo, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
-import { CommentType, GET_COMMENTS } from '../../graphql/comment';
+import { Comment, GET_COMMENTS } from '../../graphql/comment';
 import useError from '../../lib/hooks/useError';
 import media from '../../lib/styles/media';
 import CommentCards from './CommentCards';
 import CommentsSkelleton from './CommentsSkelleton';
 import CommentWrite from './CommentWrite';
 
-type CommentsProps = {
+interface CommentsProps {
   post_id: number;
-};
+}
 
 function Comments({ post_id }: CommentsProps) {
   const [handleError] = useError();
   const { loading, error, data } = useQuery<{
-    comments: Array<CommentType>;
+    comments: Array<Comment>;
     commentsCount: number;
   }>(GET_COMMENTS, {
     variables: {

@@ -6,10 +6,10 @@ import transitions from '../../lib/styles/transitions';
 import zIndexes from '../../lib/styles/zIndexes';
 import { RootState } from '../../modules';
 
-type PopupBaseProps = {
+interface PopupBaseProps {
   children: React.ReactNode;
   visible: boolean;
-};
+}
 
 function PopupBase({ children, visible }: PopupBaseProps) {
   const darkmode = useSelector(

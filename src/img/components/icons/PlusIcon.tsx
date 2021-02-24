@@ -1,8 +1,8 @@
-type PlusIconProps = {
+interface PlusIconProps {
   fill?: string;
   width?: number;
   height?: number;
-};
+}
 
 function PlusIcon({ fill, width, height }: PlusIconProps) {
   return (
