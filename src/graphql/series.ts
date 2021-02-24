@@ -5,7 +5,6 @@ export type Series = {
   id: number;
   series_name: string;
   posts: Array<Post>;
-  __typename?: string;
 };
 
 export const GET_SERIES = gql`

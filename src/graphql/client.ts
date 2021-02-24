@@ -6,6 +6,7 @@ const link = new HttpLink({
   uri: `${process.env.REACT_APP_API_URI}/graphql`,
   credentials: 'include',
 });
+
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (!isProduction) {
     if (graphQLErrors)
@@ -18,9 +19,26 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
+const cache = new InMemoryCache({
+  typePolicies: {
+    // Post: {
+    //   merge: true,
+    // },
+    // Comment: {
+    //   merge: true,
+    // },
+    // Series: {
+    //   merge: true,
+    // },
+    // Tag: {
+    //   merge: true,
+    // },
+  },
+}).restore((globalThis as any).__APOLLO_STATE__);
+
 const client = new ApolloClient({
   link: from([errorLink, link]),
-  cache: new InMemoryCache().restore((globalThis as any).__APOLLO_STATE__),
+  cache,
 });
 
 (globalThis as any).client = client;

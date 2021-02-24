@@ -19,7 +19,6 @@ export interface Post {
   url_slug: string;
   released_at: Date;
   tags: Array<string>;
-  comments_count: number;
   series_posts: Array<SeriesPost>;
 }
 
@@ -58,7 +57,6 @@ export const GET_POSTS = gql`
       url_slug
       released_at
       tags
-      comments_count
     }
   }
 `;

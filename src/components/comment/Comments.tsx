@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
 import { Comment, GET_COMMENTS } from '../../graphql/comment';
@@ -12,6 +12,24 @@ interface CommentsProps {
   post_id: number;
 }
 
+function getCommentsCount(comments: Array<Comment>) {
+  let commentsCount = 0;
+  if (comments.length) {
+    commentsCount += comments.length;
+    comments.forEach((v, i) => {
+      if (v.replies) {
+        commentsCount += v.replies.length;
+        v.replies.forEach((v) => {
+          if (v.replies) {
+            commentsCount += v.replies.length;
+          }
+        });
+      }
+    });
+  }
+  return commentsCount;
+}
+
 function Comments({ post_id }: CommentsProps) {
   const [handleError] = useError();
   const { loading, error, data } = useQuery<{
@@ -22,6 +40,10 @@ function Comments({ post_id }: CommentsProps) {
       post_id,
     },
   });
+  const commentsCount = useMemo(() => {
+    if (!data) return 0;
+    return getCommentsCount(data.comments);
+  }, [data]);
 
   useEffect(() => {
     if (!error) return;
@@ -33,7 +55,7 @@ function Comments({ post_id }: CommentsProps) {
 
   return (
     <Block>
-      <CommentsCount>{data?.commentsCount}개의 댓글</CommentsCount>
+      <CommentsCount>{commentsCount}개의 댓글</CommentsCount>
       <CommentWrite post_id={post_id} />
       <CommentCards replies={data?.comments} />
     </Block>

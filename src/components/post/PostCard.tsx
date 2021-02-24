@@ -45,11 +45,7 @@ function PostCard({ post }: PostCardProps) {
       </Content>
       <Link to={`/post/${post.url_slug}`}>
         <Footer darkmode={darkmode}>
-          <p>
-            {formatDate(post.released_at)}
-            <span className="separator">&middot;</span>
-            {post.comments_count}개의 댓글
-          </p>
+          <p>{formatDate(post.released_at)}</p>
           <div className="post-card-tags">
             {previewTags.map((v) => (
               <p key={`${v}_${post.id}`}>{`#${v}`}</p>
@@ -149,13 +145,6 @@ const Footer = styled.div<{ darkmode: boolean }>`
   p {
     font-size: 0.8rem;
     color: ${palette.gray6};
-    .separator {
-      font-size: 0.8rem;
-      color: ${palette.gray6};
-      font-weight: bold;
-      margin-left: 0.2rem;
-      margin-right: 0.2rem;
-    }
   }
   .post-card-tags {
     display: flex;

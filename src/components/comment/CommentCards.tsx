@@ -8,7 +8,7 @@ interface CommentCardsProps {
 }
 
 // comment > sub_comment > sub_comment countes
-function getFullCounts(replies?: Array<Comment>) {
+function getRepliesCount(replies?: Array<Comment>) {
   let fullCounts: Array<number> = [];
   if (replies?.length && replies[0].level === 0) {
     replies.forEach((v, i) => {
@@ -28,7 +28,7 @@ function getFullCounts(replies?: Array<Comment>) {
 }
 
 function CommentCards({ replies }: CommentCardsProps) {
-  const fullCounts = getFullCounts(replies);
+  const fullCounts = getRepliesCount(replies);
   return (
     <Block>
       {replies?.map((v, i) => (

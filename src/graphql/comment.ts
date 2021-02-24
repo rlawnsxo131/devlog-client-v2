@@ -56,7 +56,6 @@ export const GET_COMMENTS = gql`
         }
       }
     }
-    commentsCount(post_id: $post_id)
   }
 `;
 
