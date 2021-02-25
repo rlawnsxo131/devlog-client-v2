@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import LoopIcon from '../../img/components/icons/LoopIcon';
@@ -13,7 +14,9 @@ function Loading(props: LoadingProps) {
     darkmode: state.core.darkmode.darkmode,
     loading: state.core.loading,
   }));
-  const fill = darkmode ? palette.gray5 : palette.gray9;
+  const fill = useMemo(() => {
+    return darkmode ? palette.gray5 : palette.gray9;
+  }, [darkmode]);
   if (!loading) return null;
   return (
     <PopupBase visible={loading}>
