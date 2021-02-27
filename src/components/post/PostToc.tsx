@@ -5,18 +5,19 @@ import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 
 interface PostTocProps {}
-type Headings = Array<{
+interface Heading {
   text: string;
   level: number;
   height: number;
-}>;
+}
+
 function PostToc(props: PostTocProps) {
   const { pathname } = useLocation();
-  const [toc, setToc] = useState<Headings | null>(null);
+  const [toc, setToc] = useState<Array<Heading> | null>(null);
   const [currentTocId, setCurrentTocId] = useState(0);
 
   const parseHeadings = useCallback(() => {
-    let headings: Headings = [];
+    let headings: Array<Heading> = [];
     const nodes = document.querySelectorAll('div[class*=atom-] *');
     nodes.forEach((el) => {
       if (el.tagName.match(/H([1-3])/)) {

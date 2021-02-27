@@ -1,9 +1,9 @@
 import { useReducer, useCallback } from 'react';
 
-type UseInputsAction = {
+interface UseInputsAction {
   name: string;
   value: string;
-};
+}
 function reducer<T>(state: T, action: UseInputsAction | null) {
   if (!action) {
     const initialState: any = {};

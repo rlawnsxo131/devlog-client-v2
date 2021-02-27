@@ -8,30 +8,17 @@ import useShowPopup from '../../../lib/hooks/useShowPopup';
 import { normalizedString } from '../../../lib/utils';
 import { RootState } from '../../../modules';
 
-type UseCommentWriteProps = {
+interface UseCommentWriteProps {
   post_id: number;
   reply_comment_id?: number;
   handleShowCommentWrite?: () => void;
-};
-type UseCommentWrite = {
-  darkmode: boolean;
-  passwordRef: React.MutableRefObject<HTMLInputElement | null>;
-  state: {
-    password: string;
-    writer: string;
-    comment: string;
-  };
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => void;
-  createComment: () => Promise<void>;
-};
+}
 
 export default function useCommentWrite({
   post_id,
   reply_comment_id,
   handleShowCommentWrite,
-}: UseCommentWriteProps): UseCommentWrite {
+}: UseCommentWriteProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );

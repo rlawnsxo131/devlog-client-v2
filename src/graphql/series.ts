@@ -1,11 +1,11 @@
 import { Post } from './post';
 import gql from 'graphql-tag';
 
-export type Series = {
+export interface Series {
   id: number;
   series_name: string;
   posts: Array<Post>;
-};
+}
 
 export const GET_SERIES = gql`
   {
