@@ -9,9 +9,9 @@
     "build:local": "PHASE=local webpack --config config/webpack.config.prod.js",
     "build:prod": "PHASE=production webpack --config config/webpack.config.prod.js",
     "dev:server": "ts-node-dev --respawn --transpile-only src/index.server.ts",
-    "start:local:server": "node build/server/server.js",
     "build:local:server": "PHASE=local webpack --config config/webpack.config.server.js",
-    "build:prod:server": "PHASE=production webpack --config config/webpack.config.server.js"
+    "build:prod:server": "PHASE=production webpack --config config/webpack.config.server.js",
+    "start:local:server": "node build/server/server.js"
   },
   "devDependencies": {
     "@babel/core": "^7.13.1",
@@ -64,6 +64,7 @@
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.2",
     "@reduxjs/toolkit": "^1.5.0",
+    "axios": "^0.21.1",
     "codemirror": "^5.59.4",
     "date-fns": "^2.17.0",
     "graphql": "^15.5.0",

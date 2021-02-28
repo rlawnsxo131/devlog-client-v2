@@ -42,8 +42,7 @@ function InfoPage(props: InfoPageProps) {
           판교에 있는 한 스타트업에서 웹/앱의 서버와 웹 프론트엔드 개발을하고
           있습니다.{'\n\n'}
           Serverless 한 BackEnd Architecture 를 선호하고,{'\n'}
-          Micro FrontEnd 방식의 FrontEnd architecture 를 선호합니다.{'\n\n'}
-          자연스런 Data Flow 를 가장 중요히 여깁니다.
+          FrontEnd 의 자연스런 DataFlow 를 중요히 생각합니다.
         </Description>
         <InfoLink href="mailto:public.juntae.kim@gmail.com" target="_blank">
           public.juntae.kim@gmail.com

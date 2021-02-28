@@ -52,7 +52,7 @@ function PostToc(props: PostTocProps) {
   if (!toc) {
     return (
       <Block>
-        <p style={{ color: palette.gray6 }}>loading...</p>
+        <p style={{ color: palette.gray6 }}>wait...</p>
       </Block>
     );
   }

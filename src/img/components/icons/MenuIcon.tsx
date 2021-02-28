@@ -1,22 +1,31 @@
+import styled, { css } from 'styled-components';
+import palette from '../../../lib/styles/palette';
+
 interface MenuIconProps {
-  fill: string;
   height: number;
   width: number;
   onClick: () => void;
   className: string;
+  darkmode: boolean;
 }
 
-function MenuIcon({ fill, height, width, onClick, className }: MenuIconProps) {
+function MenuIcon({
+  height,
+  width,
+  onClick,
+  className,
+  darkmode,
+}: MenuIconProps) {
   return (
-    <svg
-      fill={fill}
+    <Block
       onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       enableBackground="new 0 0 24 24"
       height={height}
-      viewBox="0 0 24 24"
       width={width}
+      viewBox="0 0 24 24"
       className={className}
+      darkmode={darkmode}
     >
       <g className={className}>
         <path className={className} d="M0,0h24v24H0V0z" fill="none" />
@@ -31,8 +40,26 @@ function MenuIcon({ fill, height, width, onClick, className }: MenuIconProps) {
           </g>
         </g>
       </g>
-    </svg>
+    </Block>
   );
 }
+
+const Block = styled.svg<{ darkmode: boolean }>`
+  border-radius: 100%;
+  ${(props) =>
+    props.darkmode
+      ? css`
+          box-shadow: 1px 1px 5px 2px black;
+          &:hover {
+            box-shadow: 1px 1px 10px 2px black;
+          }
+        `
+      : css`
+          box-shadow: 1px 1px 5px 2px ${palette.gray5};
+          &:hover {
+            box-shadow: 1px 1px 10px 2px ${palette.gray5};
+          }
+        `}
+`;
 
 export default MenuIcon;

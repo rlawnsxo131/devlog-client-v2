@@ -26,7 +26,6 @@ export default function useDarkmode() {
     if (!mode) return;
     dispatch(
       setDarkmode({
-        visible: false,
         darkmode: mode === 'dark',
       }),
     );
@@ -37,7 +36,6 @@ export default function useDarkmode() {
     if (!DARKMODE.current) return;
     dispatch(
       setDarkmode({
-        visible: false,
         darkmode: DARKMODE.current === 'true',
       }),
     );

@@ -96,7 +96,7 @@ module.exports = () => {
         filename: 'index.html',
       }),
       new FaviconsWebpackPlugin({
-        logo: path.resolve(paths.rootPath, 'static/favicons/favicon-96x96.png'),
+        logo: path.resolve(paths.rootPath, 'static/favicons/favicon.png'),
         inject: true,
       }),
       new MiniCssExtractPlugin({

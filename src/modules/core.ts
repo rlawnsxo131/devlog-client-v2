@@ -3,7 +3,6 @@ import { DEVLOG_DARKMODE } from '../lib/constants';
 
 interface CoreState {
   darkmode: {
-    visible: boolean;
     darkmode: boolean;
   };
   loading: boolean;
@@ -16,7 +15,6 @@ interface CoreState {
 
 const initialState: CoreState = {
   darkmode: {
-    visible: false,
     darkmode: false,
   },
   loading: false,
@@ -32,8 +30,7 @@ const coreSlice = createSlice({
   initialState,
   reducers: {
     setDarkmode(state, action) {
-      const { visible, darkmode } = action.payload;
-      state.darkmode.visible = visible;
+      const { darkmode } = action.payload;
       state.darkmode.darkmode = darkmode;
       localStorage.setItem(DEVLOG_DARKMODE, darkmode);
     },
