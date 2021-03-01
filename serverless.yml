@@ -5,9 +5,9 @@ plugins:
   - serverless-dotenv-plugin
   - serverless-offline
 
-# package:
-#   include:
-#     - build/loadable-stats.json
+package:
+  include:
+    - build/client/loadable-stats.json
     
 custom:
   webpack:
@@ -24,16 +24,22 @@ provider:
     shouldStartNameWithService: true
   
 
-  # environment:
-  #   SECRET_KEY: ${env:SECRET_KEY}
+  environment:
+    REACT_APP_NODE_ENV: ${env:REACT_APP_NODE_ENV}
+    REACT_APP_SERVICE_URL: ${env:REACT_APP_SERVICE_URL}
+    REACT_APP_API_URI: ${env:REACT_APP_API_URI}
+    REACT_APP_PUBLIC_URL: ${env:REACT_APP_PUBLIC_URL}
+    REACT_APP_IMAGE_URL: ${env:REACT_APP_IMAGE_URL}
+    REACT_APP_SSR_PORT: ${env:REACT_APP_SSR_PORT}
+    SERVERLESS_DEBUG: ${env:SERVERLESS_DEBUG}
   
-  vpc:
-    securityGroupIds:
-      - ${env:AWS_SECURITY_GROUP_ID}
-    subnetIds:
-      - ${env:AWS_SUBNET_ID_FIRST}
-      - ${env:AWS_SUBNET_ID_SECOND}
-      - ${env:AWS_SUBNET_ID_THIRD}
+  # vpc:
+  #   securityGroupIds:
+  #     - ${env:AWS_SECURITY_GROUP_ID}
+  #   subnetIds:
+  #     - ${env:AWS_SUBNET_ID_FIRST}
+  #     - ${env:AWS_SUBNET_ID_SECOND}
+  #     - ${env:AWS_SUBNET_ID_THIRD}
 
 unresolvedVariablesNotificationMode: error
 

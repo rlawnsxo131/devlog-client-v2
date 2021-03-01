@@ -86,14 +86,6 @@ module.exports = () => {
     optimization: {
       minimize: false,
     },
-    externals: [
-      nodeExternals(),
-      // nodeExternals({
-      //   whitelist: [/codemirror/, /\.css$/],
-      // }),
-    ],
-    // node: {
-    //   __dirname,
-    // },
+    externals: [nodeExternals()],
   };
 };
