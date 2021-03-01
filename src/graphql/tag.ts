@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export interface Tag {
+export interface TagData {
   id?: number;
   name: string;
   created_at?: Date;

@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { Post } from '../../graphql/post';
+import { PostData } from '../../graphql/post';
 import optimizeImage from '../../lib/optimizeImage';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
@@ -11,7 +11,7 @@ import PhotoIcon from '../../img/components/icons/PhotoIcon';
 import markdownParser from '../../lib/remark/markdownParser';
 
 interface PostCardProps {
-  post: Post;
+  post: PostData;
 }
 
 function PostCard({ post }: PostCardProps) {

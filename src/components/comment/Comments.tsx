@@ -1,7 +1,7 @@
 import { memo, useEffect, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import styled from 'styled-components';
-import { Comment, GET_COMMENTS } from '../../graphql/comment';
+import { CommentData, GET_COMMENTS } from '../../graphql/comment';
 import useError from '../../lib/hooks/useError';
 import media from '../../lib/styles/media';
 import CommentCards from './CommentCards';
@@ -12,7 +12,7 @@ interface CommentsProps {
   post_id: number;
 }
 
-function getCommentsCount(comments: Array<Comment>) {
+function getCommentsCount(comments: Array<CommentData>) {
   let commentsCount = 0;
   if (comments.length) {
     commentsCount += comments.length;
@@ -33,7 +33,7 @@ function getCommentsCount(comments: Array<Comment>) {
 function Comments({ post_id }: CommentsProps) {
   const [handleError] = useError();
   const { loading, error, data } = useQuery<{
-    comments: Array<Comment>;
+    comments: Array<CommentData>;
     commentsCount: number;
   }>(GET_COMMENTS, {
     variables: {

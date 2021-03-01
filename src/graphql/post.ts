@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export interface SeriesPost {
+export interface SeriesPostData {
   series_id: number;
   series_name: string;
   post_id: number;
@@ -8,7 +8,7 @@ export interface SeriesPost {
   post_header: string;
 }
 
-export interface Post {
+export interface PostData {
   id: number;
   post_header: string;
   post_body: string;
@@ -19,7 +19,7 @@ export interface Post {
   url_slug: string;
   released_at: Date;
   tags: Array<string>;
-  series_posts: Array<SeriesPost>;
+  series_posts: Array<SeriesPostData>;
 }
 
 export const GET_POST = gql`

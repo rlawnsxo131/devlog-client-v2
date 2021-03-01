@@ -1,14 +1,21 @@
 {
     "presets": [
-        ["@babel/preset-react", {
-            "runtime": "automatic"
-        }],
         [
             "@babel/preset-env",
-            { "targets": { "browsers": ["last 2 versions", ">= 5% in KR"] } }
+            { 
+                "targets": { 
+                    "browsers": ["last 2 versions", ">= 5% in KR"]
+                } 
+            }
+        ],
+        [
+            "@babel/preset-react", 
+            {
+                "runtime": "automatic"
+            }
         ],
         "@babel/preset-typescript"
-    ],      
+    ],
     "plugins": [
         "@loadable/babel-plugin", 
         "@babel/plugin-syntax-dynamic-import"

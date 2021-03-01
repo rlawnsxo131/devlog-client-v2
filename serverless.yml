@@ -11,8 +11,8 @@ package:
     
 custom:
   webpack:
-    includeModules: true
     webpackConfig: './config/webpack.config.serverless.js'
+    includeModules: true
 
 provider:
   name: aws
@@ -30,7 +30,6 @@ provider:
     REACT_APP_API_URI: ${env:REACT_APP_API_URI}
     REACT_APP_PUBLIC_URL: ${env:REACT_APP_PUBLIC_URL}
     REACT_APP_IMAGE_URL: ${env:REACT_APP_IMAGE_URL}
-    REACT_APP_SSR_PORT: ${env:REACT_APP_SSR_PORT}
     SERVERLESS_DEBUG: ${env:SERVERLESS_DEBUG}
   
   # vpc:

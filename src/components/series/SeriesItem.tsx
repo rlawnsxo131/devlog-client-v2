@@ -2,12 +2,12 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { Series } from '../../graphql/series';
+import { SeriesData } from '../../graphql/series';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
 interface SeriesItemProps {
-  series: Series;
+  series: SeriesData;
 }
 
 function SeriesItem({ series }: SeriesItemProps) {

@@ -45,7 +45,7 @@ function HeaderItems({ darkmode }: HeaderItemsProps) {
       <Block darkmode={darkmode}>
         <a
           style={{ display: 'flex', alignItems: 'center' }}
-          href={`${process.env.REACT_APP_SERVICE_URL}/rss`}
+          href={`${process.env.REACT_APP_API_URI}/rss`}
           target="_blank"
         >
           <RssFeedIcon />

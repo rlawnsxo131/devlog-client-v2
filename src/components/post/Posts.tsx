@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { GET_POSTS, Post } from '../../graphql/post';
+import { GET_POSTS, PostData } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import media, { mediaQuery } from '../../lib/styles/media';
 import { RootState } from '../../modules';
@@ -20,7 +20,7 @@ function Posts(props: PostsProps) {
   const [handleError] = useError();
   const { tag } = useParams<{ tag?: string }>();
   const { loading, error, data } = useQuery<
-    { posts: Array<Post> },
+    { posts: Array<PostData> },
     { tag?: string }
   >(GET_POSTS, {
     variables: {

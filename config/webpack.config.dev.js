@@ -5,12 +5,15 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 
 module.exports = () => {
   const clientEnv = initializeConfig({ target: 'web' });
-  const { REACT_APP_NODE_ENV, REACT_APP_PUBLIC_URL } = process.env;
+  const {
+    REACT_APP_NODE_ENV,
+    REACT_APP_PUBLIC_URL,
+    REACT_APP_IMAGE_URL,
+  } = process.env;
   return {
     mode: REACT_APP_NODE_ENV,
     entry: paths.entryPath,
@@ -91,13 +94,10 @@ module.exports = () => {
         templateParameters: {
           env: {
             REACT_APP_PUBLIC_URL: '',
+            REACT_APP_IMAGE_URL: REACT_APP_IMAGE_URL,
           },
         },
         filename: 'index.html',
-      }),
-      new FaviconsWebpackPlugin({
-        logo: path.resolve(paths.rootPath, 'static/favicons/favicon.png'),
-        inject: true,
       }),
       new MiniCssExtractPlugin({
         filename: 'static/css/[name].[contenthash:8].css',

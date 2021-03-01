@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { GET_POST, Post } from '../../graphql/post';
+import { GET_POST, PostData } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import useNotFound from '../../lib/hooks/useNotFound';
 import optimizeImage from '../../lib/optimizeImage';
@@ -25,7 +25,7 @@ function Post(props: PostProps) {
   const [handleError] = useError();
   const { url_slug }: { url_slug: string } = useParams();
   const { loading, error, data } = useQuery<
-    { post: Post },
+    { post: PostData },
     { url_slug: string }
   >(GET_POST, {
     variables: {

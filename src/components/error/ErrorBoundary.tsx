@@ -1,10 +1,10 @@
-import * as React from 'react';
+import { Component } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import { ErrorEnum } from '../../modules/error';
 import ErrorScreen from './ErrorScreen';
 
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends Component {
   state = {
     hasError: false,
     chunkError: false,

@@ -1,10 +1,10 @@
-import { Post } from './post';
+import { PostData } from './post';
 import gql from 'graphql-tag';
 
-export interface Series {
+export interface SeriesData {
   id: number;
   series_name: string;
-  posts: Array<Post>;
+  posts: Array<PostData>;
 }
 
 export const GET_SERIES = gql`

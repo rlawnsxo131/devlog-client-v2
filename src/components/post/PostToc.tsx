@@ -41,7 +41,7 @@ function PostToc({ post_body }: PostTocProps) {
     const timeoutId: NodeJS.Timeout = setTimeout(() => {
       const headings = parseHeadings();
       setToc(headings);
-    }, 250);
+    }, 1000);
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);

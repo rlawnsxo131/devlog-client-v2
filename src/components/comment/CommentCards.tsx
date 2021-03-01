@@ -1,14 +1,14 @@
 import { memo } from 'react';
 import styled from 'styled-components';
-import { Comment } from '../../graphql/comment';
+import { CommentData } from '../../graphql/comment';
 import CommentCard from './CommentCard';
 
 interface CommentCardsProps {
-  replies?: Array<Comment>;
+  replies?: Array<CommentData>;
 }
 
 // comment > sub_comment > sub_comment countes
-function getRepliesCount(replies?: Array<Comment>) {
+function getRepliesCount(replies?: Array<CommentData>) {
   let fullCounts: Array<number> = [];
   if (replies?.length && replies[0].level === 0) {
     replies.forEach((v, i) => {

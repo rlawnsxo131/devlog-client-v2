@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import { useCallback, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { CreateComment, CREATE_COMMENT } from '../../../graphql/comment';
+import { CreateCommentData, CREATE_COMMENT } from '../../../graphql/comment';
 import useInputs from '../../../lib/hooks/useInputs';
 import useLoading from '../../../lib/hooks/useLoading';
 import useShowPopup from '../../../lib/hooks/useShowPopup';
@@ -34,7 +34,7 @@ export default function useCommentWrite({
   // need loading, error work
   const [CreateComment] = useMutation<{
     createComment: boolean;
-    variables: CreateComment;
+    variables: CreateCommentData;
   }>(CREATE_COMMENT, {
     refetchQueries: ['Comments'],
   });

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
-import { Comment } from '../../graphql/comment';
+import { CommentData } from '../../graphql/comment';
 import CommentCards from './CommentCards';
 import Button from '../common/Button';
 import CommentWrite from './CommentWrite';
@@ -13,7 +13,7 @@ interface CommentCardFooterProps {
   reply_id: number;
   level: number;
   deleted: boolean;
-  replies: Array<Comment>;
+  replies: Array<CommentData>;
   has_replies: boolean;
   fullCount?: number;
 }

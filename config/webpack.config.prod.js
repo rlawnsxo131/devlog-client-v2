@@ -7,21 +7,26 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 //   .BundleAnalyzerPlugin;
 
 module.exports = () => {
   const clientEnv = initializeConfig({ target: 'web' });
-  const { PHASE, REACT_APP_NODE_ENV, REACT_APP_PUBLIC_URL } = process.env;
+  const {
+    PHASE,
+    REACT_APP_NODE_ENV,
+    REACT_APP_PUBLIC_URL,
+    REACT_APP_IMAGE_URL,
+  } = process.env;
   const prefix = PHASE === 'production' ? '/' : '';
   return {
     mode: REACT_APP_NODE_ENV,
     entry: paths.entryPath,
     output: {
       path: paths.prodClientBuildPath,
-      publicPath: REACT_APP_PUBLIC_URL,
+      publicPath: `${REACT_APP_PUBLIC_URL}${prefix}`,
       filename: 'static/js/[name].[contenthash:8].js',
       chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
     },
@@ -98,6 +103,7 @@ module.exports = () => {
           env: {
             REACT_APP_PUBLIC_URL:
               PHASE === 'production' ? REACT_APP_PUBLIC_URL : prefix,
+            REACT_APP_IMAGE_URL: REACT_APP_IMAGE_URL,
           },
         },
         minify: {
@@ -112,10 +118,6 @@ module.exports = () => {
           minifyCSS: true,
           minifyURLs: true,
         },
-      }),
-      new FaviconsWebpackPlugin({
-        logo: path.resolve(paths.rootPath, 'static/favicons/favicon.png'),
-        inject: true,
       }),
       new MiniCssExtractPlugin({
         filename: 'static/css/[name].[contenthash:8].css',
@@ -140,9 +142,9 @@ module.exports = () => {
         },
       }),
       new CleanWebpackPlugin(),
+      new ForkTsCheckerWebpackPlugin(),
       new LoadablePlugin({
         filename: 'loadable-stats.json',
-        writeToDisk: true,
       }),
       // new BundleAnalyzerPlugin(),
     ].filter(Boolean),

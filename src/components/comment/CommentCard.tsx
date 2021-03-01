@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
-import { Comment } from '../../graphql/comment';
+import { CommentData } from '../../graphql/comment';
 import palette, { commentColor } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import { resetCommentError } from '../../modules/comment';
@@ -11,7 +11,7 @@ import CommentCardHeader from './CommentCardHeader';
 import CommentEditModal from './CommentEditModal';
 
 interface CommentCardProps {
-  reply: Comment;
+  reply: CommentData;
   fullCount?: number;
 }
 

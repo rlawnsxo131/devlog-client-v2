@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { Helmet } from 'react-helmet-async';
-import { GET_SERIES, Series } from '../../graphql/series';
+import { GET_SERIES, SeriesData } from '../../graphql/series';
 import useError from '../../lib/hooks/useError';
 import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 import SeriesItem from './SeriesItem';
@@ -11,7 +11,7 @@ interface SeriesProps {}
 
 function Series(props: SeriesProps) {
   const [handleError] = useError();
-  const { loading, error, data } = useQuery<{ series: Array<Series> }>(
+  const { loading, error, data } = useQuery<{ series: Array<SeriesData> }>(
     GET_SERIES,
   );
 

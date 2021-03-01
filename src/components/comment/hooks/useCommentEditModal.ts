@@ -2,9 +2,9 @@ import { useMutation } from '@apollo/client';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  RemoveComment,
+  RemoveCommentData,
   REMOVE_COMMENT,
-  UpdateComment,
+  UpdateCommentData,
   UPDATE_COMMENT,
 } from '../../../graphql/comment';
 import errorTypeManager from '../../../lib/errorTypeManager';
@@ -62,13 +62,13 @@ export default function useCommentEditModal({
 
   const [UpdateComment] = useMutation<{
     updateCommnet: boolean;
-    variables: UpdateComment;
+    variables: UpdateCommentData;
   }>(UPDATE_COMMENT, {
     refetchQueries: ['Comments'],
   });
   const [RemoveComment] = useMutation<{
     removeComment: boolean;
-    variables: RemoveComment;
+    variables: RemoveCommentData;
   }>(REMOVE_COMMENT, {
     refetchQueries: ['Comments'],
   });

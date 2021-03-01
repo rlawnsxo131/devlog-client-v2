@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export interface Comment {
+export interface CommentData {
   id: number;
   post_id: number;
   level: number;
@@ -12,7 +12,7 @@ export interface Comment {
   created_at: Date;
   updated_at: Date;
   edited_at?: Date;
-  replies: Array<Comment>;
+  replies: Array<CommentData>;
 }
 
 export const GET_COMMENTS = gql`
@@ -59,7 +59,7 @@ export const GET_COMMENTS = gql`
   }
 `;
 
-export interface CreateComment {
+export interface CreateCommentData {
   post_id: number;
   reply_comment_id?: number;
   writer: string;
@@ -84,7 +84,7 @@ export const CREATE_COMMENT = gql`
   }
 `;
 
-export interface UpdateComment {
+export interface UpdateCommentData {
   comment_id: number;
   writer?: string;
   password: string;
@@ -109,7 +109,7 @@ export const UPDATE_COMMENT = gql`
   }
 `;
 
-export interface RemoveComment {
+export interface RemoveCommentData {
   comment_id: number;
   possword: string;
 }

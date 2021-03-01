@@ -1,7 +1,5 @@
 import { ChunkExtractor } from '@loadable/server';
 import { HelmetData } from 'react-helmet-async';
-import { Parser } from 'html-to-react';
-import replaceAssets from './replaceAssets';
 
 interface HtmlProps {
   content: string;
@@ -20,8 +18,7 @@ function Html({
   styledElement,
   helmet,
 }: HtmlProps) {
-  const assets = replaceAssets();
-  const assetsElements = new Parser().parse(assets);
+  const { REACT_APP_IMAGE_URL } = process.env;
   return (
     <html>
       <head>
@@ -32,8 +29,27 @@ function Html({
         {extractor.getLinkElements()}
         {extractor.getStyleElements()}
         {extractor.getLinkElements()}
-        {assetsElements}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="shortcut icon"
+          href={`${REACT_APP_IMAGE_URL}/favicons/favicon.ico`}
+        />
+        <link
+          rel="shortcut icon"
+          href={`${REACT_APP_IMAGE_URL}/favicons/favicon-16x16.png`}
+        />
+        <link
+          rel="shortcut icon"
+          href={`${REACT_APP_IMAGE_URL}/favicons/favicon-32x32.png`}
+        />
+        <link
+          rel="shortcut icon"
+          href={`${REACT_APP_IMAGE_URL}/favicons/favicon-48x48.png`}
+        />
+        <link
+          rel="shortcut icon"
+          href={`${REACT_APP_IMAGE_URL}/favicons/favicon-96x96.png`}
+        />
         <meta
           name="google-site-verification"
           content="cxSUqcooAfyS9ypQheVFaeT_mqAzuR_D8hjCLI5hP40"

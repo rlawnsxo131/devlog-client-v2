@@ -2,13 +2,13 @@ import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { Tag } from '../../graphql/tag';
+import { TagData } from '../../graphql/tag';
 import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
 interface CountTagProps {
-  tag: Tag;
+  tag: TagData;
 }
 
 function CountTag({ tag }: CountTagProps) {

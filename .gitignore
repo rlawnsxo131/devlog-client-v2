@@ -8,6 +8,7 @@
 /build
 /dist
 /.cache
+.serverless
 
 # misc
 .DS_Store
