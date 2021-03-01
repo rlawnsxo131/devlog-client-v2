@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "PHASE=development webpack serve --config config/webpack.config.dev.js",
     "build:local": "PHASE=local webpack --config config/webpack.config.prod.js",
-    "build:prod": "PHASE=production webpack --config config/webpack.config.prod.js",
-    "dev:server": "ts-node-dev --respawn --transpile-only src/index.server.ts",
     "build:local:server": "PHASE=local webpack --config config/webpack.config.server.js",
     "start:local:server": "node build/server/server.js",
+    "dev:server": "ts-node-dev --respawn --transpile-only src/index.server.ts",
     "offline": "PHASE=local sls offline",
-    "upload:s3": "",
+    "build:prod": "PHASE=production webpack --config config/webpack.config.prod.js",
+    "upload:s3": "aws s3 sync ./build/client s3://john-admin --delete",
     "deploy:production": "serverless deploy --stage production --force"
   },
   "devDependencies": {
