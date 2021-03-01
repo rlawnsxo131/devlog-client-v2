@@ -5,11 +5,13 @@ import errorTypeManager from '../errorTypeManager';
 
 export default function useError() {
   const dispatch = useDispatch();
-
-  const handleError = useCallback((error: any) => {
-    const errorType = errorTypeManager(error);
-    dispatch(setError({ errorType }));
-  }, []);
+  const handleError = useCallback(
+    (error: any) => {
+      const errorType = errorTypeManager(error);
+      dispatch(setError({ errorType }));
+    },
+    [dispatch],
+  );
 
   return [handleError] as const;
 }

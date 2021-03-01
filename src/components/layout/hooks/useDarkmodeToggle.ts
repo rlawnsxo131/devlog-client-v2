@@ -8,7 +8,6 @@ export default function useDarkmodeToggle() {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
-
   const onToggle = useCallback(() => {
     dispatch(
       setDarkmode({

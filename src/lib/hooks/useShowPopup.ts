@@ -13,7 +13,8 @@ export default function useShowPopup() {
         }),
       );
     },
-    [],
+    [dispatch],
   );
+
   return [onShowPopup] as const;
 }

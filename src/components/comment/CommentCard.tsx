@@ -24,7 +24,7 @@ function CommentCard({ reply, fullCount }: CommentCardProps) {
   const handleSetVisible = useCallback(() => {
     setVisible((state) => !state);
     dispatch(resetCommentError({}));
-  }, []);
+  }, [dispatch]);
 
   return (
     <Block level={reply.level} darkmode={darkmode}>

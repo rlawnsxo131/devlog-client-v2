@@ -50,7 +50,7 @@ function ErrorScreen({ errorType, handleResolveError }: ErrorScreenProps) {
       if (!errorType) return;
       clearError();
     };
-  }, [clearError, pathname, errorType]);
+  }, [errorType, pathname]);
 
   return (
     <Block darkmode={darkmode}>

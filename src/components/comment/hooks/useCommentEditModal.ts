@@ -73,13 +73,16 @@ export default function useCommentEditModal({
     refetchQueries: ['Comments'],
   });
 
-  const handleCommentError = useCallback((error: any) => {
-    dispatch(
-      setCommentError({
-        errorType: errorTypeManager(error),
-      }),
-    );
-  }, []);
+  const handleCommentError = useCallback(
+    (error: any) => {
+      dispatch(
+        setCommentError({
+          errorType: errorTypeManager(error),
+        }),
+      );
+    },
+    [dispatch],
+  );
 
   const updateComment = useCallback(async () => {
     const { writer, password, comment } = state;

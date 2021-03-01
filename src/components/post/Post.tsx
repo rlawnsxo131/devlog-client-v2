@@ -100,7 +100,7 @@ function Post(props: PostProps) {
       <MarkdownRender markdownText={data.post.post_body} />
       <PostSeries series={data.post.series_posts} />
       <Comments post_id={data.post.id} />
-      {data.post.post_body && <PostToc />}
+      <PostToc post_body={data.post.post_body} />
     </MediaRatioWrapper>
   );
 }

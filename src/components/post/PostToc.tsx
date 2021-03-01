@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 
-interface PostTocProps {}
+interface PostTocProps {
+  post_body: string;
+}
 interface Heading {
   text: string;
   level: number;
   height: number;
 }
 
-function PostToc(props: PostTocProps) {
-  const { pathname } = useLocation();
+function PostToc({ post_body }: PostTocProps) {
   const [toc, setToc] = useState<Array<Heading> | null>(null);
   const [currentTocId, setCurrentTocId] = useState(0);
 
@@ -29,7 +29,7 @@ function PostToc(props: PostTocProps) {
       }
     });
     return headings;
-  }, [pathname]);
+  }, [post_body]);
 
   const onTocClick = useCallback((e) => {
     const { value } = e.target;
@@ -47,7 +47,7 @@ function PostToc(props: PostTocProps) {
         clearTimeout(timeoutId);
       }
     };
-  }, [pathname]);
+  }, [post_body]);
 
   if (!toc) {
     return (
