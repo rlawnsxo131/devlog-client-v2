@@ -1,7 +1,6 @@
 const initializeConfig = require('./env');
 const env = initializeConfig({ target: 'server' });
 const { REACT_APP_PUBLIC_URL } = env;
-console.log(env);
 
 const paths = require('./paths');
 const path = require('path');
@@ -113,6 +112,7 @@ module.exports = {
         },
       ],
     }),
+    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
     new ForkTsCheckerWebpackPlugin(),
   ],
   optimization: {
