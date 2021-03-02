@@ -8,7 +8,6 @@
     "build:local": "PHASE=local webpack --config config/webpack.config.prod.js",
     "build:local:server": "PHASE=local webpack --config config/webpack.config.server.js",
     "start:local:server": "node build/server/server.js",
-    "dev:server": "ts-node-dev --respawn --transpile-only src/index.server.ts",
     "offline": "PHASE=local sls offline",
     "build:prod": "PHASE=production webpack --config config/webpack.config.prod.js",
     "upload:s3": "aws s3 sync ./build/client s3://cdn-devlog-v2 --delete",

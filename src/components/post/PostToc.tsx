@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
@@ -13,6 +13,8 @@ interface Heading {
 
 function PostToc(props: PostTocProps) {
   if (typeof window === 'undefined') return null;
+  if (!document || !document.body) return null;
+  const prevScrollHeight = useRef<number>(0);
   const [tocs, setTocs] = useState<Array<Heading> | null>(null);
   const [currentHeading, setCurrentHeading] = useState(0);
 
@@ -38,7 +40,9 @@ function PostToc(props: PostTocProps) {
 
   const onTocClick = useCallback((e) => {
     const { value } = e.target;
-    globalThis.scrollTo(0, value);
+    const top = parseInt(value, 10);
+    setCurrentHeading(top);
+    globalThis.scrollTo(0, top);
   }, []);
 
   const onScroll = useCallback(
@@ -60,8 +64,10 @@ function PostToc(props: PostTocProps) {
   useEffect(() => {
     const headings = parseHeadings();
     if (!headings) return;
+    if (prevScrollHeight.current === document.body.scrollHeight) return;
     setTocs(headings);
-  }, [document?.body?.scrollHeight]);
+    prevScrollHeight.current = document.body.scrollHeight;
+  }, [document.body.scrollHeight]);
 
   useEffect(() => {
     globalThis.addEventListener('scroll', onScroll);
