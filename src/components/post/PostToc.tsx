@@ -2,69 +2,82 @@ import { useCallback, useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
+import { getScrollTop } from '../../lib/utils';
 
-interface PostTocProps {
-  post_body: string;
-}
+interface PostTocProps {}
 interface Heading {
   text: string;
   level: number;
-  height: number;
+  scrollTop: number;
 }
 
-function PostToc({ post_body }: PostTocProps) {
-  const [toc, setToc] = useState<Array<Heading> | null>(null);
-  const [currentTocId, setCurrentTocId] = useState(0);
+function PostToc(props: PostTocProps) {
+  if (typeof window === 'undefined') return null;
+  const [tocs, setTocs] = useState<Array<Heading> | null>(null);
+  const [currentHeading, setCurrentHeading] = useState(0);
 
   const parseHeadings = useCallback(() => {
     let headings: Array<Heading> = [];
+    const scrollTop = getScrollTop();
     const nodes = document.querySelectorAll('div[class*=atom-] *');
+    if (!nodes) return;
     nodes.forEach((el) => {
       if (el.tagName.match(/H([1-3])/)) {
         headings.push({
           text: el.textContent || '',
           level: parseInt(el.tagName.replace('H', ''), 10),
-          height: el.getBoundingClientRect().y - 100,
+          scrollTop: parseInt(
+            `${el.getBoundingClientRect().top + scrollTop - 100}`,
+            10,
+          ),
         });
       }
     });
     return headings;
-  }, [post_body]);
+  }, []);
 
   const onTocClick = useCallback((e) => {
     const { value } = e.target;
-    setCurrentTocId(parseFloat(value));
     globalThis.scrollTo(0, value);
   }, []);
 
-  useEffect(() => {
-    const timeoutId: NodeJS.Timeout = setTimeout(() => {
-      const headings = parseHeadings();
-      setToc(headings);
-    }, 1000);
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+  const onScroll = useCallback(
+    (e) => {
+      if (!tocs) return;
+      const scrollTop = getScrollTop();
+      const currentHeading = [...tocs].reverse().find((toc) => {
+        return scrollTop >= toc.scrollTop - 80;
+      });
+      if (!currentHeading) {
+        setCurrentHeading(0);
+        return;
       }
-    };
-  }, [post_body]);
+      setCurrentHeading(currentHeading.scrollTop);
+    },
+    [tocs],
+  );
 
-  if (!toc) {
-    return (
-      <Block>
-        <p style={{ color: palette.gray6 }}>wait...</p>
-      </Block>
-    );
-  }
+  useEffect(() => {
+    const headings = parseHeadings();
+    if (!headings) return;
+    setTocs(headings);
+  }, [document?.body?.scrollHeight]);
+
+  useEffect(() => {
+    globalThis.addEventListener('scroll', onScroll);
+    return () => {
+      globalThis.removeEventListener('scroll', onScroll);
+    };
+  }, [onScroll]);
 
   return (
     <Block>
-      {toc?.map((v) => (
+      {tocs?.map((v) => (
         <Toc
-          key={v.height}
-          value={v.height}
+          key={v.scrollTop}
+          value={v.scrollTop}
           level={v.level}
-          active={currentTocId === v.height}
+          active={v.scrollTop === currentHeading}
           onClick={onTocClick}
         >
           {v.text.toString()}

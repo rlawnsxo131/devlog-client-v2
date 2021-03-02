@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { GET_POST, PostData } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
-import useNotFound from '../../lib/hooks/useNotFound';
 import optimizeImage from '../../lib/optimizeImage';
 import media from '../../lib/styles/media';
 import { formatDate } from '../../lib/utils';
@@ -17,12 +16,13 @@ import PostSkelleton from './PostSkelleton';
 import PostToc from './PostToc';
 import { useEffect, useMemo } from 'react';
 import markdownParser from '../../lib/remark/markdownParser';
+import useNotFound from '../../lib/hooks/useNotFound';
 
 interface PostProps {}
 
 function Post(props: PostProps) {
-  const [setNotFound] = useNotFound();
   const [handleError] = useError();
+  const [setNotFound] = useNotFound();
   const { url_slug }: { url_slug: string } = useParams();
   const { loading, error, data } = useQuery<
     { post: PostData },
@@ -100,7 +100,7 @@ function Post(props: PostProps) {
       <MarkdownRender markdownText={data.post.post_body} />
       <PostSeries series={data.post.series_posts} />
       <Comments post_id={data.post.id} />
-      <PostToc post_body={data.post.post_body} />
+      <PostToc />
     </MediaRatioWrapper>
   );
 }

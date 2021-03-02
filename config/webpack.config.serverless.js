@@ -1,7 +1,7 @@
-process.env.PHASE = 'production';
 const initializeConfig = require('./env');
 const env = initializeConfig({ target: 'server' });
 const { REACT_APP_PUBLIC_URL } = env;
+console.log(env);
 
 const paths = require('./paths');
 const path = require('path');

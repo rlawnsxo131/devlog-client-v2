@@ -12,12 +12,12 @@
     "offline": "PHASE=local sls offline",
     "build:prod": "PHASE=production webpack --config config/webpack.config.prod.js",
     "upload:s3": "aws s3 sync ./build/client s3://cdn-devlog-v2 --delete",
-    "deploy:production": "serverless deploy --stage production --force"
+    "deploy:production": "PHASE=production serverless deploy --stage production --force"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/preset-env": "^7.13.8",
+    "@babel/preset-env": "^7.13.9",
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.13.0",
     "@loadable/babel-plugin": "^5.13.2",
@@ -71,10 +71,10 @@
     "@loadable/server": "^5.14.2",
     "@reduxjs/toolkit": "^1.5.0",
     "aws-lambda": "^1.0.6",
-    "aws-sdk": "^2.853.0",
+    "aws-sdk": "^2.854.0",
     "axios": "^0.21.1",
     "codemirror": "^5.59.4",
-    "date-fns": "^2.17.0",
+    "date-fns": "^2.18.0",
     "graphql": "^15.5.0",
     "html-to-react": "^1.4.5",
     "koa": "^2.13.1",

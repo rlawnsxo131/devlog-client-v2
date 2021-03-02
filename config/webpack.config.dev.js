@@ -9,11 +9,7 @@ const LoadablePlugin = require('@loadable/webpack-plugin');
 
 module.exports = () => {
   const clientEnv = initializeConfig({ target: 'web' });
-  const {
-    REACT_APP_NODE_ENV,
-    REACT_APP_PUBLIC_URL,
-    REACT_APP_IMAGE_URL,
-  } = process.env;
+  const { REACT_APP_NODE_ENV, REACT_APP_PUBLIC_URL } = process.env;
   return {
     mode: REACT_APP_NODE_ENV,
     entry: paths.entryPath,
@@ -94,7 +90,7 @@ module.exports = () => {
         templateParameters: {
           env: {
             REACT_APP_PUBLIC_URL: '',
-            REACT_APP_IMAGE_URL: REACT_APP_IMAGE_URL,
+            REACT_APP_IMAGE_URL: path.resolve(__dirname, '../static'),
           },
         },
         filename: 'index.html',
