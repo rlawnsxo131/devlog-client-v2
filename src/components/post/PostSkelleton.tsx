@@ -15,7 +15,7 @@ function PostSkelleton(props: PostSkelletonProps) {
         `}
       />
       <TagsWrapper>
-        {Array.from({ length: 4 }).map((_, i) => (
+        {Array.from({ length: 3 }).map((_, i) => (
           <Paragraph
             key={`post_detail_skelleton_tag_${i}`}
             css={css`

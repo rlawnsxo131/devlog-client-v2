@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import styled, { css } from 'styled-components';
 import media from '../../lib/styles/media';
-import { buttonColorMap } from '../../lib/styles/palette';
+import palette, { buttonColorMap } from '../../lib/styles/palette';
 
 type ColorType = 'darkGray' | 'red' | 'indigo';
 type SizeType = 'default' | 'responsive';
@@ -40,7 +40,9 @@ const Block = styled.button<{
   color: ColorType;
   size: SizeType;
 }>`
-  all: unset;
+  cursor: pointer;
+  outline-color: ${palette.indigo9};
+  border: none;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +52,6 @@ const Block = styled.button<{
     color: ${buttonColorMap[props.color].color};
     background: ${buttonColorMap[props.color].background};
     &:hover {
-      cursor: pointer;
       background: ${buttonColorMap[props.color].hoverBackground};
     }
   `};

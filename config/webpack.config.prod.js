@@ -15,12 +15,11 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 module.exports = () => {
   const clientEnv = initializeConfig({ target: 'web' });
   const {
-    PHASE,
     REACT_APP_NODE_ENV,
     REACT_APP_PUBLIC_URL,
     REACT_APP_IMAGE_URL,
   } = process.env;
-  const prefix = PHASE === 'production' ? '/' : '';
+  const prefix = REACT_APP_NODE_ENV === 'production' ? '/' : '';
   return {
     mode: REACT_APP_NODE_ENV,
     entry: paths.entryPath,
@@ -102,7 +101,9 @@ module.exports = () => {
         templateParameters: {
           env: {
             REACT_APP_PUBLIC_URL:
-              PHASE === 'production' ? REACT_APP_PUBLIC_URL : prefix,
+              REACT_APP_NODE_ENV === 'production'
+                ? REACT_APP_PUBLIC_URL
+                : prefix,
             REACT_APP_IMAGE_URL: REACT_APP_IMAGE_URL,
           },
         },

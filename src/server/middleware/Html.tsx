@@ -71,6 +71,16 @@ function Html({
                   });`,
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            console.log(
+              '%cDevLog',
+              'background-color: #5c7cfa; color: white; font-size: 2rem; padding: 0.25rem 0.5rem;'
+            );
+            `,
+          }}
+        />
       </head>
       <body>
         <div id="root" dangerouslySetInnerHTML={{ __html: content }}></div>

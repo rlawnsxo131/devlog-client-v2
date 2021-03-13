@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import styled, { css } from 'styled-components';
+import { throttle } from 'throttle-debounce';
 import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { getScrollTop } from '../../lib/utils';
@@ -13,8 +14,6 @@ interface Heading {
 
 function PostToc(props: PostTocProps) {
   if (typeof window === 'undefined') return null;
-  if (!document || !document.body) return null;
-  const prevScrollHeight = useRef<number>(0);
   const [tocs, setTocs] = useState<Array<Heading> | null>(null);
   const [currentHeading, setCurrentHeading] = useState(0);
 
@@ -29,7 +28,7 @@ function PostToc(props: PostTocProps) {
           text: el.textContent || '',
           level: parseInt(el.tagName.replace('H', ''), 10),
           scrollTop: parseInt(
-            `${el.getBoundingClientRect().top + scrollTop - 100}`,
+            `${el.getBoundingClientRect().top + scrollTop - 80}`,
             10,
           ),
         });
@@ -38,6 +37,12 @@ function PostToc(props: PostTocProps) {
     return headings;
   }, []);
 
+  const updateTocs = useCallback(() => {
+    const headings = parseHeadings();
+    if (!headings) return;
+    setTocs(headings);
+  }, [document.body.scrollHeight]);
+
   const onTocClick = useCallback((e) => {
     const { value } = e.target;
     const top = parseInt(value, 10);
@@ -45,29 +50,35 @@ function PostToc(props: PostTocProps) {
     globalThis.scrollTo(0, top);
   }, []);
 
-  const onScroll = useCallback(
-    (e) => {
+  const onScroll = useMemo(() => {
+    return throttle(150, () => {
       if (!tocs) return;
       const scrollTop = getScrollTop();
       const currentHeading = [...tocs].reverse().find((toc) => {
         return scrollTop >= toc.scrollTop - 80;
       });
-      if (!currentHeading) {
-        setCurrentHeading(0);
-        return;
-      }
+      if (!currentHeading) return;
       setCurrentHeading(currentHeading.scrollTop);
-    },
-    [tocs],
-  );
+    });
+  }, [tocs]);
 
   useEffect(() => {
-    const headings = parseHeadings();
-    if (!headings) return;
-    if (prevScrollHeight.current === document.body.scrollHeight) return;
-    setTocs(headings);
-    prevScrollHeight.current = document.body.scrollHeight;
-  }, [document.body.scrollHeight]);
+    let prevScrollHeight = document.body.scrollHeight;
+    let timeoutId: NodeJS.Timeout | null = null;
+    updateTocs();
+    function lazyUpdateTocs() {
+      const scrollHeight = document.body.scrollHeight;
+      if (prevScrollHeight !== scrollHeight) {
+        updateTocs();
+      }
+    }
+    timeoutId = setTimeout(lazyUpdateTocs, 250);
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [updateTocs]);
 
   useEffect(() => {
     globalThis.addEventListener('scroll', onScroll);
