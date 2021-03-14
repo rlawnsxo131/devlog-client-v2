@@ -1,4 +1,4 @@
-# devlog-client
+# devlog-client-v2
 <https://devlog.juntae.kim>
 ## Personal Development blog by John
 ### Tech Stack
