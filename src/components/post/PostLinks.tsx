@@ -42,6 +42,7 @@ const Block = styled.div<{ darkmode: boolean }>`
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  margin: 2rem 0;
   margin-bottom: 1.125rem;
   box-shadow: 1px 1px 10px 2px
     ${(props) => (props.darkmode ? palette.gray9 : palette.gray3)};
