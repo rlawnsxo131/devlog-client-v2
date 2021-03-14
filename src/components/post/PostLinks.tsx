@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
@@ -84,4 +85,4 @@ const PostWrapper = styled.div<{ darkmode: boolean }>`
         `};
 `;
 
-export default PostLinks;
+export default memo(PostLinks);
