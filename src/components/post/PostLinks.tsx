@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { LinkPost } from '../../graphql/post';
 import PhotoIcon from '../../img/components/icons/PhotoIcon';
 import optimizeImage from '../../lib/optimizeImage';
-import palette from '../../lib/styles/palette';
+import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
 interface PostLinksProps {
@@ -62,27 +62,19 @@ const PostWrapper = styled.div<{ darkmode: boolean }>`
   display: flex;
   flex-direction: column;
   width: 10rem;
+  height: 12.533125rem;
   padding: 0.5rem 1rem;
-  margin: 0.5rem 1rem;
+  margin: 1rem 1rem 1rem 0;
   img,
   svg {
     width: 10rem;
     height: 5rem;
   }
-  ${(props) =>
-    props.darkmode
-      ? css`
-          box-shadow: 1px 1px 5px 2px ${palette.gray9};
-          &:hover {
-            box-shadow: 1px 1px 10px 2px ${palette.gray8};
-          }
-        `
-      : css`
-          box-shadow: 1px 1px 5px 2px ${palette.gray1};
-          &:hover {
-            box-shadow: 1px 1px 10px 2px ${palette.gray5};
-          }
-        `};
+  background: ${(props) =>
+    props.darkmode ? darkmodeBackground.other : palette.gray0};
+  &:hover {
+    background: ${(props) => (props.darkmode ? palette.gray9 : palette.gray1)};
+  }
 `;
 
 export default memo(PostLinks);
