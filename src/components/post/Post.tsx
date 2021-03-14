@@ -17,6 +17,7 @@ import PostToc from './PostToc';
 import { useEffect, useMemo } from 'react';
 import markdownParser from '../../lib/remark/markdownParser';
 import useNotFound from '../../lib/hooks/useNotFound';
+import PostLinks from './PostLinks';
 
 interface PostProps {}
 
@@ -99,6 +100,7 @@ function Post(props: PostProps) {
       )}
       <MarkdownRender markdownText={data.post.post_body} />
       <PostSeries series={data.post.series_posts} />
+      <PostLinks link_posts={data.post.link_posts} />
       <Comments post_id={data.post.id} />
       <PostToc />
     </MediaRatioWrapper>

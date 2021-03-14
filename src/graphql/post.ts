@@ -8,6 +8,13 @@ export interface SeriesPostData {
   post_header: string;
 }
 
+export interface LinkPost {
+  id: number;
+  url_slug: string;
+  thumnail: string;
+  post_header: string;
+}
+
 export interface PostData {
   id: number;
   post_header: string;
@@ -20,6 +27,7 @@ export interface PostData {
   released_at: Date;
   tags: Array<string>;
   series_posts: Array<SeriesPostData>;
+  link_posts: Array<LinkPost>;
 }
 
 export const GET_POST = gql`
@@ -41,6 +49,12 @@ export const GET_POST = gql`
         post_id
         url_slug
         post_header
+      }
+      link_posts {
+        id
+        post_header
+        url_slug
+        thumnail
       }
     }
   }

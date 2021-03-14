@@ -39,7 +39,7 @@ function PostSeries({ series }: PostSeriesProps) {
 }
 
 const Block = styled.div<{ darkmode: boolean }>`
-  margin-top: 5rem;
+  margin: 2rem 0;
   display: flex;
   flex-direction: column;
   padding: 1rem;
