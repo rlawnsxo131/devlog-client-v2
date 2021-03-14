@@ -319,7 +319,7 @@ const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
       font-size: 0.85rem;
     }
     p {
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
     li {
       font-size: 0.9rem;
