@@ -37,7 +37,7 @@ function Post(props: PostProps) {
 
   const description = useMemo(() => {
     if (!data) return '';
-    return `${markdownParser(data.post.preview_description)}...`;
+    return `${markdownParser(data.post.preview_description)}`;
   }, [data?.post.preview_description]);
 
   const thumnail = useMemo(() => {

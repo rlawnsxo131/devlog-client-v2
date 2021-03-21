@@ -42,10 +42,10 @@ function Posts(props: PostsProps) {
         <title>{`${tag ? `${tag} - ` : ''}DevLog`}</title>
         <meta
           name="description"
-          content={`${data?.posts
+          content={`김준태 블로그(DevLog) - ${data?.posts
             .map((post) => post.post_header)
             .slice(0, 20)
-            .join()}...`}
+            .join()}`}
         />
         <meta
           property="og:description"
