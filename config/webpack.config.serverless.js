@@ -116,6 +116,7 @@ module.exports = {
   ],
   optimization: {
     minimize: false,
+    concatenateModules: false,
   },
   node: {
     __dirname: false,

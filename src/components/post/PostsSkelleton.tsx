@@ -26,6 +26,10 @@ const Block = styled.div`
     grid-auto-rows: 30rem;
     grid-template-columns: repeat(1, 1fr);
   }
+  ${mediaQuery(600)} {
+    grid-auto-rows: 36rem;
+    grid-template-columns: repeat(1, 1fr);
+  }
   ${media.small} {
     grid-auto-rows: 28rem;
     grid-template-columns: repeat(2, 1fr);

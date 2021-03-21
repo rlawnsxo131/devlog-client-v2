@@ -78,7 +78,6 @@ function InfoPage(props: InfoPageProps) {
                   <li>Webpack</li>
                   <li>React Router</li>
                   <li>Loadable Components</li>
-                  <li>Codemirror</li>
                   <li>Unified</li>
                   <li>Remark</li>
                   <li>Styled Components</li>
