@@ -9,4 +9,3 @@ declare module 'remark-slug';
 declare module 'rehype-stringify';
 declare module 'remark-rehype';
 declare module 'rehype-raw';
-declare module 'html-to-react';

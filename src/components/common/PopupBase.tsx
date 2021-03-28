@@ -84,7 +84,7 @@ const PopupWrapper = styled.div<{ visible: boolean; darkmode: boolean }>`
   ${(props) =>
     props.visible
       ? css`
-          animation: ${transitions.popInFromBottom} 0.4s forwards ease-in-out;
+          animation: ${transitions.popInFromBottom} 0.25s forwards ease-in-out;
         `
       : css`
           animation: ${transitions.popOutToBottom} 0.25s forwards ease-in-out;
