@@ -144,7 +144,7 @@ const toc = (level: number, active: boolean) => css`
   font-size: 0.875rem;
   color: ${palette.gray6};
   padding-left: ${level * 1}rem;
-  transition: font 0.2s;
+  transition: font-size 0.2s;
   &:hover {
     cursor: pointer;
   }

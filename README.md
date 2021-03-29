@@ -11,7 +11,7 @@
   * Codemirror
   * Unified
   * Remark
-  * Styled Components
+  * emotion
   * Koa
 * GraphQL
   * Apollo Client

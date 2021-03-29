@@ -72,6 +72,7 @@ function InfoPage(props: InfoPageProps) {
                 v1
                 <ul>
                   <li>Next.js</li>
+                  <li>styled components</li>
                 </ul>
               </li>
             </ul>
@@ -84,7 +85,7 @@ function InfoPage(props: InfoPageProps) {
                   <li>Loadable Components</li>
                   <li>Unified</li>
                   <li>Remark</li>
-                  <li>Styled Components</li>
+                  <li>emotion</li>
                   <li>Koa</li>
                 </ul>
               </li>
