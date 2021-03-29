@@ -1,10 +1,10 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
+import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
 import { SeriesPostData } from '../../graphql/post';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
+import { NavLink } from 'react-router-dom';
 
 interface PostSeriesProps {
   series: Array<SeriesPostData>;
@@ -14,37 +14,32 @@ function PostSeries({ series }: PostSeriesProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
-  const shadowcolor = useMemo(
-    () => (darkmode ? palette.gray9 : palette.gray3),
-    [darkmode],
-  );
   if (!series.length) return null;
   return (
-    <Block darkmode={darkmode}>
+    <div css={block(darkmode)}>
       <h3>이 시리즈 더보기</h3>
-      <ContentWrapper>
+      <div css={content}>
         <h4>{series[0].series_name}</h4>
         {series.map((v) => (
-          <Link
+          <NavLink
             key={`post_detail_series_${v.post_id}`}
             to={`/post/${v.url_slug}`}
-            shadowcolor={shadowcolor}
+            css={link(darkmode)}
           >
             {v.post_header}
-          </Link>
+          </NavLink>
         ))}
-      </ContentWrapper>
-    </Block>
+      </div>
+    </div>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   display: flex;
   flex-direction: column;
   padding: 1rem;
   margin: 2rem 0;
-  box-shadow: 1px 1px 10px 2px
-    ${(props) => (props.darkmode ? palette.gray9 : palette.gray3)};
+  box-shadow: 1px 1px 10px 2px ${darkmode ? palette.gray9 : palette.gray3};
   h3 {
     font-weight: 500;
     margin-top: 0;
@@ -58,14 +53,14 @@ const Block = styled.div<{ darkmode: boolean }>`
   }
 `;
 
-const ContentWrapper = styled.div`
+const content = css`
   display: flex;
   flex-direction: column;
   margin-left: 1rem;
   margin-right: 1rem;
 `;
 
-const Link = styled(NavLink)<{ shadowcolor: string }>`
+const link = (darkmode: boolean) => css`
   display: flex;
   flex-flow: row wrap;
   padding: 0.5rem;
@@ -74,10 +69,10 @@ const Link = styled(NavLink)<{ shadowcolor: string }>`
   color: ${palette.indigo5};
   border-radius: 3px;
   &:hover {
-    box-shadow: 1px 1px 10px 2px ${(props) => props.shadowcolor};
+    box-shadow: 1px 1px 10px 2px ${darkmode ? palette.gray9 : palette.gray3};
   }
   &.active {
-    box-shadow: 1px 1px 10px 2px ${(props) => props.shadowcolor};
+    box-shadow: 1px 1px 10px 2px ${darkmode ? palette.gray9 : palette.gray3};
   }
 `;
 

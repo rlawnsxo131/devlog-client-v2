@@ -13,7 +13,6 @@ import { Provider } from 'react-redux';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import rootReducer from '../../modules';
 import { StaticRouter } from 'react-router-dom';
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
 import { ErrorEnum, setError } from '../../modules/error';
 import App from '../../App';
@@ -52,7 +51,6 @@ async function serverRender({ url }: ServerRenderParams) {
   const context = {
     statusCode: 200,
   };
-  const sheet = new ServerStyleSheet();
   const extractor = new ChunkExtractor({
     statsFile,
     publicPath: process.env.REACT_APP_PUBLIC_URL,
@@ -61,15 +59,13 @@ async function serverRender({ url }: ServerRenderParams) {
   const Root = (
     <ChunkExtractorManager extractor={extractor}>
       <HelmetProvider context={helmetContext}>
-        <StyleSheetManager sheet={sheet.instance}>
-          <Provider store={store}>
-            <ApolloProvider client={client}>
-              <StaticRouter location={url} context={context}>
-                <App />
-              </StaticRouter>
-            </ApolloProvider>
-          </Provider>
-        </StyleSheetManager>
+        <Provider store={store}>
+          <ApolloProvider client={client}>
+            <StaticRouter location={url} context={context}>
+              <App />
+            </StaticRouter>
+          </ApolloProvider>
+        </Provider>
       </HelmetProvider>
     </ChunkExtractorManager>
   );
@@ -95,14 +91,12 @@ async function serverRender({ url }: ServerRenderParams) {
 
   const content = ReactDOMServer.renderToString(Root);
   const initialState = client.extract();
-  const styledElement = sheet.getStyleElement();
   const html = (
     <Html
       content={content}
       apolloState={initialState}
       reduxState={store.getState()}
       extractor={extractor}
-      styledElement={styledElement}
       helmet={helmetContext.helmet}
     />
   );

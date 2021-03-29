@@ -38,7 +38,6 @@ interface UseCommentEditModal {
   updateComment: () => Promise<void>;
   removeComment: () => Promise<void>;
   errorType: CommentErrorEnum | null;
-  darkmode: boolean;
 }
 
 export default function useCommentEditModal({
@@ -49,9 +48,6 @@ export default function useCommentEditModal({
 }: UseCommentEditModalProps): UseCommentEditModal {
   const dispatch = useDispatch();
   const errorType = useSelector((state: RootState) => state.comment.errorType);
-  const darkmode = useSelector(
-    (state: RootState) => state.core.darkmode.darkmode,
-  );
   const [onShowPopup] = useShowPopup();
   const [startLoading, endLoading] = useLoading();
   const [state, onChange] = useInputs({
@@ -162,6 +158,5 @@ export default function useCommentEditModal({
     updateComment,
     removeComment,
     errorType,
-    darkmode,
   };
 }

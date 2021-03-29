@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import media, { mediaQuery } from '../../lib/styles/media';
 import PostCardSkelleton from './PostCardSkelleton';
 
@@ -6,15 +6,15 @@ interface PostsSkelletonProps {}
 
 function PostsSkelleton(props: PostsSkelletonProps) {
   return (
-    <Block>
+    <div css={block}>
       {Array.from({ length: 9 }).map((_, i) => (
         <PostCardSkelleton key={`post_card_skelleton_${i}`} />
       ))}
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div`
+const block = css`
   width: 100%;
   display: grid;
   ${media.xsmall} {

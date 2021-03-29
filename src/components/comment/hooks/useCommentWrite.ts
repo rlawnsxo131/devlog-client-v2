@@ -1,12 +1,10 @@
 import { useMutation } from '@apollo/client';
 import { useCallback, useRef } from 'react';
-import { useSelector } from 'react-redux';
 import { CreateCommentData, CREATE_COMMENT } from '../../../graphql/comment';
 import useInputs from '../../../lib/hooks/useInputs';
 import useLoading from '../../../lib/hooks/useLoading';
 import useShowPopup from '../../../lib/hooks/useShowPopup';
 import { normalizedString } from '../../../lib/utils';
-import { RootState } from '../../../modules';
 
 interface UseCommentWriteProps {
   post_id: number;
@@ -19,9 +17,6 @@ export default function useCommentWrite({
   reply_comment_id,
   handleShowCommentWrite,
 }: UseCommentWriteProps) {
-  const darkmode = useSelector(
-    (state: RootState) => state.core.darkmode.darkmode,
-  );
   const passwordRef = useRef<null | HTMLInputElement>(null);
   const [onShowPopup] = useShowPopup();
   const [startLoading, endLoading] = useLoading();
@@ -84,7 +79,6 @@ export default function useCommentWrite({
   }, [state, post_id, reply_comment_id]);
 
   return {
-    darkmode,
     passwordRef,
     state,
     onChange,

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import palette from '../../lib/styles/palette';
 import { formatDate } from '../../lib/utils';
 
@@ -19,30 +19,32 @@ function CommentCardHeader({
   handleSetVisible,
 }: CommentCardHeaderProps) {
   return (
-    <Block>
-      <HeaderInfo>
+    <div css={block}>
+      <div css={info}>
         <div className="writer">{writer}</div>
         <div className="date">
           {edited_at
             ? `${formatDate(edited_at)}(수정됨)`
             : formatDate(created_at)}
         </div>
-      </HeaderInfo>
+      </div>
       {!deleted && (
-        <HeaderEdit onClick={handleSetVisible}>수정/삭제</HeaderEdit>
+        <div css={edit} onClick={handleSetVisible}>
+          수정/삭제
+        </div>
       )}
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
   margin-bottom: 1.5rem;
 `;
 
-const HeaderInfo = styled.div`
+const info = css`
   display: flex;
   flex-direction: column;
   .writer {
@@ -56,7 +58,7 @@ const HeaderInfo = styled.div`
   }
 `;
 
-const HeaderEdit = styled.div`
+const edit = css`
   display: flex;
   flex-flow: row wrap;
   color: ${palette.gray6};

@@ -1,6 +1,6 @@
 import { memo, useCallback, useState } from 'react';
+import { css } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled, { css } from 'styled-components';
 import { CommentData } from '../../graphql/comment';
 import palette, { commentColor } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
@@ -27,7 +27,7 @@ function CommentCard({ reply, fullCount }: CommentCardProps) {
   }, [dispatch]);
 
   return (
-    <Block level={reply.level} darkmode={darkmode}>
+    <div css={block(reply.level, darkmode)}>
       <CommentCardHeader
         writer={reply.writer}
         deleted={reply.deleted}
@@ -52,30 +52,25 @@ function CommentCard({ reply, fullCount }: CommentCardProps) {
         comment_id={reply.id}
         handleSetVisible={handleSetVisible}
       />
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div<{ level: number; darkmode: boolean }>`
+const block = (level: number, darkmode: boolean) => css`
   display: flex;
   flex-direction: column;
   padding-top: 2rem;
   padding-bottom: 1rem;
-  ${(props) => {
-    if (props.level === 0) {
-      return css`
-        border-bottom: 1px solid
-          ${props.darkmode ? palette.gray6 : palette.gray1};
-      `;
-    }
-    if (props.level > 0) {
-      return css`
-        padding-left: 2rem;
-        padding-right: 2rem;
-        background: ${commentColor[props.level].background};
-      `;
-    }
-  }}
+  ${level === 0 &&
+  css`
+    border-bottom: 1px solid ${darkmode ? palette.gray6 : palette.gray1};
+  `}
+  ${level > 0 &&
+  css`
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background: ${commentColor[level].background};
+  `}
 `;
 
 export default memo(CommentCard);

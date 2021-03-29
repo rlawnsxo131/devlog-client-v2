@@ -17,7 +17,7 @@ module.exports = {
   mode: serverlessWebpack.lib.webpack.isLocal ? 'development' : 'production',
   externals: [
     nodeExternals({
-      allowlist: [/node-fetch/, /@loadable\/server/, /html-to-react/, /qs/],
+      allowlist: [/node-fetch/, /@loadable\/server/, /qs/],
     }),
   ],
   resolve: {
@@ -46,10 +46,6 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               babelrc: false,
-              plugins: [
-                '@loadable/babel-plugin',
-                '@babel/plugin-syntax-dynamic-import',
-              ],
               presets: [
                 [
                   '@babel/preset-env',
@@ -59,13 +55,12 @@ module.exports = {
                     },
                   },
                 ],
-                [
-                  '@babel/preset-react',
-                  {
-                    runtime: 'automatic',
-                  },
-                ],
                 '@babel/preset-typescript',
+              ],
+              plugins: [
+                '@emotion',
+                '@loadable/babel-plugin',
+                '@babel/plugin-syntax-dynamic-import',
               ],
             },
           },

@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
@@ -25,32 +25,33 @@ function Input({
     (state: RootState) => state.core.darkmode.darkmode,
   );
   return (
-    <InputBlock
+    <input
       type={type}
       name={name}
       placeholder={placeholder}
       value={value}
       onChange={onChange}
       ref={inputRef}
-      darkmode={darkmode}
+      css={block(darkmode)}
     />
   );
 }
 
-const InputBlock = styled.input<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   all: unset;
-  border-radius: 4px;
+  outline: none;
   padding: 0.5rem;
-  ${(props) =>
-    props.darkmode
-      ? css`
-          border: 1px solid ${palette.gray6};
-          background: ${darkmodeBackground.main};
-        `
-      : css`
-          border: 1px solid ${palette.gray2};
-          background: white;
-        `}
+  border-radius: 4px;
+  /* font-size: 1rem; */
+  ${darkmode
+    ? css`
+        border: 1px solid ${palette.gray6};
+        background: ${darkmodeBackground.main};
+      `
+    : css`
+        border: 1px solid ${palette.gray2};
+        background: white;
+      `}
   :focus {
     outline: none;
   }

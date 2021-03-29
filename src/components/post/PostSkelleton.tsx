@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import media, { mediaQuery } from '../../lib/styles/media';
 import Paragraph from '../common/Paragraph';
 
@@ -6,19 +6,19 @@ interface PostSkelletonProps {}
 
 function PostSkelleton(props: PostSkelletonProps) {
   return (
-    <Block>
+    <div css={block}>
       <Paragraph
-        css={css`
+        style={css`
           height: 2.5rem;
           margin-top: 2.1775rem;
           margin-bottom: 2.1775rem;
         `}
       />
-      <TagsWrapper>
+      <div css={tagsWrapper}>
         {Array.from({ length: 3 }).map((_, i) => (
           <Paragraph
             key={`post_detail_skelleton_tag_${i}`}
-            css={css`
+            style={css`
               width: 5rem;
               height: 1.5rem;
               margin-right: 1rem;
@@ -26,9 +26,9 @@ function PostSkelleton(props: PostSkelletonProps) {
             `}
           />
         ))}
-      </TagsWrapper>
+      </div>
       <Paragraph
-        css={css`
+        style={css`
           height: 20rem;
           margin-top: 1rem;
           margin-bottom: 1rem;
@@ -37,23 +37,23 @@ function PostSkelleton(props: PostSkelletonProps) {
       {Array.from({ length: 30 }).map((_, i) => (
         <Paragraph
           key={`post_detil_skelleton_${i}`}
-          css={css`
+          style={css`
             height: 1.5rem;
             margin-top: 0.5rem;
           `}
         />
       ))}
       <Paragraph
-        css={css`
+        style={css`
           height: 10rem;
           margin-top: 1rem;
         `}
       />
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: flex;
   flex-direction: column;
   ${media.xsmall} {
@@ -67,7 +67,7 @@ const Block = styled.div`
   }
 `;
 
-const TagsWrapper = styled.div`
+const tagsWrapper = css`
   flex: 1.5;
   display: flex;
   flex-flow: row wrap;

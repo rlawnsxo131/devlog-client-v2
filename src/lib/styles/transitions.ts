@@ -1,4 +1,4 @@
-import { keyframes } from 'styled-components';
+import { keyframes } from '@emotion/react';
 
 const slideLeft = keyframes`
   0% {

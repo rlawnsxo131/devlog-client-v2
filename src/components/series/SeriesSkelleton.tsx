@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import Paragraph from '../common/Paragraph';
@@ -12,9 +12,9 @@ function SeriesItemSkelleton() {
     (state: RootState) => state.core.darkmode.darkmode,
   );
   return (
-    <Block darkmode={darkmode}>
+    <div css={block(darkmode)}>
       <Paragraph
-        css={css`
+        style={css`
           width: 60%;
           height: 2rem;
         `}
@@ -22,32 +22,31 @@ function SeriesItemSkelleton() {
       {Array.from({ length: 3 }).map((_, i) => (
         <Paragraph
           key={`series_item_title_${i}`}
-          css={css`
+          style={css`
             height: 1.5rem;
             margin-top: 1rem;
             margin-left: 1.5rem;
           `}
         />
       ))}
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   display: flex;
   flex-direction: column;
   padding: 1rem;
   & + & {
     margin-top: 2rem;
   }
-  ${(props) =>
-    props.darkmode
-      ? css`
-          box-shadow: 1px 1px 5px 2px ${palette.gray9};
-        `
-      : css`
-          box-shadow: 1px 1px 5px 2px ${palette.gray1};
-        `};
+  ${darkmode
+    ? css`
+        box-shadow: 1px 1px 5px 2px ${palette.gray9};
+      `
+    : css`
+        box-shadow: 1px 1px 5px 2px ${palette.gray1};
+      `};
 `;
 
 function SeriesSkelleton(props: SeriesSkelletonProps) {

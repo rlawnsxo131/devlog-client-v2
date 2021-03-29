@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import DefaultTag from './DefaultTag';
 
 interface DefaultTagsProps {
@@ -9,15 +9,15 @@ interface DefaultTagsProps {
 function DefaultTags({ tags }: DefaultTagsProps) {
   if (!tags.length) return null;
   return (
-    <Block>
+    <div css={block}>
       {tags.map((v, i) => (
         <DefaultTag key={`tag_${v}_${i}`} name={v} />
       ))}
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: flex;
   flex-flow: row wrap;
 `;

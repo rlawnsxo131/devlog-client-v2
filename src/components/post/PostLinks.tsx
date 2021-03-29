@@ -1,7 +1,7 @@
 import { memo } from 'react';
+import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { LinkPost } from '../../graphql/post';
 import PhotoIcon from '../../img/components/icons/PhotoIcon';
 import optimizeImage from '../../lib/optimizeImage';
@@ -18,33 +18,32 @@ function PostLinks({ link_posts }: PostLinksProps) {
     (state: RootState) => state.core.darkmode.darkmode,
   );
   return (
-    <Block darkmode={darkmode}>
+    <div css={block(darkmode)}>
       <h3>다른 포스트 더 보기</h3>
-      <ScrollBox>
+      <div css={scrollBox}>
         {link_posts.map((v) => (
-          <PostWrapper key={`link_posts_${v.id}`} darkmode={darkmode}>
+          <div css={postWrapper(darkmode)} key={`link_posts_${v.id}`}>
             <Link to={`/post/${v.url_slug}`}>
-              {v.thumnail ? (
-                <img src={optimizeImage(v.thumnail, 160)} />
+              {v.thumbnail ? (
+                <img src={optimizeImage(v.thumbnail, 160)} />
               ) : (
                 <PhotoIcon fill={palette.gray3} />
               )}
               <h4>{v.post_header}</h4>
             </Link>
-          </PostWrapper>
+          </div>
         ))}
-      </ScrollBox>
-    </Block>
+      </div>
+    </div>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   display: flex;
   flex-direction: column;
   padding: 1rem;
   margin: 2rem 0;
-  box-shadow: 1px 1px 10px 2px
-    ${(props) => (props.darkmode ? palette.gray9 : palette.gray3)};
+  box-shadow: 1px 1px 10px 2px ${darkmode ? palette.gray9 : palette.gray3};
   h3 {
     font-weight: 500;
     margin-top: 0;
@@ -52,13 +51,13 @@ const Block = styled.div<{ darkmode: boolean }>`
   }
 `;
 
-const ScrollBox = styled.div`
+const scrollBox = css`
   display: flex;
   flex-wrap: no-wrap;
   overflow-x: auto;
 `;
 
-const PostWrapper = styled.div<{ darkmode: boolean }>`
+const postWrapper = (darkmode: boolean) => css`
   display: flex;
   flex-direction: column;
   width: 10rem;
@@ -70,10 +69,9 @@ const PostWrapper = styled.div<{ darkmode: boolean }>`
     width: 10rem;
     height: 5rem;
   }
-  background: ${(props) =>
-    props.darkmode ? darkmodeBackground.other : palette.gray0};
+  background: ${darkmode ? darkmodeBackground.other : palette.gray0};
   &:hover {
-    background: ${(props) => (props.darkmode ? palette.gray9 : palette.gray1)};
+    background: ${darkmode ? palette.gray9 : palette.gray1};
   }
 `;
 

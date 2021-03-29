@@ -6,7 +6,6 @@ interface HtmlProps {
   apolloState: any;
   reduxState: any;
   extractor: ChunkExtractor;
-  styledElement: React.ReactNode; // styled-components
   helmet: HelmetData;
 }
 
@@ -15,7 +14,6 @@ function Html({
   apolloState,
   reduxState,
   extractor,
-  styledElement,
   helmet,
 }: HtmlProps) {
   const { REACT_APP_IMAGE_URL } = process.env;
@@ -25,7 +23,6 @@ function Html({
         {helmet.title.toComponent()}
         {helmet.link.toComponent()}
         {helmet.meta.toComponent()}
-        {styledElement}
         {extractor.getLinkElements()}
         {extractor.getStyleElements()}
         {extractor.getLinkElements()}

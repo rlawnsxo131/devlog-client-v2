@@ -1,15 +1,15 @@
 import { memo } from 'react';
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 
 interface CommentCardBodyProps {
   comment: string;
 }
 
 function CommentCardBody({ comment }: CommentCardBodyProps) {
-  return <Block>{comment}</Block>;
+  return <div css={block}>{comment}</div>;
 }
 
-const Block = styled.div`
+const block = css`
   font-weight: normal;
   white-space: pre-wrap;
   line-height: 1.5;

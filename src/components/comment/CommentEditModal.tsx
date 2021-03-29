@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import transitions from '../../lib/styles/transitions';
@@ -31,7 +31,6 @@ function CommentEditModal({
     updateComment,
     removeComment,
     errorType,
-    darkmode,
   } = useCommentEditModal({
     writer,
     comment,
@@ -41,14 +40,14 @@ function CommentEditModal({
 
   return (
     <PopupBase visible={visible}>
-      <Block darkmode={darkmode}>
-        <Title>
+      <div css={block}>
+        <div css={title}>
           <h4>댓글 수정/삭제</h4>
           {errorType && (
-            <ErrorMessage>{commentErrorMessagMap.get(errorType)}</ErrorMessage>
+            <div css={errorMessage}>{commentErrorMessagMap.get(errorType)}</div>
           )}
-        </Title>
-        <Header>
+        </div>
+        <div css={header}>
           <Input
             type="text"
             name="writer"
@@ -62,16 +61,16 @@ function CommentEditModal({
             placeholder="비밀번호를 입력하세요"
             onChange={onChange}
           />
-        </Header>
-        <Body>
+        </div>
+        <div css={body}>
           <TextArea
             name="comment"
             placeholder="내용을 입력해주세요"
             value={state.comment}
             onChange={onChange}
           />
-        </Body>
-        <Footer>
+        </div>
+        <div css={footer}>
           <Button color="indigo" onClick={updateComment}>
             수정
           </Button>
@@ -81,13 +80,13 @@ function CommentEditModal({
           <Button color="darkGray" onClick={handleSetVisible}>
             취소
           </Button>
-        </Footer>
-      </Block>
+        </div>
+      </div>
     </PopupBase>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = css`
   display: flex;
   flex-direction: column;
   padding: 1.725rem 1.5rem;
@@ -101,7 +100,7 @@ const Block = styled.div<{ darkmode: boolean }>`
   }
 `;
 
-const Title = styled.div`
+const title = css`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -114,25 +113,25 @@ const Title = styled.div`
   }
 `;
 
-const Header = styled.div`
+const header = css`
   display: flex;
   flex-flow: row wrap;
   margin-bottom: 1rem;
 `;
 
-const Body = styled.div`
+const body = css`
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 `;
 
-const Footer = styled.div`
+const footer = css`
   display: flex;
   justify-content: flex-end;
   margin-bottom: 1rem;
 `;
 
-const ErrorMessage = styled.div`
+const errorMessage = css`
   display: flex;
   flex-flow: row wrap;
   align-items: center;

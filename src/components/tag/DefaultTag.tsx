@@ -1,7 +1,6 @@
-import { useMemo } from 'react';
+import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
@@ -14,37 +13,24 @@ function DefaultTag({ name }: DefaultTagProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
-  const background = useMemo(() => {
-    return darkmode ? palette.gray8 : palette.gray1;
-  }, [darkmode]);
-  const hoverbackground = useMemo(() => {
-    return darkmode ? palette.gray7 : palette.gray0;
-  }, [darkmode]);
   return (
-    <Block
-      background={background}
-      hoverbackground={hoverbackground}
-      to={`/posts/${name}`}
-    >
+    <Link css={block(darkmode)} to={`/posts/${name}`}>
       <span>#{name}</span>
-    </Block>
+    </Link>
   );
 }
 
-const Block = styled(NavLink)<{
-  background: string;
-  hoverbackground: string;
-}>`
+const block = (darkmode: boolean) => css`
   display: flex;
   align-items: center;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   margin-bottom: 0.1rem;
   color: ${palette.gray9};
   font-weight: 600;
-  background: ${(props) => props.background};
+  background: ${darkmode ? palette.gray8 : palette.gray1};
   border-radius: 1rem;
   &:hover {
-    background: ${(props) => props.hoverbackground};
+    background: ${darkmode ? palette.gray7 : palette.gray0};
   }
   & + & {
     margin-left: 0.5rem;

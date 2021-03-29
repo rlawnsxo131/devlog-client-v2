@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import { PostData } from '../../graphql/post';
 import optimizeImage from '../../lib/optimizeImage';
 import palette from '../../lib/styles/palette';
@@ -27,37 +27,40 @@ function PostCard({ post }: PostCardProps) {
   }, [tag, post.tags]);
 
   return (
-    <Block darkmode={darkmode}>
-      <Thumnail>
+    <div css={block(darkmode)}>
+      <div css={thumbnail}>
         <Link to={`/post/${post.url_slug}`}>
-          {post.thumnail ? (
-            <img src={optimizeImage(post.thumnail, 640)} alt="post-thumnail" />
+          {post.thumbnail ? (
+            <img
+              src={optimizeImage(post.thumbnail, 640)}
+              alt="post-thumbnail"
+            />
           ) : (
             <PhotoIcon fill={palette.gray3} />
           )}
         </Link>
-      </Thumnail>
-      <Content>
+      </div>
+      <div css={content}>
         <Link to={`/post/${post.url_slug}`} style={{ padding: '1rem' }}>
-          <Title>{post.post_header}</Title>
-          <PreviewDescription>{previewDescription}</PreviewDescription>
+          <h4 css={title}>{post.post_header}</h4>
+          <p css={previewDescriptionStyle}>{previewDescription}</p>
         </Link>
-      </Content>
+      </div>
       <Link to={`/post/${post.url_slug}`}>
-        <Footer darkmode={darkmode}>
+        <div css={footer(darkmode)}>
           <p>{formatDate(post.released_at)}</p>
           <div className="post-card-tags">
             {previewTags.map((v) => (
               <p key={`${v}_${post.id}`}>{`#${v}`}</p>
             ))}
           </div>
-        </Footer>
+        </div>
       </Link>
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -68,23 +71,22 @@ const Block = styled.div<{ darkmode: boolean }>`
   &:hover {
     cursor: pointer;
   }
-  ${(props) =>
-    props.darkmode
-      ? css`
-          box-shadow: 1px 1px 5px 2px ${palette.gray9};
-          &:hover {
-            box-shadow: 1px 1px 10px 2px ${palette.gray8};
-          }
-        `
-      : css`
-          box-shadow: 1px 1px 5px 2px ${palette.gray1};
-          &:hover {
-            box-shadow: 1px 1px 10px 2px ${palette.gray5};
-          }
-        `};
+  ${darkmode
+    ? css`
+        box-shadow: 1px 1px 5px 2px ${palette.gray9};
+        &:hover {
+          box-shadow: 1px 1px 10px 2px ${palette.gray8};
+        }
+      `
+    : css`
+        box-shadow: 1px 1px 5px 2px ${palette.gray1};
+        &:hover {
+          box-shadow: 1px 1px 10px 2px ${palette.gray5};
+        }
+      `};
 `;
 
-const Thumnail = styled.div`
+const thumbnail = css`
   position: relative;
   width: 100%;
   padding-top: 52.19206680584551%;
@@ -100,13 +102,13 @@ const Thumnail = styled.div`
   }
 `;
 
-const Content = styled.div`
+const content = css`
   flex: 1 1 0%;
   display: flex;
   flex-direction: column;
 `;
 
-const Title = styled.h4`
+const title = css`
   margin: 0.5rem 0 1rem 0;
   display: flex;
   font-size: 1rem;
@@ -120,7 +122,7 @@ const Title = styled.h4`
   text-overflow: ellipsis;
 `;
 
-const PreviewDescription = styled.p`
+const previewDescriptionStyle = css`
   display: block;
   color: ${palette.gray6};
   height: 4rem;
@@ -135,13 +137,12 @@ const PreviewDescription = styled.p`
   text-overflow: ellipsis;
 `;
 
-const Footer = styled.div<{ darkmode: boolean }>`
+const footer = (darkmode: boolean) => css`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-top: 1px solid
-    ${(props) => (props.darkmode ? palette.gray9 : palette.gray1)};
+  border-top: 1px solid ${darkmode ? palette.gray8 : palette.gray1};
   p {
     font-size: 0.8rem;
     color: ${palette.gray6};

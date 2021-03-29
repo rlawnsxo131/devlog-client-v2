@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import { CommentData } from '../../graphql/comment';
 import CommentCard from './CommentCard';
 
@@ -30,7 +30,7 @@ function getRepliesCount(replies?: Array<CommentData>) {
 function CommentCards({ replies }: CommentCardsProps) {
   const fullCounts = getRepliesCount(replies);
   return (
-    <Block>
+    <div css={block}>
       {replies?.map((v, i) => (
         <CommentCard
           key={`comments_${v.id}`}
@@ -38,11 +38,11 @@ function CommentCards({ replies }: CommentCardsProps) {
           fullCount={v.level === 0 ? fullCounts[i] : undefined}
         />
       ))}
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: flex;
   flex-direction: column;
 `;

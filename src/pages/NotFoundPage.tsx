@@ -1,6 +1,6 @@
+import { css } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import styled, { css } from 'styled-components';
 import palette, { darkmodeBackground } from '../lib/styles/palette';
 import { ErrorEnum, errorMessageMap, resetError } from '../modules/error';
 import Button from '../components/common/Button';
@@ -23,7 +23,7 @@ function NotFoundPage(props: NotFoundPageProps) {
     history.push('/');
   }, [history, dispatch]);
   return (
-    <Block darkmode={darkmode}>
+    <div css={block(darkmode)}>
       <Helmet>
         <title>NOT_FOUND - DevLog</title>
         <meta name="robots" content="noindex" />
@@ -33,11 +33,11 @@ function NotFoundPage(props: NotFoundPageProps) {
       <Button color="indigo" onClick={onClick}>
         Home
       </Button>
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   position: absolute;
   top: 0;
   left: 0;
@@ -49,8 +49,7 @@ const Block = styled.div<{ darkmode: boolean }>`
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: ${(props) =>
-    props.darkmode ? darkmodeBackground.main : 'white'};
+  background: ${darkmode ? darkmodeBackground.main : 'white'};
   z-index: ${zIndexes.notFoundPage};
   svg {
     height: auto;
@@ -62,20 +61,19 @@ const Block = styled.div<{ darkmode: boolean }>`
     font-weight: normal;
     margin-bottom: 1rem;
   }
-  ${(props) =>
-    props.darkmode
-      ? css`
-          background: ${darkmodeBackground.main};
-          h3 {
-            color: ${palette.gray5};
-          }
-        `
-      : css`
-          background: white;
-          h3 {
-            color: ${palette.gray7};
-          }
-        `}
+  ${darkmode
+    ? css`
+        background: ${darkmodeBackground.main};
+        h3 {
+          color: ${palette.gray5};
+        }
+      `
+    : css`
+        background: white;
+        h3 {
+          color: ${palette.gray7};
+        }
+      `}
 `;
 
 export default NotFoundPage;

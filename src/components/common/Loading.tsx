@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import LoopIcon from '../../img/components/icons/LoopIcon';
 import palette from '../../lib/styles/palette';
 import transitions from '../../lib/styles/transitions';
 import { RootState } from '../../modules';
-import PopupBase from './PopupBase';
+import OpaqueLayer from './OpaqueLayer';
 
 interface LoadingProps {}
 
@@ -19,15 +19,15 @@ function Loading(props: LoadingProps) {
   }, [darkmode]);
   if (!loading) return null;
   return (
-    <PopupBase visible={loading}>
-      <Block darkmode={darkmode}>
+    <OpaqueLayer visible={true} darkmode={darkmode}>
+      <div css={block}>
         <LoopIcon width={150} height={150} fill={fill} />
-      </Block>
-    </PopupBase>
+      </div>
+    </OpaqueLayer>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = css`
   display: flex;
   justify-content: center;
   align-items: center;

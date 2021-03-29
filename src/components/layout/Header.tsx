@@ -1,7 +1,7 @@
 import { memo } from 'react';
+import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import styled, { css } from 'styled-components';
 import media from '../../lib/styles/media';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import zIndexes from '../../lib/styles/zIndexes';
@@ -16,18 +16,18 @@ function Header(props: HeaderProps) {
   );
 
   return (
-    <Block darkmode={darkmode}>
-      <Content>
-        <Link exact to="/">
+    <header css={headerStyle(darkmode)}>
+      <div css={contentStyle}>
+        <NavLink exact to="/" css={linkStyle}>
           <h1>DevLog</h1>
-        </Link>
+        </NavLink>
         <HeaderItems darkmode={darkmode} />
-      </Content>
-    </Block>
+      </div>
+    </header>
   );
 }
 
-const Block = styled.header<{ darkmode: boolean }>`
+const headerStyle = (darkmode: boolean) => css`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -38,19 +38,18 @@ const Block = styled.header<{ darkmode: boolean }>`
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   z-index: ${zIndexes.header};
-  ${(props) =>
-    props.darkmode
-      ? css`
-          background: ${darkmodeBackground.other};
-          box-shadow: 1px 1px 10px 2px ${palette.gray9};
-        `
-      : css`
-          background: white;
-          box-shadow: 1px 1px 10px 2px ${palette.gray3};
-        `}
+  ${darkmode
+    ? css`
+        background: ${darkmodeBackground.other};
+        box-shadow: 1px 1px 10px 2px ${palette.gray9};
+      `
+    : css`
+        background: white;
+        box-shadow: 1px 1px 10px 2px ${palette.gray3};
+      `}
 `;
 
-const Content = styled.div`
+const contentStyle = css`
   position: relative;
   display: flex;
   flex-flow: row wrap;
@@ -67,7 +66,7 @@ const Content = styled.div`
   }
 `;
 
-const Link = styled(NavLink)<{ shadowcolor?: string }>`
+const linkStyle = css`
   display: inline-flex;
   flex-flow: row wrap;
   font-size: 1.25rem;

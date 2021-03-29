@@ -1,7 +1,6 @@
-import { useMemo } from 'react';
+import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { SeriesData } from '../../graphql/series';
 import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
@@ -14,43 +13,38 @@ function SeriesItem({ series }: SeriesItemProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
-  const shadowcolor = useMemo(
-    () => (darkmode ? palette.gray9 : palette.gray3),
-    [darkmode],
-  );
   return (
-    <Block darkmode={darkmode}>
-      <Title>{series.series_name}</Title>
+    <div css={block(darkmode)}>
+      <h3 css={title}>{series.series_name}</h3>
       {series.posts.map((v) => (
         <Link
           key={`seires_posts_${v.url_slug}`}
           to={`/post/${v.url_slug}`}
-          shadowcolor={shadowcolor}
+          css={link(darkmode)}
         >
           {v.post_header}
         </Link>
       ))}
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  box-shadow: 1px 1px 10px 2px
-    ${(props) => (props.darkmode ? palette.gray9 : palette.gray3)};
+  box-shadow: 1px 1px 10px 2px ${darkmode ? palette.gray9 : palette.gray3};
   & + & {
     margin-top: 2rem;
   }
 `;
 
-const Title = styled.h3`
+const title = css`
   font-weight: 550;
   margin: 0 0 0.5rem 0;
 `;
 
-const Link = styled(NavLink)<{ shadowcolor: string }>`
+const link = (darkmode: boolean) => css`
   margin-left: 1rem;
   padding: 0.5rem;
   font-size: 1.125rem;
@@ -58,7 +52,7 @@ const Link = styled(NavLink)<{ shadowcolor: string }>`
   color: ${palette.indigo5};
   border-radius: 3px;
   &:hover {
-    box-shadow: 1px 1px 10px 2px ${(props) => props.shadowcolor};
+    box-shadow: 1px 1px 10px 2px ${darkmode ? palette.gray9 : palette.gray3};
   }
   & + & {
     margin-top: 0.5rem;

@@ -1,7 +1,7 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
+import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { TagData } from '../../graphql/tag';
 import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
@@ -15,30 +15,17 @@ function CountTag({ tag }: CountTagProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
-  const background = useMemo(() => {
-    return darkmode ? palette.gray8 : palette.gray1;
-  }, [darkmode]);
-  const hoverbackground = useMemo(() => {
-    return darkmode ? palette.gray7 : palette.gray0;
-  }, [darkmode]);
   return (
-    <CountLink
-      background={background}
-      hoverbackground={hoverbackground}
-      to={`/posts/${tag.name}`}
-    >
+    <Link css={link(darkmode)} to={`/posts/${tag.name}`}>
       <span>#{tag.name}</span>
-      <Count>
+      <div css={count}>
         <span>{tag.count}</span>
-      </Count>
-    </CountLink>
+      </div>
+    </Link>
   );
 }
 
-const CountLink = styled(NavLink)<{
-  background: string;
-  hoverbackground: string;
-}>`
+const link = (darkmode: boolean) => css`
   display: flex;
   align-items: center;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
@@ -46,10 +33,10 @@ const CountLink = styled(NavLink)<{
   margin-bottom: 0.5rem;
   color: ${palette.gray9};
   font-weight: 600;
-  background: ${(props) => props.background};
+  background: ${darkmode ? palette.gray8 : palette.gray1};
   border-radius: 1rem;
   &:hover {
-    background: ${(props) => props.hoverbackground};
+    background: ${darkmode ? palette.gray7 : palette.gray0};
   }
   ${media.xsmall} {
     font-size: 0.9rem;
@@ -59,7 +46,7 @@ const CountLink = styled(NavLink)<{
   }
 `;
 
-const Count = styled.div`
+const count = css`
   display: flex;
   justify-content: center;
   align-items: center;

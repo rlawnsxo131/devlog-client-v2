@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import BadRequestImage from '../../img/components/error/BadRequestImage';
 import ChunkErrorImage from '../../img/components/error/ChunkErrorImage';
 import NetworkErrorImage from '../../img/components/error/NetworkErrorImage';
@@ -53,7 +53,7 @@ function ErrorScreen({ errorType, handleResolveError }: ErrorScreenProps) {
   }, [errorType, pathname]);
 
   return (
-    <Block darkmode={darkmode}>
+    <div css={block(darkmode)}>
       <Helmet>
         <title>{`${errorType} Error - DevLog`}</title>
         <meta name="robots" content="noindex" />
@@ -63,11 +63,11 @@ function ErrorScreen({ errorType, handleResolveError }: ErrorScreenProps) {
       <Button color="indigo" onClick={onClick}>
         Home
       </Button>
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   position: absolute;
   top: 0;
   left: 0;
@@ -89,20 +89,19 @@ const Block = styled.div<{ darkmode: boolean }>`
     text-align: center;
     margin-bottom: 1rem;
   }
-  ${(props) =>
-    props.darkmode
-      ? css`
-          background: ${darkmodeBackground.main};
-          h3 {
-            color: ${palette.gray5};
-          }
-        `
-      : css`
-          background: white;
-          h3 {
-            color: ${palette.gray7};
-          }
-        `}
+  ${darkmode
+    ? css`
+        background: ${darkmodeBackground.main};
+        h3 {
+          color: ${palette.gray5};
+        }
+      `
+    : css`
+        background: white;
+        h3 {
+          color: ${palette.gray7};
+        }
+      `}
 `;
 
 export default ErrorScreen;

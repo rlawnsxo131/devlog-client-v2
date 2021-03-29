@@ -1,7 +1,7 @@
+import { css } from '@emotion/react';
 import { useQuery } from '@apollo/client';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
 import { GET_POST, PostData } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import optimizeImage from '../../lib/optimizeImage';
@@ -40,12 +40,12 @@ function Post(props: PostProps) {
     return `${markdownParser(data.post.preview_description)}`;
   }, [data?.post.preview_description]);
 
-  const thumnail = useMemo(() => {
+  const thumbnail = useMemo(() => {
     if (!data) return '';
-    return data.post.thumnail
-      ? optimizeImage(data.post.thumnail, 800)
+    return data.post.thumbnail
+      ? optimizeImage(data.post.thumbnail, 800)
       : `${process.env.REACT_APP_IMAGE_URL}/logo/devlog.png`;
-  }, [data?.post.thumnail]);
+  }, [data?.post.thumbnail]);
 
   useEffect(() => {
     globalThis.scrollTo(0, 0);
@@ -71,7 +71,7 @@ function Post(props: PostProps) {
         <meta property="og:title" content={data.post.post_header} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="article" />
-        <meta property="og:image" content={thumnail} />
+        <meta property="og:image" content={thumbnail} />
         <meta
           property="og:url"
           content={`${process.env.REACT_APP_SERVICE_URL}/post/${data.post.url_slug}`}
@@ -81,22 +81,22 @@ function Post(props: PostProps) {
           href={`${process.env.REACT_APP_SERVICE_URL}/post/${data.post.url_slug}`}
         />
       </Helmet>
-      <PostHeader>{data.post.post_header}</PostHeader>
-      <PostInfo>
+      <h1 css={header}>{data.post.post_header}</h1>
+      <div css={info}>
         <div className="writer">By John</div>
         <span className="separator">&middot;</span>
         <p>{formatDate(data.post.released_at)}</p>
-      </PostInfo>
-      <Tags>
+      </div>
+      <div css={tags}>
         <DefaultTags tags={data.post.tags} />
-      </Tags>
-      {data.post.thumnail && (
-        <Thumnail>
+      </div>
+      {data.post.thumbnail && (
+        <div css={thumbnailStyle}>
           <img
-            src={optimizeImage(data.post.thumnail, 768)}
-            alt="post-thumnail"
+            src={optimizeImage(data.post.thumbnail, 768)}
+            alt="post-thumbnail"
           />
-        </Thumnail>
+        </div>
       )}
       <MarkdownRender markdownText={data.post.post_body} />
       <PostSeries series={data.post.series_posts} />
@@ -107,7 +107,7 @@ function Post(props: PostProps) {
   );
 }
 
-const PostHeader = styled.h1`
+const header = css`
   ${media.xsmall} {
     font-size: 1.825rem;
   }
@@ -119,7 +119,7 @@ const PostHeader = styled.h1`
   }
 `;
 
-const PostInfo = styled.div`
+const info = css`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -140,11 +140,11 @@ const PostInfo = styled.div`
   }
 `;
 
-const Tags = styled.div`
+const tags = css`
   margin-bottom: 1.125rem;
 `;
 
-const Thumnail = styled.div`
+const thumbnailStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;

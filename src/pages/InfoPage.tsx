@@ -1,6 +1,6 @@
+import { css } from '@emotion/react';
 import { Helmet } from 'react-helmet-async';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 import MediaRatioWrapper from '../components/layout/MediaRatioWrapper';
 import palette from '../lib/styles/palette';
 import { RootState } from '../modules';
@@ -34,22 +34,26 @@ function InfoPage(props: InfoPageProps) {
           href={`${process.env.REACT_APP_SERVICE_URL}/info`}
         />
       </Helmet>
-      <Boundary darkmode={darkmode}>
-        <Title>Personal Development blog by John</Title>
-        <Description>
+      <div css={boundary(darkmode)}>
+        <h3 css={title}>Personal Development blog by John</h3>
+        <pre css={description}>
           2018년 1월, 28살이 되던해 int 가 무엇인지 배운 늦깎이 개발자 입니다.
           {'\n'}
           판교에 있는 한 스타트업에서 웹/앱의 서버와 웹 프론트엔드 개발을하고
           있습니다.{'\n\n'}
           Serverless 한 BackEnd Architecture 를 선호하고,{'\n'}
           FrontEnd 의 자연스런 DataFlow 를 중요히 생각합니다.
-        </Description>
-        <InfoLink href="mailto:public.juntae.kim@gmail.com" target="_blank">
+        </pre>
+        <a
+          css={infoLink}
+          href="mailto:public.juntae.kim@gmail.com"
+          target="_blank"
+        >
           public.juntae.kim@gmail.com
-        </InfoLink>
-      </Boundary>
-      <Boundary darkmode={darkmode}>
-        <Title>DevLog Tech Stack</Title>
+        </a>
+      </div>
+      <div css={boundary(darkmode)}>
+        <h3 css={title}>DevLog Tech Stack</h3>
         <ul>
           <li>TypeScript</li>
           <li>MariaDB</li>
@@ -105,38 +109,40 @@ function InfoPage(props: InfoPageProps) {
             </ul>
           </li>
         </ul>
-      </Boundary>
-      <Boundary darkmode={darkmode}>
-        <Title>Repository</Title>
-        <InfoLink
+      </div>
+      <div css={boundary(darkmode)}>
+        <h3 css={title}>Repository</h3>
+        <a
+          css={infoLink}
           href="https://github.com/rlawnsxo131/devlog-server"
           target="_blank"
         >
           devlog-server
-        </InfoLink>
-        <InfoLink
+        </a>
+        <a
+          css={infoLink}
           href="https://github.com/rlawnsxo131/devlog-client"
           target="_blank"
         >
           devlog-client
-        </InfoLink>
-        <InfoLink
+        </a>
+        <a
+          css={infoLink}
           href="https://github.com/rlawnsxo131/devlog-client-v2"
           target="_blank"
         >
           devlog-client-v2
-        </InfoLink>
-      </Boundary>
+        </a>
+      </div>
     </MediaRatioWrapper>
   );
 }
 
-const Boundary = styled.div<{ darkmode: boolean }>`
+const boundary = (darkmode: boolean) => css`
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  box-shadow: 1px 1px 10px 2px
-    ${(props) => (props.darkmode ? palette.gray9 : palette.gray3)};
+  box-shadow: 1px 1px 10px 2px ${darkmode ? palette.gray9 : palette.gray3};
   margin-bottom: 2rem;
   li {
     font-size: 1.25rem;
@@ -144,12 +150,12 @@ const Boundary = styled.div<{ darkmode: boolean }>`
   }
 `;
 
-const Title = styled.h3`
+const title = css`
   margin: 0;
   font-size: 1.825rem;
 `;
 
-const Description = styled.pre`
+const description = css`
   display: flex;
   flex-flow: row wrap;
   line-height: 1.5;
@@ -157,7 +163,7 @@ const Description = styled.pre`
   font-size: 1.25rem;
 `;
 
-const InfoLink = styled.a`
+const infoLink = css`
   margin-top: 0.5rem;
   padding: 0.5rem 0 0.5rem 0.5rem;
   border-left: 3px solid ${palette.indigo9};

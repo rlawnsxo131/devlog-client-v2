@@ -1,15 +1,15 @@
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import Paragraph from '../common/Paragraph';
 
 interface CountTagsSkelletonProps {}
 
 function CountTagsSkelleton(props: CountTagsSkelletonProps) {
   return (
-    <Block>
+    <div css={block}>
       {Array.from({ length: 130 }).map((_, i) => (
         <Paragraph
           key={`count_tag_skelleton_${i}`}
-          css={css`
+          style={css`
             width: 7.5rem;
             height: 1.75rem;
             margin-right: 0.5rem;
@@ -18,11 +18,11 @@ function CountTagsSkelleton(props: CountTagsSkelletonProps) {
           `}
         />
       ))}
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: flex;
   flex-flow: row wrap;
 `;

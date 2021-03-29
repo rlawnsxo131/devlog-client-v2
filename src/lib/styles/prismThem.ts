@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from '@emotion/react';
 
 const prismThemes = {
   'atom-one-dark': css`
@@ -197,7 +197,7 @@ const prismThemes = {
     }
     .token.selector,
     .token.attr-name,
-    .token.attr-value .punctuation:first-child,
+    .token.attr-value .punctuation:first-of-type,
     .token.keyword,
     .token.regex,
     .token.important {
@@ -262,7 +262,7 @@ const prismThemes = {
     }
     .token.selector,
     .token.attr-name,
-    .token.attr-value .punctuation:first-child,
+    .token.attr-value .punctuation:first-of-type,
     .token.keyword,
     .token.regex,
     .token.important {

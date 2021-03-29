@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import media, { mediaQuery } from '../../lib/styles/media';
 
 interface MediaRatioWrapperProps {
@@ -7,19 +7,18 @@ interface MediaRatioWrapperProps {
 }
 
 function MediaRatioWrapper({ children, type }: MediaRatioWrapperProps) {
-  return <Block type={type}>{children}</Block>;
+  return <div css={block(type)}>{children}</div>;
 }
 
-const Block = styled.div<{ type: string }>`
+const block = (type: 'row' | 'column') => css`
   display: flex;
-  ${(props) =>
-    props.type === 'row'
-      ? css`
-          flex-flow: row wrap;
-        `
-      : css`
-          flex-direction: column;
-        `}
+  ${type === 'row'
+    ? css`
+        flex-flow: row wrap;
+      `
+    : css`
+        flex-direction: column;
+      `}
   ${media.xsmall} {
     width: calc(100vw - 2rem);
   }

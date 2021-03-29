@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import media from '../../lib/styles/media';
 import PopupBase from './PopupBase';
 import Button from './Button';
@@ -20,10 +20,10 @@ function PopupOkCancel({
 }: PopupOkCancelProps) {
   return (
     <PopupBase visible={visible}>
-      <Block>
+      <div css={block}>
         <h3>{title}</h3>
         <p>{message}</p>
-        <ButtonArea>
+        <div css={buttonBlock}>
           {onCancel && (
             <Button color="darkGray" onClick={onCancel}>
               취소
@@ -32,13 +32,13 @@ function PopupOkCancel({
           <Button color="indigo" onClick={onConfirm}>
             확인
           </Button>
-        </ButtonArea>
-      </Block>
+        </div>
+      </div>
     </PopupBase>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: flex;
   flex-direction: column;
   padding: 1.725rem 1.5rem;
@@ -59,7 +59,7 @@ const Block = styled.div`
   }
 `;
 
-const ButtonArea = styled.div`
+const buttonBlock = css`
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-end;

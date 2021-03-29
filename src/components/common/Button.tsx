@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import media from '../../lib/styles/media';
 import palette, { buttonColorMap } from '../../lib/styles/palette';
 
@@ -24,22 +24,18 @@ function Button({
   children,
 }: ButtonProps) {
   return (
-    <Block
+    <button
       name={name}
       value={value}
-      color={color}
-      size={size}
       onClick={onClick}
+      css={block(color, size)}
     >
       {children}
-    </Block>
+    </button>
   );
 }
 
-const Block = styled.button<{
-  color: ColorType;
-  size: SizeType;
-}>`
+const block = (color: ColorType, size: SizeType) => css`
   cursor: pointer;
   outline-color: ${palette.indigo9};
   border: none;
@@ -48,23 +44,20 @@ const Block = styled.button<{
   align-items: center;
   border-radius: 0.25rem;
   font-weight: bold;
-  ${(props) => css`
-    color: ${buttonColorMap[props.color].color};
-    background: ${buttonColorMap[props.color].background};
-    &:hover {
-      background: ${buttonColorMap[props.color].hoverBackground};
-    }
-  `};
-  ${(props) =>
-    props.size === 'default'
-      ? css`
-          padding: 0.5rem 1rem 0.5rem 1rem;
-        `
-      : css`
-          padding-top: 0.25rem;
-          padding-bottom: 0.25rem;
-          width: 100%;
-        `}
+  color: ${buttonColorMap[color].color};
+  background: ${buttonColorMap[color].background};
+  &:hover {
+    background: ${buttonColorMap[color].hoverBackground};
+  }
+  ${size === 'default'
+    ? css`
+        padding: 0.5rem 1rem 0.5rem 1rem;
+      `
+    : css`
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        width: 100%;
+      `}
   & + & {
     margin-left: 0.825rem;
   }

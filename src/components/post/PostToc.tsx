@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import { throttle } from 'throttle-debounce';
 import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
@@ -88,23 +88,22 @@ function PostToc(props: PostTocProps) {
   }, [onScroll]);
 
   return (
-    <Block>
+    <div css={block}>
       {tocs?.map((v) => (
-        <Toc
+        <button
           key={v.scrollTop}
           value={v.scrollTop}
-          level={v.level}
-          active={v.scrollTop === currentHeading}
+          css={toc(v.level, v.scrollTop === currentHeading)}
           onClick={onTocClick}
         >
           {v.text.toString()}
-        </Toc>
+        </button>
       ))}
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: none;
   ${mediaQuery(1300)} {
     position: fixed;
@@ -132,7 +131,7 @@ const Block = styled.div`
   }
 `;
 
-const Toc = styled.button<{ level: number; active: boolean }>`
+const toc = (level: number, active: boolean) => css`
   padding: 0;
   margin: 0;
   background: none;
@@ -144,17 +143,16 @@ const Toc = styled.button<{ level: number; active: boolean }>`
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
   color: ${palette.gray6};
-  padding-left: ${(props) => props.level * 1}rem;
+  padding-left: ${level * 1}rem;
   transition: font 0.2s;
   &:hover {
     cursor: pointer;
   }
-  ${(props) =>
-    props.active &&
-    css`
-      font-size: 0.9rem;
-      color: ${palette.indigo5};
-    `}
+  ${active &&
+  css`
+    font-size: 0.9rem;
+    color: ${palette.indigo5};
+  `}
 `;
 
 export default PostToc;

@@ -1,22 +1,17 @@
-import { useQuery } from '@apollo/client';
 import { useEffect } from 'react';
+import { css } from '@emotion/react';
+import { useQuery } from '@apollo/client';
 import { Helmet } from 'react-helmet-async';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
 import { GET_POSTS, PostData } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import media, { mediaQuery } from '../../lib/styles/media';
-import { RootState } from '../../modules';
 import PostCard from './PostCard';
 import PostsSkelleton from './PostsSkelleton';
 
 interface PostsProps {}
 
 function Posts(props: PostsProps) {
-  const darkmode = useSelector(
-    (state: RootState) => state.core.darkmode.darkmode,
-  );
   const [handleError] = useError();
   const { tag } = useParams<{ tag?: string }>();
   const { loading, error, data } = useQuery<
@@ -37,7 +32,7 @@ function Posts(props: PostsProps) {
   if (error) return null;
 
   return (
-    <Block darkmode={darkmode}>
+    <div css={block}>
       <Helmet>
         <title>{`${tag ? `${tag} - ` : ''}DevLog`}</title>
         <meta
@@ -65,16 +60,16 @@ function Posts(props: PostsProps) {
         />
       </Helmet>
       {tag && <h3>#{tag}</h3>}
-      <GridBlock>
+      <div css={girdBlock}>
         {data?.posts.map((post) => (
           <PostCard key={`post_${post.id}`} post={post} />
         ))}
-      </GridBlock>
-    </Block>
+      </div>
+    </div>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = css`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -86,7 +81,7 @@ const Block = styled.div<{ darkmode: boolean }>`
   }
 `;
 
-const GridBlock = styled.div`
+const girdBlock = css`
   display: grid;
   ${media.xsmall} {
     grid-auto-rows: 24rem;

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import palette from '../../../lib/styles/palette';
 
 interface MenuIconProps {
@@ -17,7 +17,7 @@ function MenuIcon({
   darkmode,
 }: MenuIconProps) {
   return (
-    <Block
+    <svg
       onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       enableBackground="new 0 0 24 24"
@@ -25,7 +25,7 @@ function MenuIcon({
       width={width}
       viewBox="0 0 24 24"
       className={className}
-      darkmode={darkmode}
+      css={block(darkmode)}
     >
       <g className={className}>
         <path className={className} d="M0,0h24v24H0V0z" fill="none" />
@@ -40,26 +40,16 @@ function MenuIcon({
           </g>
         </g>
       </g>
-    </Block>
+    </svg>
   );
 }
 
-const Block = styled.svg<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   border-radius: 100%;
-  ${(props) =>
-    props.darkmode
-      ? css`
-          box-shadow: 1px 1px 5px 2px black;
-          &:hover {
-            box-shadow: 1px 1px 10px 2px black;
-          }
-        `
-      : css`
-          box-shadow: 1px 1px 5px 2px ${palette.gray5};
-          &:hover {
-            box-shadow: 1px 1px 10px 2px ${palette.gray5};
-          }
-        `}
+  box-shadow: 1px 1px 5px 2px ${darkmode ? 'black' : palette.gray5};
+  &:hover {
+    box-shadow: 1px 1px 10px 2px ${darkmode ? 'black' : palette.gray5};
+  }
 `;
 
 export default MenuIcon;

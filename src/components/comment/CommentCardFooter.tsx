@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import palette from '../../lib/styles/palette';
 import { CommentData } from '../../graphql/comment';
 import CommentCards from './CommentCards';
@@ -71,22 +71,22 @@ function CommentCardFooter({
   }, [has_replies, showReply]);
 
   return (
-    <Block level={level}>
-      <ReplyTrigger onClick={handleShowReply}>
+    <div css={block}>
+      <div css={replyTrigger} onClick={handleShowReply}>
         {replyTriggerIcon ? (
           <PlusIcon fill={palette.indigo5} width={14} height={14} />
         ) : (
           <MinusIcon fill={palette.indigo5} width={14} height={14} />
         )}
         {replyTriggerText}
-      </ReplyTrigger>
+      </div>
       {showReply && (
-        <RepliesWrapper>
+        <div css={repliesWrapper}>
           <CommentCards replies={replies} />
-        </RepliesWrapper>
+        </div>
       )}
       {showReply && (
-        <CommentWriteWrapper>
+        <div css={commentWriteWrapper}>
           {showCommentWrite && (
             <CommentWrite
               post_id={post_id}
@@ -103,18 +103,18 @@ function CommentCardFooter({
               {showCommentWrite ? '숨기기' : '답글 달기'}
             </Button>
           )}
-        </CommentWriteWrapper>
+        </div>
       )}
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div<{ level: number }>`
+const block = css`
   display: flex;
   flex-direction: column;
 `;
 
-const ReplyTrigger = styled.div`
+const replyTrigger = css`
   display: flex;
   align-items: center;
   color: ${palette.indigo5};
@@ -129,12 +129,12 @@ const ReplyTrigger = styled.div`
   }
 `;
 
-const RepliesWrapper = styled.div`
+const repliesWrapper = css`
   display: flex;
   flex-direction: column;
 `;
 
-const CommentWriteWrapper = styled.div`
+const commentWriteWrapper = css`
   display: flex;
   flex-direction: column;
 `;

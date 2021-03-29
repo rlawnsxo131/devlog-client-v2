@@ -1,6 +1,6 @@
 import { Fragment, useCallback, useEffect, useState } from 'react';
+import { css } from '@emotion/react';
 import { NavLink, useLocation } from 'react-router-dom';
-import styled, { css } from 'styled-components';
 import MenuIcon from '../../img/components/icons/MenuIcon';
 import RssFeedIcon from '../../img/components/icons/RssFeedIcon';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
@@ -42,7 +42,7 @@ function HeaderItems({ darkmode }: HeaderItemsProps) {
 
   return (
     <Fragment>
-      <Block darkmode={darkmode}>
+      <div css={block(darkmode)}>
         <a
           style={{ display: 'flex', alignItems: 'center' }}
           href={`${process.env.REACT_APP_API_URI}/rss`}
@@ -58,28 +58,28 @@ function HeaderItems({ darkmode }: HeaderItemsProps) {
           className="drop-menu-icon"
           darkmode={darkmode}
         />
-      </Block>
+      </div>
       {showMenu && (
-        <DropdownMenu className="drop-menu-wrapper" darkmode={darkmode}>
-          <Link className="drop-menu" exact to="/">
+        <nav className="drop-menu-wrapper" css={navStyle(darkmode)}>
+          <NavLink className="drop-menu" css={linkStyle} exact to="/">
             새글
-          </Link>
-          <Link className="drop-menu" to="/series">
+          </NavLink>
+          <NavLink className="drop-menu" css={linkStyle} to="/series">
             시리즈
-          </Link>
-          <Link className="drop-menu" to="/tags">
+          </NavLink>
+          <NavLink className="drop-menu" css={linkStyle} to="/tags">
             태그
-          </Link>
-          <Link className="drop-menu" to="/info">
+          </NavLink>
+          <NavLink className="drop-menu" css={linkStyle} to="/info">
             소개
-          </Link>
-        </DropdownMenu>
+          </NavLink>
+        </nav>
       )}
     </Fragment>
   );
 }
 
-const Block = styled.div<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   display: grid;
   grid-auto-rows: 2rem;
   grid-template-columns: repeat(3, 1fr);
@@ -89,16 +89,15 @@ const Block = styled.div<{ darkmode: boolean }>`
   &:hover {
     cursor: pointer;
   }
-  ${(props) =>
-    props.darkmode &&
-    css`
-      svg {
-        fill: ${palette.gray5};
-      }
-    `}
+  ${darkmode &&
+  css`
+    svg {
+      fill: ${palette.gray5};
+    }
+  `}
 `;
 
-const DropdownMenu = styled.nav<{ darkmode: boolean }>`
+const navStyle = (darkmode: boolean) => css`
   position: absolute;
   top: 125%;
   right: 0;
@@ -108,21 +107,20 @@ const DropdownMenu = styled.nav<{ darkmode: boolean }>`
   flex-direction: column;
   z-index: ${zIndexes.dropdownMenu};
   border-radius: 0.25rem;
-  ${(props) =>
-    props.darkmode
-      ? css`
-          background: ${darkmodeBackground.other};
-          color: ${palette.gray3};
-          box-shadow: 1px 1px 3px 1px ${palette.gray9};
-        `
-      : css`
-          background: white;
-          color: ${palette.gray9};
-          box-shadow: 1px 1px 3px 1px ${palette.gray5};
-        `}
+  ${darkmode
+    ? css`
+        background: ${darkmodeBackground.other};
+        color: ${palette.gray3};
+        box-shadow: 1px 1px 3px 1px ${palette.gray9};
+      `
+    : css`
+        background: white;
+        color: ${palette.gray9};
+        box-shadow: 1px 1px 3px 1px ${palette.gray5};
+      `}
 `;
 
-const Link = styled(NavLink)<{ shadowcolor?: string }>`
+const linkStyle = css`
   display: inline-flex;
   flex-flow: row wrap;
   font-size: 1.25rem;

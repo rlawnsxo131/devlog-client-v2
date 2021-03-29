@@ -18,15 +18,15 @@
 	"TypescriptReactFunctionComponent": {
 		"prefix": "fc",
 		"body": [
-			"import styled from 'styled-components';",
+			"import { css } from '@emotion/react';",
 			"",
 			"interface ${TM_FILENAME_BASE}Props {}",
 			"",
 			"function ${TM_FILENAME_BASE}(props: ${TM_FILENAME_BASE}Props) {",
-			"  return <Block></Block>;",
+			"  return <div css={block}></div>;",
 			"}",
 			"",
-			"const Block = styled.div``;",
+			"const block = css``;",
 			"",
 			"export default ${TM_FILENAME_BASE};"
 		]

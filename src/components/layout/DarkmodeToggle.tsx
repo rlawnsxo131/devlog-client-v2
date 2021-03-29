@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import ModeLightIcon from '../../img/components/icons/ModeLightIcon';
 import ModeNightIcon from '../../img/components/icons/ModeNightIcon';
 import zIndexes from '../../lib/styles/zIndexes';
@@ -10,13 +10,13 @@ interface DarkmodeToggleProps {}
 function DarkmodeToggle(props: DarkmodeToggleProps) {
   const { darkmode, onToggle } = useDarkmodeToggle();
   return (
-    <Block onClick={onToggle}>
+    <div css={block} onClick={onToggle}>
       {darkmode ? <ModeNightIcon /> : <ModeLightIcon />}
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: flex;
   justify-content: center;
   align-items: center;

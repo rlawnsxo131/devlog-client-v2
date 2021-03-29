@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import { RootState } from '../../modules';
 import { closePopup } from '../../modules/core';
 import PopupBase from './PopupBase';
@@ -17,20 +17,20 @@ function PopupCommon(props: PopupCommonProps) {
   }, [dispatch]);
   return (
     <PopupBase visible={popup.visible}>
-      <Block>
+      <div css={block}>
         <h3>{popup.title}</h3>
         <p>{popup.message}</p>
-        <ButtonBlock>
+        <div css={buttonBlock}>
           <Button color="indigo" onClick={onConfirm}>
             확인
           </Button>
-        </ButtonBlock>
-      </Block>
+        </div>
+      </div>
     </PopupBase>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: flex;
   flex-direction: column;
   padding: 1.725rem 1.5rem;
@@ -51,7 +51,7 @@ const Block = styled.div`
   }
 `;
 
-const ButtonBlock = styled.div`
+const buttonBlock = css`
   display: flex;
   justify-content: flex-end;
   align-items: center;

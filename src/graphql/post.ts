@@ -11,7 +11,7 @@ export interface SeriesPostData {
 export interface LinkPost {
   id: number;
   url_slug: string;
-  thumnail: string;
+  thumbnail: string;
   post_header: string;
 }
 
@@ -20,7 +20,7 @@ export interface PostData {
   post_header: string;
   post_body: string;
   preview_description: string;
-  thumnail?: string;
+  thumbnail?: string;
   open_yn?: boolean;
   series_id: number;
   url_slug: string;
@@ -36,7 +36,7 @@ export const GET_POST = gql`
       id
       post_header
       post_body
-      thumnail
+      thumbnail
       open_yn
       series_id
       url_slug
@@ -54,7 +54,7 @@ export const GET_POST = gql`
         id
         post_header
         url_slug
-        thumnail
+        thumbnail
       }
     }
   }
@@ -66,7 +66,7 @@ export const GET_POSTS = gql`
       id
       post_header
       preview_description
-      thumnail
+      thumbnail
       series_id
       url_slug
       released_at

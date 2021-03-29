@@ -1,6 +1,6 @@
 import { memo, useEffect, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
-import styled from 'styled-components';
+import { css } from '@emotion/react';
 import { CommentData, GET_COMMENTS } from '../../graphql/comment';
 import useError from '../../lib/hooks/useError';
 import media from '../../lib/styles/media';
@@ -54,15 +54,15 @@ function Comments({ post_id }: CommentsProps) {
   if (error) return null;
 
   return (
-    <Block>
-      <CommentsCount>{commentsCount}개의 댓글</CommentsCount>
+    <div css={block}>
+      <p css={commentsCountStyle}>{commentsCount}개의 댓글</p>
       <CommentWrite post_id={post_id} />
       <CommentCards replies={data?.comments} />
-    </Block>
+    </div>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: flex;
   flex-direction: column;
   margin-top: 3rem;
@@ -75,7 +75,7 @@ const Block = styled.div`
   }
 `;
 
-const CommentsCount = styled.p`
+const commentsCountStyle = css`
   margin: 0;
   padding: 0;
   font-weight: 600;

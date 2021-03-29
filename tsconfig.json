@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "ES5",
-    // "module": "commonjs",
     "module": "ESNext",
     "jsx": "react-jsx",
     "strict": true,
@@ -19,13 +18,15 @@
     "isolatedModules": true,
     "noUnusedLocals": true,
     "noEmit": false,
+    "jsxImportSource": "@emotion/react",
     "typeRoots": [
       "./node_modules/@types",
       "./src/@types"
     ]
   },
   "include": [
-    "src/**/*"
+    "src/**/**/*",
+
   ],
   "exclude": [
     "node_modules",

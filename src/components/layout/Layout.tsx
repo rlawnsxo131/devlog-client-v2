@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
+import { Global, css } from '@emotion/react';
 import { useSelector } from 'react-redux';
-import styled, { createGlobalStyle, css } from 'styled-components';
-import media from '../../lib/styles/media';
+import media, { mediaQuery } from '../../lib/styles/media';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import Header from './Header';
@@ -16,19 +16,19 @@ function Layout({ children }: LayoutProps) {
   );
   return (
     <Fragment>
-      <GlobalStyle darkmode={darkmode} />
-      <Block>
+      <Global styles={globalStyle(darkmode)} />
+      <div css={block}>
         <Header />
-        <Main>
-          <ContentBlock>{children}</ContentBlock>
-        </Main>
+        <main css={mainStyle}>
+          <section css={section}>{children}</section>
+        </main>
         <div className="copyright">© 2020 · DevLog</div>
-      </Block>
+      </div>
     </Fragment>
   );
 }
 
-const Block = styled.div`
+const block = css`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,7 +38,7 @@ const Block = styled.div`
       display: none;
     }
   }
-  ${media.medium} {
+  ${mediaQuery(1315)} {
     .copyright {
       display: block;
       position: fixed;
@@ -49,7 +49,7 @@ const Block = styled.div`
   }
 `;
 
-const Main = styled.main`
+const mainStyle = css`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -61,7 +61,7 @@ const Main = styled.main`
   }
 `;
 
-const ContentBlock = styled.div`
+const section = css`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,74 +78,71 @@ const ContentBlock = styled.div`
   }
 `;
 
-const GlobalStyle = createGlobalStyle<{ darkmode: boolean }>`
+const globalStyle = (darkmode: boolean) => css`
   body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif, -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
-    'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 나눔고딕,
-    'Nanum Gothic', 'Noto Sans KR', 'Noto Sans CJK KR', arial, 돋움, Dotum,
-    Tahoma, Geneva, sans-serif;
+    font-family: 'Montserrat', sans-serif, -apple-system, BlinkMacSystemFont,
+      'Helvetica Neue', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕',
+      나눔고딕, 'Nanum Gothic', 'Noto Sans KR', 'Noto Sans CJK KR', arial, 돋움,
+      Dotum, Tahoma, Geneva, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: subpixel-antialiased;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    ${(props) =>
-      props.darkmode &&
-      css`
-        background: ${darkmodeBackground.main};
-      `}
+    ${darkmode &&
+    css`
+      background: ${darkmodeBackground.main};
+    `}
   }
-
   a {
     text-decoration: none;
     &:hover {
       cursor: pointer;
-    } 
+    }
   }
-  
+
   color: ${palette.gray9};
 
   // nav, font color
-  ${(props) =>
-    props.darkmode
-      ? css`
-          h1,
-          h2,
-          h3,
-          h4,
-          h5,
-          h6,
-          a {
-            color: ${palette.gray3};
-          }
-          div,
-          span:not(.token),
-          p {
-            color: ${palette.gray5};
-          }
-          main {
-            background: ${darkmodeBackground.main};
-          }
-        `
-      : css`
-          h1,
-          h2,
-          h3,
-          h4,
-          h5,
-          h6,
-          div,
-          span:not(.token),
-          p,
-          a {
-            color: ${palette.gray9};
-          }
-          main {
-            background: white;
-          }
-        `}
+  ${darkmode
+    ? css`
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        a {
+          color: ${palette.gray3};
+        }
+        div,
+        span:not(.token),
+        p {
+          color: ${palette.gray5};
+        }
+        main {
+          background: ${darkmodeBackground.main};
+        }
+      `
+    : css`
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        div,
+        span:not(.token),
+        p,
+        a {
+          color: ${palette.gray9};
+        }
+        main {
+          background: white;
+        }
+      `}
 `;
 
 export default Layout;

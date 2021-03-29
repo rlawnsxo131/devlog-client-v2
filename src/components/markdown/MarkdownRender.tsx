@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import { css } from '@emotion/react';
 import unified from 'unified';
 import remarkParse from 'remark-parse';
 import sanitize from 'sanitize-html';
@@ -141,15 +141,15 @@ function MarkdownRender({ markdownText }: MarkdownRenderProps) {
   }, [markdownText]);
 
   return (
-    <MarkdownRenderBlock
+    <div
       dangerouslySetInnerHTML={{ __html: html }}
       className={them}
-      darkmode={darkmode}
+      css={block(darkmode)}
     />
   );
 }
 
-const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
+const block = (darkmode: boolean) => css`
   position: relative;
   height: auto;
   line-height: 1.725;
@@ -198,8 +198,7 @@ const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
     code {
       padding: 0.125rem;
       color: ${palette.indigo9} !important;
-      background: ${(props) =>
-        props.darkmode ? palette.indigo1 : palette.indigo0};
+      background: ${darkmode ? palette.indigo1 : palette.indigo0};
     }
   }
 
@@ -209,22 +208,22 @@ const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
     border-left: 4px solid ${palette.indigo5};
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-    background: ${(props) => (props.darkmode ? '#313440' : palette.gray0)};
+    background: ${darkmode ? '#313440' : palette.gray0};
     margin-left: 0;
     margin-right: 0;
     padding: 1rem;
     padding-left: 2rem;
     p {
-      color: ${(props) => (props.darkmode ? '#e0e6f1' : palette.gray9)};
+      color: ${darkmode ? '#e0e6f1' : palette.gray9};
     }
     ul,
     ol {
       padding-left: 1rem;
     }
-    *:first-child {
+    *:first-of-type {
       margin-top: 0;
     }
-    *:last-child {
+    *:last-of-type {
       margin-bottom: 0;
     }
   }
@@ -241,11 +240,10 @@ const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
 
   li::marker {
     font-weight: bold;
-    ${(props) =>
-      props.darkmode &&
-      css`
-        color: ${palette.gray0};
-      `};
+    ${darkmode &&
+    css`
+      color: ${palette.gray0};
+    `};
   }
 
   iframe {
@@ -288,10 +286,10 @@ const MarkdownRenderBlock = styled.div<{ darkmode: boolean }>`
     th + th {
       border-left: 1px solid ${palette.gray7};
     }
-    tr:nth-child(even) {
+    tr:nth-of-type(even) {
       background: ${palette.gray1};
     }
-    tr:nth-child(odd) {
+    tr:nth-of-type(odd) {
       background: white;
     }
   }

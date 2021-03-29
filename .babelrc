@@ -8,16 +8,11 @@
                 } 
             }
         ],
-        [
-            "@babel/preset-react", 
-            {
-                "runtime": "automatic"
-            }
-        ],
         "@babel/preset-typescript"
     ],
     "plugins": [
-        "@loadable/babel-plugin", 
+        "@emotion",
+        "@loadable/babel-plugin",
         "@babel/plugin-syntax-dynamic-import"
     ]
 }
