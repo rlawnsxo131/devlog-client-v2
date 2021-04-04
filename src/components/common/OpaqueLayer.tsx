@@ -34,7 +34,7 @@ const block = (visible: boolean, darkmode: boolean) => css`
         animation: ${transitions.fadeIn} 0.25s forwards;
       `
     : css`
-        ${transitions.fadeOut} 0.25s forwards;
+        animation: ${transitions.fadeOut} 0.25s forwards;
       `}
 `;
 

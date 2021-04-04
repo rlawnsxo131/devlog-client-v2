@@ -4,6 +4,7 @@ import { throttle } from 'throttle-debounce';
 import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { getScrollTop } from '../../lib/utils';
+import { useLocation } from 'react-router';
 
 interface PostTocProps {}
 interface Heading {
@@ -14,6 +15,7 @@ interface Heading {
 
 function PostToc(props: PostTocProps) {
   if (typeof window === 'undefined') return null;
+  const { pathname } = useLocation();
   const [tocs, setTocs] = useState<Array<Heading> | null>(null);
   const [currentHeading, setCurrentHeading] = useState(0);
 
@@ -41,7 +43,7 @@ function PostToc(props: PostTocProps) {
     const headings = parseHeadings();
     if (!headings) return;
     setTocs(headings);
-  }, [document.body.scrollHeight]);
+  }, [pathname, document.body.scrollHeight]);
 
   const onTocClick = useCallback((e) => {
     const { value } = e.target;
@@ -65,7 +67,6 @@ function PostToc(props: PostTocProps) {
   useEffect(() => {
     let prevScrollHeight = document.body.scrollHeight;
     let timeoutId: NodeJS.Timeout | null = null;
-    updateTocs();
     function lazyUpdateTocs() {
       const scrollHeight = document.body.scrollHeight;
       if (prevScrollHeight !== scrollHeight) {
