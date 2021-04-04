@@ -70,6 +70,8 @@ const block = (darkmode: boolean) => css`
   }
   &:hover {
     cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    transform: translateY(-1%);
   }
   ${darkmode
     ? css`
