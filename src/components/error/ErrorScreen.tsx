@@ -60,9 +60,11 @@ function ErrorScreen({ errorType, handleResolveError }: ErrorScreenProps) {
       </Helmet>
       <ErrorImageReturner errorType={errorType} />
       <h3>{errorMessageMap.get(errorType)}</h3>
-      <Button color="indigo" onClick={onClick}>
-        Home
-      </Button>
+      {errorType !== ErrorEnum.CHUNK && (
+        <Button color="indigo" onClick={onClick}>
+          Home
+        </Button>
+      )}
     </div>
   );
 }
