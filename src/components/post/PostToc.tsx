@@ -53,7 +53,7 @@ function PostToc(props: PostTocProps) {
   }, []);
 
   const onScroll = useMemo(() => {
-    return throttle(150, () => {
+    return throttle(50, () => {
       if (!tocs) return;
       const scrollTop = getScrollTop();
       const currentHeading = [...tocs].reverse().find((toc) => {

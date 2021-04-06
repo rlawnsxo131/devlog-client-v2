@@ -84,8 +84,7 @@ function InfoPage(props: InfoPageProps) {
                   <li>React Router</li>
                   <li>Loadable Components</li>
                   <li>Unified</li>
-                  <li>Remark</li>
-                  <li>emotion</li>
+                  <li>Emotion</li>
                   <li>Koa</li>
                 </ul>
               </li>

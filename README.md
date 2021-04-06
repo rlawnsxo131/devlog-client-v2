@@ -10,8 +10,7 @@
   * Loadable Components
   * Codemirror
   * Unified
-  * Remark
-  * emotion
+  * Emotion
   * Koa
 * GraphQL
   * Apollo Client
@@ -21,6 +20,8 @@
   * API Gateway
   * Route53
   * CloudFront
+### V1 Repository
+<https://github.com/rlawnsxo131/devlog-client>
 ### Serverside Repository
 <https://github.com/rlawnsxo131/devlog-server>
 

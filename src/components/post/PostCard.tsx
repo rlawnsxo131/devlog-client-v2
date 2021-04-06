@@ -27,7 +27,7 @@ function PostCard({ post }: PostCardProps) {
   }, [tag, post.tags]);
 
   return (
-    <div css={block(darkmode)}>
+    <article css={block(darkmode)}>
       <div css={thumbnail}>
         <Link to={`/post/${post.url_slug}`}>
           {post.thumbnail ? (
@@ -56,7 +56,7 @@ function PostCard({ post }: PostCardProps) {
           </div>
         </div>
       </Link>
-    </div>
+    </article>
   );
 }
 
@@ -143,7 +143,7 @@ const footer = (darkmode: boolean) => css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 0.875rem;
   border-top: 1px solid ${darkmode ? palette.gray8 : palette.gray1};
   p {
     font-size: 0.8rem;

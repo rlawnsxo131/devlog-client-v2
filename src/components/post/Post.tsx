@@ -81,31 +81,41 @@ function Post(props: PostProps) {
           href={`${process.env.REACT_APP_SERVICE_URL}/post/${data.post.url_slug}`}
         />
       </Helmet>
-      <h1 css={header}>{data.post.post_header}</h1>
-      <div css={info}>
-        <div className="writer">By John</div>
-        <span className="separator">&middot;</span>
-        <p>{formatDate(data.post.released_at)}</p>
-      </div>
-      <div css={tags}>
-        <DefaultTags tags={data.post.tags} />
-      </div>
-      {data.post.thumbnail && (
-        <div css={thumbnailStyle}>
-          <img
-            src={optimizeImage(data.post.thumbnail, 768)}
-            alt="post-thumbnail"
-          />
+      <article css={block}>
+        <h1 css={header}>{data.post.post_header}</h1>
+        <div css={info}>
+          <div className="writer">By John</div>
+          <span className="separator">&middot;</span>
+          <time dateTime={`${data.post.released_at}`}>
+            {formatDate(data.post.released_at)}
+          </time>
         </div>
-      )}
-      <MarkdownRender markdownText={data.post.post_body} />
-      <PostSeries series={data.post.series_posts} />
-      <PostLinks link_posts={data.post.link_posts} />
-      <Comments post_id={data.post.id} />
-      <PostToc />
+        <div css={tags}>
+          <DefaultTags tags={data.post.tags} />
+        </div>
+        {data.post.thumbnail && (
+          <div css={thumbnailStyle}>
+            <img
+              src={optimizeImage(data.post.thumbnail, 768)}
+              alt="post-thumbnail"
+            />
+          </div>
+        )}
+        <MarkdownRender markdownText={data.post.post_body} />
+        <PostSeries series={data.post.series_posts} />
+        <PostLinks link_posts={data.post.link_posts} />
+        <Comments post_id={data.post.id} />
+        <PostToc />
+      </article>
     </MediaRatioWrapper>
   );
 }
+
+const block = css`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
 
 const header = css`
   ${media.xsmall} {

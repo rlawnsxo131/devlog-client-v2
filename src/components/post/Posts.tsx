@@ -5,9 +5,9 @@ import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import { GET_POSTS, PostData } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
-import media, { mediaQuery } from '../../lib/styles/media';
 import PostCard from './PostCard';
 import PostsSkelleton from './PostsSkelleton';
+import PostCardGridLayout from './PostCardGridLayout';
 
 interface PostsProps {}
 
@@ -60,11 +60,11 @@ function Posts(props: PostsProps) {
         />
       </Helmet>
       {tag && <h3>#{tag}</h3>}
-      <div css={girdBlock}>
+      <PostCardGridLayout>
         {data?.posts.map((post) => (
           <PostCard key={`post_${post.id}`} post={post} />
         ))}
-      </div>
+      </PostCardGridLayout>
     </div>
   );
 }
@@ -78,36 +78,6 @@ const block = css`
     font-size: 1.5rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
-  }
-`;
-
-const girdBlock = css`
-  display: grid;
-  ${media.xsmall} {
-    grid-auto-rows: 24rem;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 1rem 0;
-  }
-  ${mediaQuery(420)} {
-    grid-auto-rows: 30rem;
-    grid-template-columns: repeat(1, 1fr);
-  }
-  ${mediaQuery(600)} {
-    grid-auto-rows: 36rem;
-    grid-template-columns: repeat(1, 1fr);
-  }
-  ${media.small} {
-    grid-auto-rows: 28rem;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem 1rem;
-  }
-  ${media.medium} {
-    grid-auto-rows: 22rem;
-    grid-template-columns: repeat(3, 1fr);
-  }
-  ${media.large} {
-    grid-auto-rows: 24rem;
-    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
