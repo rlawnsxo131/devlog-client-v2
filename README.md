@@ -22,6 +22,6 @@
   * CloudFront
 ### V1 Repository
 <https://github.com/rlawnsxo131/devlog-client>
-### Serverside Repository
+### Server Repository
 <https://github.com/rlawnsxo131/devlog-server>
 
