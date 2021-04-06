@@ -10,8 +10,8 @@
     "start:server": "node build/server/server.js",
     "offline": "NODE_ENV=development sls offline",
     "build:prod": "NODE_ENV=production webpack --config config/webpack.config.prod.js",
-    "upload:s3": "aws s3 sync ./build/client s3://cdn-devlog-v2 --delete",
-    "deploy:production": "NODE_ENV=production serverless deploy --stage production --force"
+    "deploy:production": "NODE_ENV=production serverless deploy --stage production --force",
+    "upload:s3": "aws s3 sync ./build/client s3://cdn-devlog-v2 --delete"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",

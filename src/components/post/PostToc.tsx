@@ -67,6 +67,7 @@ function PostToc(props: PostTocProps) {
   useEffect(() => {
     let prevScrollHeight = document.body.scrollHeight;
     let timeoutId: NodeJS.Timeout | null = null;
+    updateTocs();
     function lazyUpdateTocs() {
       const scrollHeight = document.body.scrollHeight;
       if (prevScrollHeight !== scrollHeight) {
@@ -84,6 +85,7 @@ function PostToc(props: PostTocProps) {
   useEffect(() => {
     globalThis.addEventListener('scroll', onScroll);
     return () => {
+      setCurrentHeading(0);
       globalThis.removeEventListener('scroll', onScroll);
     };
   }, [onScroll]);
