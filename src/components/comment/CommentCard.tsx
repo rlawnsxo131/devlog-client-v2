@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { css } from '@emotion/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CommentData } from '../../graphql/comment';
@@ -73,4 +73,4 @@ const block = (level: number, darkmode: boolean) => css`
   `}
 `;
 
-export default memo(CommentCard);
+export default CommentCard;

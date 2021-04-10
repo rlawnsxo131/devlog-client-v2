@@ -7,6 +7,7 @@ export function formatDate(date?: Date): string | undefined {
   const d = new Date(date);
   const now = Date.now();
   const diff = now - new Date(date).getTime();
+
   // less than 5 minutes
   if (diff < 1000 * 60 * 5) {
     return '방금 전';

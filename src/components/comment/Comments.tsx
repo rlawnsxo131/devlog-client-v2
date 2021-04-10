@@ -1,4 +1,4 @@
-import { memo, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { css } from '@emotion/react';
 import { CommentData, GET_COMMENTS } from '../../graphql/comment';
@@ -81,4 +81,4 @@ const commentsCountStyle = css`
   font-weight: 600;
 `;
 
-export default memo(Comments);
+export default Comments;

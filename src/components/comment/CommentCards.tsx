@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { css } from '@emotion/react';
 import { CommentData } from '../../graphql/comment';
 import CommentCard from './CommentCard';
@@ -47,4 +46,4 @@ const block = css`
   flex-direction: column;
 `;
 
-export default memo(CommentCards);
+export default CommentCards;

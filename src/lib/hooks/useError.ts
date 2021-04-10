@@ -5,6 +5,7 @@ import errorTypeManager from '../errorTypeManager';
 
 export default function useError() {
   const dispatch = useDispatch();
+
   const handleError = useCallback(
     (error: any) => {
       const errorType = errorTypeManager(error);

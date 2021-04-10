@@ -11,6 +11,7 @@ interface ButtonProps {
   value?: any;
   color?: ColorType;
   size?: SizeType;
+  inline?: boolean;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => Promise<void> | void;
   children: React.ReactNode;
 }
@@ -20,6 +21,7 @@ function Button({
   value,
   color = 'darkGray',
   size = 'default',
+  inline = false,
   onClick,
   children,
 }: ButtonProps) {
@@ -28,14 +30,14 @@ function Button({
       name={name}
       value={value}
       onClick={onClick}
-      css={block(color, size)}
+      css={block(color, size, inline)}
     >
       {children}
     </button>
   );
 }
 
-const block = (color: ColorType, size: SizeType) => css`
+const block = (color: ColorType, size: SizeType, inline: boolean) => css`
   cursor: pointer;
   outline-color: ${palette.indigo9};
   border: none;
@@ -46,6 +48,7 @@ const block = (color: ColorType, size: SizeType) => css`
   font-weight: bold;
   color: ${buttonColorMap[color].color};
   background: ${buttonColorMap[color].background};
+  &:focus,
   &:hover {
     background: ${buttonColorMap[color].hoverBackground};
   }
@@ -58,9 +61,10 @@ const block = (color: ColorType, size: SizeType) => css`
         padding-bottom: 0.25rem;
         width: 100%;
       `}
-  & + & {
-    margin-left: 0.825rem;
-  }
+  ${inline &&
+  css`
+    margin-left: 0.5rem;
+  `}
   ${media.xsmall} {
     font-size: 0.9rem;
   }

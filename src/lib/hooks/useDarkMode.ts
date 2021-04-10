@@ -19,9 +19,10 @@ export default function useDarkmode() {
   useEffect(() => {
     if (DARKMODE.current) return;
     const mode = ['light', 'dark'].reduce((acc, mode) => {
-      return globalThis.matchMedia(`(prefers-color-scheme: ${mode})`).matches
-        ? (acc += mode)
-        : acc;
+      if (globalThis.matchMedia(`(prefers-color-scheme: ${mode})`).matches) {
+        acc += mode;
+      }
+      return acc;
     }, '');
     if (!mode) return;
     dispatch(

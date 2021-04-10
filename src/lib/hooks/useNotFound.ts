@@ -4,6 +4,7 @@ import { ErrorEnum, setError } from '../../modules/error';
 
 export default function useNotFound() {
   const dispatch = useDispatch();
+
   const setNotFound = useCallback(() => {
     dispatch(
       setError({

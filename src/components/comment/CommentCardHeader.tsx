@@ -21,12 +21,12 @@ function CommentCardHeader({
   return (
     <div css={block}>
       <div css={info}>
-        <div className="writer">{writer}</div>
-        <div className="date">
+        <p className="writer">{writer}</p>
+        <time dateTime={`${edited_at ?? created_at}`}>
           {edited_at
             ? `${formatDate(edited_at)}(수정됨)`
             : formatDate(created_at)}
-        </div>
+        </time>
       </div>
       {!deleted && (
         <div css={edit} onClick={handleSetVisible}>
@@ -47,14 +47,14 @@ const block = css`
 const info = css`
   display: flex;
   flex-direction: column;
-  .writer {
-    font-weight: 600;
-    margin-top: 0.25rem;
-  }
-  .date {
+  time {
     font-size: 1rem;
     color: ${palette.gray6};
     margin-top: 0.5rem;
+  }
+  p {
+    font-weight: 600;
+    margin: 0.25rem 0 0 0;
   }
 `;
 

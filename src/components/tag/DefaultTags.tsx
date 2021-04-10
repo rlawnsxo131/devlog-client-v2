@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { css } from '@emotion/react';
 import DefaultTag from './DefaultTag';
 
@@ -22,4 +21,4 @@ const block = css`
   flex-flow: row wrap;
 `;
 
-export default memo(DefaultTags);
+export default DefaultTags;

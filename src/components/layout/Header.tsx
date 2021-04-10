@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -79,4 +78,4 @@ const linkStyle = css`
   }
 `;
 
-export default memo(Header);
+export default Header;

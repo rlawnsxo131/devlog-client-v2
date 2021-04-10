@@ -18,10 +18,12 @@ function NotFoundPage(props: NotFoundPageProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
+
   const onClick = useCallback(() => {
     dispatch(resetError({}));
     history.push('/');
   }, [history, dispatch]);
+
   return (
     <div css={block(darkmode)}>
       <Helmet>

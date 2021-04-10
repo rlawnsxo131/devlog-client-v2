@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import media from '../../lib/styles/media';
@@ -43,4 +44,4 @@ const block = (darkmode: boolean) => css`
   }
 `;
 
-export default DefaultTag;
+export default memo(DefaultTag);

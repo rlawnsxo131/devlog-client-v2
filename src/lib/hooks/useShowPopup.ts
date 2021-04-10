@@ -4,6 +4,7 @@ import { showPopup } from '../../modules/core';
 
 export default function useShowPopup() {
   const dispatch = useDispatch();
+
   const onShowPopup = useCallback(
     ({ title, message }: { title: string; message: string }) => {
       dispatch(

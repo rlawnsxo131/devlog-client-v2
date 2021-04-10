@@ -48,7 +48,9 @@ function PostCard({ post }: PostCardProps) {
       </div>
       <Link to={`/post/${post.url_slug}`}>
         <div css={footer(darkmode)}>
-          <p>{formatDate(post.released_at)}</p>
+          <time dateTime={`${post.released_at}`}>
+            {formatDate(post.released_at)}
+          </time>
           <div className="post-card-tags">
             {previewTags.map((v) => (
               <p key={`${v}_${post.id}`}>{`#${v}`}</p>
@@ -145,6 +147,7 @@ const footer = (darkmode: boolean) => css`
   align-items: center;
   padding: 0.875rem;
   border-top: 1px solid ${darkmode ? palette.gray8 : palette.gray1};
+  time,
   p {
     font-size: 0.8rem;
     color: ${palette.gray6};

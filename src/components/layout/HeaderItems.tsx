@@ -14,9 +14,11 @@ interface HeaderItemsProps {
 function HeaderItems({ darkmode }: HeaderItemsProps) {
   const { pathname } = useLocation();
   const [showMenu, setShowMenu] = useState<boolean>(false);
+
   const handleShowMenu = useCallback(() => {
     setShowMenu((state) => !state);
   }, []);
+
   const onMenuOutSideClick = useCallback((e) => {
     const menuClass = [/drop-menu-icon/g, /drop-menu-wrapper/g, /drop-menu/g];
     const className = e.target.className;

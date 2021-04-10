@@ -20,6 +20,7 @@ function reducer<T>(state: T, action: UseInputsAction | null) {
 
 export default function useInputs<T>(defaultValues: T) {
   const [state, dispatch] = useReducer(reducer, defaultValues);
+
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       dispatch({
@@ -29,9 +30,11 @@ export default function useInputs<T>(defaultValues: T) {
     },
     [],
   );
+
   const onReset = useCallback(() => {
     dispatch(null);
   }, []);
+
   return [state, onChange, onReset, dispatch] as [
     T,
     typeof onChange,

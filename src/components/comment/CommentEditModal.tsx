@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { css } from '@emotion/react';
 import media from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
@@ -71,13 +70,13 @@ function CommentEditModal({
           />
         </div>
         <div css={footer}>
-          <Button color="indigo" onClick={updateComment}>
+          <Button color="indigo" inline onClick={updateComment}>
             수정
           </Button>
-          <Button color="red" onClick={removeComment}>
+          <Button color="red" inline onClick={removeComment}>
             삭제
           </Button>
-          <Button color="darkGray" onClick={handleSetVisible}>
+          <Button color="darkGray" inline onClick={handleSetVisible}>
             취소
           </Button>
         </div>
@@ -126,6 +125,7 @@ const body = css`
 `;
 
 const footer = css`
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 1rem;
@@ -142,4 +142,4 @@ const errorMessage = css`
   animation-fill-mode: forwards;
 `;
 
-export default memo(CommentEditModal);
+export default CommentEditModal;
