@@ -147,14 +147,14 @@ const toc = (level: number, active: boolean) => css`
   font-size: 0.875rem;
   color: ${palette.gray6};
   padding-left: ${level * 1}rem;
-  transition: font-size 0.2s;
+  transition: 0.125s all ease-in;
   &:hover {
     cursor: pointer;
   }
   ${active &&
   css`
-    font-size: 0.9rem;
-    color: ${palette.indigo5};
+    color: ${palette.gray9};
+    transform: scale(1.05);
   `}
 `;
 

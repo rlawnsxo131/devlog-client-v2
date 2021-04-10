@@ -29,6 +29,7 @@ async function serverRender({ url }: ServerRenderParams) {
   if (/^\/(api|graphql)/.test(url)) {
     return null;
   }
+
   const store = configureStore({
     reducer: rootReducer,
     middleware: [
