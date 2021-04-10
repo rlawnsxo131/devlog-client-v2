@@ -6,10 +6,10 @@ const prismThemes = {
       background: #313440;
     }
     /**
- * prism.js default theme for JavaScript, CSS and HTML
- * Based on dabblet (http://dabblet.com)
- * @author Lea Verou
- */
+    * prism.js default theme for JavaScript, CSS and HTML
+    * Based on dabblet (http://dabblet.com)
+    * @author Lea Verou
+    */
     code[class*='language-'],
     pre[class*='language-'] {
       color: #e0e6f1;
@@ -157,6 +157,23 @@ const prismThemes = {
     }
   `,
   'atom-one-light': css`
+    code[class*='language-'],
+    pre[class*='language-'] {
+      color: #e0e6f1;
+      background: none;
+      text-align: left;
+      white-space: pre;
+      word-spacing: normal;
+      word-break: normal;
+      word-wrap: normal;
+      -moz-tab-size: 4;
+      -o-tab-size: 4;
+      tab-size: 4;
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none;
+    }
     code,
     code[class*='language-'],
     pre[class*='language-'] {
@@ -166,7 +183,6 @@ const prismThemes = {
       box-shadow: 0px 0px 2px #00000005;
       background: #fbfcfd;
       color: #24292e;
-      /* background: white; */
     }
     .token.builtin {
       color: #0184bc;

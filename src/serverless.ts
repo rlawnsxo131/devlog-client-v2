@@ -1,10 +1,10 @@
 import { APIGatewayEvent } from 'aws-lambda';
 import serverRender from './server/middleware/serverRender';
-import qs from 'qs';
+import { stringify } from 'qs';
 
 export const handler = async (event: APIGatewayEvent) => {
   const query = event.queryStringParameters
-    ? qs.stringify(event.queryStringParameters)
+    ? stringify(event.queryStringParameters)
     : '';
   const url = query ? event.path.concat('?', query) : event.path;
   //   const cookie = event.headers.Cookie || '';
