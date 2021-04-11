@@ -9,7 +9,7 @@ import breaks from 'remark-breaks';
 import slug from 'remark-slug';
 import prismPlugin from '../../lib/remark/prismPlugin';
 import embedPlugin from '../../lib/remark/embedPlugin';
-import palette from '../../lib/styles/palette';
+import palette, { darkmodeMarkdownColor } from '../../lib/styles/palette';
 import { ssrEnabled } from '../../lib/constants';
 import prismThemes from '../../lib/styles/prismThem';
 import { useSelector } from 'react-redux';
@@ -208,13 +208,15 @@ const block = (darkmode: boolean) => css`
     border-left: 4px solid ${palette.indigo5};
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-    background: ${darkmode ? '#313440' : palette.gray0};
+    background: ${darkmode
+      ? darkmodeMarkdownColor.blockquoteBackground
+      : palette.gray0};
     margin-left: 0;
     margin-right: 0;
     padding: 1rem;
     padding-left: 2rem;
     p {
-      color: ${darkmode ? '#e0e6f1' : palette.gray9};
+      color: ${darkmode ? darkmodeMarkdownColor.blockquoteP : palette.gray9};
     }
     ul,
     ol {

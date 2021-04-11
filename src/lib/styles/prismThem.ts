@@ -157,9 +157,14 @@ const prismThemes = {
     }
   `,
   'atom-one-light': css`
+    pre {
+      box-shadow: 0px 0px 2px #00000005;
+      background: #fbfcfd;
+      color: #24292e;
+    }
     code[class*='language-'],
     pre[class*='language-'] {
-      color: #e0e6f1;
+      color: #24292e;
       background: none;
       text-align: left;
       white-space: pre;
@@ -174,14 +179,27 @@ const prismThemes = {
       -ms-hyphens: none;
       hyphens: none;
     }
+    @media print {
+      code[class*='language-'],
+      pre[class*='language-'] {
+        text-shadow: none;
+      }
+    }
+    /* Code blocks */
+    pre[class*='language-'] {
+      padding: 1em;
+      margin: 0.5em 0;
+      overflow: auto;
+    }
+    /* Inline code */
+    :not(pre) > code[class*='language-'] {
+      padding: 0.1em;
+      border-radius: 0.3em;
+      white-space: normal;
+    }
     code,
     code[class*='language-'],
     pre[class*='language-'] {
-      color: #24292e;
-    }
-    pre {
-      box-shadow: 0px 0px 2px #00000005;
-      background: #fbfcfd;
       color: #24292e;
     }
     .token.builtin {

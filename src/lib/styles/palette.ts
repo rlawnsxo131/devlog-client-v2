@@ -40,6 +40,11 @@ export const darkmodeBackground = {
   other: '#292f35',
 };
 
+export const darkmodeMarkdownColor = {
+  blockquoteBackground: '#313440',
+  blockquoteP: '#e0e6f1',
+};
+
 export const commentColor: {
   [key: number]: {
     background: string;
