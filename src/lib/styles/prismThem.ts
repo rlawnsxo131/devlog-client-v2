@@ -14,6 +14,7 @@ const prismThemes = {
     pre[class*='language-'] {
       color: #e0e6f1;
       background: none;
+      background: #313440;
       text-align: left;
       white-space: pre;
       word-spacing: normal;
@@ -49,13 +50,10 @@ const prismThemes = {
     }
     /* Code blocks */
     pre[class*='language-'] {
+      background: #313440;
       padding: 1em;
       margin: 0.5em 0;
       overflow: auto;
-    }
-    :not(pre) > code[class*='language-'],
-    pre[class*='language-'] {
-      background: #282c34;
     }
     /* Inline code */
     :not(pre) > code[class*='language-'] {
@@ -187,6 +185,7 @@ const prismThemes = {
     }
     /* Code blocks */
     pre[class*='language-'] {
+      background: #fbfcfd;
       padding: 1em;
       margin: 0.5em 0;
       overflow: auto;
