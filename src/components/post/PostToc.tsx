@@ -5,6 +5,8 @@ import media, { mediaQuery } from '../../lib/styles/media';
 import palette from '../../lib/styles/palette';
 import { getScrollTop } from '../../lib/utils';
 import { useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../modules';
 
 interface PostTocProps {}
 interface Heading {
@@ -15,6 +17,9 @@ interface Heading {
 
 function PostToc(props: PostTocProps) {
   if (typeof window === 'undefined') return null;
+  const darkmode = useSelector(
+    (state: RootState) => state.core.darkmode.darkmode,
+  );
   const { pathname } = useLocation();
   const [tocs, setTocs] = useState<Array<Heading> | null>(null);
   const [currentHeading, setCurrentHeading] = useState(0);
@@ -96,7 +101,7 @@ function PostToc(props: PostTocProps) {
         <button
           key={v.scrollTop}
           value={v.scrollTop}
-          css={toc(v.level, v.scrollTop === currentHeading)}
+          css={toc(darkmode, v.level, v.scrollTop === currentHeading)}
           onClick={onTocClick}
         >
           {v.text.toString()}
@@ -134,7 +139,7 @@ const block = css`
   }
 `;
 
-const toc = (level: number, active: boolean) => css`
+const toc = (darkmode: boolean, level: number, active: boolean) => css`
   padding: 0;
   margin: 0;
   background: none;
@@ -153,7 +158,7 @@ const toc = (level: number, active: boolean) => css`
   }
   ${active &&
   css`
-    color: ${palette.gray9};
+    color: ${darkmode ? palette.gray3 : palette.gray9};
     transform: scale(1.05);
   `}
 `;
