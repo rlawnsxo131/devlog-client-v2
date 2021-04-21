@@ -1,4 +1,4 @@
-import visit from 'unist-util-visit';
+import { visit } from 'unist-util-visit';
 
 const embedTypeRegex = /^!(youtube|twitter|codesandbox|codepen)/;
 const converters = {

@@ -50,7 +50,7 @@ const block = (darkmode: boolean) => css`
       `
     : css`
         border: 1px solid ${palette.gray2};
-        background: white;
+        background: ${palette.white}; ;
       `}
   :focus {
     outline: none;

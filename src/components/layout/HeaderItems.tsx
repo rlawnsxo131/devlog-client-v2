@@ -116,7 +116,7 @@ const navStyle = (darkmode: boolean) => css`
         box-shadow: 1px 1px 3px 1px ${palette.gray9};
       `
     : css`
-        background: white;
+        background: ${palette.white};
         color: ${palette.gray9};
         box-shadow: 1px 1px 3px 1px ${palette.gray5};
       `}

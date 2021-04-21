@@ -1,4 +1,4 @@
-import visit from 'unist-util-visit';
+import { visit } from 'unist-util-visit';
 import Prism from 'prismjs';
 
 import 'prismjs/components/prism-bash.min';

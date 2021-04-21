@@ -140,7 +140,7 @@ const globalStyle = (darkmode: boolean) => css`
           color: ${palette.gray9};
         }
         main {
-          background: white;
+          background: ${palette.white};
         }
       `}
 `;

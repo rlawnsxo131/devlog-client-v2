@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import PhotoIcon from '../../img/components/icons/PhotoIcon';
 import markdownParser from '../../lib/remark/markdownParser';
+import media from '../../lib/styles/media';
 
 interface PostCardProps {
   post: PostData;
@@ -67,26 +68,23 @@ const block = (darkmode: boolean) => css`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  border-radius: 0.5rem;
+  transition: 0.25s ease-in;
   p {
     margin: 0;
   }
   &:hover {
     cursor: pointer;
-    transition: 0.15s ease-in-out;
-    transform: translateY(-1%);
+    ${media.medium} {
+      transform: translateY(-0.5rem);
+    }
   }
   ${darkmode
     ? css`
         box-shadow: 1px 1px 5px 2px ${palette.gray9};
-        &:hover {
-          box-shadow: 1px 1px 10px 2px ${palette.gray8};
-        }
       `
     : css`
         box-shadow: 1px 1px 5px 2px ${palette.gray1};
-        &:hover {
-          box-shadow: 1px 1px 10px 2px ${palette.gray5};
-        }
       `};
 `;
 
@@ -146,7 +144,7 @@ const footer = (darkmode: boolean) => css`
   justify-content: space-between;
   align-items: center;
   padding: 0.875rem;
-  border-top: 1px solid ${darkmode ? palette.gray8 : palette.gray1};
+  border-top: 1px solid ${darkmode ? palette.gray8 : palette.gray0};
   time,
   p {
     font-size: 0.8rem;

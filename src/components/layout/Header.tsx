@@ -43,7 +43,7 @@ const headerStyle = (darkmode: boolean) => css`
         box-shadow: 1px 1px 10px 2px ${palette.gray9};
       `
     : css`
-        background: white;
+        background: ${palette.white};
         box-shadow: 1px 1px 10px 2px ${palette.gray3};
       `}
 `;

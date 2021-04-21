@@ -99,7 +99,7 @@ const block = (darkmode: boolean) => css`
         }
       `
     : css`
-        background: white;
+        background: ${palette.white};
         h3 {
           color: ${palette.gray7};
         }

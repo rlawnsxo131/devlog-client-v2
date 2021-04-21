@@ -60,13 +60,14 @@ function CommentCardFooter({
         setReplyTriggerText('숨기기');
         setReplyTriggerIcon(false);
         setShowCommentWrite(true);
+        return;
       }
       if (!showReply && !deleted) {
         setReplyTriggerText('답글 달기');
         setReplyTriggerIcon(true);
         setShowCommentWrite(false);
+        return;
       }
-      return;
     }
   }, [has_replies, showReply]);
 

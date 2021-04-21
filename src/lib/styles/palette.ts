@@ -1,5 +1,6 @@
 // https://yeun.github.io/open-color/
 const palette = {
+  white: '#FFFFFF',
   /* gray */
   gray0: '#F8F9FA',
   gray1: '#F1F3F5',

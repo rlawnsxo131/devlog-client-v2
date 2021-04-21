@@ -38,10 +38,12 @@ const block = css`
   ${media.medium} {
     grid-auto-rows: 21rem;
     grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1rem;
   }
   ${media.large} {
     grid-auto-rows: 24rem;
     grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1.5rem;
   }
 `;
 

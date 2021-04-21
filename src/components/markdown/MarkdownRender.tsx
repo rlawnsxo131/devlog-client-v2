@@ -292,7 +292,7 @@ const block = (darkmode: boolean) => css`
       background: ${palette.gray1};
     }
     tr:nth-of-type(odd) {
-      background: white;
+      background: ${palette.white};
     }
   }
 
