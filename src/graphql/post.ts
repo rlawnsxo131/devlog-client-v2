@@ -8,7 +8,7 @@ export interface SeriesPostData {
   post_header: string;
 }
 
-export interface LinkPost {
+export interface LinkPostData {
   id: number;
   url_slug: string;
   thumbnail: string;
@@ -27,7 +27,7 @@ export interface PostData {
   released_at: Date;
   tags: Array<string>;
   series_posts: Array<SeriesPostData>;
-  link_posts: Array<LinkPost>;
+  link_posts: Array<LinkPostData>;
 }
 
 export const GET_POST = gql`

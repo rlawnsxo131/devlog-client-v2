@@ -72,7 +72,7 @@ function InfoPage(props: InfoPageProps) {
                 v1
                 <ul>
                   <li>Next.js</li>
-                  <li>styled components</li>
+                  <li>Styled components</li>
                 </ul>
               </li>
             </ul>
@@ -93,8 +93,8 @@ function InfoPage(props: InfoPageProps) {
           <li>
             GraphQL
             <ul>
-              <li>Apollo-Server</li>
-              <li>Apollo-Client</li>
+              <li>Apollo Server</li>
+              <li>Apollo Client</li>
             </ul>
           </li>
           <li>

@@ -69,7 +69,7 @@ const block = (darkmode: boolean) => css`
   flex-direction: column;
   overflow: hidden;
   border-radius: 0.5rem;
-  transition: 0.25s ease-in;
+  transition: transform 0.25s ease-in;
   p {
     margin: 0;
   }

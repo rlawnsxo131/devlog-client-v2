@@ -2,14 +2,14 @@ import { memo } from 'react';
 import { css } from '@emotion/react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { LinkPost } from '../../graphql/post';
+import { LinkPostData } from '../../graphql/post';
 import PhotoIcon from '../../img/components/icons/PhotoIcon';
 import optimizeImage from '../../lib/optimizeImage';
 import palette, { darkmodeBackground } from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 
 interface PostLinksProps {
-  link_posts: Array<LinkPost>;
+  link_posts: Array<LinkPostData>;
 }
 
 function PostLinks({ link_posts }: PostLinksProps) {
@@ -64,6 +64,7 @@ const postWrapper = (darkmode: boolean) => css`
   height: 12.533125rem;
   padding: 0.5rem 1rem;
   margin: 1rem 1rem 1rem 0;
+  border-radius: 0.5rem;
   img,
   svg {
     width: 10rem;

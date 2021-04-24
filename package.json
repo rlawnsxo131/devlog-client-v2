@@ -10,7 +10,7 @@
     "start:server": "node build/server/server.js",
     "offline": "NODE_ENV=development sls offline",
     "build:prod": "NODE_ENV=production webpack --config config/webpack.config.prod.js",
-    "deploy:production": "NODE_ENV=production serverless deploy --stage production --force",
+    "deploy:serverless": "NODE_ENV=production serverless deploy --stage production --force",
     "upload:s3": "aws s3 sync ./build/client s3://cdn-devlog-v2 --delete",
     "s3:invalidate": "aws cloudfront create-invalidation --distribution-id E1HXTMHT7WHDAE --paths '/*'"
   },
