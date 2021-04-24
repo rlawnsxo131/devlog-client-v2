@@ -24,7 +24,7 @@ provider:
   lambdaHashingVersion: 20201221
   apiGateway:
     shouldStartNameWithService: true
-  
+    minimumCompressionSize: 1024
 
   environment:
     REACT_APP_NODE_ENV: ${env:REACT_APP_NODE_ENV}
