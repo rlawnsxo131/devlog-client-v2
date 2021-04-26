@@ -58,7 +58,6 @@ function HeaderItems({ darkmode }: HeaderItemsProps) {
           height={30}
           onClick={handleShowMenu}
           className="drop-menu-icon"
-          darkmode={darkmode}
         />
       </div>
       {showMenu && (
@@ -88,9 +87,6 @@ const block = (darkmode: boolean) => css`
   gap: 0rem 1rem;
   justify-items: center;
   align-items: center;
-  &:hover {
-    cursor: pointer;
-  }
   ${darkmode &&
   css`
     svg {

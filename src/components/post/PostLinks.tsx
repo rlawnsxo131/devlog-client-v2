@@ -60,20 +60,31 @@ const scrollBox = css`
 const postWrapper = (darkmode: boolean) => css`
   display: flex;
   flex-direction: column;
-  width: 10rem;
+  width: 11rem;
   height: 12.533125rem;
-  padding: 0.5rem 1rem;
   margin: 1rem 1rem 1rem 0;
   border-radius: 0.5rem;
   img,
   svg {
-    width: 10rem;
-    height: 5rem;
+    width: 11rem;
+    height: 5.5rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+  h4 {
+    padding: 0 1rem;
   }
   background: ${darkmode ? darkmodeBackground.other : palette.gray0};
   &:hover {
     background: ${darkmode ? palette.gray9 : palette.gray1};
   }
+  ${darkmode
+    ? css`
+        box-shadow: 1px 1px 5px 2px ${palette.gray9};
+      `
+    : css`
+        box-shadow: 1px 1px 5px 2px ${palette.gray1};
+      `};
 `;
 
 export default memo(PostLinks);

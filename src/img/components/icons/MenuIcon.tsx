@@ -1,21 +1,13 @@
 import { css } from '@emotion/react';
-import palette from '../../../lib/styles/palette';
 
 interface MenuIconProps {
   height: number;
   width: number;
   onClick: () => void;
   className: string;
-  darkmode: boolean;
 }
 
-function MenuIcon({
-  height,
-  width,
-  onClick,
-  className,
-  darkmode,
-}: MenuIconProps) {
+function MenuIcon({ height, width, onClick, className }: MenuIconProps) {
   return (
     <svg
       onClick={onClick}
@@ -25,7 +17,7 @@ function MenuIcon({
       width={width}
       viewBox="0 0 24 24"
       className={className}
-      css={block(darkmode)}
+      css={block}
     >
       <g className={className}>
         <path className={className} d="M0,0h24v24H0V0z" fill="none" />
@@ -44,11 +36,10 @@ function MenuIcon({
   );
 }
 
-const block = (darkmode: boolean) => css`
+const block = () => css`
   border-radius: 100%;
-  box-shadow: 1px 1px 5px 2px ${darkmode ? 'black' : palette.gray5};
   &:hover {
-    box-shadow: 1px 1px 10px 2px ${darkmode ? 'black' : palette.gray5};
+    cursor: pointer;
   }
 `;
 

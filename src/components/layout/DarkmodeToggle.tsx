@@ -23,6 +23,9 @@ const block = css`
   margin-right: 0.2rem;
   z-index: ${zIndexes.darkmodeToggle};
   border-radius: 100%;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default memo(DarkmodeToggle);
