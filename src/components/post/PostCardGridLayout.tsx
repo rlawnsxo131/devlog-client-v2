@@ -17,6 +17,11 @@ const block = css`
     grid-template-columns: repeat(1, 1fr);
     gap: 1rem 0;
   }
+  ${mediaQuery(345)} {
+    grid-auto-rows: 23rem;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem 0;
+  }
   ${mediaQuery(375)} {
     grid-auto-rows: 24rem;
     grid-template-columns: repeat(1, 1fr);

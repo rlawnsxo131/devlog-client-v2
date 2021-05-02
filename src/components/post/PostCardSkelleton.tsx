@@ -15,6 +15,8 @@ function PostCardSkelleton(props: PostCardSkelletonProps) {
       <Paragraph
         style={css`
           flex: 10;
+          border-top-left-radius: 0.5rem;
+          border-top-right-radius: 0.5rem;
         `}
       />
       {Array.from({ length: 5 }).map((_, i) => (
@@ -30,6 +32,8 @@ function PostCardSkelleton(props: PostCardSkelletonProps) {
         style={css`
           flex: 3;
           margin-top: 1rem;
+          border-bottom-left-radius: 0.5rem;
+          border-bottom-right-radius: 0.5rem;
         `}
       />
     </div>
@@ -39,6 +43,7 @@ function PostCardSkelleton(props: PostCardSkelletonProps) {
 const block = (darkmode: boolean) => css`
   display: flex;
   flex-direction: column;
+  border-radius: 0.5rem;
   ${darkmode
     ? css`
         box-shadow: 1px 1px 5px 2px ${palette.gray9};

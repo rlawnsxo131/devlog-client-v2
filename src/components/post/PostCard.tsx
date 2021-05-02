@@ -44,7 +44,7 @@ function PostCard({ post }: PostCardProps) {
       <div css={content}>
         <Link to={`/post/${post.url_slug}`} style={{ padding: '1rem' }}>
           <h4 css={title}>{post.post_header}</h4>
-          <p css={previewDescriptionStyle}>{previewDescription}</p>
+          <p css={previewDescriptionStyle(darkmode)}>{previewDescription}</p>
         </Link>
       </div>
       <Link to={`/post/${post.url_slug}`}>
@@ -124,9 +124,9 @@ const title = css`
   text-overflow: ellipsis;
 `;
 
-const previewDescriptionStyle = css`
+const previewDescriptionStyle = (darkmode: boolean) => css`
   display: block;
-  color: ${palette.gray6};
+  color: ${darkmode ? palette.gray6 : palette.gray9};
   height: 4rem;
   line-height: 1.5;
   font-size: 0.875rem;

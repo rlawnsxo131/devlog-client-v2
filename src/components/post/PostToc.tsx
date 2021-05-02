@@ -95,6 +95,8 @@ function PostToc(props: PostTocProps) {
     };
   }, [onScroll]);
 
+  if (!tocs?.length) return null;
+
   return (
     <div css={block}>
       {tocs?.map((v) => (
