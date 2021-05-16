@@ -1,7 +1,8 @@
+import { CommentErrorEnum } from '../modules/comment';
 import { ErrorEnum } from '../modules/error';
 
-function errorCodeReturner(error: any): string {
-  let errorCode = '';
+function errorCodeReturner(error: any): ErrorEnum | CommentErrorEnum {
+  let errorCode = ErrorEnum.UNKNOWN;
 
   // declare code error
   if (error.graphQLErrors) {
@@ -14,7 +15,7 @@ function errorCodeReturner(error: any): string {
   if (error.networkError) {
     errorCode = ErrorEnum.NETWORK;
   }
-  return errorCode ? errorCode : ErrorEnum.UNKNOWN;
+  return errorCode;
 }
 
 export default function errorTypeManager(error: any) {

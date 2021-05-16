@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { DEVLOG_DARKMODE } from '../lib/constants';
 
 interface CoreState {
@@ -29,16 +29,19 @@ const coreSlice = createSlice({
   name: 'core',
   initialState,
   reducers: {
-    setDarkmode(state, action) {
+    setDarkmode(state, action: PayloadAction<{ darkmode: boolean }>) {
       const { darkmode } = action.payload;
       state.darkmode.darkmode = darkmode;
-      localStorage.setItem(DEVLOG_DARKMODE, darkmode);
+      localStorage.setItem(DEVLOG_DARKMODE, `${darkmode}`);
     },
-    setLoading(state, action) {
+    setLoading(state, action: PayloadAction<{ loading: boolean }>) {
       const { loading } = action.payload;
       state.loading = loading;
     },
-    showPopup(state, action) {
+    showPopup(
+      state,
+      action: PayloadAction<{ title: string; message: string }>,
+    ) {
       const { title, message } = action.payload;
       state.popup.visible = true;
       state.popup.title = title;
@@ -52,11 +55,7 @@ const coreSlice = createSlice({
   },
 });
 
-export const {
-  setDarkmode,
-  setLoading,
-  showPopup,
-  closePopup,
-} = coreSlice.actions;
+export const { setDarkmode, setLoading, showPopup, closePopup } =
+  coreSlice.actions;
 
 export default coreSlice.reducer;

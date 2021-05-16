@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export enum CommentErrorEnum {
   ENTER_PASSWORD = 'ENTER_PASSWORD',
@@ -31,7 +31,10 @@ const commentSlice = createSlice({
   name: 'comment',
   initialState,
   reducers: {
-    setCommentError(state, action) {
+    setCommentError(
+      state,
+      action: PayloadAction<{ errorType: CommentErrorEnum }>,
+    ) {
       state.errorType = action.payload.errorType;
     },
     resetCommentError(state, action) {

@@ -73,7 +73,7 @@ export default function useCommentEditModal({
     (error: any) => {
       dispatch(
         setCommentError({
-          errorType: errorTypeManager(error),
+          errorType: errorTypeManager(error) as CommentErrorEnum,
         }),
       );
     },

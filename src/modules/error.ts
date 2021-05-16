@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export enum ErrorEnum {
   NOT_FOUND = 'NOT_FOUND',
@@ -28,7 +28,7 @@ const errorSlice = createSlice({
   name: 'error',
   initialState,
   reducers: {
-    setError(state, action) {
+    setError(state, action: PayloadAction<{ errorType: ErrorEnum }>) {
       const { errorType } = action.payload;
       state.errorType = errorType;
     },

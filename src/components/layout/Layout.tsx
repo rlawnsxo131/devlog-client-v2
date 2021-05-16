@@ -32,7 +32,7 @@ const block = css`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100%;
   ${media.xsmall} {
     .copyright {
       display: none;
@@ -79,6 +79,11 @@ const section = css`
 `;
 
 const globalStyle = (darkmode: boolean) => css`
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
   body {
     margin: 0;
     padding: 0;

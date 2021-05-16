@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { setError } from '../../modules/error';
+import { ErrorEnum, setError } from '../../modules/error';
 import errorTypeManager from '../errorTypeManager';
 
 export default function useError() {
@@ -8,7 +8,7 @@ export default function useError() {
 
   const handleError = useCallback(
     (error: any) => {
-      const errorType = errorTypeManager(error);
+      const errorType = errorTypeManager(error) as ErrorEnum;
       dispatch(setError({ errorType }));
     },
     [dispatch],
