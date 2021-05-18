@@ -12,7 +12,7 @@ import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 import MarkdownRender from '../markdown/MarkdownRender';
 import DefaultTags from '../tag/DefaultTags';
 import PostSeries from './PostSeries';
-import PostSkelleton from './PostSkelleton';
+import PostSkeleton from './PostSkeleton';
 import PostToc from './PostToc';
 import { useEffect, useMemo } from 'react';
 import markdownParser from '../../lib/remark/markdownParser';
@@ -56,7 +56,7 @@ function Post(props: PostProps) {
     handleError(error);
   }, [error]);
 
-  if (loading) return <PostSkelleton />;
+  if (loading) return <PostSkeleton />;
   if (error) return null;
   if (!data || !data.post) {
     setNotFound();

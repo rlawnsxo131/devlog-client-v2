@@ -4,9 +4,9 @@ import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import Paragraph from '../common/Paragraph';
 
-interface PostCardSkelletonProps {}
+interface PostCardSkeletonProps {}
 
-function PostCardSkelleton(props: PostCardSkelletonProps) {
+function PostCardSkeleton(props: PostCardSkeletonProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
@@ -21,7 +21,7 @@ function PostCardSkelleton(props: PostCardSkelletonProps) {
       />
       {Array.from({ length: 5 }).map((_, i) => (
         <Paragraph
-          key={`post_card_skelleton_${i}`}
+          key={`post_card_skeleton_${i}`}
           style={css`
             flex: 1;
             margin: 1rem 0.25rem 0 0.25rem;
@@ -53,4 +53,4 @@ const block = (darkmode: boolean) => css`
       `};
 `;
 
-export default PostCardSkelleton;
+export default PostCardSkeleton;

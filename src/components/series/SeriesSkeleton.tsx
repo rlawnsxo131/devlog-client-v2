@@ -5,9 +5,9 @@ import { RootState } from '../../modules';
 import Paragraph from '../common/Paragraph';
 import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 
-interface SeriesSkelletonProps {}
+interface SeriesSkeletonProps {}
 
-function SeriesItemSkelleton() {
+function SeriesItemSkeleton() {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
@@ -49,14 +49,14 @@ const block = (darkmode: boolean) => css`
       `};
 `;
 
-function SeriesSkelleton(props: SeriesSkelletonProps) {
+function SeriesSkeleton(props: SeriesSkeletonProps) {
   return (
     <MediaRatioWrapper type="column">
       {Array.from({ length: 10 }).map((_, i) => (
-        <SeriesItemSkelleton key={`series_skelleton_${i}`} />
+        <SeriesItemSkeleton key={`series_skeleton_${i}`} />
       ))}
     </MediaRatioWrapper>
   );
 }
 
-export default SeriesSkelleton;
+export default SeriesSkeleton;

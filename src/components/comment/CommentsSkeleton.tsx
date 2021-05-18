@@ -4,9 +4,9 @@ import palette from '../../lib/styles/palette';
 import { RootState } from '../../modules';
 import Paragraph from '../common/Paragraph';
 
-interface CommentsSkelletonProps {}
+interface CommentsSkeletonProps {}
 
-function CommentsSkelleton(props: CommentsSkelletonProps) {
+function CommentsSkeleton(props: CommentsSkeletonProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
@@ -25,7 +25,7 @@ function CommentsSkelleton(props: CommentsSkelletonProps) {
         `}
       />
       {Array.from({ length: 5 }).map((_, i) => (
-        <div key={`comments_skelleton_${i}`} css={commentCardBlock(darkmode)}>
+        <div key={`comments_skeleton_${i}`} css={commentCardBlock(darkmode)}>
           {Array.from({ length: 3 }).map((_, i) => (
             <Paragraph
               key={`comment_card_text_${i}`}
@@ -55,4 +55,4 @@ const commentCardBlock = (darkmode: boolean) => css`
   padding: 1rem;
 `;
 
-export default CommentsSkelleton;
+export default CommentsSkeleton;

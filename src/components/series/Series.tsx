@@ -5,7 +5,7 @@ import { GET_SERIES, SeriesData } from '../../graphql/series';
 import useError from '../../lib/hooks/useError';
 import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 import SeriesItem from './SeriesItem';
-import SeriesSkelleton from './SeriesSkelleton';
+import SeriesSkeleton from './SeriesSkeleton';
 
 interface SeriesProps {}
 
@@ -25,7 +25,7 @@ function Series(props: SeriesProps) {
     handleError(error);
   }, [error]);
 
-  if (loading) return <SeriesSkelleton />;
+  if (loading) return <SeriesSkeleton />;
   if (error) return null;
 
   return (

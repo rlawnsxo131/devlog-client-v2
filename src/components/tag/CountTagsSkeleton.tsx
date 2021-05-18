@@ -1,14 +1,14 @@
 import { css } from '@emotion/react';
 import Paragraph from '../common/Paragraph';
 
-interface CountTagsSkelletonProps {}
+interface CountTagsSkeletonProps {}
 
-function CountTagsSkelleton(props: CountTagsSkelletonProps) {
+function CountTagsSkeleton(props: CountTagsSkeletonProps) {
   return (
     <div css={block}>
       {Array.from({ length: 130 }).map((_, i) => (
         <Paragraph
-          key={`count_tag_skelleton_${i}`}
+          key={`count_tag_skeleton_${i}`}
           style={css`
             width: 7.5rem;
             height: 1.75rem;
@@ -27,4 +27,4 @@ const block = css`
   flex-flow: row wrap;
 `;
 
-export default CountTagsSkelleton;
+export default CountTagsSkeleton;

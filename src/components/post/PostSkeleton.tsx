@@ -2,9 +2,9 @@ import { css } from '@emotion/react';
 import media, { mediaQuery } from '../../lib/styles/media';
 import Paragraph from '../common/Paragraph';
 
-interface PostSkelletonProps {}
+interface PostSkeletonProps {}
 
-function PostSkelleton(props: PostSkelletonProps) {
+function PostSkeleton(props: PostSkeletonProps) {
   return (
     <div css={block}>
       <Paragraph
@@ -17,32 +17,33 @@ function PostSkelleton(props: PostSkelletonProps) {
       <div css={tagsWrapper}>
         {Array.from({ length: 3 }).map((_, i) => (
           <Paragraph
-            key={`post_detail_skelleton_tag_${i}`}
+            key={`post_detail_skeleton_tag_${i}`}
             style={css`
               width: 5rem;
               height: 1.5rem;
-              margin-right: 1rem;
+              margin: 0.125rem 1rem 0 0;
               border-radius: 0.25rem;
             `}
           />
         ))}
       </div>
-      <Paragraph
-        style={css`
-          height: 20rem;
-          margin-top: 1rem;
-          margin-bottom: 1rem;
-        `}
-      />
-      {Array.from({ length: 30 }).map((_, i) => (
+      <div css={thumnail}>
         <Paragraph
-          key={`post_detil_skelleton_${i}`}
           style={css`
-            height: 1.75rem;
             margin-top: 1rem;
+            margin-bottom: 1rem;
           `}
+          className="thumbnail-skeleton"
         />
-      ))}
+      </div>
+      <div css={content}>
+        {Array.from({ length: 30 }).map((_, i) => (
+          <Paragraph
+            key={`post_detil_skeleton_${i}`}
+            className="content-skeleton"
+          />
+        ))}
+      </div>
       <Paragraph
         style={css`
           height: 10rem;
@@ -67,6 +68,42 @@ const block = css`
   }
 `;
 
+const thumnail = css`
+  position: relative;
+  padding-top: 52.35%;
+  .thumbnail-skeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const content = css`
+  margin-top: 2rem;
+  .content-skeleton {
+    ${media.xsmall} {
+      height: 1.125rem;
+      & + .content-skeleton {
+        margin-top: 0.725rem;
+      }
+    }
+    ${mediaQuery(560)} {
+      height: 1.5rem;
+      & + .content-skeleton {
+        margin-top: 1rem;
+      }
+    }
+    ${media.medium} {
+      height: 1.725rem;
+      & + .content-skeleton {
+        margin-top: 1.125rem;
+      }
+    }
+  }
+`;
+
 const tagsWrapper = css`
   flex: 1.5;
   display: flex;
@@ -75,4 +112,4 @@ const tagsWrapper = css`
   margin-bottom: 1rem;
 `;
 
-export default PostSkelleton;
+export default PostSkeleton;

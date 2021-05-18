@@ -6,13 +6,14 @@ import { RootState } from '../../modules';
 
 interface ParagraphProps {
   style?: SerializedStyles;
+  className?: string;
 }
 
-function Paragraph({ style }: ParagraphProps) {
+function Paragraph({ style, className }: ParagraphProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );
-  return <div css={block(darkmode, style)} />;
+  return <div css={block(darkmode, style)} className={className} />;
 }
 
 const block = (darkmode: boolean, style?: SerializedStyles) => css`

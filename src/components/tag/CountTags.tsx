@@ -5,7 +5,7 @@ import { GET_TAGS, TagData } from '../../graphql/tag';
 import useError from '../../lib/hooks/useError';
 import MediaRatioWrapper from '../layout/MediaRatioWrapper';
 import CountTag from './CountTag';
-import CountTagsSkelleton from './CountTagsSkelleton';
+import CountTagsSkeleton from './CountTagsSkeleton';
 
 interface CountTagsProps {}
 
@@ -21,7 +21,7 @@ function CountTags(props: CountTagsProps) {
   if (loading) {
     return (
       <MediaRatioWrapper type="row">
-        <CountTagsSkelleton />
+        <CountTagsSkeleton />
       </MediaRatioWrapper>
     );
   }

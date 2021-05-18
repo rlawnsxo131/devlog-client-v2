@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { GET_POSTS, PostData } from '../../graphql/post';
 import useError from '../../lib/hooks/useError';
 import PostCard from './PostCard';
-import PostsSkelleton from './PostsSkelleton';
+import PostsSkeleton from './PostsSkeleton';
 import PostCardGridLayout from './PostCardGridLayout';
 
 interface PostsProps {}
@@ -28,7 +28,7 @@ function Posts(props: PostsProps) {
     handleError(error);
   }, [error]);
 
-  if (loading) return <PostsSkelleton />;
+  if (loading) return <PostsSkeleton />;
   if (error) return null;
 
   return (

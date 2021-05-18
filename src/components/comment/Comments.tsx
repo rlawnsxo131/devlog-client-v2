@@ -5,7 +5,7 @@ import { CommentData, GET_COMMENTS } from '../../graphql/comment';
 import useError from '../../lib/hooks/useError';
 import media from '../../lib/styles/media';
 import CommentCards from './CommentCards';
-import CommentsSkelleton from './CommentsSkelleton';
+import CommentsSkeleton from './CommentsSkeleton';
 import CommentWrite from './CommentWrite';
 
 interface CommentsProps {
@@ -50,7 +50,7 @@ function Comments({ post_id }: CommentsProps) {
     handleError(error);
   }, [error]);
 
-  if (loading) return <CommentsSkelleton />;
+  if (loading) return <CommentsSkeleton />;
   if (error) return null;
 
   return (
