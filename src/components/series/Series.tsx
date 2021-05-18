@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Helmet } from 'react-helmet-async';
 import { GET_SERIES, SeriesData } from '../../graphql/series';
@@ -11,9 +11,14 @@ interface SeriesProps {}
 
 function Series(props: SeriesProps) {
   const [handleError] = useError();
-  const { loading, error, data } = useQuery<{ series: Array<SeriesData> }>(
-    GET_SERIES,
-  );
+  const [series, setSeries] = useState<Array<SeriesData> | null>(null);
+  const { loading, error, data } =
+    useQuery<{ series: Array<SeriesData> }>(GET_SERIES);
+
+  useEffect(() => {
+    if (!data) return;
+    setSeries([...data.series].sort((a, b) => b.id - a.id));
+  }, [data]);
 
   useEffect(() => {
     if (!error) return;
@@ -45,9 +50,8 @@ function Series(props: SeriesProps) {
           href={`${process.env.REACT_APP_SERVICE_URL}/series`}
         />
       </Helmet>
-      {data?.series.map((v) => (
-        <SeriesItem key={`series_${v.id}`} series={v} />
-      ))}
+      {series &&
+        series.map((v) => <SeriesItem key={`series_${v.id}`} series={v} />)}
     </MediaRatioWrapper>
   );
 }

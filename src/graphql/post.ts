@@ -25,6 +25,7 @@ export interface PostData {
   series_id: number;
   url_slug: string;
   released_at: Date;
+  updated_at: Date;
   tags: Array<string>;
   series_posts: Array<SeriesPostData>;
   link_posts: Array<LinkPostData>;

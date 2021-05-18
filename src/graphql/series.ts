@@ -16,6 +16,7 @@ export const GET_SERIES = gql`
         id
         post_header
         url_slug
+        updated_at
       }
     }
   }

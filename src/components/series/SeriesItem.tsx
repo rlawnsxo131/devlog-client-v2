@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { SeriesData } from '../../graphql/series';
 import palette from '../../lib/styles/palette';
+import { formatDate } from '../../lib/utils';
 import { RootState } from '../../modules';
 
 interface SeriesItemProps {
@@ -15,7 +16,14 @@ function SeriesItem({ series }: SeriesItemProps) {
   );
   return (
     <div css={block(darkmode)}>
-      <h3 css={title}>{series.series_name}</h3>
+      <div css={header}>
+        <h3>{series.series_name}</h3>
+        <p>
+          마지막 업데이트{' '}
+          {formatDate(series.posts[series.posts.length - 1].updated_at)}
+        </p>
+      </div>
+
       {series.posts.map((v) => (
         <Link
           key={`seires_posts_${v.url_slug}`}
@@ -39,9 +47,22 @@ const block = (darkmode: boolean) => css`
   }
 `;
 
-const title = css`
-  font-weight: 550;
-  margin: 0 0 0.5rem 0;
+const header = css`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding-bottom: 0.5rem;
+  h3 {
+    margin: 0;
+    font-weight: 550;
+  }
+  p {
+    font-size: 0.875rem;
+    margin-left: 1rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    color: ${palette.gray6};
+  }
 `;
 
 const link = (darkmode: boolean) => css`

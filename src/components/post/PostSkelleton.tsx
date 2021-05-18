@@ -38,8 +38,8 @@ function PostSkelleton(props: PostSkelletonProps) {
         <Paragraph
           key={`post_detil_skelleton_${i}`}
           style={css`
-            height: 1.5rem;
-            margin-top: 0.5rem;
+            height: 1.75rem;
+            margin-top: 1rem;
           `}
         />
       ))}
