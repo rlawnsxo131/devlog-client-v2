@@ -12,8 +12,8 @@
     "build:prod": "NODE_ENV=production webpack --config config/webpack.config.prod.js",
     "deploy:serverless": "NODE_ENV=production serverless deploy --stage production --force",
     "upload:s3": "aws s3 sync ./build/client s3://cdn-devlog-v2 --delete",
-    "s3:invalidate": "aws cloudfront create-invalidation --distribution-id E1HXTMHT7WHDAE --paths '/*'",
-    "deploy:production": "yarn build:prod && yarn deploy:serverless && yarn upload:s3 && yarn s3:invalidate"
+    "deploy:production": "yarn build:prod && yarn deploy:serverless && yarn upload:s3",
+    "s3:invalidate": "aws cloudfront create-invalidation --distribution-id E1HXTMHT7WHDAE --paths '/*'"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",

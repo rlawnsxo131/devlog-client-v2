@@ -23,7 +23,6 @@ function SeriesItem({ series }: SeriesItemProps) {
           {formatDate(series.posts[series.posts.length - 1].updated_at)}
         </p>
       </div>
-
       {series.posts.map((v) => (
         <Link
           key={`seires_posts_${v.url_slug}`}
@@ -58,7 +57,7 @@ const header = css`
   }
   p {
     font-size: 0.875rem;
-    margin-left: 1rem;
+    margin: 0 0 0 1rem;
     word-break: break-word;
     overflow-wrap: break-word;
     color: ${palette.gray6};
