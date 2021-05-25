@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { css } from '@emotion/react';
 import { useQuery } from '@apollo/client';
 import { Helmet } from 'react-helmet-async';
@@ -21,12 +20,10 @@ function Posts(props: PostsProps) {
     variables: {
       tag,
     },
+    onError: (error) => {
+      handleError(error);
+    },
   });
-
-  useEffect(() => {
-    if (!error) return;
-    handleError(error);
-  }, [error]);
 
   if (loading) return <PostsSkeleton />;
   if (error) return null;

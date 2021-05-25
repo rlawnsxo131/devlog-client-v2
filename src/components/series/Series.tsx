@@ -12,18 +12,19 @@ interface SeriesProps {}
 function Series(props: SeriesProps) {
   const [handleError] = useError();
   const [series, setSeries] = useState<Array<SeriesData> | null>(null);
-  const { loading, error, data } =
-    useQuery<{ series: Array<SeriesData> }>(GET_SERIES);
+  const { loading, error, data } = useQuery<{ series: Array<SeriesData> }>(
+    GET_SERIES,
+    {
+      onError: (error) => {
+        handleError(error);
+      },
+    },
+  );
 
   useEffect(() => {
     if (!data) return;
     setSeries([...data.series].sort((a, b) => b.id - a.id));
   }, [data]);
-
-  useEffect(() => {
-    if (!error) return;
-    handleError(error);
-  }, [error]);
 
   if (loading) return <SeriesSkeleton />;
   if (error) return null;

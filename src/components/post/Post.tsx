@@ -32,7 +32,9 @@ function Post(props: PostProps) {
     variables: {
       url_slug,
     },
-    // fetchPolicy: 'cache-and-network'
+    onError: (error) => {
+      handleError(error);
+    },
   });
 
   const description = useMemo(() => {
@@ -50,11 +52,6 @@ function Post(props: PostProps) {
   useEffect(() => {
     globalThis.scrollTo(0, 0);
   }, [url_slug]);
-
-  useEffect(() => {
-    if (!error) return;
-    handleError(error);
-  }, [error]);
 
   if (loading) return <PostSkeleton />;
   if (error) return null;

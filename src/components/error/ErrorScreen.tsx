@@ -20,9 +20,12 @@ interface ErrorScreenProps {
 
 function ErrorImageReturner({ errorType }: { errorType: ErrorEnum }) {
   if (errorType === ErrorEnum.NOT_FOUND) return <NotFoundErrorImage />;
-  if (errorType === ErrorEnum.UNKNOWN) return <UnknownErrorImage />;
   if (errorType === ErrorEnum.BAD_REQUEST) return <BadRequestImage />;
   if (errorType === ErrorEnum.NETWORK) return <NetworkErrorImage />;
+  if (errorType === ErrorEnum.INTERNAL_SERVER_ERROR) {
+    return <UnknownErrorImage />;
+  }
+  if (errorType === ErrorEnum.UNKNOWN) return <UnknownErrorImage />;
   if (errorType === ErrorEnum.CHUNK) return <ChunkErrorImage />;
   return <UnknownErrorImage />;
 }

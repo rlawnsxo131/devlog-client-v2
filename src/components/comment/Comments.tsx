@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useQuery } from '@apollo/client';
 import { css } from '@emotion/react';
 import { CommentData, GET_COMMENTS } from '../../graphql/comment';
@@ -39,16 +39,14 @@ function Comments({ post_id }: CommentsProps) {
     variables: {
       post_id,
     },
+    onError: (error) => {
+      handleError(error);
+    },
   });
   const commentsCount = useMemo(() => {
     if (!data) return 0;
     return getCommentsCount(data.comments);
   }, [data]);
-
-  useEffect(() => {
-    if (!error) return;
-    handleError(error);
-  }, [error]);
 
   if (loading) return <CommentsSkeleton />;
   if (error) return null;

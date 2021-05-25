@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client';
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { GET_TAGS, TagData } from '../../graphql/tag';
 import useError from '../../lib/hooks/useError';
@@ -11,12 +10,14 @@ interface CountTagsProps {}
 
 function CountTags(props: CountTagsProps) {
   const [handleError] = useError();
-  const { loading, error, data } = useQuery<{ tags: Array<TagData> }>(GET_TAGS);
-
-  useEffect(() => {
-    if (!error) return;
-    handleError(error);
-  }, [error]);
+  const { loading, error, data } = useQuery<{ tags: Array<TagData> }>(
+    GET_TAGS,
+    {
+      onError: (error) => {
+        handleError(error);
+      },
+    },
+  );
 
   if (loading) {
     return (

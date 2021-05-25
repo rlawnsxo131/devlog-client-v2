@@ -7,7 +7,7 @@ import {
   UpdateCommentData,
   UPDATE_COMMENT,
 } from '../../../graphql/comment';
-import errorTypeManager from '../../../lib/errorTypeManager';
+import errorManager from '../../../lib/errorManager';
 import useInputs from '../../../lib/hooks/useInputs';
 import useLoading from '../../../lib/hooks/useLoading';
 import useShowPopup from '../../../lib/hooks/useShowPopup';
@@ -73,7 +73,7 @@ export default function useCommentEditModal({
     (error: any) => {
       dispatch(
         setCommentError({
-          errorType: errorTypeManager(error) as CommentErrorEnum,
+          errorType: errorManager(error) as CommentErrorEnum,
         }),
       );
     },
