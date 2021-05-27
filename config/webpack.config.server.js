@@ -18,7 +18,6 @@ module.exports = () => {
       extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     },
     output: {
-      libraryTarget: 'commonjs',
       path: paths.prodServerBuildPath,
       publicPath: REACT_APP_PUBLIC_URL,
       filename: 'server.js',
