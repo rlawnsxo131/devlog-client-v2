@@ -7,10 +7,10 @@ import { RootState } from '../../modules';
 import Header from './Header';
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
-function Layout({ children }: LayoutProps) {
+function Layout({ children = null }: LayoutProps) {
   const darkmode = useSelector(
     (state: RootState) => state.core.darkmode.darkmode,
   );

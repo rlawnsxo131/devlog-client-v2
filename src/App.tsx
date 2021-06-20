@@ -8,18 +8,23 @@ import NotFoundPage from './pages/NotFoundPage';
 
 const PostPage = loadable(
   () => import(/* webpackChunkName: "PostPage" */ './pages/PostPage'),
+  { fallback: <Layout /> },
 );
 const PostsPage = loadable(
   () => import(/* webpackChunkName: "PostsPage" */ './pages/PostsPage'),
+  { fallback: <Layout /> },
 );
 const SeriesPage = loadable(
   () => import(/* webpackChunkName: "SeriesPage" */ './pages/SeriesPage'),
+  { fallback: <Layout /> },
 );
 const TagsPage = loadable(
   () => import(/* webpackChunkName: "TagsPage" */ './pages/TagsPage'),
+  { fallback: <Layout /> },
 );
 const InfoPage = loadable(
   () => import(/* webpackChunkName: "InfoPage" */ './pages/InfoPage'),
+  { fallback: <Layout /> },
 );
 
 interface AppProps {}
