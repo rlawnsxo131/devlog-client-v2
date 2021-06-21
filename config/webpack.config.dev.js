@@ -38,19 +38,22 @@ module.exports = () => {
         },
         {
           test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-          loader: 'file-loader',
-          options: {
-            name: 'static/media/[name].[contenthash:8].[ext]',
-            esModule: false,
-          },
-        },
-        {
-          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-          loader: 'url-loader',
-          options: {
-            name: 'static/media/[name].[contenthash:8].[ext]',
-            limit: 10000,
-          },
+          oneOf: [
+            {
+              loader: 'url-loader',
+              options: {
+                name: 'static/media/[name].[contenthash:8].[ext]',
+                limit: 10000,
+              },
+            },
+            {
+              loader: 'file-loader',
+              options: {
+                name: 'static/media/[name].[contenthash:8].[ext]',
+                esModule: false,
+              },
+            },
+          ],
         },
         {
           test: /\.css$/,

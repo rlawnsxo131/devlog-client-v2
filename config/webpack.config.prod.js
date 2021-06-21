@@ -14,11 +14,8 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = () => {
   const clientEnv = initializeConfig({ target: 'web' });
-  const {
-    REACT_APP_NODE_ENV,
-    REACT_APP_PUBLIC_URL,
-    REACT_APP_IMAGE_URL,
-  } = process.env;
+  const { REACT_APP_NODE_ENV, REACT_APP_PUBLIC_URL, REACT_APP_IMAGE_URL } =
+    process.env;
   const prefix = REACT_APP_NODE_ENV === 'production' ? '/' : '';
   return {
     mode: REACT_APP_NODE_ENV,
@@ -48,19 +45,22 @@ module.exports = () => {
         },
         {
           test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-          loader: 'file-loader',
-          options: {
-            name: 'static/media/[name].[contenthash:8].[ext]',
-            esModule: false,
-          },
-        },
-        {
-          test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-          loader: 'url-loader',
-          options: {
-            name: 'static/media/[name].[contenthash:8].[ext]',
-            limit: 10000,
-          },
+          oneOf: [
+            {
+              loader: 'url-loader',
+              options: {
+                name: 'static/media/[name].[contenthash:8].[ext]',
+                limit: 10000,
+              },
+            },
+            {
+              loader: 'file-loader',
+              options: {
+                name: 'static/media/[name].[contenthash:8].[ext]',
+                esModule: false,
+              },
+            },
+          ],
         },
         {
           test: /\.css$/,
