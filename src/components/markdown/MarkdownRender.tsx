@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import media from '../../lib/styles/media';
 import { memo, useEffect, useMemo, useState } from 'react';
+import optimizeImage from '../../lib/optimizeImage';
 
 function filter(html: string) {
   return sanitize(html, {
@@ -82,6 +83,15 @@ function filter(html: string) {
           attribs: {
             ...attribs,
             target: '_blank',
+          },
+        };
+      },
+      img: (tagName, attribs) => {
+        return {
+          tagName: 'img',
+          attribs: {
+            ...attribs,
+            src: optimizeImage(attribs.src, 768),
           },
         };
       },

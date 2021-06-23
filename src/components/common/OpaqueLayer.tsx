@@ -27,7 +27,8 @@ const block = (visible: boolean, darkmode: boolean) => css`
         background: rgba(100, 100, 100, 0.5);
       `
     : css`
-        background: rgba(255, 255, 255, 0.5);
+        /* background: rgba(255, 255, 255, 0.5); */
+        background: rgba(0, 0, 0, 0.3);
       `}
   ${visible
     ? css`
