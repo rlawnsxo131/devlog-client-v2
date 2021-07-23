@@ -10,7 +10,7 @@ import {
 } from '@apollo/client';
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import { Provider } from 'react-redux';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from '../../modules';
 import { StaticRouter } from 'react-router-dom';
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
@@ -32,13 +32,6 @@ async function serverRender({ url }: ServerRenderParams) {
 
   const store = configureStore({
     reducer: rootReducer,
-    middleware: [
-      ...getDefaultMiddleware({
-        serializableCheck: {
-          ignoredActions: [],
-        },
-      }),
-    ],
   });
   const client = new ApolloClient({
     ssrMode: true,

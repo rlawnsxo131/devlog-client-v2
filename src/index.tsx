@@ -2,7 +2,7 @@ import * as ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { loadableReady } from '@loadable/component';
 import client from './graphql/client';
@@ -12,13 +12,6 @@ import { HelmetProvider } from 'react-helmet-async';
 const store = configureStore({
   reducer: rootReducer,
   preloadedState: (globalThis as any).__REDUX_STATE__,
-  middleware: [
-    ...getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [],
-      },
-    }),
-  ],
   devTools: process.env.REACT_APP_NODE_ENV !== 'production',
 });
 

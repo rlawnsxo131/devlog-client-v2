@@ -8,6 +8,7 @@
     "build:local": "NODE_ENV=development webpack --config config/webpack.config.prod.js",
     "build:server": "NODE_ENV=development webpack --config config/webpack.config.server.js",
     "start:server": "node build/server/server.js",
+    "ssr:local": "yarn build:local && yarn build:server && yarn start:server",
     "offline": "NODE_ENV=development sls offline",
     "build:prod": "NODE_ENV=production webpack --config config/webpack.config.prod.js",
     "deploy:serverless": "NODE_ENV=production serverless deploy --stage production --force",

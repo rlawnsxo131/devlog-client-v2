@@ -11,7 +11,6 @@ module.exports = () => {
     entry: paths.ssrEntryPath,
     target: 'node',
     mode: REACT_APP_NODE_ENV,
-    // webpack critical warning pass
     externals: [nodeExternals()],
     resolve: {
       modules: ['node_modules'],

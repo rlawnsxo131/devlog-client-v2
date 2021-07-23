@@ -6,25 +6,29 @@ import ErrorBoundary from './components/error/ErrorBoundary';
 import Layout from './components/layout/Layout';
 import NotFoundPage from './pages/NotFoundPage';
 
+const fallback = {
+  fallback: <Layout />,
+};
+
 const PostPage = loadable(
   () => import(/* webpackChunkName: "PostPage" */ './pages/PostPage'),
-  { fallback: <Layout /> },
+  fallback,
 );
 const PostsPage = loadable(
   () => import(/* webpackChunkName: "PostsPage" */ './pages/PostsPage'),
-  { fallback: <Layout /> },
+  fallback,
 );
 const SeriesPage = loadable(
   () => import(/* webpackChunkName: "SeriesPage" */ './pages/SeriesPage'),
-  { fallback: <Layout /> },
+  fallback,
 );
 const TagsPage = loadable(
   () => import(/* webpackChunkName: "TagsPage" */ './pages/TagsPage'),
-  { fallback: <Layout /> },
+  fallback,
 );
 const InfoPage = loadable(
   () => import(/* webpackChunkName: "InfoPage" */ './pages/InfoPage'),
-  { fallback: <Layout /> },
+  fallback,
 );
 
 interface AppProps {}

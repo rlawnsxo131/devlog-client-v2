@@ -25,7 +25,6 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
   },
   output: {
-    libraryTarget: 'commonjs2',
     path: paths.serverlessBuildPath,
     publicPath: REACT_APP_PUBLIC_URL,
     filename: '[name].js',
