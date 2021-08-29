@@ -11,7 +11,7 @@ const ssrMiddleware: Middleware = async (ctx, next) => {
     }
     ctx.body = result.html;
     ctx.status = result.statusCode;
-  } catch (e) {
+  } catch (e: any) {
     ctx.throw(500, e);
   }
 };

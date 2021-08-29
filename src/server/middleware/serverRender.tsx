@@ -65,7 +65,7 @@ async function serverRender({ url }: ServerRenderParams) {
   );
   try {
     await getDataFromTree(Root);
-  } catch (e) {
+  } catch (e: any) {
     console.log('Apollo Error! Rendering result anyways');
     if (e instanceof ApolloError) {
       const notFound = e.graphQLErrors.some(
