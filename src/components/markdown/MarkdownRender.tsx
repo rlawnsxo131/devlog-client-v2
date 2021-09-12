@@ -7,6 +7,7 @@ import remark2rehype from 'remark-rehype';
 import raw from 'rehype-raw';
 import breaks from 'remark-breaks';
 import slug from 'remark-slug';
+import remarkGfm from 'remark-gfm';
 import prismPlugin from '../../lib/remark/prismPlugin';
 import embedPlugin from '../../lib/remark/embedPlugin';
 import palette, { darkmodeMarkdownColor } from '../../lib/styles/palette';
@@ -118,6 +119,7 @@ function MarkdownRender({ markdownText }: MarkdownRenderProps) {
           unified()
             .use(breaks)
             .use(remarkParse)
+            .use(remarkGfm)
             .use(slug)
             .use(prismPlugin)
             .use(embedPlugin)
@@ -136,6 +138,7 @@ function MarkdownRender({ markdownText }: MarkdownRenderProps) {
       .use(breaks)
       .use(stringify)
       .use(remarkParse)
+      .use(remarkGfm)
       .use(slug)
       .use(prismPlugin)
       .use(embedPlugin)

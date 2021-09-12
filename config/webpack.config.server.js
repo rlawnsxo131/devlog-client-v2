@@ -74,6 +74,7 @@ module.exports = () => {
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
       fallback: {
         path: false,
+        assert: false,
       },
     },
     optimization: {
