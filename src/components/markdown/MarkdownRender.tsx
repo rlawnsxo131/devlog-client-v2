@@ -283,6 +283,7 @@ const block = (darkmode: boolean) => css`
   }
 
   table {
+    color: ${palette.gray9};
     min-width: 40%;
     max-width: 100%;
     border: 1px solid ${palette.gray7};
