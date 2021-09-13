@@ -18,7 +18,7 @@ function Html({
 }: HtmlProps) {
   const { REACT_APP_IMAGE_URL } = process.env;
   return (
-    <html>
+    <html lang="ko">
       <head>
         {helmet.title.toComponent()}
         {helmet.link.toComponent()}
