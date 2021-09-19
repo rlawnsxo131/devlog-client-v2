@@ -132,13 +132,22 @@ module.exports = () => {
       type: 'memory',
     },
     devServer: {
-      // host: '',
-      publicPath: '/',
+      client: {
+        overlay: {
+          errors: true,
+          warnings: true,
+        },
+        progress: true,
+      },
+      static: {
+        directory: path.join(__dirname, 'public'),
+        publicPath: '/',
+      },
       port: 8080,
-      open: true,
-      overlay: true,
+      compress: true,
       historyApiFallback: true,
-      stats: 'errors-warnings',
+      allowedHosts: 'localhost',
+      open: true,
     },
     stats: {
       builtAt: true,
