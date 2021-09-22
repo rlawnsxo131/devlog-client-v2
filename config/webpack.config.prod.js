@@ -4,6 +4,7 @@ const initializeConfig = require('./env');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
@@ -51,6 +52,7 @@ module.exports = () => {
               options: {
                 name: 'static/media/[name].[contenthash:8].[ext]',
                 limit: 10000,
+                esModule: false,
               },
             },
             {
@@ -80,13 +82,13 @@ module.exports = () => {
       modules: ['node_modules'],
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
       fallback: {
-        path: false,
-        assert: false,
+        path: require.resolve('path-browserify'),
+        assert: require.resolve('assert'),
       },
     },
     optimization: {
       minimize: true,
-      minimizer: [new TerserPlugin()],
+      minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
       splitChunks: {
         chunks: 'all',
         name: false,

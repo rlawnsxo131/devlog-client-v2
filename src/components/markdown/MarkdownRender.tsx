@@ -141,7 +141,7 @@ function MarkdownRender({ markdownText }: MarkdownRenderProps) {
       .use(remarkGfm)
       .use(slug)
       .use(prismPlugin)
-      .use(embedPlugin)
+      .use(embedPlugin as any)
       .use(remark2rehype, { allowDangerousHtml: true })
       .use(raw)
       .process(markdownText, (err: any, file: any) => {

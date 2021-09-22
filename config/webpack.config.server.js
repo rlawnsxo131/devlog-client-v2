@@ -44,6 +44,7 @@ module.exports = () => {
               options: {
                 name: 'static/media/[name].[contenthash:8].[ext]',
                 limit: 10000,
+                esModule: false,
               },
             },
             {
@@ -73,8 +74,8 @@ module.exports = () => {
       modules: ['node_modules'],
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
       fallback: {
-        path: false,
-        assert: false,
+        path: require.resolve('path-browserify'),
+        assert: require.resolve('assert'),
       },
     },
     optimization: {

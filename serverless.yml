@@ -1,5 +1,11 @@
 service: devlog-v2-ssr
 
+frameworkVersion: '2'
+
+unresolvedVariablesNotificationMode: error
+# useDotenv: false
+# variablesResolutionMode: 20210326
+
 plugins:
   - serverless-webpack
   - serverless-dotenv-plugin
@@ -41,8 +47,6 @@ provider:
   #     - ${env:AWS_SUBNET_ID_FIRST}
   #     - ${env:AWS_SUBNET_ID_SECOND}
   #     - ${env:AWS_SUBNET_ID_THIRD}
-
-unresolvedVariablesNotificationMode: error
 
 functions:
   app:

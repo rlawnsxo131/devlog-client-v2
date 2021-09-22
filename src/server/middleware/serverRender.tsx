@@ -1,5 +1,5 @@
 import path from 'path';
-import fetch from 'node-fetch';
+import fetch from 'cross-fetch';
 import ReactDOMServer from 'react-dom/server';
 import {
   ApolloClient,
@@ -37,7 +37,7 @@ async function serverRender({ url }: ServerRenderParams) {
     ssrMode: true,
     link: createHttpLink({
       uri: `${process.env.REACT_APP_API_URI}/graphql`,
-      fetch: fetch as any,
+      fetch,
       credentials: 'include',
     }),
     cache: new InMemoryCache(),

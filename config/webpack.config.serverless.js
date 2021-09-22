@@ -17,7 +17,7 @@ module.exports = {
   mode: serverlessWebpack.lib.webpack.isLocal ? 'development' : 'production',
   externals: [
     nodeExternals({
-      allowlist: [/node-fetch/, /@loadable\/server/, /qs/],
+      allowlist: [/cross-fetch/, /@loadable\/server/, /qs/],
     }),
   ],
   resolve: {
@@ -74,6 +74,7 @@ module.exports = {
             options: {
               name: 'static/media/[name].[contenthash:8].[ext]',
               limit: 10000,
+              esModule: false,
             },
           },
           {
