@@ -414,14 +414,6 @@ const block = (darkmode: boolean) => css`
     li {
       font-size: 1.125rem;
     }
-    pre {
-      font-size: 1rem;
-      code {
-        &.language-null {
-          font-size: 1rem;
-        }
-      }
-    }
   }
 `;
 
