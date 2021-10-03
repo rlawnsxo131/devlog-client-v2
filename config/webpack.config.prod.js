@@ -28,7 +28,6 @@ module.exports = () => {
       chunkFilename: 'static/js/[name].[contenthash:8].chunk.js',
     },
     target: 'web',
-    devtool: 'hidden-source-map',
     module: {
       rules: [
         {
