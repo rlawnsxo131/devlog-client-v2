@@ -24,7 +24,7 @@ provider:
   name: aws
   runtime: nodejs14.x
   memorySize: 1024
-  timeout: 10
+  timeout: 30
   region: ap-northeast-2
   stage: dev
   lambdaHashingVersion: 20201221
