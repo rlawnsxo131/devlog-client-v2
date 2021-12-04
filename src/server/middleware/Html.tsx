@@ -25,7 +25,6 @@ function Html({
         {helmet.meta.toComponent()}
         {extractor.getLinkElements()}
         {extractor.getStyleElements()}
-        {extractor.getLinkElements()}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
           rel="shortcut icon"
