@@ -44,12 +44,8 @@ function InfoPage(props: InfoPageProps) {
           Serverless 한 BackEnd Architecture 를 선호하고,{'\n'}
           FrontEnd 의 자연스런 DataFlow 를 중요히 생각합니다.
         </pre>
-        <a
-          css={infoLink}
-          href="mailto:public.juntae.kim@gmail.com"
-          target="_blank"
-        >
-          public.juntae.kim@gmail.com
+        <a css={infoLink} href="mailto:public.juntae@gmail.com" target="_blank">
+          public.juntae@gmail.com
         </a>
       </div>
       <div css={boundary(darkmode)}>
