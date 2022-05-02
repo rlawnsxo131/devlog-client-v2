@@ -19,7 +19,7 @@ import {
   setCommentError,
 } from '../../../modules/comment';
 
-interface UseCommentEditModalProps {
+interface UseCommentEditModalParams {
   writer: string;
   comment: string;
   comment_id: number;
@@ -45,7 +45,7 @@ export default function useCommentEditModal({
   comment,
   comment_id,
   handleSetVisible,
-}: UseCommentEditModalProps): UseCommentEditModal {
+}: UseCommentEditModalParams): UseCommentEditModal {
   const dispatch = useDispatch();
   const errorType = useSelector((state: RootState) => state.comment.errorType);
   const [onShowPopup] = useShowPopup();

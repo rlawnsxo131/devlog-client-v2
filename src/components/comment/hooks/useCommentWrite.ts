@@ -6,7 +6,7 @@ import useLoading from '../../../lib/hooks/useLoading';
 import useShowPopup from '../../../lib/hooks/useShowPopup';
 import { normalizedString } from '../../../lib/utils';
 
-interface UseCommentWriteProps {
+interface UseCommentWriteParams {
   post_id: number;
   reply_comment_id?: number;
   handleShowCommentWrite?: () => void;
@@ -16,7 +16,7 @@ export default function useCommentWrite({
   post_id,
   reply_comment_id,
   handleShowCommentWrite,
-}: UseCommentWriteProps) {
+}: UseCommentWriteParams) {
   const passwordRef = useRef<null | HTMLInputElement>(null);
   const [onShowPopup] = useShowPopup();
   const [startLoading, endLoading] = useLoading();
