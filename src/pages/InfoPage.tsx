@@ -38,10 +38,12 @@ function InfoPage(props: InfoPageProps) {
         <h3 css={title}>Personal Development blog by John</h3>
         <pre css={description}>
           2018년 1월, 28살이 되던해 int 가 무엇인지 배운 늦깎이 개발자 입니다.
+          {'\n\n'}
+          판교에 한 스타트업에서 백오피스 개발과 인앱 Web View 및 프론트엔드 를
+          개발하고 있습니다. 필요에 따라 BackEnd API 를 개발하거나 배포를
+          구성하기도 합니다.{'\n\n'}
+          Serverless 한 BackEnd Architecture 를 선호하고,
           {'\n'}
-          판교에 있는 한 스타트업에서 웹/앱의 서버와 웹 프론트엔드 개발을하고
-          있습니다.{'\n\n'}
-          Serverless 한 BackEnd Architecture 를 선호하고,{'\n'}
           FrontEnd 의 자연스런 DataFlow 를 중요히 생각합니다.
         </pre>
         <a css={infoLink} href="mailto:public.juntae@gmail.com" target="_blank">
